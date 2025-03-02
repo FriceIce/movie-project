@@ -3,3 +3,8 @@ type RegisterUser = {
   email: string; 
   password: string;  
 }
+
+type LoginUser = {
+  email: string;
+  password: string;
+}

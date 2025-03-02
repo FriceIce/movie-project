@@ -1,5 +1,5 @@
 import express from "express";
-import { coloredConsoleLog } from "./utils/logger";
+import { consoleLog } from "./utils/logger";
 import { userRoutes } from "./routes/index"; 
 import 'dotenv/config'
 
@@ -12,5 +12,5 @@ app.use(express.json());
 app.use('/api', userRoutes); 
 
 app.listen(port, () => {
-  coloredConsoleLog('highlight', `Server is running on port ${port}`);
+  consoleLog('highlight', `Server is running on port ${port}`);
 })

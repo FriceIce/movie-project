@@ -6,6 +6,6 @@ const colorDictionary = {
   error: '\x1b[31m',  // Red
 }
 
-export function coloredConsoleLog(type: TerminalColors, text: string): void {
+export function consoleLog(type: TerminalColors, text: string): void {
   console.log(colorDictionary[type], text, '\x1b[0m')
 }
