@@ -1,11 +1,22 @@
-import { Pool } from 'pg';
+import pg, { QueryResult } from 'pg';
 import 'dotenv/config';
+import { consoleLog } from './utils/logger';
 
 // Database connection
+const { Pool } = pg;
 export const pool = new Pool({
   host: process.env.HOST || '',
   user: process.env.USER || '',
-  port: Number(process.env.PORT),
+  port: Number(process.env.DB_PORT),
   password: process.env.PASSWORD || '',
   database: process.env.DATABASE || '',
 })
+
+export async function runSql<T>(client: pg.Pool | pg.PoolClient , sql: string, values?: string[]): Promise<T[] | undefined> {
+  try {
+    const result: QueryResult<T[]> = values ? await pool.query(sql, values) : await pool.query(sql);
+    return result.rows as T[]; 
+  } catch (error) {
+    consoleLog("error", String(error)); 
+  }
+}
