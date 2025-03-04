@@ -9,15 +9,16 @@ import { pool, runSql } from '../../dbConncetion';
  * @Route /api/register
  * @method POST 
  * @description Checks if the user already exists and if not, creates a new user. 
- * @requestBody {username: string; email: string, password: string}
+ * @requestBody { username: string; email: string, password: string }
 */
 export async function register(req: Request, res: Response, next: NextFunction) {
   consoleLog('highlight', 'Entering the register route...')
   const { username, email, password } = req.body as RegisterUser; 
-
   const client = await pool.connect()
+
   try {
 
+    await client.query('BEGIN')
     consoleLog('highlight', 'Checking if the user exists...')
     const query_find_user = `SELECT email FROM users WHERE email = $1;` 
     const user = await runSql<{email: string} | undefined>(client, query_find_user, [email]);
@@ -34,6 +35,7 @@ export async function register(req: Request, res: Response, next: NextFunction) 
     consoleLog('highlight', 'Inserting the new user into the database...')
     const query_insert = `INSERT INTO users(username, email, password) VALUES($1, $2, $3)`
     await runSql(client, query_insert, [username, email.toLowerCase(), hashedPassword]); 
+    await client.query('COMMIT');
 
     if(!query_insert) {
       throw Error('Unfortunately a problem occurred while inserting the data into the database.')
@@ -42,6 +44,7 @@ export async function register(req: Request, res: Response, next: NextFunction) 
     next(); 
   } catch (error) {
     consoleLog('error', String(error)); 
+    await client.query('ROLLBACK');
 
     if(error instanceof Error){
       return res.status(500).json({ message: error.message});
@@ -51,16 +54,22 @@ export async function register(req: Request, res: Response, next: NextFunction) 
   }
 }
 
+/** 
+ * @Route /api/login
+ * @method POST 
+ * @description Checks if the user exists, then compare the hashed password to the password from the request body. 
+ * @requestBody { email: string, password: string }
+*/
+
 export async function login (req: Request, res: Response) {
   consoleLog('highlight', 'Entering the login route...')
   const { email, password } = req.body as LoginUser;
   const SECRET_KEY = process.env.JWT_SECRET_KEY as string; 
-  const client = await pool.connect(); 
 
   try {
     // Check if the email is valid
     const query_user = `SELECT username, email, password FROM users WHERE email = $1;`
-    const user = await runSql<RegisterUser>(client, query_user, [email.toLowerCase()]); 
+    const user = await runSql<RegisterUser>(pool, query_user, [email.toLowerCase()]); 
 
     if(!user || user.length === 0) {
       return res.status(422).json({ message: 'Invalid email' }); 
@@ -86,7 +95,5 @@ export async function login (req: Request, res: Response) {
   } catch (error) {
     consoleLog('error', String(error)); 
     return res.status(500).json({ message: 'Something went wrong' });
-  } finally {
-    client.release(); 
-  }
+  } 
 }

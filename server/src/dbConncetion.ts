@@ -12,9 +12,9 @@ export const pool = new Pool({
   database: process.env.DATABASE || '',
 })
 
-export async function runSql<T>(client: pg.Pool | pg.PoolClient , sql: string, values?: string[]): Promise<T[] | undefined> {
+export async function runSql<T>(client: pg.Pool | pg.PoolClient, sql: string, values?: string[]): Promise<T[] | undefined> {
   try {
-    const result: QueryResult<T[]> = values ? await pool.query(sql, values) : await pool.query(sql);
+    const result: QueryResult<T[]> = values ? await client.query(sql, values) : await client.query(sql);
     return result.rows as T[]; 
   } catch (error) {
     consoleLog("error", String(error)); 
