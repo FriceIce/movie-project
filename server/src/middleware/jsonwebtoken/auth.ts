@@ -16,27 +16,33 @@ export async function auth(req: Auth, res: Response, next: NextFunction) {
   const JWT_SECRET = process.env.JWT_SECRET_KEY as string; 
 
   if(!JWT_SECRET) {
-    consoleLog('error', 'JWT_SECRET is undefined!');
-    return res.status(500).json({ message: 'Internal server error'});
+    throw new Error('JWT_SECRET is undefined!')
   }
   
   if(!token) {
     consoleLog('error', 'Token is undefined');
-    return res.status(401).json({ message: 'Access denied! JWT Token is required.'});
+    throw new Error('Access denied! JWT token is required.')
   }
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded; 
     next(); 
+
   } catch (error) {
-    consoleLog('error', 'JWT verification failed.')
+    if (error instanceof Error) {
+      consoleLog('error', 'Something failed: ' + error.message)
+    }
 
     if(error instanceof jwt.JsonWebTokenError) {
       return res.status(401).json({ message: 'Access denied! Invalid JWT token.'});
-      }
+    } 
 
-    res.status(500).json({ message: 'Something went wrong.'}); 
+    if(error instanceof jwt.TokenExpiredError) {
+      return res.status(403).json({ message: 'Access denied! JWT token expired.'});
+    }
+
+    res.status(500).json({ message: 'Internal server error.'}); 
   }
 }
 

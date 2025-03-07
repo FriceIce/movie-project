@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt';
 import { consoleLog } from '../../utils/logger';
 import { pool, runSql } from '../../dbConncetion';
+import { CustomError } from '../../utils/error';
+import { errorHandler } from '../../utils/errorFunc';
 
 
 /** 
@@ -72,14 +74,14 @@ export async function login (req: Request, res: Response) {
     const user = await runSql<RegisterUser>(pool, query_user, [email.toLowerCase()]); 
 
     if(!user || user.length === 0) {
-      return res.status(422).json({ message: 'Invalid email' }); 
+      throw new CustomError.EmailError('Invalid email.', 422);
     }
 
     // Compare the password against the hashed password. 
     const passwordIsMatching = await bcrypt.compare(password, user[0].password);
 
     if(!passwordIsMatching) {
-      return res.status(401).json({ message: 'Invalid password.'})
+      throw new CustomError.PasswordError('Invalid password.', 401); 
     }
 
     // Generate a JWT token
@@ -94,6 +96,7 @@ export async function login (req: Request, res: Response) {
 
   } catch (error) {
     consoleLog('error', String(error)); 
+    if (error instanceof Error) errorHandler(error, req, res);
     return res.status(500).json({ message: 'Something went wrong' });
   } 
 }
