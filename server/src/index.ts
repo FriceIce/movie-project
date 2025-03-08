@@ -2,6 +2,7 @@ import express from "express";
 import { consoleLog } from "./utils/logger";
 import { userRoutes } from "./routes/index"; 
 import 'dotenv/config'
+import { errorHandler } from "./utils/error/errorFunc";
 
 const app = express();
 const port = process.env.PORT || 5000; 

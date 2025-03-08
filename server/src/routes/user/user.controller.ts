@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt';
 import { consoleLog } from '../../utils/logger';
 import { pool, runSql } from '../../dbConncetion';
-import { CustomError } from '../../utils/error';
-import { errorHandler } from '../../utils/errorFunc';
+import { CustomError } from '../../utils/error/error';
+import { errorHandler } from '../../utils/error/errorFunc';
 
 
 /** 
@@ -23,10 +23,10 @@ export async function register(req: Request, res: Response, next: NextFunction) 
     await client.query('BEGIN')
     consoleLog('highlight', 'Checking if the user exists...')
     const query_find_user = `SELECT email FROM users WHERE email = $1;` 
-    const user = await runSql<{email: string} | undefined>(client, query_find_user, [email]);
-
+    const user = await runSql<{email: string} | undefined>(client, query_find_user, [email.toLowerCase()]);
+    
     if(user && user.length > 0) {
-      return res.status(409).json({ message: 'User already exists' });
+      throw new CustomError.EmailError('User already exists');
     }
 
     // Hash the password
@@ -39,18 +39,10 @@ export async function register(req: Request, res: Response, next: NextFunction) 
     await runSql(client, query_insert, [username, email.toLowerCase(), hashedPassword]); 
     await client.query('COMMIT');
 
-    if(!query_insert) {
-      throw Error('Unfortunately a problem occurred while inserting the data into the database.')
-    }
-
     next(); 
   } catch (error) {
-    consoleLog('error', String(error)); 
     await client.query('ROLLBACK');
-
-    if(error instanceof Error){
-      return res.status(500).json({ message: error.message});
-    }
+    // errorHandler(error, res)
   } finally {
     client.release() 
   }
@@ -63,8 +55,8 @@ export async function register(req: Request, res: Response, next: NextFunction) 
  * @requestBody { email: string, password: string }
 */
 
-export async function login (req: Request, res: Response) {
-  consoleLog('highlight', 'Entering the login route...')
+export async function login(req: Request, res: Response) {
+  console.log('Entering the login route...');
   const { email, password } = req.body as LoginUser;
   const SECRET_KEY = process.env.JWT_SECRET_KEY as string; 
 
@@ -74,14 +66,14 @@ export async function login (req: Request, res: Response) {
     const user = await runSql<RegisterUser>(pool, query_user, [email.toLowerCase()]); 
 
     if(!user || user.length === 0) {
-      throw new CustomError.EmailError('Invalid email.', 422);
+      throw new CustomError.EmailError('Invalid email.');
     }
 
     // Compare the password against the hashed password. 
     const passwordIsMatching = await bcrypt.compare(password, user[0].password);
 
     if(!passwordIsMatching) {
-      throw new CustomError.PasswordError('Invalid password.', 401); 
+      throw new CustomError.PasswordError('Invalid password.'); 
     }
 
     // Generate a JWT token
@@ -95,8 +87,7 @@ export async function login (req: Request, res: Response) {
      })
 
   } catch (error) {
-    consoleLog('error', String(error)); 
-    if (error instanceof Error) errorHandler(error, req, res);
-    return res.status(500).json({ message: 'Something went wrong' });
+    console.log(error);
+    // errorHandler(error, res);
   } 
 }
