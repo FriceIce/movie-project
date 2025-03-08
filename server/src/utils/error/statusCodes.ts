@@ -1,0 +1,7 @@
+export enum StatusCode {
+  BAD_REQUEST = 401, 
+  UNAUTHORIZED = 403,
+  NOT_FOUND = 404, 
+  UNPROCESSABLE_ENTITY = 422,
+  SERVER_ERROR = 500
+}
