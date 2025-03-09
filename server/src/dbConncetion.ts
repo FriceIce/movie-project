@@ -1,6 +1,6 @@
 import pg, { QueryResult } from 'pg';
-import 'dotenv/config';
 import { consoleLog } from './utils/logger';
+import 'dotenv/config';
 
 // Database connection
 const { Pool } = pg;
