@@ -8,7 +8,11 @@ interface Auth extends Request {
 }
 
 /**
- * @description: Checks if the user is authenticated with a valid token. 
+ * Checks if the user is authenticated with a valid token. 
+ * @param {Auth} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ * @returns 
 */
 
 export async function auth(req: Auth, res: Response, next: NextFunction) {

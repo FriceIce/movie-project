@@ -8,9 +8,9 @@ import { errorHandler } from '../../utils/error/errorFunc';
 
 
 /** 
+ * Checks if the user already exists and if not, creates a new user. 
  * @Route /api/register
  * @method POST 
- * @description Checks if the user already exists and if not, creates a new user. 
  * @requestBody { username: string; email: string, password: string }
 */
 export async function register(req: Request, res: Response, next: NextFunction) {
@@ -42,16 +42,16 @@ export async function register(req: Request, res: Response, next: NextFunction) 
     next(); 
   } catch (error) {
     await client.query('ROLLBACK');
-    // errorHandler(error, res)
+    errorHandler(error, res)
   } finally {
     client.release() 
   }
 }
 
 /** 
+ * Checks if the user exists, then compare the hashed password to the password from the request body. 
  * @Route /api/login
  * @method POST 
- * @description Checks if the user exists, then compare the hashed password to the password from the request body. 
  * @requestBody { email: string, password: string }
 */
 
@@ -88,6 +88,6 @@ export async function login(req: Request, res: Response) {
 
   } catch (error) {
     console.log(error);
-    // errorHandler(error, res);
+    errorHandler(error, res);
   } 
 }
