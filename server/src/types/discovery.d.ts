@@ -23,3 +23,5 @@ type TVShow = {
 };
 
 type Movie = TVShow;
+
+type Recommendations = Discovery;
