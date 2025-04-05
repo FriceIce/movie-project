@@ -7,3 +7,6 @@ type RequestOptions = {
         Authorization: string;
     };
 };
+
+// TMBD api page type.
+type Page = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10';
