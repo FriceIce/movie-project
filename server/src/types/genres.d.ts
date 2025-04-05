@@ -1,8 +1,8 @@
 type Genres = {
-    genres: GenresObj[];
+    genres: Genre[];
 };
 
-type GenresObj = {
+type Genre = {
     id: number;
     name: string;
 };
