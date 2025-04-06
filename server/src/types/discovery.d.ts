@@ -5,7 +5,7 @@ type Discovery = {
     total_results: number;
 };
 
-type TVShow = {
+type Movie = {
     adult: boolean;
     backdrop_path: string;
     genre_ids: number[];
@@ -22,6 +22,8 @@ type TVShow = {
     vote_count: number;
 };
 
-type Movie = TVShow;
-
-type Recommendations = Discovery;
+interface TVShow extends Movie {}
+interface Recommendations extends Discovery {}
+interface TopRated extends Discovery {}
+interface Popular extends Discovery {}
+interface Search extends Discovery {}

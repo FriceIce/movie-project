@@ -1,6 +1,11 @@
 import genres from './genres/genres';
-import movieDetails from './movie/movieDetails';
-import discovery from './discovery';
-import recommendations from './movie/movieRecommendations';
+import details from './movie&tv/details';
+import recommendations from './movie&tv/recommendations';
+import topRated from './(movie&tv)-List/topRated';
+import popular from './(movie&tv)-List/popular';
+import trending from './trending/trending';
+import search from './search/search';
+import discovery from './discovery/discovery';
 
-export { genres, movieDetails, discovery, recommendations };
+// tmbd api functions
+export { genres, details, discovery, recommendations, topRated, popular, trending, search };
