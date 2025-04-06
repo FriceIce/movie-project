@@ -5,7 +5,7 @@ import { Response } from 'express';
 
 export function errorHandler(error: unknown, res: Response) {
     if (error instanceof Error) {
-        consoleLog('error', 'Error: ' + error.message);
+        console.warn('Error:', error.message);
 
         if (error instanceof CustomError.EmailError) {
             return res.status(error.statusCode).json({
@@ -14,6 +14,17 @@ export function errorHandler(error: unknown, res: Response) {
         }
 
         if (error instanceof CustomError.PasswordError) {
+            return res.status(error.statusCode).json({
+                message: error.message,
+            });
+        }
+
+        if (error instanceof CustomError.NotFoundError) {
+            return res.status(error.statusCode).json({
+                message: error.message,
+            });
+        }
+        if (error instanceof CustomError.BadRequestError) {
             return res.status(error.statusCode).json({
                 message: error.message,
             });

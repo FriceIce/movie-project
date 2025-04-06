@@ -21,4 +21,24 @@ export namespace CustomError {
             this.name = 'EmailError';
         }
     }
+
+    export class NotFoundError extends Error {
+        statusCode: number;
+
+        constructor(message: string, statusCode?: number) {
+            super(message);
+            this.statusCode = statusCode || StatusCode.NOT_FOUND;
+            this.name = 'NotFoundError';
+        }
+    }
+
+    export class BadRequestError extends Error {
+        statusCode: number;
+
+        constructor(message: string, statusCode?: number) {
+            super(message);
+            this.statusCode = statusCode || StatusCode.BAD_REQUEST;
+            this.name = 'BadRequestError';
+        }
+    }
 }
