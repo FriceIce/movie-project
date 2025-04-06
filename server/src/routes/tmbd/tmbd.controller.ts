@@ -16,7 +16,8 @@ export async function retrieveGenres(req: Request, res: Response): Promise<void>
         const type = req.params.type as Type;
         const genresResponse = await genres(type);
 
-        if (!genresResponse) throw new CustomError.NotFoundError('No genres found.');
+        if (!genresResponse || genresResponse.genres.length === 0)
+            throw new CustomError.NotFoundError('No genres found.');
 
         res.status(200).json({
             message: 'Successfully retrieved genres.',
@@ -55,7 +56,7 @@ export async function retrieveDiscovery(req: Request, res: Response): Promise<vo
         // Fetch the data.
         const discoveryResponse = await discovery(type, page, queryList);
 
-        if (!discoveryResponse) {
+        if (!discoveryResponse || discoveryResponse.results.length === 0) {
             throw new CustomError.NotFoundError(`No ${modifiedType} found.`);
         }
 
@@ -83,7 +84,7 @@ export async function retrieveTrending(req: Request, res: Response): Promise<voi
     try {
         const trendingResponse = await trending(type);
 
-        if (!trendingResponse) {
+        if (!trendingResponse || trendingResponse.results.length === 0) {
             throw new CustomError.NotFoundError(`No trending ${modifiedType} found.`);
         }
 
@@ -142,7 +143,7 @@ export async function retrieveRecommendations(req: Request, res: Response): Prom
     try {
         const recommendationResponse = await recommendations(type, id, page);
 
-        if (!recommendationResponse) {
+        if (!recommendationResponse || recommendationResponse.results.length === 0) {
             throw new CustomError.NotFoundError(
                 `No recommendations found for ${modifiedType} with id ${id}`
             );
