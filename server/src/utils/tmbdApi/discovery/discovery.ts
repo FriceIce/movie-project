@@ -1,5 +1,5 @@
-import { fetchConfig, fetchResponse } from '../helperFuncs';
-import { discoveryUrl } from './assets/discovery';
+import { fetchConfig, fetchResponse } from '../../helperFuncs';
+import { discoveryUrl } from '../assets/discovery';
 
 /**
  * This function retrieves discovery data (movies / TV shows) from tmbd endpoints.
@@ -9,7 +9,7 @@ import { discoveryUrl } from './assets/discovery';
  * @returns {Promise<Discovery | null>}
  */
 export default async function discovery(
-    type: 'movie' | 'tv',
+    type: Type,
     page: Page,
     queryParam?: string[]
 ): Promise<Discovery | null> {

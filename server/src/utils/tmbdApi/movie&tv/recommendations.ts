@@ -8,7 +8,7 @@ import { recommendationsUrl } from '../assets/recommendation';
  * @param {Page} page
  */
 export default async function recommendations(
-    type: 'movie' | 'tv',
+    type: Type,
     id: string,
     page: Page
 ): Promise<Recommendations | null> {

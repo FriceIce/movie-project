@@ -22,7 +22,6 @@ type Movie = {
     vote_count: number;
 };
 
-interface TVShow extends Movie {}
 interface Recommendations extends Discovery {}
 interface TopRated extends Discovery {}
 interface Popular extends Discovery {}

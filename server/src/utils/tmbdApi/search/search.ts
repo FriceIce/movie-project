@@ -1,7 +1,7 @@
 import { fetchConfig, fetchResponse } from '../../helperFuncs';
 import { searchUrl } from '../assets/search';
 
-export default async function search(type: 'movie' | 'tv', queryText: string) {
+export default async function search(type: Type, queryText: string) {
     const { options } = fetchConfig('GET');
     const url = type === 'movie' ? searchUrl(queryText).movie : searchUrl(queryText).tv;
     const response = await fetchResponse<Search>('get', url, options);

@@ -86,7 +86,7 @@ export async function login(req: Request, res: Response) {
             token,
         });
     } catch (error) {
-        console.log(error);
+        console.warn(error);
         errorHandler(error, res);
     }
 }

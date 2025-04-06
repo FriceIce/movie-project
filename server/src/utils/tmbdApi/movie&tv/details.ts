@@ -7,7 +7,7 @@ import { detailsUrl } from '../assets/details';
  * @param {string} id
  */
 export default async function details(
-    type: 'movie' | 'tv',
+    type: Type,
     id: string
 ): Promise<MovieDetail.Response | null> {
     const { options } = fetchConfig('GET', [id]);
