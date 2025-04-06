@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
-import { discovery, genres, trending } from '../../utils/tmbdApi';
+import { details, discovery, genres, recommendations, trending } from '../../utils/tmbdApi';
 import { CustomError } from '../../utils/error/error';
 import { errorHandler } from '../../utils/error/errorFunc';
+import { typeModifier } from '../assets/typeModifier';
 
 /**
  * Retrieves a list of movie genres
@@ -40,7 +41,7 @@ export async function retrieveDiscovery(req: Request, res: Response): Promise<vo
     const query = req.query;
 
     try {
-        const modifiedType = type === 'tv' ? 'TV shows' : 'movies';
+        const modifiedType = typeModifier(type);
 
         // Iterates through the object and extracts each property and its value, and pushing them into the empty array as a string, since that's what the function expects.
         const queryList = [];
@@ -77,7 +78,7 @@ export async function retrieveDiscovery(req: Request, res: Response): Promise<vo
 
 export async function retrieveTrending(req: Request, res: Response): Promise<void> {
     const type = req.params.type as Type;
-    const modifiedType = type === 'tv' ? 'TV shows' : 'movies';
+    const modifiedType = typeModifier(type);
 
     try {
         const trendingResponse = await trending(type);
@@ -90,8 +91,69 @@ export async function retrieveTrending(req: Request, res: Response): Promise<voi
             message: `Successfully retrieved trending ${modifiedType}`,
             data: trendingResponse,
         });
-    } catch (err) {
-        console.warn(err);
-        errorHandler(err, res);
+    } catch (error) {
+        console.warn(error);
+        errorHandler(error, res);
+    }
+}
+
+/**
+ * Retrieves details about a specific movie or TV show based on id.
+ * @method GET
+ * @route /api/details/:type/:id
+ * @returns
+ */
+
+export async function retireveDetails(req: Request, res: Response): Promise<void> {
+    const { type, id } = req.params as { type: Type; id: string };
+    const modifiedType = typeModifier(type, true);
+
+    try {
+        const detailsResponse = await details(type, id);
+
+        if (!detailsResponse) {
+            throw new CustomError.NotFoundError(
+                `No details found for ${modifiedType} with id ${id}`
+            );
+        }
+
+        res.status(200).json({
+            message: `Successfully retrieved details for ${modifiedType} with id ${id}`,
+            data: detailsResponse,
+        });
+    } catch (error) {
+        console.warn(error);
+        errorHandler(error, res);
+    }
+}
+
+/**
+ * Retrieves recommendations based on a movie or TV show id.
+ * @method GET
+ * @route /api/recommendations/:type/:id
+ * @returns
+ */
+
+export async function retrieveRecommendations(req: Request, res: Response): Promise<void> {
+    const { type, id } = req.params as { type: Type; id: string };
+    const page = req.body.page as Page;
+    const modifiedType = typeModifier(type, true);
+
+    try {
+        const recommendationResponse = await recommendations(type, id, page);
+
+        if (!recommendationResponse) {
+            throw new CustomError.NotFoundError(
+                `No recommendations found for ${modifiedType} with id ${id}`
+            );
+        }
+
+        res.status(200).json({
+            message: `Successfully retrieved recommendations for ${modifiedType} with id ${id}`,
+            data: recommendationResponse,
+        });
+    } catch (error) {
+        console.warn(error);
+        errorHandler(error, res);
     }
 }
