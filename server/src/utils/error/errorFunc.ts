@@ -7,24 +7,12 @@ export function errorHandler(error: unknown, res: Response) {
     if (error instanceof Error) {
         console.warn('Error:', error.message);
 
-        if (error instanceof CustomError.EmailError) {
-            return res.status(error.statusCode).json({
-                message: error.message,
-            });
-        }
-
-        if (error instanceof CustomError.PasswordError) {
-            return res.status(error.statusCode).json({
-                message: error.message,
-            });
-        }
-
-        if (error instanceof CustomError.NotFoundError) {
-            return res.status(error.statusCode).json({
-                message: error.message,
-            });
-        }
-        if (error instanceof CustomError.BadRequestError) {
+        if (
+            error instanceof CustomError.EmailError ||
+            error instanceof CustomError.PasswordError ||
+            error instanceof CustomError.NotFoundError ||
+            error instanceof CustomError.BadRequestError
+        ) {
             return res.status(error.statusCode).json({
                 message: error.message,
             });

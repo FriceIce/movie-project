@@ -2,8 +2,8 @@ import { fetchConfig, fetchResponse } from '../../helperFuncs';
 import { topRatedUrl } from '../assets/topRated';
 
 /**
- * @param type
- * @param {Page} page
+ * @param { Type } type The type of content to retrieve
+ * @param { Page } page The page to retrieve
  * @returns
  */
 export default async function topRated(type: Type, page: Page): Promise<TopRated | null> {
