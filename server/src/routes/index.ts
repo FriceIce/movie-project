@@ -1,2 +1,3 @@
 import userRoutes from './user/user.routes';
-export { userRoutes };
+import movieRoutes from './movies/movies.routes';
+export { userRoutes, movieRoutes };
