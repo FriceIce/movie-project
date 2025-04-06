@@ -26,3 +26,4 @@ interface Recommendations extends Discovery {}
 interface TopRated extends Discovery {}
 interface Popular extends Discovery {}
 interface Search extends Discovery {}
+interface Trending extends Discovery {}
