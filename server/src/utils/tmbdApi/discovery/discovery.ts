@@ -2,7 +2,7 @@ import { fetchConfig, fetchResponse } from '../../helperFuncs';
 import { discoveryUrl } from '../assets/discovery';
 
 /**
- * This function retrieves discovery data (movies / TV shows) from tmbd endpoints.
+ * This function retrieves data (movies / TV shows) from the tmbd discovery endpoint.
  * @param type
  * @param {Page} page
  * @param {string[]} queryParam
