@@ -1,5 +1,14 @@
 import { Request, Response } from 'express';
-import { details, discovery, genres, recommendations, trending } from '../../utils/tmbdApi';
+import {
+    details,
+    discovery,
+    genres,
+    recommendations,
+    trending,
+    search,
+    popular,
+    topRated,
+} from '../../utils/tmbdApi';
 import { CustomError } from '../../utils/error/error';
 import { errorHandler } from '../../utils/error/errorFunc';
 import { typeModifier } from '../assets/typeModifier';
@@ -152,6 +161,95 @@ export async function retrieveRecommendations(req: Request, res: Response): Prom
         res.status(200).json({
             message: `Successfully retrieved recommendations for ${modifiedType} with id ${id}`,
             data: recommendationResponse,
+        });
+    } catch (error) {
+        console.warn(error);
+        errorHandler(error, res);
+    }
+}
+
+/**
+ * Retrieves search results for given input.
+ * @method GET
+ * @route /api/search/:type
+ * @query search
+ * @returns
+ */
+
+export async function retrieveSearchResults(req: Request, res: Response): Promise<void> {
+    const { type } = req.params as { type: Type };
+    const searchQuery = req.query.query as string;
+    const modifiedType = typeModifier(type);
+
+    try {
+        const searchResponse = await search(type, searchQuery);
+        if (!searchResponse || searchResponse.results.length === 0) {
+            throw new CustomError.NotFoundError(
+                `No search results found for ${modifiedType} with search query "${searchQuery}"`
+            );
+        }
+        res.status(200).json({
+            message: `Successfully retrieved search results for ${modifiedType} with search query "${searchQuery}"`,
+            data: searchResponse,
+        });
+    } catch (error) {
+        console.warn(error);
+        errorHandler(error, res);
+    }
+}
+
+/**
+ * Retrieves popular movies and TV shows for the week.
+ * @method GET
+ * @route /api/popular/:type
+ * @query search
+ * @returns
+ */
+
+export async function retirevePopular(req: Request, res: Response): Promise<void> {
+    const type = req.params.type as Type;
+    const page = req.body.page as Page;
+    const modifiedType = typeModifier(type);
+
+    try {
+        const popularResponse = await popular(type, page);
+
+        if (!popularResponse || popularResponse.results.length === 0) {
+            throw new CustomError.NotFoundError(`No popular ${modifiedType} found.`);
+        }
+
+        res.status(200).json({
+            message: `Successfully retrieved popular ${modifiedType}`,
+            data: popularResponse,
+        });
+    } catch (error) {
+        console.warn(error);
+        errorHandler(error, res);
+    }
+}
+
+/**
+ * Retrieves top rated movies and TV shows
+ * @method GET
+ * @route /api/topRated/:type
+ * @returns
+ */
+
+export async function retrieveTopRated(req: Request, res: Response): Promise<void> {
+    const type = req.params.type as Type;
+    const page = req.body.page as Page;
+    const modifiedType = typeModifier(type);
+
+    try {
+        const topRatedResponse = await topRated(type, page);
+
+        if (!topRatedResponse || topRatedResponse.results.length === 0) {
+            throw new CustomError.NotFoundError(`No top rated ${modifiedType} found.`);
+        }
+
+        res.status(200).json({
+            message: `Successfully retrieved top rated ${modifiedType}`,
+            data: topRatedResponse,
         });
     } catch (error) {
         console.warn(error);
