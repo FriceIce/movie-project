@@ -1,33 +1,30 @@
 import express from 'express';
-import { typeValidator } from '../../middleware/expressValidator/index';
 import { handleValidationErrors } from '../../middleware/expressValidator/handleValidationError';
-
-// controller functions
 import {
-    retrieveGenres,
-    retrieveDiscovery,
-    retrieveTrending,
     retireveDetails,
+    retirevePopular,
+    retrieveDiscovery,
+    retrieveGenres,
     retrieveRecommendations,
     retrieveSearchResults,
-    retirevePopular,
     retrieveTopRated,
+    retrieveTrending,
 } from './tmbd.controller';
-import idValidator from '../../middleware/expressValidator/tmbd/id';
+import validator from '../assets/validator';
 
 const route = express.Router();
 
-route.get('/genres/:type', typeValidator(), handleValidationErrors, [retrieveGenres]);
-route.get('/discovery/:type', typeValidator(), handleValidationErrors, [retrieveDiscovery]);
-route.get('/trending/:type', typeValidator(), handleValidationErrors, [retrieveTrending]);
-route.get('/details/:type/:id', typeValidator(), idValidator(), handleValidationErrors, [
+route.get('/genres/:type', ...validator(['type']), handleValidationErrors, [retrieveGenres]);
+route.get('/discovery/:type', ...validator(['type']), handleValidationErrors, [retrieveDiscovery]);
+route.get('/trending/:type', ...validator(['type']), handleValidationErrors, [retrieveTrending]);
+route.get('/search/:type', ...validator(['type']), handleValidationErrors, [retrieveSearchResults]);
+route.get('/popular/:type', ...validator(['type']), handleValidationErrors, [retirevePopular]);
+route.get('/topRated/:type', ...validator(['type']), handleValidationErrors, [retrieveTopRated]);
+route.get('/details/:type/:id', ...validator(['type', 'id']), handleValidationErrors, [
     retireveDetails,
 ]);
-route.get('/recommendations/:type/:id', typeValidator(), idValidator(), handleValidationErrors, [
+route.get('/recommendations/:type/:id', ...validator(['type', 'id']), handleValidationErrors, [
     retrieveRecommendations,
 ]);
-route.get('/search/:type', typeValidator(), handleValidationErrors, [retrieveSearchResults]);
-route.get('/popular/:type', typeValidator(), handleValidationErrors, [retirevePopular]);
-route.get('/topRated/:type', typeValidator(), handleValidationErrors, [retrieveTopRated]);
 
 export default route;
