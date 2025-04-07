@@ -7,9 +7,9 @@ import { popularUrl } from '../assets/popular';
  * @param { Page } page The page to retrieve
  * @returns
  */
-export default async function popular(type: Type, page: Page) {
+export default async function popular(type: Type, page: Page): Promise<Popular | null> {
     const { options } = fetchConfig('GET');
     const url = type === 'movie' ? popularUrl(page).movie : popularUrl(page).tv;
-    const response = await fetchResponse('get', url, options);
+    const response = await fetchResponse<Popular>('get', url, options);
     return response;
 }
