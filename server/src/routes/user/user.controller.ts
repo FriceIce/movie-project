@@ -19,7 +19,7 @@ export async function register(req: Request, res: Response, next: NextFunction) 
 
     try {
         await client.query('BEGIN');
-        consoleLog('highlight', 'Checking if the user exists...');
+
         const query_find_user = `SELECT email FROM users WHERE email = $1;`;
         const user = await runSql<{ email: string } | undefined>(client, query_find_user, [
             email.toLowerCase(),
@@ -34,7 +34,6 @@ export async function register(req: Request, res: Response, next: NextFunction) 
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         // Insert the data to the database
-        consoleLog('highlight', 'Inserting the new user into the database...');
         const query_insert = `INSERT INTO users(username, email, password) VALUES($1, $2, $3)`;
         await runSql(client, query_insert, [username, email.toLowerCase(), hashedPassword]);
         await client.query('COMMIT');
