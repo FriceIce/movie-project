@@ -1,4 +1,4 @@
-import { consoleLog } from '../logger';
+import jwt from 'jsonwebtoken';
 import { CustomError } from './error';
 import { Response } from 'express';
 // import {}
@@ -14,6 +14,14 @@ export function errorHandler(error: unknown, res: Response) {
         return res.status(error.statusCode).json({
             message: error.message,
         });
+    }
+
+    if (error instanceof jwt.JsonWebTokenError) {
+        res.status(401).json({ message: 'Access denied! Invalid JWT token.' });
+    }
+
+    if (error instanceof jwt.TokenExpiredError) {
+        res.status(403).json({ message: 'Access denied! JWT token expired.' });
     }
 
     if (error instanceof Error) {

@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import { consoleLog } from '../../utils/logger';
 import 'dotenv/config';
+import { errorHandler } from '../../utils/error/errorFunc';
 
 interface Auth extends Request {
     user?: string | jwt.JwtPayload;
@@ -25,7 +26,6 @@ export async function auth(req: Auth, res: Response, next: NextFunction): Promis
 
     try {
         if (!token) {
-            consoleLog('error', 'Token is undefined');
             throw new jwt.JsonWebTokenError('Access denied! JWT token is required.');
         }
 
@@ -33,18 +33,6 @@ export async function auth(req: Auth, res: Response, next: NextFunction): Promis
         req.user = decoded;
         next();
     } catch (error) {
-        if (error instanceof jwt.JsonWebTokenError) {
-            res.status(401).json({ message: 'Access denied! Invalid JWT token.' });
-        }
-
-        if (error instanceof jwt.TokenExpiredError) {
-            res.status(403).json({ message: 'Access denied! JWT token expired.' });
-        }
-
-        if (error instanceof Error) {
-            consoleLog('error', 'Something failed: ' + error.message);
-        }
-
-        res.status(500).json({ message: 'Internal server error.' });
+        errorHandler(error, res);
     }
 }
