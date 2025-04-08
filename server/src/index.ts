@@ -14,7 +14,7 @@ import {
     popular,
     trending,
     search,
-} from './utils/tmbdApi';
+} from './utils/api/tmbd';
 
 const app = express();
 const port = process.env.PORT || 5000;

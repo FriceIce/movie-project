@@ -1,5 +1,5 @@
 import { fetchConfig, fetchResponse } from '../../helperFuncs';
-import { popularUrl } from '../assets/popular';
+import { popularUrl } from './assets/popular';
 
 /**
  * Retrieves a list of popular movies and TV shows.

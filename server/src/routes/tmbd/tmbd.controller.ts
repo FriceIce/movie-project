@@ -8,7 +8,7 @@ import {
     search,
     popular,
     topRated,
-} from '../../utils/tmbdApi';
+} from '../../utils/api/tmbd';
 import { CustomError } from '../../utils/error/error';
 import { errorHandler } from '../../utils/error/errorFunc';
 import { typeModifier } from '../utils/typeModifier';

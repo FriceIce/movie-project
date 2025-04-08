@@ -1,5 +1,5 @@
 import { fetchConfig, fetchResponse } from '../../helperFuncs';
-import { topRatedUrl } from '../assets/topRated';
+import { topRatedUrl } from './assets/topRated';
 
 /**
  * @param { Type } type The type of content to retrieve

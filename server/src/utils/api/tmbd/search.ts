@@ -1,5 +1,5 @@
 import { fetchConfig, fetchResponse } from '../../helperFuncs';
-import { searchUrl } from '../assets/search';
+import { searchUrl } from './assets/search';
 
 /**
  * Retrieves search results for movies, TV, and keywords
