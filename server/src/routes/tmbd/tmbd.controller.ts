@@ -11,7 +11,7 @@ import {
 } from '../../utils/tmbdApi';
 import { CustomError } from '../../utils/error/error';
 import { errorHandler } from '../../utils/error/errorFunc';
-import { typeModifier } from '../assets/typeModifier';
+import { typeModifier } from '../utils/typeModifier';
 
 /**
  * Retrieves a list of movie genres
