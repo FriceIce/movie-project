@@ -1,5 +1,5 @@
 import pg, { QueryResult } from 'pg';
-import { consoleLog } from './utils/logger';
+import { consoleLog } from '../utils/logger';
 import 'dotenv/config';
 
 // Database connection
