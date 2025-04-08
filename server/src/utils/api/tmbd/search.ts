@@ -7,10 +7,7 @@ import { searchUrl } from './assets/search';
  * @param queryText - User input
  * @returns
  */
-export default async function search(
-    type: Type | 'keyword',
-    queryText: string
-): Promise<Search | null> {
+export default async function search(type: Type, queryText: string): Promise<Search | null> {
     const { options } = fetchConfig('GET');
 
     const url = setSearchUrl(type, queryText);
@@ -21,7 +18,7 @@ export default async function search(
     return response;
 }
 
-function setSearchUrl(type: Type | 'keyword', queryText: string) {
+function setSearchUrl(type: Type, queryText: string) {
     switch (type) {
         case 'movie':
             return searchUrl(queryText).movie;
