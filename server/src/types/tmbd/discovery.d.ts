@@ -1,4 +1,4 @@
-type Discovery = {
+type MovieItem = {
     page: number;
     results: Movie[];
     total_pages: number;
@@ -7,21 +7,22 @@ type Discovery = {
 
 type Movie = {
     adult: boolean;
-    backdrop_path: string;
+    backdrop_path: string | null;
     genre_ids: number[];
     id: number;
-    origin_country: string[];
     original_language: string;
-    original_name: string;
+    original_title: string;
     overview: string;
     popularity: number;
     poster_path: string;
-    first_air_date: string;
-    name: string;
+    release_date: string;
+    title: string;
+    video: boolean;
     vote_average: number;
     vote_count: number;
 };
 
+interface Discovery extends MovieItem {}
 interface Recommendations extends Discovery {}
 interface TopRated extends Discovery {}
 interface Popular extends Discovery {}
