@@ -20,12 +20,14 @@ route.use(auth);
 route.use(handleValidationErrors);
 
 route.get('/genres/:type', ...validator(['type']), [retrieveGenres]);
-route.get('/discovery/:type', ...validator(['type']), [retrieveDiscovery]);
 route.get('/trending/:type', ...validator(['type']), [retrieveTrending]);
 route.get('/search/:type', ...validator(['type']), [retrieveSearchResults]);
-route.get('/popular/:type', ...validator(['type']), [retrievePopular]);
-route.get('/topRated/:type', ...validator(['type']), [retrieveTopRated]);
+route.get('/popular/:page/:type', ...validator(['type']), [retrievePopular]);
+route.get('/topRated/:page/:type', ...validator(['type']), [retrieveTopRated]);
 route.get('/details/:type/:id', ...validator(['type', 'id']), [retrieveDetails]);
-route.get('/recommendations/:type/:id', ...validator(['type', 'id']), [retrieveRecommendations]);
+route.get('/discovery/:page/:type', ...validator(['type']), [retrieveDiscovery]);
+route.get('/recommendations/:page/:type/:id', ...validator(['type', 'id']), [
+    retrieveRecommendations,
+]);
 
 export default route;

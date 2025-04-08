@@ -41,12 +41,12 @@ export async function retrieveGenres(req: Request, res: Response): Promise<void>
 /**
  * Retrieves a list of movies or TV shows from the tmbd 'discovery' endpoint.
  * @method GET
- * @route /api/discovery/:type
+ * @route /api/discovery/:type/:page
  * @return
  */
 
 export async function retrieveDiscovery(req: Request, res: Response): Promise<void> {
-    const page = req.body.page as Page;
+    const page = req.params.page as Page;
     const type = req.params.type as Type;
     const query = req.query;
 
@@ -140,13 +140,13 @@ export async function retrieveDetails(req: Request, res: Response): Promise<void
 /**
  * Retrieves recommendations based on a movie or TV show id.
  * @method GET
- * @route /api/recommendations/:type/:id
+ * @route /api/recommendations/:page/:type/:id
  * @returns
  */
 
 export async function retrieveRecommendations(req: Request, res: Response): Promise<void> {
     const { type, id } = req.params as { type: Type; id: string };
-    const page = req.body.page as Page;
+    const page = req.params.page as Page;
     const modifiedType = typeModifier(type, true);
 
     try {
@@ -201,14 +201,14 @@ export async function retrieveSearchResults(req: Request, res: Response): Promis
 /**
  * Retrieves popular movies and TV shows for the week.
  * @method GET
- * @route /api/popular/:type
+ * @route /api/popular/:page/:type
  * @query search
  * @returns
  */
 
 export async function retrievePopular(req: Request, res: Response): Promise<void> {
     const type = req.params.type as Type;
-    const page = req.body.page as Page;
+    const page = req.params.page as Page;
     const modifiedType = typeModifier(type);
 
     try {
@@ -231,13 +231,13 @@ export async function retrievePopular(req: Request, res: Response): Promise<void
 /**
  * Retrieves top rated movies and TV shows
  * @method GET
- * @route /api/topRated/:type
+ * @route /api/topRated/:page/:type
  * @returns
  */
 
 export async function retrieveTopRated(req: Request, res: Response): Promise<void> {
     const type = req.params.type as Type;
-    const page = req.body.page as Page;
+    const page = req.params.page as Page;
     const modifiedType = typeModifier(type);
 
     try {
