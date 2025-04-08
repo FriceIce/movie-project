@@ -6,19 +6,14 @@ import 'dotenv/config';
 const { Pool } = pg;
 
 export const pool = new Pool({
-    connectionString: process.env.DB_STRING,
-    ssl: { rejectUnauthorized: false },
+    host: process.env.HOST || '',
+    user: process.env.USER || '',
+    port: Number(process.env.DB_PORT),
+    password: process.env.PASSWORD || '',
+    database: process.env.DATABASE || '',
 });
-
 pool.on('connect', () => console.log('Database connection established'));
-
-// export const pool = new Pool({
-//     host: process.env.HOST || '',
-//     user: process.env.USER || '',
-//     port: Number(process.env.DB_PORT),
-//     password: process.env.PASSWORD || '',
-//     database: process.env.DATABASE || '',
-// });
+pool.on('release', () => console.log('Database connection released'));
 
 export async function runSql<T>(
     client: pg.Pool | pg.PoolClient,

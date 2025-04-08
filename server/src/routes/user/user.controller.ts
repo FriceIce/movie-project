@@ -2,9 +2,9 @@ import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { consoleLog } from '../../utils/logger';
-import { pool, runSql } from '../../connections/dbConncetion';
 import { CustomError } from '../../utils/error/error';
 import { errorHandler } from '../../utils/error/errorFunc';
+import { pool, runSql } from '../../connections/dbConncetion';
 
 /**
  * Checks if the user already exists and if not, creates a new user.
