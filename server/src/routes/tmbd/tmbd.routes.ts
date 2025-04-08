@@ -10,7 +10,7 @@ import {
     retrieveTopRated,
     retrieveTrending,
 } from './tmbd.controller';
-import validator from '../assets/validator';
+import validator from '../../middleware/expressValidator/validator';
 
 const route = express.Router();
 

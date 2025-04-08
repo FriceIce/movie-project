@@ -15,7 +15,7 @@ interface Auth extends Request {
  * @returns
  */
 
-export async function auth(req: Auth, res: Response, next: NextFunction) {
+export async function auth(req: Auth, res: Response, next: NextFunction): Promise<void> {
     const token = req.headers.authorization?.replace('Bearer ', '');
     const JWT_SECRET = process.env.JWT_SECRET_KEY as string;
 
@@ -38,11 +38,11 @@ export async function auth(req: Auth, res: Response, next: NextFunction) {
         }
 
         if (error instanceof jwt.JsonWebTokenError) {
-            return res.status(401).json({ message: 'Access denied! Invalid JWT token.' });
+            res.status(401).json({ message: 'Access denied! Invalid JWT token.' });
         }
 
         if (error instanceof jwt.TokenExpiredError) {
-            return res.status(403).json({ message: 'Access denied! JWT token expired.' });
+            res.status(403).json({ message: 'Access denied! JWT token expired.' });
         }
 
         res.status(500).json({ message: 'Internal server error.' });

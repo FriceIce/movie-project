@@ -1,15 +1,14 @@
-import { ValidationChain } from 'express-validator';
-import { RunnableValidationChains } from 'express-validator/lib/middlewares/schema';
-import idValidator from '../../middleware/expressValidator/tmbd/id';
-import { typeValidator } from '../../middleware/expressValidator';
+import { typeValidator } from '.';
+import idValidator from './tmbd/id';
 
 /**
  * This function dynamically picks the validator needed for set route.
  * @param {Validator[]} validators List of validators needed
  * @returns a list of validators
  */
+
 export default function validator(validators: Validator[]) {
-    const validatorList: RunnableValidationChains<ValidationChain>[] = [];
+    const validatorList: ValidatorFunc[] = [];
 
     validators.forEach((value) => {
         if (value === 'id') return validatorList.push(idValidator());
