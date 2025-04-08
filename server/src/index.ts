@@ -3,7 +3,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
 import { consoleLog } from './utils/logger';
-import { movieRoutes, userRoutes } from './types/tmbd/index';
+import { movieRoutes, userRoutes } from './routes/index';
 import 'dotenv/config';
 import {
     genres,
