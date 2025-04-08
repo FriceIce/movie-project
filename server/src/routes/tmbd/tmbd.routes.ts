@@ -24,8 +24,6 @@ route.get('/search/:type', ...validator(['type']), [retrieveSearchResults]);
 route.get('/popular/:type', ...validator(['type']), [retrievePopular]);
 route.get('/topRated/:type', ...validator(['type']), [retrieveTopRated]);
 route.get('/details/:type/:id', ...validator(['type', 'id']), [retrieveDetails]);
-route.get('/recommendations/:type/:id', ...validator(['type', 'id']), handleValidationErrors, [
-    retrieveRecommendations,
-]);
+route.get('/recommendations/:type/:id', ...validator(['type', 'id']), [retrieveRecommendations]);
 
 export default route;
