@@ -114,7 +114,7 @@ export async function retrieveTrending(req: Request, res: Response): Promise<voi
  * @returns
  */
 
-export async function retireveDetails(req: Request, res: Response): Promise<void> {
+export async function retrieveDetails(req: Request, res: Response): Promise<void> {
     const { type, id } = req.params as { type: Type; id: string };
     const modifiedType = typeModifier(type, true);
 
@@ -206,7 +206,7 @@ export async function retrieveSearchResults(req: Request, res: Response): Promis
  * @returns
  */
 
-export async function retirevePopular(req: Request, res: Response): Promise<void> {
+export async function retrievePopular(req: Request, res: Response): Promise<void> {
     const type = req.params.type as Type;
     const page = req.body.page as Page;
     const modifiedType = typeModifier(type);
