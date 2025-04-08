@@ -23,26 +23,26 @@ export async function auth(req: Auth, res: Response, next: NextFunction): Promis
         throw new Error('JWT_SECRET is undefined!');
     }
 
-    if (!token) {
-        consoleLog('error', 'Token is undefined');
-        throw new Error('Access denied! JWT token is required.');
-    }
-
     try {
+        if (!token) {
+            consoleLog('error', 'Token is undefined');
+            throw new jwt.JsonWebTokenError('Access denied! JWT token is required.');
+        }
+
         const decoded = jwt.verify(token, JWT_SECRET);
         req.user = decoded;
         next();
     } catch (error) {
-        if (error instanceof Error) {
-            consoleLog('error', 'Something failed: ' + error.message);
-        }
-
         if (error instanceof jwt.JsonWebTokenError) {
             res.status(401).json({ message: 'Access denied! Invalid JWT token.' });
         }
 
         if (error instanceof jwt.TokenExpiredError) {
             res.status(403).json({ message: 'Access denied! JWT token expired.' });
+        }
+
+        if (error instanceof Error) {
+            consoleLog('error', 'Something failed: ' + error.message);
         }
 
         res.status(500).json({ message: 'Internal server error.' });

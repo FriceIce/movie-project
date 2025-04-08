@@ -11,10 +11,12 @@ import {
     retrieveTopRated,
     retrieveTrending,
 } from './tmbd.controller';
+import { auth } from '../../middleware';
 
 const route = express.Router();
 
 // middleware
+route.use(auth);
 route.use(handleValidationErrors);
 
 route.get('/genres/:type', ...validator(['type']), [retrieveGenres]);
