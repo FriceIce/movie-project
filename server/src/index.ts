@@ -1,10 +1,10 @@
+import cors from 'cors';
+import 'dotenv/config';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import cors from 'cors';
-import { consoleLog } from './utils/logger';
 import { movieRoutes, userRoutes } from './routes/index';
-import 'dotenv/config';
+import { consoleLog } from './utils/logger';
 
 const app = express();
 const port = process.env.PORT || 5000;
