@@ -14,7 +14,7 @@ export default async function discovery(
     queryParam?: string[]
 ): Promise<Discovery | null> {
     const { options, query } = fetchConfig('GET', [], queryParam);
-    const url = type === 'movie' ? discoveryUrl(page).movie + query : discoveryUrl('1').tv + query;
+    const url = type === 'movie' ? discoveryUrl(page).movie + query : discoveryUrl(page).tv + query;
 
     const response = await fetchResponse<Discovery>('get', url, options);
     return response;
