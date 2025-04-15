@@ -1,6 +1,6 @@
 type MovieItem = {
     page: number;
-    results: Movie[];
+    results: Movie[] | Actor[];
     total_pages: number;
     total_results: number;
 };
@@ -21,6 +21,25 @@ type Movie = {
     vote_average: number;
     vote_count: number;
 };
+
+type Actor = {
+    adult: boolean;
+    gender: number;
+    id: number;
+    known_for_department: string;
+    name: string;
+    original_name: string;
+    popularity: number;
+    profile_path: string;
+    known_for: Movie[];
+};
+
+type Keyword = {
+    id: number;
+    name: string;
+};
+
+type SearchKeyword = Omit<MovieItem, 'results'> & { results: Keyword[] };
 
 interface Discovery extends MovieItem {}
 interface Recommendations extends Discovery {}
