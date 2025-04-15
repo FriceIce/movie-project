@@ -1,5 +1,5 @@
-import { fetchConfig, fetchResponse } from '../../helperFuncs';
-import { searchUrl } from './assets/search';
+import { fetchConfig, fetchResponse } from '../../utils/helperFuncs';
+import { searchUrl } from './utils/search';
 
 /**
  * Retrieves search results for movies, TV, and keywords
@@ -7,7 +7,7 @@ import { searchUrl } from './assets/search';
  * @param queryText - User input
  * @returns
  */
-export default async function search(type: Type, queryText: string): Promise<Search | null> {
+export default async function search<T>(type: Type, queryText: string): Promise<T | null> {
     const { options } = fetchConfig('GET');
 
     const url = setSearchUrl(type, queryText);
@@ -15,7 +15,7 @@ export default async function search(type: Type, queryText: string): Promise<Sea
 
     if (response) response.results.sort((a, b) => b.popularity - a.popularity);
 
-    return response;
+    return response as T;
 }
 
 function setSearchUrl(type: Type, queryText: string) {
@@ -25,6 +25,9 @@ function setSearchUrl(type: Type, queryText: string) {
 
         case 'keyword':
             return searchUrl(queryText).keyword;
+
+        case 'person':
+            return searchUrl(queryText).person;
 
         default: // tv
             return searchUrl(queryText).tv;
