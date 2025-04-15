@@ -1,5 +1,5 @@
-import { fetchConfig, fetchResponse } from '../../helperFuncs';
-import { recommendationsUrl } from './assets/recommendation';
+import { fetchConfig, fetchResponse } from '../../utils/helperFuncs';
+import { recommendationsUrl } from './utils/recommendation';
 
 /**
  * Retrieves recommendations for a specific movie or TV show.

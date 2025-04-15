@@ -1,6 +1,6 @@
-import { MovieDetail } from '../../../types/tmbd/movies';
-import { fetchConfig, fetchResponse } from '../../helperFuncs';
-import { detailsUrl } from './assets/details';
+import { MovieDetail } from '../../types/tmbd/movies';
+import { fetchConfig, fetchResponse } from '../../utils/helperFuncs';
+import { detailsUrl } from './utils/details';
 
 /**
  * Retrieves an object containg movie details.

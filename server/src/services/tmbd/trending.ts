@@ -1,5 +1,5 @@
-import { fetchConfig, fetchResponse } from '../../helperFuncs';
-import { trendingUrl } from './assets/trending';
+import { fetchConfig, fetchResponse } from '../../utils/helperFuncs';
+import { trendingUrl } from './utils/trending';
 
 /**
  * Retrieves trending movies and TV shows.

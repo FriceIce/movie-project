@@ -1,5 +1,5 @@
-import { fetchConfig, fetchResponse } from '../../helperFuncs';
-import { genresUrl } from './assets/genres';
+import { fetchConfig, fetchResponse } from '../../utils/helperFuncs';
+import { genresUrl } from './utils/genres';
 
 /**
  * Retrieves a list of genres for movies or TV shows

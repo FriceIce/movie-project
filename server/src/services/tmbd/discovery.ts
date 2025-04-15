@@ -1,5 +1,5 @@
-import { fetchConfig, fetchResponse } from '../../helperFuncs';
-import { discoveryUrl } from './assets/discovery';
+import { fetchConfig, fetchResponse } from '../../utils/helperFuncs';
+import { discoveryUrl } from './utils/discovery';
 
 /**
  * This function retrieves data (movies / TV shows) from the tmbd discovery endpoint.
