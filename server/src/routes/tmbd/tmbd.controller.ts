@@ -8,7 +8,7 @@ import {
     search,
     popular,
     topRated,
-} from '../../utils/api/tmbd';
+} from '../../services/tmbd';
 import { CustomError } from '../../utils/error/error';
 import { errorHandler } from '../../utils/error/errorFunc';
 import { typeModifier } from '../utils/typeModifier';
@@ -182,7 +182,7 @@ export async function retrieveSearchResults(req: Request, res: Response): Promis
     const modifiedType = typeModifier(type);
 
     try {
-        const searchResponse = await search(type, searchQuery);
+        const searchResponse = await search<Search>(type, searchQuery);
         if (!searchResponse || searchResponse.results.length === 0) {
             throw new CustomError.NotFoundError(
                 `No search results found for ${modifiedType} with search query "${searchQuery}"`
