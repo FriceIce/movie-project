@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { systemPrompt } from '../../data/openQueryData/systemPrompt';
-import { tools } from '../../schema/functionSchema';
-import { handleToolResponse } from '../../services/openai/chat';
+import { systemPrompt } from '../../data/systemPrompt';
+import { tools } from './service/functionSchema/functionSchema';
+import { handleToolResponse } from './service/chat.service';
 import { errorHandler } from '../../utils/error/errorFunc';
 
 /**

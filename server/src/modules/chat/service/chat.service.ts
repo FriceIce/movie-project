@@ -1,6 +1,6 @@
 import { ChatCompletionTool } from 'openai/resources/chat';
-import { systemPrompt } from '../../data/openQueryData/systemPrompt';
-import { discovery, search } from '../tmbd';
+import { systemPrompt } from '../../../data/systemPrompt';
+import { discovery, search } from '../../movies/service';
 import {
     chatCompletion,
     formatSearchResults,

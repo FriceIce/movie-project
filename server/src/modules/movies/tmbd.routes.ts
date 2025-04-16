@@ -10,7 +10,7 @@ import {
     retrieveSearchResults,
     retrieveTopRated,
     retrieveTrending,
-} from './tmbd.controller';
+} from './controller/tmbd';
 import { auth } from '../../middleware';
 
 const route = express.Router();

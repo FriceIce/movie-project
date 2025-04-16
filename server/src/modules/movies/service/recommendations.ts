@@ -1,4 +1,4 @@
-import { fetchConfig, fetchResponse } from '../../utils/helperFuncs';
+import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { recommendationsUrl } from './utils/recommendation';
 
 /**
