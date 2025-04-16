@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { tmbdApiKey } from '../connections/tmbd';
+import { tmbdApiKey } from '../config/tmbd';
 
 /**
  * Adjusts the parameter if there is any and configures the method/headers.

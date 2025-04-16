@@ -1,5 +1,5 @@
 import { ChatCompletionMessage, ChatCompletionTool } from 'openai/resources/index';
-import { openai } from '../../../connections/openai';
+import { openai } from '../../../../config/openai';
 
 /**
  * Sends a chat completion request to open ai with model 'gpt-4o', temperature at 0.7, and messages. Tools is optional.

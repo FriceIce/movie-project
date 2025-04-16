@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import { consoleLog } from '../../utils/logger';
 import { CustomError } from '../../utils/error/error';
 import { errorHandler } from '../../utils/error/errorFunc';
-import { pool, runSql } from '../../connections/database';
+import { pool, runSql } from '../../config/database';
 
 /**
  * Checks if the user already exists and if not, creates a new user.

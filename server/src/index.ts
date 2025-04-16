@@ -3,7 +3,7 @@ import 'dotenv/config';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import { movieRoutes, openaiRoutes, userRoutes } from './routes/index';
+import { movieRoutes, openaiRoutes, userRoutes } from './modules';
 import { consoleLog } from './utils/logger';
 
 const app = express();

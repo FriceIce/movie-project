@@ -1,5 +1,5 @@
 import express from 'express';
-import { chatbot } from './openai.controller';
+import { chatbot } from './chat.controller';
 import { auth } from '../../middleware';
 
 const router = express.Router();
