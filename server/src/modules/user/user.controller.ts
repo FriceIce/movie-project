@@ -8,7 +8,7 @@ import { loginUser, registerUser } from './user.service';
  * @method POST
  * @requestBody { username: string; email: string, password: string }
  */
-export async function register(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function userRegister(req: Request, res: Response, next: NextFunction): Promise<void> {
     const body = req.body as RegisterUser;
 
     try {
@@ -27,7 +27,7 @@ export async function register(req: Request, res: Response, next: NextFunction):
  * @requestBody { email: string, password: string }
  */
 
-export async function login(req: Request, res: Response): Promise<void> {
+export async function userLogin(req: Request, res: Response): Promise<void> {
     const body = req.body as LoginUser;
 
     try {
@@ -38,3 +38,5 @@ export async function login(req: Request, res: Response): Promise<void> {
         errorHandler(error, res);
     }
 }
+
+export async function userSaveContent(req: Request, res: Response) {}
