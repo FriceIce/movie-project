@@ -54,3 +54,16 @@ export async function fetchResponse<T>(
         return null;
     }
 }
+
+/**
+ * The TMDB API only returns the relative image path.
+ * This function builds the full image URL.
+ *
+ * @param path - Image path (e.g. "/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg")
+ * @param size - The image size ('92' | '154' | '185' | '342' | '500')
+ * @returns Full image URL string
+ */
+export function baseImageUrl(path: string, size: PosterSize = '500'): string {
+    const cleanedPath = path.startsWith('/') ? path.slice(1) : path;
+    return `https://image.tmdb.org/t/p/w${size}/${cleanedPath}`;
+}
