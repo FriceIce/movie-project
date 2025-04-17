@@ -18,7 +18,13 @@ export default async function search<T>(type: Type, queryText: string): Promise<
     return response as T;
 }
 
-function setSearchUrl(type: Type, queryText: string) {
+/**
+ * It sets the correct search url.
+ * @param type
+ * @param queryText
+ * @returns
+ */
+function setSearchUrl(type: Type, queryText: string): string {
     switch (type) {
         case 'movie':
             return searchUrl(queryText).movie;

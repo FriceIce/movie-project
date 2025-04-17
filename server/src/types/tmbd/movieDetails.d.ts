@@ -1,4 +1,4 @@
-export namespace MovieDetail {
+namespace MovieDetail {
     export type ProductionCompany = {
         id: number;
         logo_path: string | null;

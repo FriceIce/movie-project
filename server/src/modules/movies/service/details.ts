@@ -1,4 +1,3 @@
-import { MovieDetail } from '../../../types/tmbd/movies';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { detailsUrl } from './utils/details';
 

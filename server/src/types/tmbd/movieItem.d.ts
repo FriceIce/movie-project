@@ -41,9 +41,18 @@ type Keyword = {
 
 type SearchKeyword = Omit<MovieItem, 'results'> & { results: Keyword[] };
 
+type Genres = {
+    genres: Genre[];
+};
+
+type Genre = {
+    id: number;
+    name: string;
+};
+
 interface Discovery extends MovieItem {}
-interface Recommendations extends Discovery {}
-interface TopRated extends Discovery {}
-interface Popular extends Discovery {}
-interface Search extends Discovery {}
-interface Trending extends Discovery {}
+interface Recommendations extends MovieItem {}
+interface TopRated extends MovieItem {}
+interface Popular extends MovieItem {}
+interface Search extends MovieItem {}
+interface Trending extends MovieItem {}
