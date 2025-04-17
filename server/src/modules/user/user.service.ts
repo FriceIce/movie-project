@@ -1,20 +1,29 @@
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import { runSql, pool } from '../../config/database';
+import jwt from 'jsonwebtoken';
+import { pool, runSql } from '../../config/database';
 import { CustomError } from '../../utils/error/error';
 
+const SECRET_KEY = process.env.JWT_SECRET_KEY as string;
+
 /**
- * This function handles the log in process.
- * @param {LoginUser} body
- * @returns
+ * Authenticates a user by checking if the provided email exists and verifying the password.
+ * If successful, a JWT token is generated and returned alongside user data (excluding the password).
+ *
+ * @param {LoginUser} body - An object containing the user's email and password.
+ *
+ * @returns {Promise<{ message: string, data: Omit<RegisterUser, 'password'>, token: string }>}
+ * An object containing a success message, user data (without password), and a JWT token.
+ *
+ * @throws {EmailError} If the provided email does not exist in the database.
+ * @throws {PasswordError} If the provided password does not match the stored password.
+ * @throws {PostgreSQLError} If a database error occurs while checking the user or retrieving data.
  */
 
 export async function loginUser(body: LoginUser) {
     const { email, password } = body;
-    const SECRET_KEY = process.env.JWT_SECRET_KEY as string;
 
     // Check if the email is valid
-    const query_user = `SELECT username, email, password FROM users WHERE email = $1;`;
+    const query_user = `SELECT id, username, email, password FROM users WHERE email = $1;`;
     const user = await runSql<RegisterUser>(pool, query_user, [email.toLowerCase()]);
 
     if (!user || user.length === 0) {
@@ -29,7 +38,8 @@ export async function loginUser(body: LoginUser) {
     }
 
     // Generate a JWT token
-    const token = jwt.sign({ email }, SECRET_KEY, { expiresIn: '1h' });
+    const id: number = user[0].id;
+    const token = jwt.sign({ id }, SECRET_KEY, { expiresIn: '1h' });
     const { password: _, ...data } = user[0];
 
     return {
@@ -40,9 +50,19 @@ export async function loginUser(body: LoginUser) {
 }
 
 /**
- * Register user by first checking if the user exists. If not, proceed to insert user data into the database.
- * @param body - user data
+ * Registers a new user by first checking if the email already exists in the database.
+ * If the user does not exist, their data is inserted with a hashed password.
+ *
+ * The operation is wrapped in a transaction to ensure data consistency.
+ *
+ * @param {RegisterUser} body - An object containing the user's username, email, and raw password.
+ *
+ * @returns {Promise<void>} - Resolves when the user has been successfully registered.
+ *
+ * @throws {EmailError} If a user with the provided email already exists.
+ * @throws {PostgreSQLError} If a database error occurs during the operation.
  */
+
 export async function registerUser(body: RegisterUser) {
     const { username, email, password } = body;
     const client = await pool.connect();
@@ -73,4 +93,21 @@ export async function registerUser(body: RegisterUser) {
     } finally {
         client.release();
     }
+}
+
+/**
+ * Inserts a movie or TV show into the database for the specified user.
+ * This function saves user-specific content to the `saved_movies` table.
+ *
+ * @param {SaveMovie} body - An object containing the content's ID, title, and description.
+ * @param {{ id: number }} user - The authenticated user object containing the user's ID.
+ *
+ * @returns {Promise<void>} - Resolves when the content is successfully saved.
+ *
+ * @throws {PostgreSQLError} If the insertion fails due to a database error (e.g., constraint violation).
+ */
+export async function saveContent(body: SaveMovie, user: { id: number }): Promise<void> {
+    const { content_id, title, description } = body;
+    const query = `INSERT INTO saved_movies(content_id, title, description, user_id) VALUES($1, $2, $3, $4)`;
+    await runSql(pool, query, [content_id, title, description, user.id]);
 }

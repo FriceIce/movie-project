@@ -8,7 +8,8 @@ export function errorHandler(error: unknown, res: Response) {
         error instanceof CustomError.EmailError ||
         error instanceof CustomError.PasswordError ||
         error instanceof CustomError.NotFoundError ||
-        error instanceof CustomError.BadRequestError
+        error instanceof CustomError.BadRequestError ||
+        error instanceof CustomError.PostgreSQLError
     ) {
         console.warn('Error:', error.message);
         return res.status(error.statusCode).json({
@@ -17,11 +18,11 @@ export function errorHandler(error: unknown, res: Response) {
     }
 
     if (error instanceof jwt.JsonWebTokenError) {
-        res.status(401).json({ message: 'Access denied! Invalid JWT token.' });
+        return res.status(401).json({ message: error.message });
     }
 
     if (error instanceof jwt.TokenExpiredError) {
-        res.status(403).json({ message: 'Access denied! JWT token expired.' });
+        return res.status(403).json({ message: error.message });
     }
 
     if (error instanceof Error) {
