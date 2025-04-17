@@ -1,6 +1,6 @@
-import pg, { QueryResult } from 'pg';
-import { consoleLog } from '../utils/logger';
 import 'dotenv/config';
+import pg, { QueryResult } from 'pg';
+import { CustomError } from '../utils/error/error';
 
 // Database connection
 const { Pool } = pg;
@@ -18,14 +18,15 @@ pool.on('release', () => console.log('Database connection released'));
 export async function runSql<T>(
     client: pg.Pool | pg.PoolClient,
     sql: string,
-    values?: string[]
+    values?: any[]
 ): Promise<T[] | undefined> {
     try {
         const result: QueryResult<T[]> = values
             ? await client.query(sql, values)
             : await client.query(sql);
         return result.rows as T[];
-    } catch (error) {
-        consoleLog('error', String(error));
+    } catch (error: any) {
+        console.error(error.message);
+        throw new CustomError.PostgreSQLError(error.message, error.code);
     }
 }

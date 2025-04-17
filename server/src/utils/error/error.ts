@@ -41,4 +41,16 @@ export namespace CustomError {
             this.name = 'BadRequestError';
         }
     }
+
+    export class PostgreSQLError extends Error {
+        statusCode: number;
+        postgresStatusCode: any;
+
+        constructor(message: string, postgresStatusCode: any) {
+            super(message);
+            this.statusCode = StatusCode.BAD_REQUEST;
+            this.postgresStatusCode = postgresStatusCode;
+            this.name = 'PostgreSQLError';
+        }
+    }
 }

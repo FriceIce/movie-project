@@ -4,7 +4,7 @@ import { consoleLog } from '../../utils/logger';
 import 'dotenv/config';
 import { errorHandler } from '../../utils/error/errorFunc';
 
-interface Auth extends Request {
+export interface Auth extends Request {
     user?: string | jwt.JwtPayload;
 }
 
