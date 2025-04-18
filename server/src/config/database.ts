@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import pg, { QueryResult } from 'pg';
-import { CustomError } from '../utils/error/error';
+import { CustomError } from '../utils/error/errorClasses';
 
 // Database connection
 const { Pool } = pg;
