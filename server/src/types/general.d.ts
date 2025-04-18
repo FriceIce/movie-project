@@ -14,5 +14,5 @@ type PosterSize = '92' | '154' | '185' | '342' | '500';
 type Type = 'movie' | 'tv' | 'keyword' | 'person';
 
 // Validator func type
-type Validator = 'type' | 'id' | 'page';
+type Validator = 'type' | 'id' | 'page' | 'auth';
 type ValidatorFunc = RunnableValidationChains<ValidationChain> | Function;
