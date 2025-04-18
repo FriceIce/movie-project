@@ -1,4 +1,4 @@
-import { StatusCode } from './statusCodes';
+import { StatusCode } from './errorStatusCodes';
 
 // Custom error classes for handling specific error scenarios
 export namespace CustomError {
