@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { pool, runSql } from '../../config/database';
-import { CustomError } from '../../utils/error/error';
+import { CustomError } from '../../utils/error/errorClasses';
 
 const SECRET_KEY = process.env.JWT_SECRET_KEY as string;
 
