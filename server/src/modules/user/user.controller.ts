@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { Auth } from '../../middleware/jsonwebtoken/auth';
-import { errorHandler } from '../../utils/error/errorFunc';
 import { loginUser, registerUser, saveContent } from './user.service';
+import { asyncHandler } from '../../utils/error/errorAsyncHandler';
 
 /**
  * Handles user registration by checking if the user already exists.
@@ -15,17 +15,13 @@ import { loginUser, registerUser, saveContent } from './user.service';
  * @param res
  * @param next
  */
-export async function userRegister(req: Request, res: Response, next: NextFunction): Promise<void> {
-    const body = req.body as RegisterUser;
-
-    try {
+export const userRegister = asyncHandler(
+    async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+        const body = req.body as RegisterUser;
         await registerUser(body);
         next();
-    } catch (error) {
-        console.warn(error);
-        errorHandler(error, res);
     }
-}
+);
 
 /**
  * Controller function that handles the login process for a user.
@@ -49,17 +45,11 @@ export async function userRegister(req: Request, res: Response, next: NextFuncti
  * @throws {PostgreSQLError} If there is a database error during the login process.
  */
 
-export async function userLogin(req: Request, res: Response): Promise<void> {
+export const userLogin = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const body = req.body as LoginUser;
-
-    try {
-        const user = await loginUser(body);
-        res.status(200).json(user);
-    } catch (error) {
-        console.warn(error);
-        errorHandler(error, res);
-    }
-}
+    const user = await loginUser(body);
+    res.status(200).json(user);
+});
 /**
  * This controller function handles saving content (e.g., movies or TV shows) for a user.
  * It extracts the user ID from the JWT token and passes the content data to the 'saveContent' function.
@@ -76,16 +66,10 @@ export async function userLogin(req: Request, res: Response): Promise<void> {
  * @throws {CustomError} - Any errors thrown during the `saveContent` operation will be passed to the error handler.
  */
 
-export async function userSaveContent(req: Auth, res: Response): Promise<void> {
+export const userSaveContent = asyncHandler(async (req: Auth, res: Response): Promise<void> => {
     const token = req.user as { id: number };
-
-    try {
-        await saveContent(req.body, token);
-        res.status(200).json({
-            message: 'The content was sucessfully stored in the databse.',
-        });
-    } catch (error) {
-        console.log(error);
-        errorHandler(error, res);
-    }
-}
+    await saveContent(req.body, token);
+    res.status(200).json({
+        message: 'The content was sucessfully stored in the databse.',
+    });
+});

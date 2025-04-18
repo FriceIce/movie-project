@@ -1,9 +1,17 @@
 import jwt from 'jsonwebtoken';
-import { CustomError } from './error';
-import { Response } from 'express';
-// import {}
+import { CustomError } from './errorClasses';
+import { NextFunction, Response, Request } from 'express';
+import { StatusCode } from './errorStatusCodes';
 
-export function errorHandler(error: unknown, res: Response) {
+export function errorHandler(
+    error: unknown,
+    request: Request,
+    response: Response,
+    next: NextFunction
+) {
+    // In situations where a response has already been sent to the client.
+    if (response.headersSent) return next(error);
+
     if (
         error instanceof CustomError.EmailError ||
         error instanceof CustomError.PasswordError ||
@@ -12,25 +20,38 @@ export function errorHandler(error: unknown, res: Response) {
         error instanceof CustomError.PostgreSQLError
     ) {
         console.warn('Error:', error.message);
-        return res.status(error.statusCode).json({
+        return response.status(error.statusCode).json({
+            statusCode: error.statusCode,
             message: error.message,
         });
     }
 
     if (error instanceof jwt.JsonWebTokenError) {
-        return res.status(401).json({ message: error.message });
+        return response.status(401).json({
+            statusCode: 401,
+            message: error.message,
+        });
     }
 
     if (error instanceof jwt.TokenExpiredError) {
-        return res.status(403).json({ message: error.message });
+        return response.status(403).json({
+            statusCode: 403,
+            message: error.message,
+        });
     }
 
     if (error instanceof Error) {
         console.warn('Error:', error.message);
 
-        return res.status(500).json({ message: 'Something went wrong' });
+        return response.status(500).json({
+            statusCode: 500,
+            message: error.message,
+        });
     }
 
     console.log(error);
-    return res.status(500).json({ message: 'Something unexpected went wrong' });
+    return response.status(500).json({
+        statusCode: 500,
+        message: 'Something unexpected went wrong',
+    });
 }

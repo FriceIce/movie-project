@@ -12,6 +12,7 @@ import {
     popular,
     topRated,
 } from '../../movies/service';
+import { asyncHandler } from '../../../utils/error/errorAsyncHandler';
 
 /**
  * Retrieves a list of movie genres
@@ -20,23 +21,18 @@ import {
  * @return
  */
 
-export async function retrieveGenres(req: Request, res: Response): Promise<void> {
-    try {
-        const type = req.params.type as Type;
-        const genresResponse = await genres(type);
+export const retrieveGenres = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const type = req.params.type as Type;
+    const genresResponse = await genres(type);
 
-        if (!genresResponse || genresResponse.genres.length === 0)
-            throw new CustomError.NotFoundError('No genres found.');
+    if (!genresResponse || genresResponse.genres.length === 0)
+        throw new CustomError.NotFoundError('No genres found.');
 
-        res.status(200).json({
-            message: 'Successfully retrieved genres.',
-            data: genresResponse,
-        });
-    } catch (error) {
-        console.warn(error);
-        errorHandler(error, res);
-    }
-}
+    res.status(200).json({
+        message: 'Successfully retrieved genres.',
+        data: genresResponse,
+    });
+});
 
 /**
  * Retrieves a list of movies or TV shows from the tmbd 'discovery' endpoint.
@@ -45,12 +41,12 @@ export async function retrieveGenres(req: Request, res: Response): Promise<void>
  * @return
  */
 
-export async function retrieveDiscovery(req: Request, res: Response): Promise<void> {
-    const page = req.params.page as Page;
-    const type = req.params.type as Type;
-    const query = req.query;
+export const retrieveDiscovery = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+        const page = req.params.page as Page;
+        const type = req.params.type as Type;
+        const query = req.query;
 
-    try {
         const modifiedType = typeModifier(type);
 
         // Iterates through the object and extracts each property and its value, and pushing them into the empty array as a string, since that's what the function expects.
@@ -73,11 +69,8 @@ export async function retrieveDiscovery(req: Request, res: Response): Promise<vo
             message: `Successfully retrieved ${modifiedType}`,
             data: discoveryResponse,
         });
-    } catch (error) {
-        console.warn(error);
-        errorHandler(error, res);
     }
-}
+);
 
 /**
  * Retrieves trending movies and TV shows
@@ -86,26 +79,21 @@ export async function retrieveDiscovery(req: Request, res: Response): Promise<vo
  * @returns
  */
 
-export async function retrieveTrending(req: Request, res: Response): Promise<void> {
+export const retrieveTrending = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const type = req.params.type as Type;
     const modifiedType = typeModifier(type);
 
-    try {
-        const trendingResponse = await trending(type);
+    const trendingResponse = await trending(type);
 
-        if (!trendingResponse || trendingResponse.results.length === 0) {
-            throw new CustomError.NotFoundError(`No trending ${modifiedType} found.`);
-        }
-
-        res.status(200).json({
-            message: `Successfully retrieved trending ${modifiedType}`,
-            data: trendingResponse,
-        });
-    } catch (error) {
-        console.warn(error);
-        errorHandler(error, res);
+    if (!trendingResponse || trendingResponse.results.length === 0) {
+        throw new CustomError.NotFoundError(`No trending ${modifiedType} found.`);
     }
-}
+
+    res.status(200).json({
+        message: `Successfully retrieved trending ${modifiedType}`,
+        data: trendingResponse,
+    });
+});
 
 /**
  * Retrieves details about a specific movie or TV show based on id.
@@ -114,28 +102,21 @@ export async function retrieveTrending(req: Request, res: Response): Promise<voi
  * @returns
  */
 
-export async function retrieveDetails(req: Request, res: Response): Promise<void> {
+export const retrieveDetails = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const { type, id } = req.params as { type: Type; id: string };
     const modifiedType = typeModifier(type, true);
 
-    try {
-        const detailsResponse = await details(type, id);
+    const detailsResponse = await details(type, id);
 
-        if (!detailsResponse) {
-            throw new CustomError.NotFoundError(
-                `No details found for ${modifiedType} with id ${id}`
-            );
-        }
-
-        res.status(200).json({
-            message: `Successfully retrieved details for ${modifiedType} with id ${id}`,
-            data: detailsResponse,
-        });
-    } catch (error) {
-        console.warn(error);
-        errorHandler(error, res);
+    if (!detailsResponse) {
+        throw new CustomError.NotFoundError(`No details found for ${modifiedType} with id ${id}`);
     }
-}
+
+    res.status(200).json({
+        message: `Successfully retrieved details for ${modifiedType} with id ${id}`,
+        data: detailsResponse,
+    });
+});
 
 /**
  * Retrieves recommendations based on a movie or TV show id.
@@ -144,12 +125,12 @@ export async function retrieveDetails(req: Request, res: Response): Promise<void
  * @returns
  */
 
-export async function retrieveRecommendations(req: Request, res: Response): Promise<void> {
-    const { type, id } = req.params as { type: Type; id: string };
-    const page = req.params.page as Page;
-    const modifiedType = typeModifier(type, true);
+export const retrieveRecommendations = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+        const { type, id } = req.params as { type: Type; id: string };
+        const page = req.params.page as Page;
+        const modifiedType = typeModifier(type, true);
 
-    try {
         const recommendationResponse = await recommendations(type, id, page);
 
         if (!recommendationResponse || recommendationResponse.results.length === 0) {
@@ -162,11 +143,8 @@ export async function retrieveRecommendations(req: Request, res: Response): Prom
             message: `Successfully retrieved recommendations for ${modifiedType} with id ${id}`,
             data: recommendationResponse,
         });
-    } catch (error) {
-        console.warn(error);
-        errorHandler(error, res);
     }
-}
+);
 
 /**
  * Retrieves search results for given input.
@@ -176,12 +154,12 @@ export async function retrieveRecommendations(req: Request, res: Response): Prom
  * @returns
  */
 
-export async function retrieveSearchResults(req: Request, res: Response): Promise<void> {
-    const { type } = req.params as { type: Type };
-    const searchQuery = req.query.query as string;
-    const modifiedType = typeModifier(type);
+export const retrieveSearchResults = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+        const { type } = req.params as { type: Type };
+        const searchQuery = req.query.query as string;
+        const modifiedType = typeModifier(type);
 
-    try {
         const searchResponse = await search<Search>(type, searchQuery);
         if (!searchResponse || searchResponse.results.length === 0) {
             throw new CustomError.NotFoundError(
@@ -192,11 +170,8 @@ export async function retrieveSearchResults(req: Request, res: Response): Promis
             message: `Successfully retrieved search results for ${modifiedType} with search query "${searchQuery}"`,
             data: searchResponse,
         });
-    } catch (error) {
-        console.warn(error);
-        errorHandler(error, res);
     }
-}
+);
 
 /**
  * Retrieves popular movies and TV shows for the week.
@@ -206,27 +181,22 @@ export async function retrieveSearchResults(req: Request, res: Response): Promis
  * @returns
  */
 
-export async function retrievePopular(req: Request, res: Response): Promise<void> {
+export const retrievePopular = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const type = req.params.type as Type;
     const page = req.params.page as Page;
     const modifiedType = typeModifier(type);
 
-    try {
-        const popularResponse = await popular(type, page);
+    const popularResponse = await popular(type, page);
 
-        if (!popularResponse || popularResponse.results.length === 0) {
-            throw new CustomError.NotFoundError(`No popular ${modifiedType} found.`);
-        }
-
-        res.status(200).json({
-            message: `Successfully retrieved popular ${modifiedType}`,
-            data: popularResponse,
-        });
-    } catch (error) {
-        console.warn(error);
-        errorHandler(error, res);
+    if (!popularResponse || popularResponse.results.length === 0) {
+        throw new CustomError.NotFoundError(`No popular ${modifiedType} found.`);
     }
-}
+
+    res.status(200).json({
+        message: `Successfully retrieved popular ${modifiedType}`,
+        data: popularResponse,
+    });
+});
 
 /**
  * Retrieves top rated movies and TV shows
@@ -235,24 +205,19 @@ export async function retrievePopular(req: Request, res: Response): Promise<void
  * @returns
  */
 
-export async function retrieveTopRated(req: Request, res: Response): Promise<void> {
+export const retrieveTopRated = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const type = req.params.type as Type;
     const page = req.params.page as Page;
     const modifiedType = typeModifier(type);
 
-    try {
-        const topRatedResponse = await topRated(type, page);
+    const topRatedResponse = await topRated(type, page);
 
-        if (!topRatedResponse || topRatedResponse.results.length === 0) {
-            throw new CustomError.NotFoundError(`No top rated ${modifiedType} found.`);
-        }
-
-        res.status(200).json({
-            message: `Successfully retrieved top rated ${modifiedType}`,
-            data: topRatedResponse,
-        });
-    } catch (error) {
-        console.warn(error);
-        errorHandler(error, res);
+    if (!topRatedResponse || topRatedResponse.results.length === 0) {
+        throw new CustomError.NotFoundError(`No top rated ${modifiedType} found.`);
     }
-}
+
+    res.status(200).json({
+        message: `Successfully retrieved top rated ${modifiedType}`,
+        data: topRatedResponse,
+    });
+});
