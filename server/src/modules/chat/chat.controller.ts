@@ -3,6 +3,7 @@ import { systemPrompt } from '../../data/systemPrompt';
 import { tools } from './service/functionSchema/functionSchema';
 import { handleToolResponse } from './service/chat.service';
 import { errorHandler } from '../../utils/error/errorFunc';
+import { asyncHandler } from '../../utils/error/errorAsyncHandler';
 
 /**
  * This controller function communicates with the openai chat completion endpoint.
@@ -10,23 +11,18 @@ import { errorHandler } from '../../utils/error/errorFunc';
  * @route /api/chatbot
  */
 
-export async function chatbot(req: Request, res: Response): Promise<void> {
+export const chatbot = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const { chatHistory, userInput }: { chatHistory: Message[]; userInput: Message } = req.body;
 
-    try {
-        const { type, message } = await handleToolResponse(
-            [systemPrompt, ...chatHistory, userInput],
-            tools
-        );
+    const { type, message } = await handleToolResponse(
+        [systemPrompt, ...chatHistory, userInput],
+        tools
+    );
 
-        res.status(200).json({
-            type: type ?? 'Open AI did not use the tmbd api.',
-            openai: {
-                message,
-            },
-        });
-    } catch (error) {
-        console.warn(error);
-        errorHandler(error, res);
-    }
-}
+    res.status(200).json({
+        type: type ?? 'Open AI did not use the tmbd api.',
+        openai: {
+            message,
+        },
+    });
+});

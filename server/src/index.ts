@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { movieRoutes, openaiRoutes, userRoutes } from './modules';
 import { consoleLog } from './utils/logger';
+import { errorHandler } from './utils/error/errorFunc';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -19,6 +20,7 @@ app.use(morgan('combined'));
 app.use('/api', userRoutes);
 app.use('/api', movieRoutes);
 app.use('/api', openaiRoutes);
+app.use(errorHandler);
 
 app.listen(port, () => {
     consoleLog('highlight', `Server is running on port ${port}`);
