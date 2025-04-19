@@ -1,7 +1,7 @@
 import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
-import { discoveryUrl } from './utils/discovery';
+import { discoveryUrl } from './utils/url/discovery';
 import { pathModifier } from './utils/pathModifier';
 
 /**

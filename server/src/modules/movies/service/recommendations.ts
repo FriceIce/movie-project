@@ -2,7 +2,7 @@ import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
 import { pathModifier } from './utils/pathModifier';
-import { recommendationsUrl } from './utils/recommendation';
+import { recommendationsUrl } from './utils/url/recommendation';
 
 /**
  * Retrieves recommendations for a specific movie or TV show.

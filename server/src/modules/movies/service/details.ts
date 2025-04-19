@@ -1,7 +1,7 @@
 import { CustomError } from '../../../utils/error/errorClasses';
 import { baseImageUrl, fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
-import { detailsUrl } from './utils/details';
+import { detailsUrl } from './utils/url/details';
 
 /**
  * Retrieves an object containg movie details.

@@ -2,7 +2,7 @@ import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
 import { pathModifier } from './utils/pathModifier';
-import { trendingUrl } from './utils/trending';
+import { trendingUrl } from './utils/url/trending';
 
 /**
  * Retrieves trending movies and TV shows.

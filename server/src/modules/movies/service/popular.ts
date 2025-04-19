@@ -2,7 +2,7 @@ import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
 import { pathModifier } from './utils/pathModifier';
-import { popularUrl } from './utils/popular';
+import { popularUrl } from './utils/url/popular';
 
 /**
  * Retrieves a list of popular movies and TV shows.

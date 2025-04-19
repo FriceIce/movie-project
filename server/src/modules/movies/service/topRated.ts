@@ -2,7 +2,7 @@ import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
 import { pathModifier } from './utils/pathModifier';
-import { topRatedUrl } from './utils/topRated';
+import { topRatedUrl } from './utils/url/topRated';
 
 /**
  * @param { Type } type The type of content to retrieve

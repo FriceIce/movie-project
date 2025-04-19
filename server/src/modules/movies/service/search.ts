@@ -2,7 +2,7 @@ import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
 import { pathModifier } from './utils/pathModifier';
-import { searchUrl } from './utils/search';
+import { searchUrl } from './utils/url/search';
 
 /**
  * Retrieves search results for movies, TV, and keywords
