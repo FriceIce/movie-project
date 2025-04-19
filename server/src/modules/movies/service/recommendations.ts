@@ -1,6 +1,7 @@
 import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
+import { pathModifier } from './utils/pathModifier';
 import { recommendationsUrl } from './utils/recommendation';
 
 /**
@@ -25,6 +26,9 @@ export default async function recommendations(
             `No recommendations found for ${modifiedType} with id ${id}`
         );
     }
+
+    // Ensures that the poster_path values inside `response.results` get the full image URL
+    pathModifier(response.results as Movie[]);
 
     return response;
 }
