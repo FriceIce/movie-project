@@ -1,4 +1,6 @@
+import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
+import { typeModifier } from '../controller/utils/typeModifier';
 import { searchUrl } from './utils/search';
 
 /**
@@ -7,11 +9,18 @@ import { searchUrl } from './utils/search';
  * @param queryText - User input
  * @returns
  */
-export default async function search<T>(type: Type, queryText: string): Promise<T | null> {
+export default async function search<T>(type: Type, queryText: string): Promise<T> {
     const { options } = fetchConfig('GET');
-
     const url = setSearchUrl(type, queryText);
     const response = await fetchResponse<Search>('get', url, options);
+
+    // Check if the response is null or empty.
+    const modifiedType = typeModifier(type);
+    if (!response || response.results.length === 0) {
+        throw new CustomError.NotFoundError(
+            `No search results found for ${modifiedType} with search query "${queryText}"`
+        );
+    }
 
     if (response) response.results.sort((a, b) => b.popularity - a.popularity);
 

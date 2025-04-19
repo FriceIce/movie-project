@@ -1,4 +1,6 @@
+import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
+import { typeModifier } from '../controller/utils/typeModifier';
 import { discoveryUrl } from './utils/discovery';
 
 /**
@@ -12,10 +14,16 @@ export default async function discovery(
     type: Type,
     page: Page,
     queryParam?: string[]
-): Promise<Discovery | null> {
+): Promise<Discovery> {
     const { options, query } = fetchConfig('GET', [], queryParam);
     const url = type === 'movie' ? discoveryUrl(page).movie + query : discoveryUrl(page).tv + query;
 
     const response = await fetchResponse<Discovery>('get', url, options);
+
+    const modifiedType = typeModifier(type);
+    if (!response || response.results.length === 0) {
+        throw new CustomError.NotFoundError(`No ${modifiedType} found.`);
+    }
+
     return response;
 }

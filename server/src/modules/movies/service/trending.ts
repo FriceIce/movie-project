@@ -1,4 +1,6 @@
+import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
+import { typeModifier } from '../controller/utils/typeModifier';
 import { trendingUrl } from './utils/trending';
 
 /**
@@ -6,9 +8,15 @@ import { trendingUrl } from './utils/trending';
  * @param { Type } type
  * @returns
  */
-export default async function trending(type: Type): Promise<Trending | null> {
+export default async function trending(type: Type): Promise<Trending> {
     const { options } = fetchConfig('GET');
     const url = type === 'movie' ? trendingUrl.movie : trendingUrl.tv;
     const response = await fetchResponse<Trending>('get', url, options);
+
+    const modifiedType = typeModifier(type);
+    if (!response || response.results.length === 0) {
+        throw new CustomError.NotFoundError(`No trending ${modifiedType} found.`);
+    }
+
     return response;
 }
