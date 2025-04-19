@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { pool, runSql } from '../../config/database';
 import { CustomError } from '../../utils/error/errorClasses';
+import { baseImageUrl } from '../../utils/helperFuncs';
 
 const SECRET_KEY = process.env.JWT_SECRET_KEY as string;
 
@@ -107,7 +108,8 @@ export async function registerUser(body: RegisterUser) {
  * @throws {PostgreSQLError} If the insertion fails due to a database error (e.g., constraint violation).
  */
 export async function saveContent(body: SaveMovie, user: { id: number }): Promise<void> {
-    const { content_id, title, description } = body;
-    const query = `INSERT INTO saved_movies(content_id, title, description, user_id) VALUES($1, $2, $3, $4)`;
-    await runSql(pool, query, [content_id, title, description, user.id]);
+    const { content_id, title, description, image } = body;
+    const fullImagePath = baseImageUrl(image);
+    const query = `INSERT INTO saved_movies(content_id, title, description, user_id, image) VALUES($1, $2, $3, $4, $5)`;
+    await runSql(pool, query, [content_id, title, description, user.id, fullImagePath]);
 }
