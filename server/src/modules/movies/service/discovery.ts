@@ -2,6 +2,7 @@ import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
 import { discoveryUrl } from './utils/discovery';
+import { pathModifier } from './utils/pathModifier';
 
 /**
  * This function retrieves data (movies / TV shows) from the tmbd discovery endpoint.
@@ -24,6 +25,9 @@ export default async function discovery(
     if (!response || response.results.length === 0) {
         throw new CustomError.NotFoundError(`No ${modifiedType} found.`);
     }
+
+    // Ensures that the poster_path values inside `response.results` get the full image URL
+    pathModifier(response.results as Movie[]);
 
     return response;
 }
