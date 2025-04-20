@@ -1,7 +1,12 @@
-import { typeValidator } from '.';
 import { auth } from '../jsonwebtoken/auth';
+import { chatValidator } from './chat/chat';
 import { handleValidationErrors } from './handleValidationError';
-import idValidator from './tmbd/id';
+import { idValidator } from './tmbd/id';
+import { queryValidator } from './tmbd/query';
+import { typeValidator } from './tmbd/type';
+import { logInValidator } from './user/logIn';
+import { registerValidator } from './user/register';
+import { saveContentValidator } from './user/saveContent';
 
 /**
  * Dynamically composes middleware based on the provided validator keys.
@@ -21,12 +26,17 @@ export default function middlewareHandler(validators: Validator[]) {
     const middleware: Set<Validator> = new Set(validators);
 
     validators.forEach((value) => {
-        if (value === 'id') return validatorList.push(idValidator());
-        if (value === 'type') return validatorList.push(typeValidator());
+        if (value === 'id') return validatorList.push(idValidator);
+        if (value === 'type') return validatorList.push(typeValidator);
+        if (value === 'query') return validatorList.push(queryValidator);
+        if (value === 'saveContent') return validatorList.push(saveContentValidator);
+        if (value === 'register') return validatorList.push(registerValidator);
+        if (value === 'login') return validatorList.push(logInValidator);
+        if (value === 'chat') return validatorList.push(chatValidator);
     });
 
     if (middleware.has('auth')) validatorList.unshift(auth);
-
     validatorList.push(handleValidationErrors);
+
     return validatorList;
 }
