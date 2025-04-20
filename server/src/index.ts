@@ -20,6 +20,8 @@ app.use(morgan('combined'));
 app.use('/api', userRoutes);
 app.use('/api', movieRoutes);
 app.use('/api', openaiRoutes);
+
+// Express error
 app.use(errorHandler);
 
 app.listen(port, () => {

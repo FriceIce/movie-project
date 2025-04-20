@@ -63,7 +63,9 @@ export async function fetchResponse<T>(
  * @param size - The image size ('92' | '154' | '185' | '342' | '500')
  * @returns Full image URL string
  */
-export function baseImageUrl(path: string, size: PosterSize = '500'): string {
+export function baseImageUrl(path: string | null, size: PosterSize = '500'): string | null {
+    if (!path) return path;
+
     const cleanedPath = path.startsWith('/') ? path.slice(1) : path;
     return `https://image.tmdb.org/t/p/w${size}/${cleanedPath}`;
 }
