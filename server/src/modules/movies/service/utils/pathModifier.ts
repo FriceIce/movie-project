@@ -8,6 +8,7 @@ import { baseImageUrl } from '../../../../utils/helperFuncs';
  */
 export function pathModifier(results: Movie[]): void {
     results.forEach((content) => {
+        if (!content.poster_path) return;
         content.poster_path = baseImageUrl(content.poster_path);
     });
 }
