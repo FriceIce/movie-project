@@ -1,3 +1,4 @@
+import { NotFoundError } from 'openai';
 import { CustomError } from '../../../utils/error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
@@ -6,8 +7,10 @@ import { trendingUrl } from './utils/url/trending';
 
 /**
  * Retrieves trending movies and TV shows.
- * @param { Type } type
- * @returns
+ *
+ * @param { Type } type The type of content.
+ * @returns {Promise<Trending>} An object containing a list of trending contents.
+ * @throws {NotFoundError} If no results are found.
  */
 export default async function trending(type: Type): Promise<Trending> {
     const { options } = fetchConfig('GET');

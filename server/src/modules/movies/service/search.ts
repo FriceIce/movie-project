@@ -6,9 +6,17 @@ import { searchUrl } from './utils/url/search';
 
 /**
  * Retrieves search results for movies, TV, and keywords
- * @param type
- * @param queryText - User input
- * @returns
+ *
+ * A keyword can be:
+ * - `genre` --> `Action comedy`, `sports documentary` etc
+ * - `theme` --> `Space`, `nature` etc
+ * - `subjects` --> `human rights`, `climate change` etc
+ * - `history` --> `world war II` `civil rights movement`
+ *
+ * @param type The type of content (movie, TV, or keyword).
+ * @param queryText - The user search query.
+ * @returns {Promise<T>}
+ * @throws {NotFoundError} If no results are found.
  */
 export default async function search<T>(type: Type, queryText: string): Promise<T> {
     const { options } = fetchConfig('GET');

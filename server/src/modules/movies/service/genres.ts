@@ -3,8 +3,11 @@ import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { genresUrl } from './utils/url/genres';
 
 /**
- * Retrieves a list of genres for movies or TV shows
- * @param type
+ * Retrieves a list of genres for movies or TV shows.
+ *
+ * @param {Type} type - The type of content ('movie' or 'tv').
+ * @returns {Promise<Genres>} A promise that resolves to an object containg a list of genres.
+ * @throws {NotFoundError} If no genres are found.
  */
 export default async function genres(type: Type): Promise<Genres> {
     const { options } = fetchConfig('GET');
