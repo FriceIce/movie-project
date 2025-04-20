@@ -26,10 +26,10 @@ export async function handleToolResponse(messages: Message[], tools: ChatComplet
         return { type: null, message };
     }
 
-    const parsedArgs: { type: Type; searchQuery: string } = JSON.parse(completionArgs);
+    const { type, searchQuery }: { type: Type; searchQuery: string } = JSON.parse(completionArgs);
     const searchResponse = await search<SearchKeyword | MovieItem>(
         selectType(completionName),
-        parsedArgs.searchQuery
+        searchQuery
     );
 
     // This means the user is asking about movies a specified actor is known for.
@@ -45,22 +45,22 @@ export async function handleToolResponse(messages: Message[], tools: ChatComplet
         };
 
         const message = await generateReply(messages, editedSystemPrompt);
-        return { type: parsedArgs.type, message };
+        return { type, message };
     }
 
     if (!searchResponse || searchResponse?.results.length < 1) {
         const message = await generateReply(messages);
-        return { type: parsedArgs.type, message };
+        return { type, message };
     }
 
     // If the user searches for movie or tv shows
-    const responseDiscovery = await discovery(parsedArgs.type, '1', [
+    const responseDiscovery = await discovery(type, '1', [
         `with_keywords=${searchResponse.results[0].id}`,
     ]);
 
     if (!responseDiscovery || responseDiscovery.results.length === 0) {
         const message = await generateReply(messages);
-        return { type: parsedArgs.type, message };
+        return { type, message };
     }
 
     const sanitizedResults = formatSearchResults(responseDiscovery);
@@ -70,7 +70,7 @@ export async function handleToolResponse(messages: Message[], tools: ChatComplet
     };
 
     const message = await generateReply(messages, editedSystemPrompt);
-    return { type: parsedArgs.type, message };
+    return { type, message };
 }
 
 function selectType(funcName: string) {

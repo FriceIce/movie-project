@@ -41,13 +41,13 @@ export const tools: ChatCompletionTool[] = [
                             'The type of content, in this case actor (person) e.g "Is there any Denzel Wasington movies?" --> type: person ',
                         enum: ['person'],
                     },
-                    keyword: {
+                    searchQuery: {
                         type: 'string',
                         description:
                             'The specified actor e.g "Is there any Denzel Wasington movies you can reccomend?" ---> type: Denzel washington',
                     },
                 },
-                required: ['type', 'keyword'],
+                required: ['type', 'searchQuery'],
                 additionalProperties: false,
             },
             strict: true,
