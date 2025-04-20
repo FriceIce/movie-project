@@ -22,7 +22,8 @@ export const chatbot = asyncHandler(async (req: Request, res: Response): Promise
     res.status(200).json({
         type: type ?? 'Open AI did not use the tmbd api.',
         openai: {
-            message,
+            role: 'system',
+            content: message,
         },
     });
 });
