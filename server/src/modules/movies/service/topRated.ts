@@ -5,9 +5,12 @@ import { pathModifier } from './utils/pathModifier';
 import { topRatedUrl } from './utils/url/topRated';
 
 /**
- * @param { Type } type The type of content to retrieve
- * @param { Page } page The page to retrieve
- * @returns
+ * Retrieves top rated content for movies and TV shows.
+ *
+ * @param { Type } type The type of content to retrieve.
+ * @param { Page } page The page number.
+ * @returns {Promise<TopRated>} An object containing a list of top rated content.
+ * @throws {NotFoundError} If no results are found.
  */
 export default async function topRated(type: Type, page: Page): Promise<TopRated> {
     const { options } = fetchConfig('GET');

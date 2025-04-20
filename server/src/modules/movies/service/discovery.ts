@@ -5,11 +5,19 @@ import { discoveryUrl } from './utils/url/discovery';
 import { pathModifier } from './utils/pathModifier';
 
 /**
- * This function retrieves data (movies / TV shows) from the tmbd discovery endpoint.
- * @param type
- * @param {Page} page
- * @param {string[]} queryParam
- * @returns {Promise<Discovery | null>}
+ * Retrieves a list of movies or TV shows from the TMDB discovery endpoint.
+ *
+ * Constructs a GET request using the provided content type (`movie` or `tv`), page number,
+ * and optional query parameters. The function fetches results and processes poster paths
+ * by converting them to full image URLs.
+ *
+ * If the response is empty or null, a `NotFoundError` is thrown.
+ *
+ * @param {Type} type - The type of content to fetch ('movie' or 'tv').
+ * @param {Page} page - The page number for paginated results.
+ * @param {string[]} [queryParam] - Optional query parameters for filtering.
+ * @returns {Promise<Discovery>} A discovery result containing a list of content.
+ * @throws {CustomError.NotFoundError} If no results are found.
  */
 export default async function discovery(
     type: Type,

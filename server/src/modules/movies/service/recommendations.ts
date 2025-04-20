@@ -5,10 +5,12 @@ import { pathModifier } from './utils/pathModifier';
 import { recommendationsUrl } from './utils/url/recommendation';
 
 /**
- * Retrieves recommendations for a specific movie or TV show.
+ * Retrieves recommendations based on a movie or TV show.
+ *
  * @param type The type of recommendations
  * @param {string} id The ID of the movie or TV show to base the recommendations on.
- * @param {Page} page
+ * @param {Page} page The page number
+ * @returns {Promise<Recommendations>} An object that contains recommendations based on content ID.
  */
 export default async function recommendations(
     type: Type,
