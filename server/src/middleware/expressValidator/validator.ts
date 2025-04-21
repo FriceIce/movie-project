@@ -1,4 +1,5 @@
 import { authentication } from '../jsonwebtoken/authentication';
+import { authorization } from '../jsonwebtoken/authorization';
 import { chatValidator } from './chat/chat';
 import { handleValidationErrors } from './handleValidationError';
 import { idValidator } from './tmbd/id';
@@ -35,7 +36,10 @@ export default function middlewareHandler(validators: Validator[]) {
         if (value === 'chat') return validatorList.push(chatValidator);
     });
 
-    if (middleware.has('auth')) validatorList.unshift(authentication);
+    // Checks for authentication and authorization using middleware. The authentication middleware is placed first in the route chain.
+    if (middleware.has('authorization')) validatorList.unshift(authorization);
+    if (middleware.has('authentication')) validatorList.unshift(authentication);
+
     validatorList.push(handleValidationErrors);
 
     return validatorList;

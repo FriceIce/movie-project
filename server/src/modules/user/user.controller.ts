@@ -1,7 +1,9 @@
+import 'dotenv/config';
 import { NextFunction, Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 import { Auth } from '../../middleware/jsonwebtoken/authentication';
-import { loginUser, registerUser, saveContent } from './user.service';
 import { asyncHandler } from '../../utils/error/errorAsyncHandler';
+import { loginUser, registerUser, saveContent } from './user.service';
 
 /**
  * Handles user registration by checking if the user already exists.
@@ -71,5 +73,27 @@ export const userSaveContent = asyncHandler(async (req: Auth, res: Response): Pr
     await saveContent(req.body, token);
     res.status(200).json({
         message: 'The content was sucessfully stored in the databse.',
+    });
+});
+
+/**
+ * This controller function handles the guest login.
+ * It signs a JWT token with a payload indicating a 'guest' user and returns the token along with a message to the client.
+ *
+ * @param {Request} req
+ * @param {Response} res
+ *
+ * @returns {Promise<void>}
+ * @throws {JsonWebTokenError} If the jwt.sign method throws an error.
+ */
+
+export const userGuestLogin = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const token = jwt.sign({ guest: true }, String(process.env.JWT_SECRET_KEY), {
+        expiresIn: '1h',
+    });
+
+    res.status(200).json({
+        message: 'The guest user was succesfully logged in.',
+        token,
     });
 });

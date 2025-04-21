@@ -23,5 +23,7 @@ type Validator =
     | 'saveContent'
     | 'chat'
     | 'query'
-    | 'auth';
+    | 'authentication'
+    | 'authorization';
+
 type ValidatorFunc = RunnableValidationChains<ValidationChain> | Function;
