@@ -1,7 +1,6 @@
 import express from 'express';
-import { userLogin, userRegister, userSaveContent } from './user.controller';
-import { auth } from '../../middleware';
 import middlewareHandler from '../../middleware/expressValidator/validator';
+import { userLogin, userRegister, userSaveContent } from './user.controller';
 
 const router = express.Router();
 
