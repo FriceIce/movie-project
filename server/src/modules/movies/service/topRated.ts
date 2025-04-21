@@ -1,4 +1,4 @@
-import { CustomError } from '../../../utils/error/errorClasses';
+import { CustomError } from '../../../error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
 import { pathModifier } from './utils/pathModifier';

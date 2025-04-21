@@ -1,7 +1,7 @@
 import jwt, { JsonWebTokenError, JwtPayload } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import 'dotenv/config';
-import { asyncHandler } from '../../utils/error/errorAsyncHandler';
+import { asyncHandler } from '../../error/errorAsyncHandler';
 
 export interface Auth extends Request {
     user?: jwt.JwtPayload;

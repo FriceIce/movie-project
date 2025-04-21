@@ -1,5 +1,5 @@
 import express from 'express';
-import middlewareHandler from '../../middleware/expressValidator/validator';
+import middlewareHandler from '../../middleware/validator';
 import { userGuestLogin, userLogin, userRegister, userSaveContent } from './user.controller';
 
 const router = express.Router();

@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import { systemPrompt } from '../../data/systemPrompt';
 import { tools } from './service/functionSchema/functionSchema';
 import { handleToolResponse } from './service/chat.service';
-import { errorHandler } from '../../utils/error/errorFunc';
-import { asyncHandler } from '../../utils/error/errorAsyncHandler';
+import { errorHandler } from '../../error/errorFunc';
+import { asyncHandler } from '../../error/errorAsyncHandler';
 
 /**
  * This controller function communicates with the openai chat completion endpoint.

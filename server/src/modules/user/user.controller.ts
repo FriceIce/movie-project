@@ -2,7 +2,7 @@ import 'dotenv/config';
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { Auth } from '../../middleware/jsonwebtoken/authentication';
-import { asyncHandler } from '../../utils/error/errorAsyncHandler';
+import { asyncHandler } from '../../error/errorAsyncHandler';
 import { loginUser, registerUser, saveContent } from './user.service';
 
 /**

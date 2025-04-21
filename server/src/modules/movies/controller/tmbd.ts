@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { CustomError } from '../../../utils/error/errorClasses';
-import { errorHandler } from '../../../utils/error/errorFunc';
+import { CustomError } from '../../../error/errorClasses';
+import { errorHandler } from '../../../error/errorFunc';
 import { typeModifier } from './utils/typeModifier';
 import {
     details,
@@ -12,7 +12,7 @@ import {
     popular,
     topRated,
 } from '../../movies/service';
-import { asyncHandler } from '../../../utils/error/errorAsyncHandler';
+import { asyncHandler } from '../../../error/errorAsyncHandler';
 import { queryModifier } from './utils/queryModifier';
 
 /**

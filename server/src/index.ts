@@ -5,7 +5,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { movieRoutes, openaiRoutes, userRoutes } from './modules';
 import { consoleLog } from './utils/logger';
-import { errorHandler } from './utils/error/errorFunc';
+import { errorHandler } from './error/errorFunc';
 
 const app = express();
 const port = process.env.PORT || 5000;

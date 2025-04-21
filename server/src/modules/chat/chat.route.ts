@@ -1,5 +1,5 @@
 import express from 'express';
-import middlewareHandler from '../../middleware/expressValidator/validator';
+import middlewareHandler from '../../middleware/validator';
 import { chatbot } from './chat.controller';
 
 const router = express.Router();

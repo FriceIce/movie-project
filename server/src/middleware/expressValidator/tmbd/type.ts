@@ -1,5 +1,5 @@
 import { checkSchema } from 'express-validator';
-import { CustomError } from '../../../utils/error/errorClasses';
+import { CustomError } from '../../../error/errorClasses';
 
 export const typeValidator = checkSchema({
     type: {

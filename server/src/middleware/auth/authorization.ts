@@ -1,6 +1,6 @@
 import { NextFunction, Response } from 'express';
-import { asyncHandler } from '../../utils/error/errorAsyncHandler';
-import { CustomError } from '../../utils/error/errorClasses';
+import { asyncHandler } from '../../error/errorAsyncHandler';
+import { CustomError } from '../../error/errorClasses';
 import { Auth } from './authentication';
 
 /**

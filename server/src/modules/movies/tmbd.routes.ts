@@ -1,11 +1,10 @@
 import express from 'express';
-import { handleValidationErrors } from '../../middleware/expressValidator/handleValidationError';
-import middlewareHandler from '../../middleware/expressValidator/validator';
+import middlewareHandler from '../../middleware/validator';
 import {
     retrieveDetails,
-    retrievePopular,
     retrieveDiscovery,
     retrieveGenres,
+    retrievePopular,
     retrieveRecommendations,
     retrieveSearchResults,
     retrieveTopRated,
