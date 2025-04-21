@@ -3,6 +3,6 @@ import middlewareHandler from '../../middleware/expressValidator/validator';
 import { chatbot } from './chat.controller';
 
 const router = express.Router();
-router.post('/chatbot', ...middlewareHandler(['auth']), chatbot);
+router.post('/chatbot', ...middlewareHandler(['authentication']), chatbot);
 
 export default router;

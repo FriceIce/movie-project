@@ -53,4 +53,13 @@ export namespace CustomError {
             this.name = 'PostgreSQLError';
         }
     }
+
+    export class Unauthorized extends Error {
+        statusCode: number;
+
+        constructor(message: string, statusCode?: number) {
+            super(message);
+            this.statusCode = StatusCode.UNAUTHORIZED || statusCode;
+        }
+    }
 }
