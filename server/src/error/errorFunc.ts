@@ -17,7 +17,8 @@ export function errorHandler(
         error instanceof CustomError.PasswordError ||
         error instanceof CustomError.NotFoundError ||
         error instanceof CustomError.BadRequestError ||
-        error instanceof CustomError.PostgreSQLError
+        error instanceof CustomError.PostgreSQLError ||
+        error instanceof CustomError.Unauthorized
     ) {
         console.warn('Error:', error.message);
         return response.status(error.statusCode).json({
