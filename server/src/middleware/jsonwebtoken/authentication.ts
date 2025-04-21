@@ -22,7 +22,7 @@ export interface Auth extends Request {
  * @returns {void}
  */
 
-export const auth = asyncHandler(
+export const authentication = asyncHandler(
     async (req: Auth, res: Response, next: NextFunction): Promise<void> => {
         const token = req.headers.authorization?.replace('Bearer ', '');
         const JWT_SECRET = process.env.JWT_SECRET_KEY as string;

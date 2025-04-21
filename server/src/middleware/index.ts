@@ -1,2 +1,2 @@
-import { auth } from './jsonwebtoken/auth';
-export { auth };
+import { authentication } from './jsonwebtoken/authentication';
+export { authentication as auth };

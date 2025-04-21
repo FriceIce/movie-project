@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { Auth } from '../../middleware/jsonwebtoken/auth';
+import { Auth } from '../../middleware/jsonwebtoken/authentication';
 import { loginUser, registerUser, saveContent } from './user.service';
 import { asyncHandler } from '../../utils/error/errorAsyncHandler';
 

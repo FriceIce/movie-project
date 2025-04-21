@@ -1,4 +1,4 @@
-import { auth } from '../jsonwebtoken/auth';
+import { authentication } from '../jsonwebtoken/authentication';
 import { chatValidator } from './chat/chat';
 import { handleValidationErrors } from './handleValidationError';
 import { idValidator } from './tmbd/id';
@@ -35,7 +35,7 @@ export default function middlewareHandler(validators: Validator[]) {
         if (value === 'chat') return validatorList.push(chatValidator);
     });
 
-    if (middleware.has('auth')) validatorList.unshift(auth);
+    if (middleware.has('auth')) validatorList.unshift(authentication);
     validatorList.push(handleValidationErrors);
 
     return validatorList;
