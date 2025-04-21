@@ -1,5 +1,5 @@
-import { authentication } from '../jsonwebtoken/authentication';
-import { authorization } from '../jsonwebtoken/authorization';
+import { authentication } from '../auth/authentication';
+import { authorization } from '../auth/authorization';
 import { chatValidator } from './chat/chat';
 import { handleValidationErrors } from './handleValidationError';
 import { idValidator } from './tmbd/id';
