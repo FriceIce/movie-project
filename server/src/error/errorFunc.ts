@@ -1,14 +1,8 @@
+import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { CustomError } from './errorClasses';
-import { NextFunction, Response, Request } from 'express';
-import { StatusCode } from './errorStatusCodes';
 
-export function errorHandler(
-    error: unknown,
-    request: Request,
-    response: Response,
-    next: NextFunction
-) {
+export function errorHandler(error: unknown, _: Request, response: Response, next: NextFunction) {
     // In situations where a response has already been sent to the client.
     if (response.headersSent) return next(error);
 
