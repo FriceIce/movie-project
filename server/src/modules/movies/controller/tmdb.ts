@@ -1,19 +1,17 @@
 import { Request, Response } from 'express';
-import { CustomError } from '../../../error/errorClasses';
-import { errorHandler } from '../../../error/errorFunc';
-import { typeModifier } from './utils/typeModifier';
+import { asyncHandler } from '../../../error/errorAsyncHandler';
 import {
     details,
     discovery,
     genres,
-    recommendations,
-    trending,
-    search,
     popular,
+    recommendations,
+    search,
     topRated,
-} from '../../movies/service';
-import { asyncHandler } from '../../../error/errorAsyncHandler';
+    trending,
+} from '../service';
 import { queryModifier } from './utils/queryModifier';
+import { typeModifier } from './utils/typeModifier';
 
 /**
  * Retrieves a list of movie genres
@@ -33,7 +31,7 @@ export const retrieveGenres = asyncHandler(async (req: Request, res: Response): 
 });
 
 /**
- * Retrieves a list of movies or TV shows from the tmbd 'discovery' endpoint.
+ * Retrieves a list of movies or TV shows from the tmdb 'discovery' endpoint.
  * @method GET
  * @route /api/discovery/:type/:page
  * @return

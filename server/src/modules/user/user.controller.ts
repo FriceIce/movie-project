@@ -1,9 +1,9 @@
 import 'dotenv/config';
-import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { Auth } from '../../middleware/jsonwebtoken/authentication';
+import { NextFunction, Request, Response } from 'express';
 import { asyncHandler } from '../../error/errorAsyncHandler';
 import { loginUser, registerUser, saveContent } from './user.service';
+import { Auth } from '../../middleware/auth/authentication';
 
 /**
  * Handles user registration by checking if the user already exists.

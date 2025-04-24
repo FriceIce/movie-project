@@ -9,7 +9,7 @@ import {
     retrieveSearchResults,
     retrieveTopRated,
     retrieveTrending,
-} from './controller/tmbd';
+} from './controller/tmdb';
 
 const route = express.Router();
 

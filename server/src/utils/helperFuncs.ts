@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { tmbdApiKey } from '../config/tmbd';
+import { tmdbApiKey } from '../config/tmdb';
 
 /**
  * Adjusts the parameter if there is any and configures the method/headers.
@@ -26,7 +26,7 @@ export function fetchConfig(method: Method, parameters?: string[], queryParam?: 
         method,
         headers: {
             accept: 'application/json',
-            Authorization: 'Bearer ' + tmbdApiKey,
+            Authorization: 'Bearer ' + tmdbApiKey,
         },
     };
 

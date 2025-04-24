@@ -7,5 +7,5 @@ import trending from './trending';
 import search from './search';
 import discovery from './discovery';
 
-// tmbd api functions
+// tmdb api functions
 export { genres, details, discovery, recommendations, topRated, popular, trending, search };
