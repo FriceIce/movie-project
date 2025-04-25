@@ -3,16 +3,20 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 
-const Button = () => {
+const Button = ({ mobileHostName }: { mobileHostName: string }) => {
     const router = useRouter();
+    const isLocalhost = window.location.hostname === 'localhost';
 
     async function handleClick() {
-        const response = await fetch('http://localhost:3001/api/guestLogin', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        const response = await fetch(
+            `http://${isLocalhost ? 'localhost' : mobileHostName}:3001/api/guestLogin`,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
 
         const data: { message: string; token: string } = await response.json();
 
