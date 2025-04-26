@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 
 type ScreenWidth = 1536 | 1280 | 1024 | 768 | 640;
@@ -14,16 +15,14 @@ type ScreenWidth = 1536 | 1280 | 1024 | 768 | 640;
  */
 
 export const useMediaQuery = (mediaWidth: ScreenWidth) => {
-    const [screenWidth, setScreenWidth] = useState<boolean>(
-        window.matchMedia(`(min-width: ${mediaWidth}px)`).matches
-    );
+    const [matches, setMatches] = useState<boolean | null>(null);
 
     useEffect(() => {
-        const matchMedia: MediaQueryList = window.matchMedia(`(min-width: ${mediaWidth})`);
+        const matchMedia: MediaQueryList = window.matchMedia(`(min-width: ${mediaWidth}px)`);
 
-        // Function to update screenWidth based on matchMedia
+        // Function to update matches based on matchMedia
         const handleChange = () => {
-            setScreenWidth(matchMedia.matches);
+            setMatches(matchMedia.matches);
         };
 
         // Call handleChange once to initialize the correct value
@@ -36,7 +35,7 @@ export const useMediaQuery = (mediaWidth: ScreenWidth) => {
         return () => {
             matchMedia.removeEventListener('change', handleChange);
         };
-    }, [mediaWidth]);
+    }, [setMatches]);
 
-    return screenWidth;
+    return matches;
 };
