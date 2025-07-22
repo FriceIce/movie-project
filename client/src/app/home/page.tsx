@@ -1,7 +1,7 @@
-import React from 'react';
-import Image from 'next/image';
+import HeroImageContainer from '@/features/home/containers/HeroImageContainer';
 import axios from 'axios';
 import { cookies } from 'next/headers';
+import Image from 'next/image';
 
 const Home = async () => {
     const token = cookies().get('auth_token');
@@ -17,34 +17,9 @@ const Home = async () => {
     );
 
     return (
-        <div className="space-y-6">
-            <div className=" space-y-6 px-4">
-                <section className="relative flex items-end w-[95%] mx-auto rounded-lg h-[500px] md:hidden shadow-whiteShadow">
-                    <Image
-                        src={img}
-                        alt="movie poster"
-                        width={500}
-                        height={500}
-                        priority
-                        className="absolute inset-0 h-full w-full object-cover object-top rounded-lg mask-image z-[-1]"
-                    />
-                    <div className="flex gap-4 w-full p-4 font-semibold">
-                        <button
-                            type="button"
-                            className="flex-1 text-custom-black px-2 py-1 bg-white rounded-[2px] shadow-md"
-                        >
-                            See Details
-                        </button>
-                        <button
-                            type="button"
-                            className="flex-1 rounded-[2px] bg-custom-cyanBlue shadow-md"
-                        >
-                            My List
-                        </button>
-                    </div>
-                </section>
-            </div>
-            <section className="">
+        <div className="space-y-6 flex flex-col">
+            <HeroImageContainer img={img} />
+            <section>
                 <div className="space-y-2">
                     <h2 className="ml-4 font-bold text-base">Popular</h2>
                     <ul className="flex overflow-x-auto no-scrollbar">
