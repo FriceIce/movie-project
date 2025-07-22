@@ -14,8 +14,11 @@ const config: Config = {
                 background: 'var(--background)',
                 foreground: 'var(--foreground)',
                 'custom-black': '#101010',
-                'custom-cyanBlue': '#13b7dc',
+                'custom-cyanBlue': '#13b6dc',
                 'custom-white': '#ebebeb',
+            },
+            boxShadow: {
+                whiteShadow: '0px 0px 5px rgb(255, 255, 255, 0.5)',
             },
         },
     },

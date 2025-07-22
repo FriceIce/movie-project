@@ -5,7 +5,7 @@ export const tools: ChatCompletionTool[] = [
         type: 'function',
         function: {
             name: 'recommend_content_based_on_theme',
-            description: 'Retrieve the ID for choosen searchQuery',
+            description: 'Retrieve the ID for chosen searchQuery',
             parameters: {
                 type: 'object',
                 properties: {
@@ -38,13 +38,13 @@ export const tools: ChatCompletionTool[] = [
                     type: {
                         type: 'string',
                         description:
-                            'The type of content, in this case actor (person) e.g "Is there any Denzel Wasington movies?" --> type: person ',
+                            'The type of content, in this case actor (person) e.g "Is there any Denzel Washington movies?" --> type: person ',
                         enum: ['person'],
                     },
                     searchQuery: {
                         type: 'string',
                         description:
-                            'The specified actor e.g "Is there any Denzel Wasington movies you can reccomend?" ---> type: Denzel washington',
+                            'The specified actor e.g "Is there any Denzel Washington movies you can recommend?" ---> type: Denzel washington',
                     },
                 },
                 required: ['type', 'searchQuery'],

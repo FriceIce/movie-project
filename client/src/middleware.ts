@@ -1,8 +1,8 @@
-import { redirect } from 'next/navigation';
-import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
 
 export function middleware(req: NextRequest) {
+    console.log('Running middleware...');
     const token = req.cookies.get('auth_token')?.value;
     const routePath = req.nextUrl.pathname === '/';
 

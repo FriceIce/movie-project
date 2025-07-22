@@ -8,19 +8,13 @@ type Prop = {
 const ContentOptions = ({ isDesktop }: Prop) => {
     return (
         <>
-            <div
-                className={`flex items-center px-3 py-1 w-max lg:border-none border border-custom-white rounded-full`}
-            >
+            <div className={`flex items-center px-3 py-1 w-max md:border-none`}>
                 <p>TV shows</p>
             </div>
-            <div
-                className={`flex items-center px-3 py-1 w-max lg:border-none border border-custom-white rounded-full`}
-            >
+            <div className={`flex items-center px-3 py-1 w-max md:border-none`}>
                 <p>Movies</p>
             </div>
-            <div
-                className={`flex items-center gap-2 px-3 py-1 w-max lg:border-none border border-custom-white rounded-full`}
-            >
+            <div className={`flex items-center gap-1 px-3 py-1 w-max md:border-none`}>
                 <p className="">Categories</p>
                 <Image
                     src={icons.chevron.src}

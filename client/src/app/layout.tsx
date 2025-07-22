@@ -1,4 +1,5 @@
 import Header from '@/containers/Header';
+import { poppins } from '@/assets/fonts';
 import './globals.css';
 
 export default function RootLayout({
@@ -8,9 +9,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`antialiased h-[2000px] w-dvw text-custom-white bg-custom-black`}>
+            <body
+                className={`antialiased h-[2000px] w-dvw text-custom-white bg-custom-black ${poppins.className}`}
+            >
                 <Header />
-                <div className="relative px-4 h-full">{children}</div>
+                <div className="relative  h-full">{children}</div>
             </body>
         </html>
     );

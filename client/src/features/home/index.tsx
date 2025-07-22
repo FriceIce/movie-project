@@ -3,7 +3,7 @@ import Image from 'next/image';
 import axios from 'axios';
 import { cookies } from 'next/headers';
 
-const Home = async () => {
+const Container = async () => {
     const token = cookies().get('auth_token');
     const img = 'https://image.tmdb.org/t/p/w500/bUeiwBQdupBLQthMCHKV7zv56uv.jpg';
     const response = await axios.get<MovieItem<Movie>>(
@@ -16,30 +16,31 @@ const Home = async () => {
         }
     );
 
+    console.log(response.data.results);
     return (
         <div className="space-y-6">
             <div className=" space-y-6 px-4">
-                <section className="relative flex items-end w-[95%] mx-auto rounded-lg h-[500px] md:hidden shadow-whiteShadow">
+                <section className="relative flex items-end w-[95%] mx-auto border border-white rounded-lg h-[500px] md:hidden">
                     <Image
                         src={img}
                         alt="movie poster"
                         width={500}
                         height={500}
                         priority
-                        className="absolute inset-0 h-full w-full object-cover object-top rounded-lg mask-image z-[-1]"
+                        className="absolute inset-0 h-full w-full object-cover object-top rounded-lg z-[-1]"
                     />
-                    <div className="flex gap-4 w-full p-4 font-semibold">
+                    <div className="flex gap-4 w-full p-4 font-bold">
                         <button
                             type="button"
-                            className="flex-1 text-custom-black px-2 py-1 bg-white rounded-[2px] shadow-md"
+                            className="flex-1 text-custom-black bg-white rounded px-4 py-1 shadow-md"
                         >
-                            See Details
+                            See details
                         </button>
                         <button
                             type="button"
-                            className="flex-1 rounded-[2px] bg-custom-cyanBlue shadow-md"
+                            className="flex-1 rounded px-4 py-2 bg-custom-cyanBlue shadow-md"
                         >
-                            My List
+                            My list
                         </button>
                     </div>
                 </section>
@@ -75,4 +76,4 @@ const Home = async () => {
     );
 };
 
-export default Home;
+export default Container;

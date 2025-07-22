@@ -153,10 +153,7 @@ export const retrievePopular = asyncHandler(async (req: Request, res: Response):
     const modifiedType = typeModifier(type);
     const popularResponse = await popular(type, page);
 
-    res.status(200).json({
-        message: `Successfully retrieved popular ${modifiedType}`,
-        data: popularResponse,
-    });
+    res.status(200).json(popularResponse);
 });
 
 /**

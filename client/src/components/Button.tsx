@@ -1,11 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const Button = ({ mobileHostName }: { mobileHostName: string }) => {
+    const [isLocalhost, setIsLocalhost] = useState<boolean>(false);
     const router = useRouter();
-    const isLocalhost = window.location.hostname === 'localhost';
+
+    useEffect(() => {
+        const isLocalhost = window.location.hostname === 'localhost';
+        setIsLocalhost(isLocalhost);
+    }, []);
 
     async function handleClick() {
         const response = await fetch(
