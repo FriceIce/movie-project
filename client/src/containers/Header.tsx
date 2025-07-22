@@ -2,18 +2,19 @@
 import { icons } from '@/assets/icons';
 import ContentOptions from '@/components/ContentOptions';
 import useIsScrolling from '@/hooks/useIsScrolling';
+import { ChevronRightIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ChevronRightIcon } from '@heroicons/react/24/outline';
 
 const Header = () => {
     const [openOptions, setOpenOptions] = useState<boolean>(false);
     const isScrolling = useIsScrolling();
     return (
         <header
-            className={`sticky inset-0 z-[2] space-y-3 h-max w-full py-4 pl-5 pr-5 transition duration-100 
+            className={`sticky inset-0 z-[2] space-y-3 h-max w-full py-4 pl-5 pr-5 transition duration-100  
         ${isScrolling ? 'bg-[#000000cc]' : 'bg-transparent'}`}
         >
+            <div className="absolute z-[-1] bg-[#000000a6] inset-0 mask-image-bottom"></div>
             <section className={`flex items-center`}>
                 <div className="flex items-center justify-between w-full">
                     <div className="flex items-center gap-8">
@@ -32,13 +33,7 @@ const Header = () => {
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Image
-                            src={icons.search.notActive}
-                            alt={icons.search.alt}
-                            width={icons.search.width}
-                            height={icons.search.height}
-                            className="size-6 rotate-[20deg]"
-                        ></Image>
+                        <MagnifyingGlassIcon className="size-6"></MagnifyingGlassIcon>
                         <Image
                             src={icons.avatar.src}
                             alt={icons.avatar.alt}
