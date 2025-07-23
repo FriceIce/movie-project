@@ -1,29 +1,32 @@
 'use client';
 import { Vibrant } from 'node-vibrant/browser';
 import React, { useEffect, useState } from 'react';
-import HeroImage from './heroImage';
+import MobileHeroImage from './MobileHeroImage';
 
 type Props = {
     img: string;
 };
 
-function HeroImageContainer({ img }: Props) {
+function MobileHeroImageContainer({ img }: Props) {
     const [bgColor, setBgColor] = useState<string>('');
 
     useEffect(() => {
         const vibrant = new Vibrant(img);
-        vibrant.getPalette().then((palette) => setBgColor(palette.DarkVibrant?.hex || ''));
+        vibrant.getPalette().then((palette) => {
+            setBgColor(palette.DarkVibrant?.hex || '');
+            console.log(palette);
+        });
     }, []);
 
     return (
-        <div className="relative px-4 py-8">
+        <div className="relative px-4 py-8 md:hidden">
             <div
-                className={`absolute inset-[-100px] z-[-1] mask-image-bottom h-[150%]`}
+                className={`absolute inset-0 z-[-1] translate-y-[-100px] mask-image-bottom h-[150%]`}
                 style={{ backgroundColor: bgColor }}
             />
-            <HeroImage img={img} />
+            <MobileHeroImage img={img} />
         </div>
     );
 }
 
-export default HeroImageContainer;
+export default MobileHeroImageContainer;
