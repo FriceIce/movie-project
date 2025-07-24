@@ -1,5 +1,5 @@
 import Header from '@/containers/Header';
-import { poppins } from '@/assets/fonts';
+import { jakarta } from '@/assets/fonts';
 import './globals.css';
 
 export default function RootLayout({
@@ -10,7 +10,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`antialiased w-dvw text-custom-white pb-6 bg-custom-black ${poppins.className} overflow-x-hidden`}
+                className={`antialiased w-dvw text-custom-white pb-6 bg-custom-black ${jakarta.className} overflow-x-hidden`}
             >
                 <Header />
                 <div className="relative  h-full">{children}</div>

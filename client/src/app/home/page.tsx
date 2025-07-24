@@ -24,10 +24,10 @@ const Home = async () => {
     // );
 
     return (
-        <div className="space-y-2 flex flex-col">
+        <div className="flex flex-col">
             <MobileHeroImageContainer img={img} />
             <DesktopHeroImage img={desktopImg} />
-            <section className="space-y-4">
+            <section className="space-y-4 lg:space-y-10">
                 <MovieCarousel title="Viral Movies" images={popularContent} />
                 <TvCarousel title="Fan Favorites" images={trendingSeries} />
                 <TopTenContentCarousel
