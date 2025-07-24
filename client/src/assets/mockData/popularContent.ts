@@ -339,4 +339,4 @@ export const popularContent = [
         vote_average: 6.7,
         vote_count: 111,
     },
-];
+].sort((a, b) => b.vote_count - a.vote_count);
