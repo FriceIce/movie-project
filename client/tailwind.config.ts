@@ -19,6 +19,7 @@ const config: Config = {
             },
             boxShadow: {
                 whiteShadow: '0px 0px 5px rgb(255, 255, 255, 0.5)',
+                blackShadow: '0px 0px 5px rgb(0, 0, 0, 0.5)',
             },
         },
     },
