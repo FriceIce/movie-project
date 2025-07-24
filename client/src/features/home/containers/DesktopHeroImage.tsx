@@ -19,7 +19,7 @@ function DesktopHeroImage({ img }: Prop) {
                 className="absolute inset-0 z-[-1] translate-y-[-115px] object-cover object-center brightness-[80%] w-full mask-image-bottom"
             />
 
-            <div className="space-y-6 absolute inset-0 w-[45%] flex flex-col justify-center translate-x-10 max-w-[900px]">
+            <div className="space-y-6 absolute inset-0 w-[45%] flex flex-col justify-center translate-x-10 max-w-[900px] min-h-[600px]">
                 <Image
                     src={companyLogo}
                     alt="production team logo"
