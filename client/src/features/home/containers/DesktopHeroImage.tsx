@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { movieDetails } from '@/assets/mockData';
 import { retrieveCompanyLogo } from '@/utils/retrieveCompanyLogo';
+import { poppins } from '@/assets/fonts';
 
 type Prop = {
     img: string;
@@ -10,7 +11,7 @@ function DesktopHeroImage({ img }: Prop) {
     const companyLogo = retrieveCompanyLogo(movieDetails.production_companies);
 
     return (
-        <div className="relative hidden md:block w-dvw h-[50vh]">
+        <div className="relative hidden md:block w-dvw h-[50vh] lg:min-h-[600px] 2xl:min-h-[700px]">
             <Image
                 src={img}
                 width={1280}
@@ -19,7 +20,9 @@ function DesktopHeroImage({ img }: Prop) {
                 className="absolute inset-0 z-[-1] translate-y-[-115px] object-cover object-center brightness-[80%] w-full mask-image-bottom"
             />
 
-            <div className="space-y-6 absolute inset-0 w-[45%] flex flex-col justify-center translate-x-10 max-w-[900px] min-h-[600px]">
+            <div
+                className={`space-y-6 inset-0 w-[45%] flex flex-col justify-center 2xl:justify-end translate-x-10 max-w-[900px] min-h-[600px] ${poppins.className}`}
+            >
                 <Image
                     src={companyLogo}
                     alt="production team logo"
