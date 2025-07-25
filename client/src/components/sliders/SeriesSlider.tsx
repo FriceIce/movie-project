@@ -1,36 +1,31 @@
 import Image from 'next/image';
-import { topRankIcons } from '../svg';
 
 type Prop = {
     title: string;
-    content: Movie[];
+    images: TvShow[];
 };
 
-function TopTenContentCarousel({ title, content }: Prop) {
+function SeriesSlider({ title, images }: Prop) {
     return (
-        <div className="space-y-2 lg:space-y-4">
+        <div className="space-y-1">
             <h2 className="ml-3 font-bold text-base md:text-lg 2xl:text-xl">{title}</h2>
-            <ul className="flex gap-4 overflow-x-auto ml-3 no-scrollbar">
-                {content.map((content, index, self) => {
+            <ul className="flex gap-[4px] overflow-x-auto ml-3 no-scrollbar">
+                {images.map((content, index, self) => {
                     const lastCard = index === self.length - 1;
                     if (!content.poster_path) return;
-
-                    // Initialize the Rank component
-                    const RankIcon = topRankIcons[index];
                     return (
                         <li
                             key={content.id}
-                            className={`flex-none h-[170px] md:h-[220px] lg:h-[280px] 2xl:h-[340px] flex items-end rounded ${
+                            className={`flex-none h-[170px] w-[115px md:h-[220px] md:w-[150px] lg:h-[280px] lg:w-[180px] 2xl:h-[340px] 2xl:w-[240px] rounded shadow-blackShadow ${
                                 lastCard && 'mr-2'
                             }`}
                         >
-                            <RankIcon height="50%" color="#aaaaaa" />
                             <Image
                                 src={content.poster_path}
-                                alt={content.original_title + 'poster'}
+                                alt={'poster'}
                                 width={500}
                                 height={500}
-                                className="rounded size-full shadow-blackShadow"
+                                className="size-full rounded object-cover"
                             />
                         </li>
                     );
@@ -40,4 +35,4 @@ function TopTenContentCarousel({ title, content }: Prop) {
     );
 }
 
-export default TopTenContentCarousel;
+export default SeriesSlider;

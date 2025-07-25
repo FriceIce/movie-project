@@ -5,7 +5,7 @@ type Prop = {
     images: Movie[];
 };
 
-function MovieCarousel({ title, images }: Prop) {
+function MovieSlider({ title, images }: Prop) {
     return (
         <div className="space-y-1">
             <h2 className="ml-3 font-bold text-base md:text-lg 2xl:text-xl">{title}</h2>
@@ -35,4 +35,4 @@ function MovieCarousel({ title, images }: Prop) {
     );
 }
 
-export default MovieCarousel;
+export default MovieSlider;
