@@ -3,6 +3,7 @@ import SliderArrows from '@/components/SliderArrows';
 import { topRankIcons } from '@/components/svg';
 import useScrollAmount from '@/hooks/useScrollAmount';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 
 type Prop = {
@@ -92,15 +93,19 @@ function SliderContainer({ images, rank }: Prop) {
                                 <li
                                     key={content.id}
                                     ref={posterRef}
+                                    tabIndex={0}
+                                    role="button"
                                     className={`flex-none h-[170px] w-[115px] md:h-[220px] md:w-[150px] lg:h-[280px] lg:w-[180px] rounded shadow-blackShadow ${firstCard ? 'ml-2' : ''} ${lastCard ? 'mr-2' : ''}`}
                                 >
-                                    <Image
-                                        src={content.poster_path}
-                                        alt={title + ' poster'}
-                                        width={500}
-                                        height={500}
-                                        className="size-full rounded object-cover"
-                                    />
+                                    <Link href={'content/' + content.id}>
+                                        <Image
+                                            src={content.poster_path}
+                                            alt={title + ' poster'}
+                                            width={500}
+                                            height={500}
+                                            className="size-full rounded object-cover"
+                                        />
+                                    </Link>
                                 </li>
                             );
                         } else {
@@ -108,16 +113,23 @@ function SliderContainer({ images, rank }: Prop) {
                                 <li
                                     key={content.id + '-rank'}
                                     ref={posterRankRef}
-                                    className={`flex-none h-[170px] md:h-[220px] lg:h-[280px] flex items-end rounded ${lastCard ? 'mr-2' : ''}`}
+                                    tabIndex={0}
+                                    role="button"
+                                    className={`flex-none h-[170px] md:h-[220px] lg:h-[280px]rounded ${lastCard ? 'mr-2' : ''}`}
                                 >
-                                    <RankIcon height="50%" color="#aaaaaa" />
-                                    <Image
-                                        src={content.poster_path}
-                                        alt={title + ' poster'}
-                                        width={500}
-                                        height={500}
-                                        className="rounded size-full shadow-blackShadow"
-                                    />
+                                    <Link
+                                        href={'content/' + content.id}
+                                        className="flex items-end h-full"
+                                    >
+                                        <RankIcon height="50%" color="#aaaaaa" />
+                                        <Image
+                                            src={content.poster_path}
+                                            alt={title + ' poster'}
+                                            width={500}
+                                            height={500}
+                                            className="rounded size-full shadow-blackShadow"
+                                        />
+                                    </Link>
                                 </li>
                             );
                         }

@@ -6,7 +6,7 @@ type Props = {
     };
 };
 const Content = ({ params }: Props) => {
-    return <div>Content/{params.id} Page</div>;
+    return <div>Content/{params.id + ' '} Page</div>;
 };
 
 export default Content;
