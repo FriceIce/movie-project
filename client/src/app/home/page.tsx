@@ -2,9 +2,8 @@ import { movieDetails, popularContent, topRatedMovies } from '@/assets/mockData'
 import { actionComedyMovies } from '@/assets/mockData/actionComedyMovies';
 import { crimeTV } from '@/assets/mockData/crimeTV';
 import { trendingSeries } from '@/assets/mockData/trendingTV';
-import MovieSlider from '@/components/sliders/MovieSlider';
+import ContentSlider from '@/components/sliders/ContentSlider';
 import TopTenContentSlider from '@/components/sliders/TopTenContentSlider';
-import SeriesSlider from '@/components/sliders/SeriesSlider';
 import DesktopHeroImage from '@/features/home/containers/DesktopHeroImage';
 import MobileHeroImageContainer from '@/features/home/containers/HeroImageContainer';
 
@@ -28,11 +27,11 @@ const Home = async () => {
             <MobileHeroImageContainer img={img} />
             <DesktopHeroImage img={desktopImg} />
             <section className="space-y-4 lg:space-y-10">
-                <MovieSlider title="Viral Movies" images={popularContent} />
-                <SeriesSlider title="Fan Favorites" images={trendingSeries} />
+                <ContentSlider title="Viral Movies" images={popularContent} />
+                <ContentSlider title="Fan Favorites" images={trendingSeries} />
                 <TopTenContentSlider title="Top Ten Highly Rated Movies" content={topRatedMovies} />
-                <MovieSlider title="Action Comedies You’ll Love" images={actionComedyMovies} />
-                <SeriesSlider title="Crime Series" images={crimeTV} />
+                <ContentSlider title="Action Comedies You’ll Love" images={actionComedyMovies} />
+                <ContentSlider title="Crime Series" images={crimeTV} />
             </section>
         </div>
     );
