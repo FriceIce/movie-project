@@ -33,7 +33,7 @@ function SliderArrows(prop: Prop) {
     return (
         <>
             <div
-                className={`absolute bottom-0 left-0 z-10 hidden md:block bg-[#00000000] hover:bg-[#0000009f] md:h-[220px] lg:h-[280px] ${displayArrow && !displayArrow.left && 'md:hidden'}`}
+                className={`absolute bottom-0 left-0 hidden md:block bg-[#00000000] hover:bg-[#0000009f] h-full ${displayArrow && !displayArrow.left && 'md:hidden'}`}
             >
                 <button
                     className="h-full"
@@ -48,7 +48,7 @@ function SliderArrows(prop: Prop) {
             {children}
 
             <div
-                className={`absolute bottom-0 right-0 hidden md:block bg-[#00000000] hover:bg-[#0000009f] md:h-[220px] lg:h-[280px] ${displayArrow && !displayArrow.right && 'md:hidden'}`}
+                className={`absolute bottom-0 right-0 hidden md:block bg-[#00000000] hover:bg-[#0000009f] h-full  ${displayArrow && !displayArrow.right && 'md:hidden'}`}
                 onClick={() => scroll('right')}
             >
                 <button className="h-full">

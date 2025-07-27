@@ -95,7 +95,7 @@ function SliderContainer({ images, rank }: Prop) {
                                     ref={posterRef}
                                     tabIndex={0}
                                     role="button"
-                                    className={`flex-none h-[170px] w-[115px] md:h-[220px] md:w-[150px] lg:h-[280px] lg:w-[180px] rounded shadow-blackShadow ${firstCard ? 'ml-2' : ''} ${lastCard ? 'mr-2' : ''}`}
+                                    className={`flex-none h-[170px] w-[115px] md:h-[220px] md:w-[150px] lg:h-[280px] lg:w-[180px] 2xl:h-[330px] 2xl:w-[210px] rounded shadow-blackShadow ${firstCard ? 'ml-2' : ''} ${lastCard ? 'mr-2' : ''}`}
                                 >
                                     <Link href={'content/' + content.id}>
                                         <Image
@@ -115,7 +115,7 @@ function SliderContainer({ images, rank }: Prop) {
                                     ref={posterRankRef}
                                     tabIndex={0}
                                     role="button"
-                                    className={`flex-none h-[170px] md:h-[220px] lg:h-[280px]rounded ${lastCard ? 'mr-2' : ''}`}
+                                    className={`flex-none h-[170px] md:h-[220px] lg:h-[280px] 2xl:h-[330px] rounded ${lastCard ? 'mr-2' : ''}`}
                                 >
                                     <Link
                                         href={'content/' + content.id}
