@@ -2,12 +2,14 @@ import Image from 'next/image';
 import { movieDetails } from '@/assets/mockData';
 import { retrieveCompanyLogo } from '@/utils/retrieveCompanyLogo';
 import { poppins } from '@/assets/fonts';
+import ContentActionBtns from '@/components/ContentActionBtns';
 
 type Prop = {
     img: string;
+    id: number;
 };
 
-function DesktopHeroImage({ img }: Prop) {
+function DesktopHeroImage({ img, id }: Prop) {
     const companyLogo = retrieveCompanyLogo(movieDetails.production_companies);
 
     return (
@@ -35,12 +37,7 @@ function DesktopHeroImage({ img }: Prop) {
                     {movieDetails.overview}
                 </p>
                 <div className="space-x-3">
-                    <button className="px-6 py-[8px] rounded bg-custom-white text-black 2xl:py-[11px]">
-                        See Details
-                    </button>
-                    <button className="px-6 py-[8px] rounded bg-custom-cyanBlue 2xl:py-[11px]">
-                        Add to List
-                    </button>
+                    <ContentActionBtns id={id} />
                 </div>
             </div>
         </div>

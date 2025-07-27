@@ -9,7 +9,7 @@ import MobileHeroImageContainer from '@/features/home/containers/HeroImageContai
 
 const Home = async () => {
     // const token = cookies().get('auth_token');
-    const img = 'https://image.tmdb.org/t/p/w500' + movieDetails.poster_path; // id: 448150
+    const img = 'https://image.tmdb.org/t/p/w500' + movieDetails.poster_path; // id: 533535
     const desktopImg = 'https://image.tmdb.org/t/p/original' + movieDetails.backdrop_path;
 
     // const response = await axios.get<MovieItem<Movie>>(
@@ -24,8 +24,8 @@ const Home = async () => {
 
     return (
         <div className="flex flex-col">
-            <MobileHeroImageContainer img={img} />
-            <DesktopHeroImage img={desktopImg} />
+            <MobileHeroImageContainer img={img} id={533535} />
+            <DesktopHeroImage img={desktopImg} id={533535} />
             <section className="space-y-4 lg:space-y-10">
                 <ContentSlider title="Viral Movies" images={popularContent} />
                 <ContentSlider title="Fan Favorites" images={trendingSeries} />
