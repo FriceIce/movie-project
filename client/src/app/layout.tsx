@@ -13,7 +13,7 @@ export default function RootLayout({
                 className={`antialiased w-dvw text-custom-white pb-6 bg-custom-black ${jakarta.className} overflow-x-hidden`}
             >
                 <Header />
-                <div className="relative  h-full">{children}</div>
+                <div className="relative h-full">{children}</div>
             </body>
         </html>
     );
