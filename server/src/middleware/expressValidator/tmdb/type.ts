@@ -13,8 +13,8 @@ export const typeValidator = checkSchema({
             bail: true,
         },
         custom: {
-            options: (type: Type) => {
-                const validParamList: Type[] = ['keyword', 'movie', 'tv'];
+            options: (type: AllTypes) => {
+                const validParamList: AllTypes[] = ['keyword', 'movie', 'tv'];
                 if (validParamList.includes(type)) return true;
 
                 throw new CustomError.BadRequestError(`The parameter value is not allowed.`);

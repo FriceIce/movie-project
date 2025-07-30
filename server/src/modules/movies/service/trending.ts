@@ -8,11 +8,11 @@ import { trendingUrl } from './utils/url/trending';
 /**
  * Retrieves trending movies and TV shows.
  *
- * @param { Type } type The type of content.
+ * @param { AllTypes } type The type of content.
  * @returns {Promise<Trending>} An object containing a list of trending contents.
  * @throws {NotFoundError} If no results are found.
  */
-export default async function trending(type: Type): Promise<Trending> {
+export default async function trending(type: AllTypes): Promise<Trending> {
     const { options } = fetchConfig('GET');
     const url = type === 'movie' ? trendingUrl.movie : trendingUrl.tv;
     const response = await fetchResponse<Trending>('get', url, options);
@@ -23,7 +23,7 @@ export default async function trending(type: Type): Promise<Trending> {
     }
 
     // Ensures that the poster_path values inside `response.results` get the full image URL
-    pathModifier(response.results as Movie[]);
+    // pathModifier(response.results as Movie[]);
 
     return response;
 }

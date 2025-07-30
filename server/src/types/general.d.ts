@@ -11,7 +11,8 @@ type RequestOptions = {
 // tmdb api
 type Page = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10';
 type PosterSize = '92' | '154' | '185' | '342' | '500';
-type Type = 'movie' | 'tv' | 'keyword' | 'person';
+type AllTypes = 'movie' | 'tv' | 'keyword' | 'person';
+type MovieOrTv = Extract<AllTypes, 'movie' | 'tv'>;
 
 // Validator func type
 type Validator =

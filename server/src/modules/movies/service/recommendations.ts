@@ -13,24 +13,24 @@ import { recommendationsUrl } from './utils/url/recommendation';
  * @returns {Promise<Recommendations>} An object that contains recommendations based on content ID.
  */
 export default async function recommendations(
-    type: Type,
+    type: AllTypes,
     id: string,
     page: Page
 ): Promise<Recommendations> {
-    const { options } = fetchConfig('GET', [id]);
+    const { options } = fetchConfig('GET');
     const url =
         type === 'movie' ? recommendationsUrl(id, page).movie : recommendationsUrl(id, page).tv;
     const response = await fetchResponse<Recommendations>('get', url, options);
 
     const modifiedType = typeModifier(type, true);
-    if (!response || response.results.length === 0) {
+    if (!response) {
         throw new CustomError.NotFoundError(
             `No recommendations found for ${modifiedType} with id ${id}`
         );
     }
 
     // Ensures that the poster_path values inside `response.results` get the full image URL
-    pathModifier(response.results as Movie[]);
+    // pathModifier(response.results as Movie[]);
 
     return response;
 }

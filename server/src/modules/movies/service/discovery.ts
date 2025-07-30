@@ -13,14 +13,14 @@ import { pathModifier } from './utils/pathModifier';
  *
  * If the response is empty or null, a `NotFoundError` is thrown.
  *
- * @param {Type} type - The type of content to fetch ('movie' or 'tv').
+ * @param {AllTypes} type - The type of content to fetch ('movie' or 'tv').
  * @param {Page} page - The page number for paginated results.
  * @param {string[]} [queryParam] - Optional query parameters for filtering.
  * @returns {Promise<Discovery>} A discovery result containing a list of content.
  * @throws {CustomError.NotFoundError} If no results are found.
  */
 export default async function discovery(
-    type: Type,
+    type: AllTypes,
     page: Page,
     queryParam?: string[]
 ): Promise<Discovery> {
@@ -35,7 +35,7 @@ export default async function discovery(
     }
 
     // Ensures that the poster_path values inside `response.results` get the full image URL
-    pathModifier(response.results as Movie[]);
+    // pathModifier(response.results as Movie[]);
 
     return response;
 }

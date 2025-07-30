@@ -15,11 +15,11 @@ import { detailsUrl } from './utils/url/details';
  * replacing it with the full image URL.
  *
  * @param {string} id - The content ID to fetch details for.
- * @param {Type} type - The type of content, either 'movie' or 'tv'.
+ * @param {AllTypes} type - The type of content, either 'movie' or 'tv'.
  * @returns {Promise<MovieDetail.Response>} The details of the specified movie or TV show.
  * @throws {NotFoundError} If no data is found for the given ID.
  */
-export default async function details(type: Type, id: string): Promise<MovieDetail.Response> {
+export default async function details(type: AllTypes, id: string): Promise<MovieDetail.Response> {
     const { options } = fetchConfig('GET', [id]);
     const url = type === 'movie' ? detailsUrl(id).movie : detailsUrl(id).tv;
 
@@ -31,7 +31,7 @@ export default async function details(type: Type, id: string): Promise<MovieDeta
     }
 
     // Ensures that the poster_path property gets the full image url
-    response.poster_path = baseImageUrl(response.poster_path);
+    // response.poster_path = baseImageUrl(response.poster_path);
 
     return response;
 }

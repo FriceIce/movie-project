@@ -7,12 +7,12 @@ import { popularUrl } from './utils/url/popular';
 /**
  * Retrieves a list of popular movies and TV shows.
  *
- * @param { Type } type The type of content to retrieve, (movie or tv)
+ * @param { AllTypes } type The type of content to retrieve, (movie or tv)
  * @param { Page } page The page number
  * @returns {Promise<Popular>} An object containig a list of popular content.
  * @throws {NotFoundError} If no results are found.
  */
-export default async function popular(type: Type, page: Page): Promise<Popular> {
+export default async function popular(type: AllTypes, page: Page): Promise<Popular> {
     const { options } = fetchConfig('GET');
     const url = type === 'movie' ? popularUrl(page).movie : popularUrl(page).tv;
     const response = await fetchResponse<Popular>('get', url, options);
@@ -23,7 +23,7 @@ export default async function popular(type: Type, page: Page): Promise<Popular> 
     }
 
     // Ensures that the poster_path values inside `response.results` get the full image URL
-    pathModifier(response.results as Movie[]);
+    // pathModifier(response.results as Movie[]);
 
     return response;
 }

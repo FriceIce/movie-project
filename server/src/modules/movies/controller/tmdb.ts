@@ -12,6 +12,9 @@ import {
 } from '../service';
 import { queryModifier } from './utils/queryModifier';
 import { typeModifier } from './utils/typeModifier';
+import { credits } from '../service/credits';
+import { videos } from '../service/videos';
+import { collection } from '../service/collection';
 
 /**
  * Retrieves a list of movie genres
@@ -21,7 +24,7 @@ import { typeModifier } from './utils/typeModifier';
  */
 
 export const retrieveGenres = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const type = req.params.type as Type;
+    const type = req.params.type as AllTypes;
     const genresResponse = await genres(type);
 
     res.status(200).json({
@@ -40,7 +43,7 @@ export const retrieveGenres = asyncHandler(async (req: Request, res: Response): 
 export const retrieveDiscovery = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
         const page = req.params.page as Page;
-        const type = req.params.type as Type;
+        const type = req.params.type as AllTypes;
         const query = req.query;
 
         // Modify section.
@@ -65,7 +68,7 @@ export const retrieveDiscovery = asyncHandler(
  */
 
 export const retrieveTrending = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const type = req.params.type as Type;
+    const type = req.params.type as AllTypes;
     const modifiedType = typeModifier(type);
     const trendingResponse = await trending(type);
 
@@ -83,7 +86,7 @@ export const retrieveTrending = asyncHandler(async (req: Request, res: Response)
  */
 
 export const retrieveDetails = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const { type, id } = req.params as { type: Type; id: string };
+    const { type, id } = req.params as { type: AllTypes; id: string };
     const modifiedType = typeModifier(type, true);
     const detailsResponse = await details(type, id);
 
@@ -102,7 +105,7 @@ export const retrieveDetails = asyncHandler(async (req: Request, res: Response):
 
 export const retrieveRecommendations = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
-        const { type, id } = req.params as { type: Type; id: string };
+        const { type, id } = req.params as { type: AllTypes; id: string };
         const page = req.params.page as Page;
 
         const modifiedType = typeModifier(type, true);
@@ -125,7 +128,7 @@ export const retrieveRecommendations = asyncHandler(
 
 export const retrieveSearchResults = asyncHandler(
     async (req: Request, res: Response): Promise<void> => {
-        const { type } = req.params as { type: Type };
+        const { type } = req.params as { type: AllTypes };
         const searchQuery = req.query.query as string;
 
         const modifiedType = typeModifier(type);
@@ -147,7 +150,7 @@ export const retrieveSearchResults = asyncHandler(
  */
 
 export const retrievePopular = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const type = req.params.type as Type;
+    const type = req.params.type as AllTypes;
     const page = req.params.page as Page;
 
     const modifiedType = typeModifier(type);
@@ -164,7 +167,7 @@ export const retrievePopular = asyncHandler(async (req: Request, res: Response):
  */
 
 export const retrieveTopRated = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const type = req.params.type as Type;
+    const type = req.params.type as AllTypes;
     const page = req.params.page as Page;
 
     const modifiedType = typeModifier(type);
@@ -175,3 +178,59 @@ export const retrieveTopRated = asyncHandler(async (req: Request, res: Response)
         data: topRatedResponse,
     });
 });
+
+/**
+ * Retrieves credits for movies and TV shows
+ * @method GET
+ * @route /api/credits/:type/:id
+ * @returns
+ */
+
+export const retrieveCredits = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const type = req.params.type as MovieOrTv;
+    const id: string = req.params.id;
+
+    const creditResponse = await credits(type, id);
+
+    res.status(200).json({
+        message: `Successfully retrieved credits for content with id: ${id}`,
+        data: creditResponse,
+    });
+});
+
+/**
+ * Retrieves videos for movies and TV shows
+ * @method GET
+ * @route /api/videos/:type/:id
+ * @returns
+ */
+
+export const retrieveVideos = asyncHandler(async (req: Request, res: Response): Promise<void> => {
+    const type = req.params.type as MovieOrTv;
+    const id: string = req.params.id;
+    const videosResponse = await videos(type, id);
+
+    res.status(200).json({
+        message: `Successfully retrieved credits for content with id: ${id}`,
+        data: videosResponse,
+    });
+});
+
+/**
+ * Retrieves collection for movies or TV shows
+ * @method GET
+ * @route /api/collection/:id
+ * @returns
+ */
+
+export const retrieveCollection = asyncHandler(
+    async (req: Request, res: Response): Promise<void> => {
+        const collection_id: string = req.params.id;
+        const collectionResponse = await collection(collection_id);
+
+        res.status(200).json({
+            message: `Successfully retrieved credits for content with id: ${collection_id}`,
+            data: collectionResponse,
+        });
+    }
+);

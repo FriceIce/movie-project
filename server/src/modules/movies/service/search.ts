@@ -18,7 +18,7 @@ import { searchUrl } from './utils/url/search';
  * @returns {Promise<T>}
  * @throws {NotFoundError} If no results are found.
  */
-export default async function search<T>(type: Type, queryText: string): Promise<T> {
+export default async function search<T>(type: AllTypes, queryText: string): Promise<T> {
     const { options } = fetchConfig('GET');
     const url = setSearchUrl(type, queryText);
     const response = await fetchResponse<Search>('get', url, options);
@@ -34,7 +34,7 @@ export default async function search<T>(type: Type, queryText: string): Promise<
     if (response) response.results.sort((a, b) => b.popularity - a.popularity);
 
     // Ensures that the poster_path values inside `response.results` get the full image URL
-    pathModifier(response.results as Movie[]);
+    // pathModifier(response.results as Movie[]);
 
     return response as T;
 }
@@ -45,7 +45,7 @@ export default async function search<T>(type: Type, queryText: string): Promise<
  * @param queryText
  * @returns
  */
-function setSearchUrl(type: Type, queryText: string): string {
+function setSearchUrl(type: AllTypes, queryText: string): string {
     switch (type) {
         case 'movie':
             return searchUrl(queryText).movie;

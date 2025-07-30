@@ -26,7 +26,8 @@ export async function handleToolResponse(messages: Message[], tools: ChatComplet
         return { type: null, message };
     }
 
-    const { type, searchQuery }: { type: Type; searchQuery: string } = JSON.parse(completionArgs);
+    const { type, searchQuery }: { type: AllTypes; searchQuery: string } =
+        JSON.parse(completionArgs);
     const searchResponse = await search<SearchKeyword | MovieItem>(
         selectType(completionName),
         searchQuery
