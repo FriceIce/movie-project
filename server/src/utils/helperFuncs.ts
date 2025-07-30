@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { tmdbApiKey } from '../config/tmdb';
 
 /**
@@ -8,19 +8,8 @@ import { tmdbApiKey } from '../config/tmdb';
  * @returns
  */
 export function fetchConfig(method: Method, parameters?: string[], queryParam?: string[]) {
-    const params =
-        parameters && parameters.length > 0
-            ? parameters
-                  .map((value, i) => {
-                      if (i == 0) return `${value}`;
-                      return `/${value}`;
-                  })
-                  .join()
-            : '';
-    parameters;
-
-    const query =
-        queryParam && queryParam.length > 0 ? queryParam.map((value) => `&${value}`).join('&') : '';
+    const params = parameters && parameters.length > 0 ? '/' + parameters.join('/') : '';
+    const query = queryParam && queryParam.length > 0 ? queryParam.join('&') : '';
 
     const options: RequestOptions = {
         method,
@@ -50,7 +39,14 @@ export async function fetchResponse<T>(
         const response = await axios[method]<T>(url, options);
         return response.data;
     } catch (e) {
-        console.warn('Failed to fetch:', e);
+        if (e instanceof AxiosError) {
+            console.warn('Failed to fetch:', e.message);
+        }
+
+        if (e instanceof Error) {
+            console.warn('Failed to fetch:', e.message);
+        }
+
         return null;
     }
 }

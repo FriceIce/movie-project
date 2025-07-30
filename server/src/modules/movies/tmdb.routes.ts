@@ -1,6 +1,8 @@
 import express from 'express';
 import middlewareHandler from '../../middleware/validator';
 import {
+    retrieveCollection,
+    retrieveCredits,
     retrieveDetails,
     retrieveDiscovery,
     retrieveGenres,
@@ -9,6 +11,7 @@ import {
     retrieveSearchResults,
     retrieveTopRated,
     retrieveTrending,
+    retrieveVideos,
 } from './controller/tmdb';
 
 const route = express.Router();
@@ -35,5 +38,12 @@ route.get(
     ...middlewareHandler(['authentication', 'type', 'id']),
     [retrieveRecommendations]
 );
+route.get('/credits/:type/:id', middlewareHandler(['authentication', 'type', 'id']), [
+    retrieveCredits,
+]);
+route.get('/videos/:type/:id', middlewareHandler(['authentication', 'type', 'id']), [
+    retrieveVideos,
+]);
+route.get('/collection/:id', middlewareHandler(['authentication', 'id']), [retrieveCollection]);
 
 export default route;

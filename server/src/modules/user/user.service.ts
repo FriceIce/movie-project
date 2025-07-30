@@ -40,7 +40,7 @@ export async function loginUser(body: LoginUser) {
 
     // Generate a JWT token
     const id: number = user[0].id;
-    const token = jwt.sign({ id }, SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ id }, SECRET_KEY /* { expiresIn: '1h' } */);
     const { password: _, id: __, ...data } = user[0];
 
     return {
