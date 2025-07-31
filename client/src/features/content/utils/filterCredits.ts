@@ -1,6 +1,6 @@
 export function filterCrewMembers(list: CrewMember[]) {
-    const jobs = ['director', 'writer'];
-    return list.filter((crewMember) => jobs.includes(crewMember.job.toLowerCase()));
+    const jobs = 'writer';
+    return list.filter((crewMember) => jobs === crewMember.job);
 }
 
 export function filterCastMembers(list: CastMember[]) {

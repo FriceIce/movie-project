@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 type Prop = {
     label: string;
@@ -10,17 +11,23 @@ function MediaListTab({ label, media }: Prop) {
         <ul aria-label={label} className="card-grid">
             {media.map((content) => {
                 if (!content.poster_path) return;
-                const title = 'title' in content ? content.title : content.original_name;
+
+                // If title exists in the content object, it's a movie, otherwise, it's a tv show.
+                const condition = 'title' in content;
+                const contentType = condition ? 'movie' : 'tv';
+                const title = condition ? content.title : content.name;
 
                 return (
                     <li key={content.id} className="" role="button" tabIndex={0}>
-                        <Image
-                            src={'https://image.tmdb.org/t/p/w342' + content.poster_path}
-                            alt={title + 'poster'}
-                            width={500}
-                            height={230}
-                            className="object-contain"
-                        />
+                        <Link href={`/content/${contentType}/${content.id}`}>
+                            <Image
+                                src={'https://image.tmdb.org/t/p/w342' + content.poster_path}
+                                alt={title + 'poster'}
+                                width={500}
+                                height={230}
+                                className="object-contain"
+                            />
+                        </Link>
                     </li>
                 );
             })}

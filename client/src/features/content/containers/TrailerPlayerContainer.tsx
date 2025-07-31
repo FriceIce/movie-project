@@ -1,25 +1,28 @@
 'use client';
+import { TvShowDetails } from '@/types/TvDetails';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 type Prop = {
+    contentDetails: MovieDetails | TvShowDetails;
     imageSrc: string;
     trailer: TmdbVideoObject | null;
 };
-function TrailerPlayerContainer({ trailer, imageSrc }: Prop) {
+function TrailerPlayerContainer({ contentDetails, trailer, imageSrc }: Prop) {
     const [videoStarted, setVideoStarted] = useState<boolean>(false);
 
     useEffect(() => {
+        console.log(trailer);
         const timer = setTimeout(() => trailer && setVideoStarted(true), 3000);
         return () => clearTimeout(timer);
-    }, []);
+    }, [trailer]);
 
     return (
         <div aria-label="Container for trailer and content backdrop image">
             {!videoStarted && (
                 <>
                     <Image
-                        src={'https://image.tmdb.org/t/p/' + imageSrc}
+                        src={`https://image.tmdb.org/t/p/w780/` + contentDetails.backdrop_path}
                         alt={'content Image'}
                         width={780}
                         height={439}

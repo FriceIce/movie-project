@@ -9,7 +9,7 @@ import { tmdbApiKey } from '../config/tmdb';
  */
 export function fetchConfig(method: Method, parameters?: string[], queryParam?: string[]) {
     const params = parameters && parameters.length > 0 ? '/' + parameters.join('/') : '';
-    const query = queryParam && queryParam.length > 0 ? queryParam.join('&') : '';
+    const query = queryParam && queryParam.length > 0 ? '&' + queryParam.join('&') : '';
 
     const options: RequestOptions = {
         method,

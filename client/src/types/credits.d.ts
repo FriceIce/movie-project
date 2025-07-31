@@ -26,3 +26,5 @@ interface Credits {
     cast: CastMember[];
     crew: CrewMember[];
 }
+
+type CreditsTvShow = Omit<Credits, 'id'>;
