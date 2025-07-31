@@ -16,33 +16,35 @@ function Credits({ credits, contentDetails }: Prop) {
 
     return (
         <div aria-label="Cast" className="space-y-1 text-xs text-neutral-400">
-            <div className="flex gap-1">
-                <p className="font-bold">Starring: </p>
-                <ul className="flex gap-2 text-ellipsis overflow-hidden">
-                    {cast.slice(0, LENGTH).map((castMember, index) => {
-                        const knownFor = castMember.known_for_department.toLowerCase();
-                        if (knownFor !== 'acting') return;
+            {cast.length > 0 && (
+                <div className="flex gap-1">
+                    <p className="font-bold">Starring: </p>
+                    <ul className="flex gap-2 text-ellipsis overflow-hidden">
+                        {cast.slice(0, LENGTH).map((castMember, index) => {
+                            const knownFor = castMember.known_for_department.toLowerCase();
+                            if (knownFor !== 'acting') return;
 
-                        return (
-                            <li key={castMember.id} className="flex-none flex gap-1">
-                                <p className="">
-                                    {castMember.name}
-                                    {index === cast.slice(0, LENGTH).length - 1 && '...'}
-                                </p>
+                            return (
+                                <li key={castMember.id} className="flex-none flex gap-1">
+                                    <p className="">
+                                        {castMember.name}
+                                        {index === cast.slice(0, LENGTH).length - 1 && '...'}
+                                    </p>
 
-                                {index === cast.slice(0, LENGTH).length - 1 && (
-                                    <ViewMoreCredits
-                                        contentDetails={contentDetails}
-                                        cast={cast}
-                                        crew={crew}
-                                        director={director}
-                                    />
-                                )}
-                            </li>
-                        );
-                    })}
-                </ul>
-            </div>
+                                    {index === cast.slice(0, LENGTH).length - 1 && (
+                                        <ViewMoreCredits
+                                            contentDetails={contentDetails}
+                                            cast={cast}
+                                            crew={crew}
+                                            director={director}
+                                        />
+                                    )}
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+            )}
             {director && (
                 <div className="flex gap-1">
                     <p className="font-bold">Director:</p>
