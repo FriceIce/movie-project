@@ -8,7 +8,7 @@ type Prop = {
 function ContentActionBtns({ id }: Prop) {
     return (
         <>
-            <Link href={'content/' + id}>
+            <Link href={'content/movie/' + id}>
                 <button
                     type="button"
                     className="text-custom-black text-xs md:text-sm 2xl:text-base px-6 py-2 lg:px-6 lg:py-[8px] 2xl:py-[11px] bg-white rounded-[2px] shadow-md"

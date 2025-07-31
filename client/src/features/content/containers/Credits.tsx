@@ -1,12 +1,14 @@
-import { credits } from '@/assets/mockData/credits';
+// import { credits } from '@/assets/mockData/credits';
+import { TvShowDetails } from '@/types/TvDetails';
 import { filterCastMembers, filterCrewMembers, findDirector } from '../utils/filterCredits';
 import ViewMoreCredits from './ViewMoreCredits';
 
 type Prop = {
-    movieDetails: MovieDetails;
+    credits: Credits;
+    contentDetails: MovieDetails | TvShowDetails;
 };
 
-function Credits({ movieDetails }: Prop) {
+function Credits({ credits, contentDetails }: Prop) {
     const director = findDirector(credits.crew);
     const cast = filterCastMembers(credits.cast);
     const crew = filterCrewMembers(credits.crew);
@@ -30,7 +32,7 @@ function Credits({ movieDetails }: Prop) {
 
                                 {index === cast.slice(0, LENGTH).length - 1 && (
                                     <ViewMoreCredits
-                                        movieDetails={movieDetails}
+                                        contentDetails={contentDetails}
                                         cast={cast}
                                         crew={crew}
                                         director={director}
@@ -41,10 +43,12 @@ function Credits({ movieDetails }: Prop) {
                     })}
                 </ul>
             </div>
-            <div className="flex gap-1">
-                <p className="font-bold">Director:</p>
-                <p className="">{director}</p>
-            </div>
+            {director && (
+                <div className="flex gap-1">
+                    <p className="font-bold">Director:</p>
+                    <p className="">{director}</p>
+                </div>
+            )}
         </div>
     );
 }

@@ -7,11 +7,12 @@ import Link from 'next/link';
 import { useRef, useState } from 'react';
 
 type Prop = {
+    contentType: 'movie' | 'tv';
     images: Movie[] | TvShow[];
     rank?: boolean;
 };
 
-function SliderContainer({ images, rank }: Prop) {
+function SliderContainer({ images, rank, contentType }: Prop) {
     const sliderRef = useRef<HTMLUListElement | null>(null);
     const posterRef = useRef<HTMLLIElement | null>(null);
     const posterRankRef = useRef<HTMLLIElement | null>(null);
@@ -97,7 +98,7 @@ function SliderContainer({ images, rank }: Prop) {
                                     role="button"
                                     className={`flex-none h-[170px] w-[115px] md:h-[220px] md:w-[150px] lg:h-[280px] lg:w-[180px] 2xl:h-[330px] 2xl:w-[210px] rounded shadow-blackShadow ${firstCard ? 'ml-2' : ''} ${lastCard ? 'mr-2' : ''}`}
                                 >
-                                    <Link href={'content/' + content.id}>
+                                    <Link href={`content/${contentType}/${content.id}`}>
                                         <Image
                                             src={content.poster_path}
                                             alt={title + ' poster'}
@@ -118,7 +119,7 @@ function SliderContainer({ images, rank }: Prop) {
                                     className={`flex-none h-[170px] md:h-[220px] lg:h-[280px] 2xl:h-[330px] rounded ${lastCard ? 'mr-2' : ''}`}
                                 >
                                     <Link
-                                        href={'content/' + content.id}
+                                        href={`content/${contentType}/${content.id}`}
                                         className="flex items-end h-full"
                                     >
                                         <RankIcon height="50%" color="#aaaaaa" />

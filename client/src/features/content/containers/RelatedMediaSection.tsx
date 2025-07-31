@@ -1,14 +1,16 @@
 'use client';
 import { useState } from 'react';
-import { collection } from '@/assets/mockData/collection';
-import { similarMovies } from '@/assets/mockData/recommendations';
+// import { collection } from '@/assets/mockData/collection';
+// import { similarMovies } from '@/assets/mockData/recommendations';
 import MediaListTab from '../components/MediaListTab';
 
 type Prop = {
     label?: string;
+    collection: Collection | null;
+    recommendations: Movie[];
 };
 
-function RelatedMediaSection({ label }: Prop) {
+function RelatedMediaSection({ label, collection, recommendations }: Prop) {
     const [option, setOption] = useState<0 | 1>(0); // Represents the percentage value for the animated div element position.
 
     return (
@@ -16,7 +18,7 @@ function RelatedMediaSection({ label }: Prop) {
             <div>
                 <ul className="flex justify-start font-bold text-sm mt-0">
                     <li
-                        className={`text-center flex-1 ${!similarMovies.length && ' hidden'} ${!collection.parts.length && 'text-start'}`}
+                        className={`text-center flex-1 ${!recommendations.length && ' hidden'} ${!collection && 'text-start'}`}
                     >
                         <button
                             className={`${option === 0 && 'text-custom-cyanBlue'}`}
@@ -25,24 +27,27 @@ function RelatedMediaSection({ label }: Prop) {
                             More Like This
                         </button>
                     </li>
-                    <li
-                        className={`text-center flex-1 ${!collection.parts.length && 'hidden'} ${!similarMovies.length && ' text-start'}`}
-                    >
-                        <button
-                            disabled={!collection.parts.length}
-                            className={`${option === 1 && 'text-custom-cyanBlue'}`}
-                            onClick={() => setOption(1)}
+
+                    {collection && (
+                        <li
+                            className={`text-center flex-1 ${!recommendations.length && ' text-start'}`}
                         >
-                            Collection
-                        </button>
-                    </li>
+                            <button
+                                disabled={!collection.parts.length}
+                                className={`${option === 1 && 'text-custom-cyanBlue'}`}
+                                onClick={() => setOption(1)}
+                            >
+                                Collection
+                            </button>
+                        </li>
+                    )}
                 </ul>
             </div>
 
-            {option === 0 && similarMovies.length > 0 && (
-                <MediaListTab label={'Recommendations'} media={similarMovies} />
+            {option === 0 && recommendations.length > 0 && (
+                <MediaListTab label={'Recommendations'} media={recommendations} />
             )}
-            {option === 1 && collection.parts.length > 0 && (
+            {option === 1 && collection && (
                 <MediaListTab label={'Collections'} media={collection.parts} />
             )}
         </div>

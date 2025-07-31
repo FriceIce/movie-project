@@ -12,26 +12,24 @@ const Home = async () => {
     const img = 'https://image.tmdb.org/t/p/w500' + movieDetails.poster_path; // id: 533535
     const desktopImg = 'https://image.tmdb.org/t/p/original' + movieDetails.backdrop_path;
 
-    // const response = await axios.get<MovieItem<Movie>>(
-    //     'http://localhost:3001/api/popular/1/movie',
-    //     {
-    //         headers: {
-    //             accept: 'application/json',
-    //             Authorization: 'Bearer ' + String(token?.value),
-    //         },
-    //     }
-    // );
-
     return (
         <div className="flex flex-col">
             <MobileHeroImageContainer img={img} id={533535} />
             <DesktopHeroImage img={desktopImg} id={533535} />
             <section className="space-y-4 lg:space-y-10">
-                <ContentSlider title="Viral Movies" images={popularContent} />
-                <ContentSlider title="Fan Favorites" images={trendingSeries} />
-                <TopTenContentSlider title="Top Ten Highly Rated Movies" content={topRatedMovies} />
-                <ContentSlider title="Action Comedies You’ll Love" images={actionComedyMovies} />
-                <ContentSlider title="Crime Series" images={crimeTV} />
+                <ContentSlider contentType="movie" title="Viral Movies" images={popularContent} />
+                <ContentSlider contentType="tv" title="Fan Favorites" images={trendingSeries} />
+                <TopTenContentSlider
+                    contentType="movie"
+                    title="Top Ten Highly Rated Movies"
+                    content={topRatedMovies}
+                />
+                <ContentSlider
+                    contentType="movie"
+                    title="Action Comedies You’ll Love"
+                    images={actionComedyMovies}
+                />
+                <ContentSlider contentType="tv" title="Crime Series" images={crimeTV} />
             </section>
         </div>
     );

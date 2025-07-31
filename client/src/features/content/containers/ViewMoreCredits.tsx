@@ -2,17 +2,18 @@
 import { poppins } from '@/assets/fonts';
 import { useEffect, useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/20/solid';
+import { TvShowDetails } from '@/types/TvDetails';
 
 type Prop = {
     label?: string;
     director?: string;
-    movieDetails: MovieDetails;
+    contentDetails: MovieDetails | TvShowDetails;
     cast: CastMember[];
     crew: CrewMember[];
 };
 
 function ViewMoreCredits(prop: Prop) {
-    const { director, cast, crew, movieDetails } = prop;
+    const { director, cast, crew, contentDetails } = prop;
     const [showCreditsWindow, setShowCreditsWindow] = useState<boolean>(false);
 
     useEffect(() => {
@@ -40,7 +41,7 @@ function ViewMoreCredits(prop: Prop) {
                     <h2
                         className={`flex-1 ml-5 font-bold text-white text-center text-lg text-ellipsis truncate overflow-hidden ${poppins.className}`}
                     >
-                        {movieDetails.title}
+                        {'title' in contentDetails ? contentDetails.title : contentDetails.name}
                     </h2>
 
                     <button className="rounded-full" onClick={() => setShowCreditsWindow(false)}>
@@ -63,33 +64,38 @@ function ViewMoreCredits(prop: Prop) {
                             })}
                         </ul>
                     </div>
-                    <div className="space-y-3">
-                        <h3 className="text-white text-base text-center font-bold">Director</h3>
-                        <p className="">{director}</p>
-                    </div>
-                    <div className="space-y-3">
-                        <h3 className="text-white text-base font-bold text-center">Writers</h3>
-                        <ul
-                            aria-label="A list consisting of writers"
-                            className="flex flex-col items-center gap-3"
-                        >
-                            {crew.map((member, index) => {
-                                if (member.job.toLowerCase() !== 'writer') return;
-                                return (
-                                    <li key={member.id + index}>
-                                        <p className="">{member.name}</p>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </div>
+                    {director && (
+                        <div className="space-y-3">
+                            <h3 className="text-white text-base text-center font-bold">Director</h3>
+                            <p className="">{director}</p>
+                        </div>
+                    )}
+
+                    {crew.length > 0 && (
+                        <div className="space-y-3">
+                            <h3 className="text-white text-base font-bold text-center">Writers</h3>
+                            <ul
+                                aria-label="A list consisting of writers"
+                                className="flex flex-col items-center gap-3"
+                            >
+                                {crew.map((member, index) => {
+                                    if (member.job.toLowerCase() !== 'writer') return;
+                                    return (
+                                        <li key={member.id + index}>
+                                            <p className="">{member.name}</p>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    )}
                     <div className="space-y-3">
                         <h3 className="text-white text-base font-bold text-center">Genre</h3>
                         <ul
                             aria-label="A list consisting of writers"
                             className="flex flex-col items-center gap-3"
                         >
-                            {movieDetails.genres.map((genre) => {
+                            {contentDetails.genres.map((genre) => {
                                 return (
                                     <li key={genre.id}>
                                         <p className="">{genre.name}</p>

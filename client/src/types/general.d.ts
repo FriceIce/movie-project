@@ -12,9 +12,19 @@ type TmdbVideoObject = {
     type: string;
 };
 
+type VideosResponse = {
+    id: number;
+    results: TmdbVideoObject[];
+};
+
 type FilteredVideos = {
     trailer: TmdbVideoObject | null;
     all: TmdbVideoObject[];
 };
 
 // ----------------------------------------------
+
+type FetchResponse<T> = {
+    message: string;
+    data: T;
+};
