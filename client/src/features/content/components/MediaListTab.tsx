@@ -25,7 +25,7 @@ function MediaListTab({ label, media }: Prop) {
                                 alt={title + 'poster'}
                                 width={500}
                                 height={230}
-                                className="object-contain"
+                                className="object-contain rounded-[2px]"
                             />
                         </Link>
                     </li>
