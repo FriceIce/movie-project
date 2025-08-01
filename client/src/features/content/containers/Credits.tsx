@@ -15,40 +15,65 @@ function Credits({ credits, contentDetails }: Prop) {
     const LENGTH = 2;
 
     return (
-        <div aria-label="Cast" className="space-y-1 text-xs text-neutral-400">
+        <div aria-label="Cast" className="space-y-1 text-neutral-400">
             {cast.length > 0 && (
-                <div className="flex gap-1">
-                    <p className="font-bold">Starring: </p>
-                    <ul className="flex gap-2 text-ellipsis overflow-hidden">
-                        {cast.slice(0, LENGTH).map((castMember, index) => {
-                            const knownFor = castMember.known_for_department.toLowerCase();
-                            if (knownFor !== 'acting') return;
+                <>
+                    <div className="flex gap-1">
+                        <p className="font-bold lg:text-neutral-500 lg:font-semibold">Starring: </p>
+                        <ul className="flex gap-1 text-ellipsis overflow-hidden md:text-white">
+                            {cast.slice(0, LENGTH).map((castMember, index) => {
+                                const knownFor = castMember.known_for_department.toLowerCase();
+                                if (knownFor !== 'acting') return;
 
-                            return (
-                                <li key={castMember.id} className="flex-none flex gap-1">
-                                    <p className="">
-                                        {castMember.name}
-                                        {index === cast.slice(0, LENGTH).length - 1 && '...'}
-                                    </p>
+                                const lastCastItem = index === LENGTH - 1;
 
-                                    {index === cast.slice(0, LENGTH).length - 1 && (
-                                        <ViewMoreCredits
-                                            contentDetails={contentDetails}
-                                            cast={cast}
-                                            crew={crew}
-                                            director={director}
-                                        />
-                                    )}
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </div>
+                                return (
+                                    <li key={castMember.id} className="flex-none flex gap-1">
+                                        <p className="">
+                                            {castMember.name + (!lastCastItem ? ',' : '')}
+                                            {index === cast.slice(0, LENGTH).length - 1 && '...'}
+                                        </p>
+
+                                        {index === cast.slice(0, LENGTH).length - 1 && (
+                                            <ViewMoreCredits
+                                                contentDetails={contentDetails}
+                                                cast={cast}
+                                                crew={crew}
+                                                director={director}
+                                            />
+                                        )}
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
+
+                    {contentDetails.genres.length > 0 && (
+                        <div className="flex gap-1">
+                            <p className="font-bold lg:text-neutral-500 lg:font-semibold">
+                                Genres:
+                            </p>
+                            <ul className="flex gap-1 md:text-white">
+                                {contentDetails.genres.map((genre, i) => {
+                                    const lastGenre = i === contentDetails.genres.length - 1;
+
+                                    return (
+                                        <li key={genre.id} className="">
+                                            <p className="">
+                                                {genre.name + (!lastGenre ? ',' : '')}
+                                            </p>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    )}
+                </>
             )}
             {director && (
                 <div className="flex gap-1">
-                    <p className="font-bold">Director:</p>
-                    <p className="">{director}</p>
+                    <p className="font-bold lg:text-neutral-500 lg:font-semibold">Director:</p>
+                    <p className="md:text-white">{director}</p>
                 </div>
             )}
         </div>

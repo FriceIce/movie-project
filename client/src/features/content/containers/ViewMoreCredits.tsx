@@ -35,11 +35,11 @@ function ViewMoreCredits(prop: Prop) {
         <div>
             <div
                 aria-label="Pop up window displaying more detailed content credits."
-                className={`fixed inset-0 z-10 flex flex-col items-center h-dvh w-dvw bg-neutral-900 space-y-8 py-4 overflow-y-auto ${!showCreditsWindow && 'hidden'}`}
+                className={`fixed inset-0 z-10 flex flex-col items-center h-dvh w-dvw bg-neutral-900 text-neutral-400 text-sm md:text-base space-y-8 py-4 overflow-y-auto ${!showCreditsWindow && 'hidden'}`}
             >
                 <div className="flex gap-1 w-full pr-3">
                     <h2
-                        className={`flex-1 ml-5 font-bold text-white text-center text-lg text-ellipsis truncate overflow-hidden ${poppins.className}`}
+                        className={`flex-1 ml-5 font-bold text-white text-center text-xl text-ellipsis truncate overflow-hidden ${poppins.className}`}
                     >
                         {'title' in contentDetails ? contentDetails.title : contentDetails.name}
                     </h2>
@@ -48,9 +48,9 @@ function ViewMoreCredits(prop: Prop) {
                         <XMarkIcon className="size-6 rounded-full bg-neutral-700 text-white" />
                     </button>
                 </div>
-                <div className="flex flex-col items-center gap-8 overflow-y-auto no-scrollbar">
+                <div className="flex flex-col items-center gap-8 overflow-y-auto no-scrollbar w-full">
                     <div className="space-y-3">
-                        <h3 className="text-white text-base font-bold text-center">Cast</h3>
+                        <h3 className="text-white text-xl font-bold text-center">Cast</h3>
                         <ul
                             aria-label="A list consisting of actors."
                             className="flex flex-col items-center gap-3"
@@ -66,14 +66,14 @@ function ViewMoreCredits(prop: Prop) {
                     </div>
                     {director && (
                         <div className="space-y-3">
-                            <h3 className="text-white text-base text-center font-bold">Director</h3>
+                            <h3 className="text-white text-lg text-center font-bold">Director</h3>
                             <p className="">{director}</p>
                         </div>
                     )}
 
                     {crew.length > 0 && (
                         <div className="space-y-3">
-                            <h3 className="text-white text-base font-bold text-center">Writers</h3>
+                            <h3 className="text-white text-lg font-bold text-center">Writers</h3>
                             <ul
                                 aria-label="A list consisting of writers"
                                 className="flex flex-col items-center gap-3"
@@ -90,7 +90,7 @@ function ViewMoreCredits(prop: Prop) {
                         </div>
                     )}
                     <div className="space-y-3">
-                        <h3 className="text-white text-base font-bold text-center">Genre</h3>
+                        <h3 className="text-white text-lg font-bold text-center">Genre</h3>
                         <ul
                             aria-label="A list consisting of writers"
                             className="flex flex-col items-center gap-3"
@@ -108,7 +108,7 @@ function ViewMoreCredits(prop: Prop) {
             </div>
 
             <button
-                className="font-bold text-neutral-400"
+                className="font-bold text-neutral-400 lg:text-white"
                 onClick={() => setShowCreditsWindow(true)}
             >
                 more

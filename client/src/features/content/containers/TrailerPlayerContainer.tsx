@@ -1,19 +1,25 @@
 'use client';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { TvShowDetails } from '@/types/TvDetails';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Prop = {
     contentDetails: MovieDetails | TvShowDetails;
-    imageSrc: string;
     trailer: TmdbVideoObject | null;
 };
-function TrailerPlayerContainer({ contentDetails, trailer, imageSrc }: Prop) {
+function TrailerPlayerContainer({ contentDetails, trailer }: Prop) {
     const [videoStarted, setVideoStarted] = useState<boolean>(false);
 
+    // Custom hook
+    const screenWidth = useMediaQuery(1280);
+
+    // ref for trailer width and height.
+    const imageRefMobile = useRef<HTMLImageElement | null>(null);
+    const imageRefDesktop = useRef<HTMLImageElement | null>(null);
+
     useEffect(() => {
-        console.log(trailer);
-        const timer = setTimeout(() => trailer && setVideoStarted(true), 3000);
+        const timer = setTimeout(() => trailer && setVideoStarted(true), 0);
         return () => clearTimeout(timer);
     }, [trailer]);
 
@@ -22,6 +28,7 @@ function TrailerPlayerContainer({ contentDetails, trailer, imageSrc }: Prop) {
             {!videoStarted && (
                 <>
                     <Image
+                        ref={imageRefMobile}
                         src={`https://image.tmdb.org/t/p/w780/` + contentDetails.backdrop_path}
                         alt={'content Image'}
                         width={780}
@@ -30,7 +37,8 @@ function TrailerPlayerContainer({ contentDetails, trailer, imageSrc }: Prop) {
                         className="h-auto w-full mask-image-bottom lg:hidden"
                     />
                     <Image
-                        src={'https://image.tmdb.org/t/p/' + imageSrc}
+                        ref={imageRefDesktop}
+                        src={`https://image.tmdb.org/t/p/${screenWidth ? 'original' : 'w1280'}/${contentDetails.backdrop_path}`}
                         alt={'content Image'}
                         width={1280}
                         height={720}
@@ -41,12 +49,36 @@ function TrailerPlayerContainer({ contentDetails, trailer, imageSrc }: Prop) {
             )}
 
             {videoStarted && (
-                <iframe
-                    src={`https://www.youtube.com/embed/${trailer?.key}?autoplay=1&mute=1`}
-                    allowFullScreen
-                    title="Trailer"
-                    className={`h-[220px] sm:h-[350px] w-dvw ${!trailer && 'hidden'}`}
-                ></iframe>
+                <>
+                    <iframe
+                        src={`https://www.youtube.com/embed/${trailer?.key}?autoplay=1&mute=1`}
+                        allowFullScreen
+                        title="Trailer"
+                        style={{
+                            width: imageRefMobile.current
+                                ? imageRefMobile.current.offsetWidth
+                                : 'auto',
+                            height: imageRefMobile.current
+                                ? imageRefMobile.current.offsetHeight
+                                : 'auto',
+                        }}
+                        className={`w-dvw lg:hidden ${!trailer && 'hidden'}`}
+                    ></iframe>
+                    <iframe
+                        src={`https://www.youtube.com/embed/${trailer?.key}?autoplay=1&mute=1`}
+                        allowFullScreen
+                        title="Trailer"
+                        style={{
+                            width: imageRefDesktop.current
+                                ? imageRefDesktop.current.offsetWidth
+                                : 'auto',
+                            height: imageRefDesktop.current
+                                ? imageRefDesktop.current.offsetHeight
+                                : 'auto',
+                        }}
+                        className={`w-dvw hidden lg:block ${!trailer && 'hidden'}`}
+                    ></iframe>
+                </>
             )}
         </div>
     );
