@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { movieDetails } from '@/assets/mockData';
+import { movieDetails } from '@/assets/data';
 import { retrieveCompanyLogo } from '@/utils/retrieveCompanyLogo';
 import { poppins } from '@/assets/fonts';
 import ContentActionBtns from '@/components/ContentActionBtns';

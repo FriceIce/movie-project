@@ -1,7 +1,7 @@
-import { movieDetails, popularContent, topRatedMovies } from '@/assets/mockData';
-import { actionComedyMovies } from '@/assets/mockData/actionComedyMovies';
-import { crimeTV } from '@/assets/mockData/crimeTV';
-import { trendingSeries } from '@/assets/mockData/trendingTV';
+import { movieDetails, popularContent, topRatedMovies } from '@/assets/data';
+import { actionComedyMovies } from '@/assets/data/movie/actionComedyMovies';
+import { crimeTV } from '@/assets/data/tv/crimeTV';
+import { trendingSeries } from '@/assets/data/tv/trendingTV';
 import ContentSlider from '@/components/sliders/ContentSlider';
 import TopTenContentSlider from '@/components/sliders/TopTenContentSlider';
 import DesktopHeroImage from '@/features/home/containers/DesktopHeroImage';
