@@ -1,6 +1,10 @@
 // import { credits } from '@/assets/mockData/credits';
-import { TvShowDetails } from '@/types/TvDetails';
-import { filterCastMembers, filterCrewMembers, findDirector } from '../utils/filterCredits';
+import {
+    filterCastMembers,
+    filterCrewMembers,
+    findMovieDirector,
+    findSeriesCreator,
+} from '../utils/filterCredits';
 import ViewMoreCredits from './ViewMoreCredits';
 
 type Prop = {
@@ -9,7 +13,10 @@ type Prop = {
 };
 
 function Credits({ credits, contentDetails }: Prop) {
-    const director = findDirector(credits.crew);
+    const director =
+        'created_by' in contentDetails
+            ? findSeriesCreator(contentDetails.created_by)
+            : findMovieDirector(credits.crew);
     const cast = filterCastMembers(credits.cast);
     const crew = filterCrewMembers(credits.crew);
     const LENGTH = 2;
@@ -71,11 +78,34 @@ function Credits({ credits, contentDetails }: Prop) {
                 </>
             )}
             {director && (
-                <div className="flex gap-1">
-                    <p className="font-bold lg:text-neutral-500 lg:font-semibold">Director:</p>
-                    <p className="md:text-white">{director}</p>
-                </div>
+                <>
+                    {typeof director === 'string' ? (
+                        <div className="flex gap-1">
+                            <p className="font-bold lg:text-neutral-500 lg:font-semibold">
+                                Director:
+                            </p>
+                            <p className="md:text-white">{director}</p>
+                        </div>
+                    ) : (
+                        <div className="flex gap-1">
+                            <p className="font-bold lg:text-neutral-500 lg:font-semibold">
+                                {director.length > 1 ? 'Directors' : 'Director'}:
+                            </p>
+                            <ul className="md:text-white flex gap-1">
+                                {director.map((name, index) => {
+                                    return (
+                                        <li key={index} className="">
+                                            {name}
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </div>
+                    )}
+                </>
             )}
+
+            {}
         </div>
     );
 }

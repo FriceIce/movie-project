@@ -8,6 +8,10 @@ export function filterCastMembers(list: CastMember[]) {
     return list.filter((castMember) => knownFor === castMember.known_for_department.toLowerCase());
 }
 
-export function findDirector(list: CrewMember[]) {
+export function findMovieDirector(list: CrewMember[]) {
     return list.find((crewMember) => crewMember.job === 'Director')?.original_name;
+}
+
+export function findSeriesCreator(list: Creator[]) {
+    return list.map((creator) => creator.name);
 }
