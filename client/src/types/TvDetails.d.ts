@@ -1,7 +1,7 @@
-export interface TvShowDetails {
+interface TvShowDetails {
     adult: boolean;
-    backdrop_path: string | null;
-    created_by: CreatedBy[];
+    backdrop_path: string;
+    created_by: Creator[];
     episode_run_time: number[];
     first_air_date: string;
     genres: Genre[];
@@ -10,7 +10,7 @@ export interface TvShowDetails {
     in_production: boolean;
     languages: string[];
     last_air_date: string;
-    last_episode_to_air: Episode | null;
+    last_episode_to_air: Episode;
     name: string;
     next_episode_to_air: Episode | null;
     networks: Network[];
@@ -21,7 +21,7 @@ export interface TvShowDetails {
     original_name: string;
     overview: string;
     popularity: number;
-    poster_path: string | null;
+    poster_path: string;
     production_companies: ProductionCompany[];
     production_countries: ProductionCountry[];
     seasons: Season[];
@@ -33,7 +33,7 @@ export interface TvShowDetails {
     vote_count: number;
 }
 
-export interface CreatedBy {
+interface Creator {
     id: number;
     credit_id: string;
     name: string;
@@ -42,12 +42,12 @@ export interface CreatedBy {
     profile_path: string | null;
 }
 
-export interface Genre {
+interface Genre {
     id: number;
     name: string;
 }
 
-export interface Episode {
+interface Episode {
     id: number;
     name: string;
     overview: string;
@@ -55,34 +55,34 @@ export interface Episode {
     vote_count: number;
     air_date: string;
     episode_number: number;
-    episode_type?: string; // finns i last_episode_to_air
+    episode_type: string;
     production_code: string;
-    runtime: number;
+    runtime: number | null;
     season_number: number;
     show_id: number;
     still_path: string | null;
 }
 
-export interface Network {
+interface Network {
     id: number;
     logo_path: string | null;
     name: string;
     origin_country: string;
 }
 
-export interface ProductionCompany {
+interface ProductionCompany {
     id: number;
     logo_path: string | null;
     name: string;
     origin_country: string;
 }
 
-export interface ProductionCountry {
+interface ProductionCountry {
     iso_3166_1: string;
     name: string;
 }
 
-export interface Season {
+interface Season {
     air_date: string;
     episode_count: number;
     id: number;
@@ -93,7 +93,7 @@ export interface Season {
     vote_average: number;
 }
 
-export interface SpokenLanguage {
+interface SpokenLanguage {
     english_name: string;
     iso_639_1: string;
     name: string;

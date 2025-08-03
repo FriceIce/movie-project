@@ -2,11 +2,10 @@
 import { poppins } from '@/assets/fonts';
 import { useEffect, useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/20/solid';
-import { TvShowDetails } from '@/types/TvDetails';
 
 type Prop = {
     label?: string;
-    director?: string;
+    director?: string | string[];
     contentDetails: MovieDetails | TvShowDetails;
     cast: CastMember[];
     crew: CrewMember[];
@@ -65,10 +64,34 @@ function ViewMoreCredits(prop: Prop) {
                         </ul>
                     </div>
                     {director && (
-                        <div className="space-y-3">
-                            <h3 className="text-white text-lg text-center font-bold">Director</h3>
-                            <p className="">{director}</p>
-                        </div>
+                        <>
+                            {typeof director === 'string' ? (
+                                <div className="space-y-3">
+                                    <h3 className="text-white text-lg text-center font-bold">
+                                        Director
+                                    </h3>
+                                    <p className="">{director}</p>
+                                </div>
+                            ) : (
+                                <div className="space-y-3">
+                                    <h3 className="text-white text-lg font-bold text-center">
+                                        {director.length > 1 ? 'Directors' : 'Director'}
+                                    </h3>
+                                    <ul
+                                        aria-label="A list consisting of writers"
+                                        className="flex flex-col items-center gap-3"
+                                    >
+                                        {director.map((name, index) => {
+                                            return (
+                                                <li key={index}>
+                                                    <p className="">{name}</p>
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                </div>
+                            )}
+                        </>
                     )}
 
                     {crew.length > 0 && (
