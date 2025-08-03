@@ -18,10 +18,7 @@ function TrailerPlayerContainer({ contentDetails, trailer }: Prop) {
     const imageRefMobile = useRef<HTMLImageElement | null>(null);
     const imageRefDesktop = useRef<HTMLImageElement | null>(null);
 
-    useEffect(() => {
-        const timer = setTimeout(() => trailer && setVideoStarted(true), 0);
-        return () => clearTimeout(timer);
-    }, [trailer]);
+    useEffect(() => setVideoStarted(true), [setVideoStarted]);
 
     return (
         <div aria-label="Container for trailer and content backdrop image">

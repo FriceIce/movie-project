@@ -1,0 +1,416 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "adult": false,
+            "backdrop_path": "/1RgPyOhN4DRs225BGTlHJqCudII.jpg",
+            "genre_ids": [
+                16,
+                28,
+                14,
+                53
+            ],
+            "id": 1311031,
+            "original_language": "ja",
+            "original_title": "劇場版「鬼滅の刃」無限城編 第一章 猗窩座再来",
+            "overview": "As the Demon Slayer Corps members and Hashira engaged in a group strength training program, the Hashira Training, in preparation for the forthcoming battle against the demons, Muzan Kibutsuji appears at the Ubuyashiki Mansion. With the head of the Demon Corps in danger, Tanjiro and the Hashira rush to the headquarters but are plunged into a deep descent to a mysterious space by the hands of Muzan Kibutsuji.  The destination of where Tanjiro and Demon Slayer Corps have fallen is the demons' stronghold – the Infinity Castle. And so, the battleground is set as the final battle between the Demon Slayer Corps and the demons ignites.",
+            "popularity": 531.3633,
+            "poster_path": "/aFRDH3P7TX61FVGpaLhKr6QiOC1.jpg",
+            "release_date": "2025-07-18",
+            "title": "Demon Slayer: Kimetsu no Yaiba Infinity Castle",
+            "video": false,
+            "vote_average": 7.155,
+            "vote_count": 55
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/iZ0ZSnhmHB3k1KDkDzEz65f5iia.jpg",
+            "genre_ids": [
+                16,
+                28,
+                878
+            ],
+            "id": 1326106,
+            "original_language": "ja",
+            "original_title": "アニメ『怪獣８号』第１期総集編／同時上映「保科の休日」",
+            "overview": "In a Kaiju-filled Japan, Kafka Hibino works in monster disposal. After reuniting with his childhood friend Mina Ashiro, a rising star in the anti-Kaiju Defense Force, he decides to pursue his abandoned dream of joining the Force, when he suddenly transforms into the powerful \"Kaiju No. 8.\" An action-packed recap of the first season of Kaiju No. 8 and a new original episode, Hoshina's Day Off.",
+            "popularity": 75.1764,
+            "poster_path": "/1aEfyTWUK8ZBk4aw7Ck0qEoF8PW.jpg",
+            "release_date": "2025-03-28",
+            "title": "Kaiju No. 8: Mission Recon",
+            "video": false,
+            "vote_average": 7.705,
+            "vote_count": 44
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/7zXtVdUtCXE8dO9tEJXRxL1ut06.jpg",
+            "genre_ids": [
+                16,
+                10402
+            ],
+            "id": 1266536,
+            "original_language": "ja",
+            "original_title": "劇場版すとぷり はじまりの物語~Strawberry School Festival!!!~",
+            "overview": "An anime movie based on the boy band Strawberry Prince.",
+            "popularity": 26.1207,
+            "poster_path": "/kaBZWQ8mmT0fhIBdrafHinIVomN.jpg",
+            "release_date": "2024-07-19",
+            "title": "Strawberry Prince Movie: The Beginning - Strawberry School Festival!!!",
+            "video": false,
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/6oaL4DP75yABrd5EbC4H2zq5ghc.jpg",
+            "genre_ids": [
+                16,
+                10751,
+                14
+            ],
+            "id": 129,
+            "original_language": "ja",
+            "original_title": "千と千尋の神隠し",
+            "overview": "A young girl, Chihiro, becomes trapped in a strange new world of spirits. When her parents undergo a mysterious transformation, she must call upon the courage she never knew she had to free her family.",
+            "popularity": 23.6976,
+            "poster_path": "/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg",
+            "release_date": "2001-07-20",
+            "title": "Spirited Away",
+            "video": false,
+            "vote_average": 8.5,
+            "vote_count": 17322
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/3FVe3OAdgz060JaxIAaUl5lo6cx.jpg",
+            "genre_ids": [
+                16,
+                28,
+                14,
+                53
+            ],
+            "id": 635302,
+            "original_language": "ja",
+            "original_title": "劇場版「鬼滅の刃」無限列車編",
+            "overview": "Tanjiro Kamado, joined with Inosuke Hashibira, a boy raised by boars who wears a boar's head, and Zenitsu Agatsuma, a scared boy who reveals his true power when he sleeps, boards the Infinity Train on a new mission with the Fire Hashira, Kyojuro Rengoku, to defeat a demon who has been tormenting the people and killing the demon slayers who oppose it!",
+            "popularity": 18.9544,
+            "poster_path": "/h8Rb9gBr48ODIwYUttZNYeMWeUU.jpg",
+            "release_date": "2020-10-16",
+            "title": "Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train",
+            "video": false,
+            "vote_average": 8.2,
+            "vote_count": 4141
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/hlfu6g0h0D65SjkVhQBU20zePTl.jpg",
+            "genre_ids": [
+                28,
+                12,
+                14,
+                16
+            ],
+            "id": 1357633,
+            "original_language": "ja",
+            "original_title": "俺だけレベルアップな件 -ReAwakening-",
+            "overview": "Over a decade after 'gates' connecting worlds appeared, awakening 'hunters' with superpowers, weakest hunter Sung Jinwoo encounters a double dungeon and accepts a mysterious quest, becoming the only one able to level up, changing his fate. A catch-up recap of the first season coupled with an exclusive sneak peek of the first two episodes of the highly anticipated second season in one momentous theatrical fan experience.",
+            "popularity": 18.7498,
+            "poster_path": "/dblIFen0bNZAq8icJXHwrjfymDW.jpg",
+            "release_date": "2024-11-26",
+            "title": "Solo Leveling -ReAwakening-",
+            "video": false,
+            "vote_average": 6.998,
+            "vote_count": 230
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/8x9iKH8kWA0zdkgNdpAew7OstYe.jpg",
+            "genre_ids": [
+                16,
+                10749,
+                18
+            ],
+            "id": 372058,
+            "original_language": "ja",
+            "original_title": "君の名は。",
+            "overview": "High schoolers Mitsuha and Taki are complete strangers living separate lives. But one night, they suddenly switch places. Mitsuha wakes up in Taki’s body, and he in hers. This bizarre occurrence continues to happen randomly, and the two must adjust their lives around each other.",
+            "popularity": 16.2736,
+            "poster_path": "/q719jXXEzOoYaps6babgKnONONX.jpg",
+            "release_date": "2016-08-26",
+            "title": "Your Name.",
+            "video": false,
+            "vote_average": 8.482,
+            "vote_count": 11889
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/21lM9hfYNDX9RnWzp4aq0iQTEbq.jpg",
+            "genre_ids": [
+                16,
+                10749
+            ],
+            "id": 1317276,
+            "original_language": "ja",
+            "original_title": "映画 ギヴン 海へ",
+            "overview": "Mafuyu doubts his place in the band, but a familiar face could be the spark that brings him back to the stage.",
+            "popularity": 13.5487,
+            "poster_path": "/2VLnT5JtJ77ErG6GD3c1J628VLp.jpg",
+            "release_date": "2024-09-20",
+            "title": "given the Movie: To the Sea",
+            "video": false,
+            "vote_average": 7.4,
+            "vote_count": 7
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/nv5wwZou159v5OC61i4ElR7OqyY.jpg",
+            "genre_ids": [
+                14,
+                16,
+                12
+            ],
+            "id": 4935,
+            "original_language": "ja",
+            "original_title": "ハウルの動く城",
+            "overview": "Sophie, a young milliner, is turned into an elderly woman by a witch who enters her shop and curses her. She encounters a wizard named Howl and gets caught up in his resistance to fighting for the king.",
+            "popularity": 14.0222,
+            "poster_path": "/13kOl2v0nD2OLbVSHnHk8GUFEhO.jpg",
+            "release_date": "2004-09-09",
+            "title": "Howl's Moving Castle",
+            "video": false,
+            "vote_average": 8.398,
+            "vote_count": 10420
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/w8j0HVX7xasNVGAva2T3W4ncoN4.jpg",
+            "genre_ids": [
+                16,
+                28,
+                14
+            ],
+            "id": 1338799,
+            "original_language": "ja",
+            "original_title": "劇場版総集編 呪術廻戦 懐玉・玉折",
+            "overview": "Pursued by a religious cult and other curse users, former friends Satoru Gojo and Suguru Geto are the only sorcerers capable of carrying the difficult task of protecting Riko Amanai, a student who has been designated to be sacrificed as the Star Plasma Vessel, until she can fulfill her duty.",
+            "popularity": 11.8311,
+            "poster_path": "/jHeBCMom4fJK2f6KCnpuTODWpla.jpg",
+            "release_date": "2025-05-30",
+            "title": "JUJUTSU KAISEN: Hidden Inventory / Premature Death - The Movie",
+            "video": false,
+            "vote_average": 8.2,
+            "vote_count": 5
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/ie8OSgIHEl6yQiGJ90dsyBWOpQA.jpg",
+            "genre_ids": [
+                16,
+                14,
+                12,
+                28
+            ],
+            "id": 839033,
+            "original_language": "en",
+            "original_title": "The Lord of the Rings: The War of the Rohirrim",
+            "overview": "A sudden attack by Wulf, a clever and traitorous lord of Rohan seeking vengeance for the death of his father, forces Helm Hammerhand, the King of Rohan, and his people to make a daring last stand in the ancient stronghold of the Hornburg.",
+            "popularity": 12.8867,
+            "poster_path": "/hE9SAMyMSUGAPsHUGdyl6irv11v.jpg",
+            "release_date": "2024-12-05",
+            "title": "The Lord of the Rings: The War of the Rohirrim",
+            "video": false,
+            "vote_average": 6.6,
+            "vote_count": 649
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/bE10DMcePbEWa8LAWZQ16vQNrwT.jpg",
+            "genre_ids": [
+                16,
+                28,
+                9648,
+                80
+            ],
+            "id": 1396965,
+            "original_language": "ja",
+            "original_title": "名探偵コナン 隻眼の残像（フラッシュバック）",
+            "overview": "As police inspector Yamato Kansuke pursues a certain man in the snowy mountains of Nagano, a shadow suddenly appears in his field of vision. While he's distracted, a rifle bullet fired by someone grazes his left eye and causes an avalanche accompanied by a roar. Ten months later, Kansuke, having miraculously survived the avalanche, receives a report that a researcher at the Nobeyama National Astronomical Observatory has been attacked.",
+            "popularity": 9.2992,
+            "poster_path": "/1wl6eAHbIDSz61tGwYTOKlSRvZb.jpg",
+            "release_date": "2025-04-18",
+            "title": "Detective Conan: One-Eyed Flashback",
+            "video": false,
+            "vote_average": 7.25,
+            "vote_count": 17
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/8NEvnVKeGMLEXG45MMNqxJLcM4y.jpg",
+            "genre_ids": [
+                16,
+                28,
+                14,
+                53
+            ],
+            "id": 820232,
+            "original_language": "ja",
+            "original_title": "鬼滅の刃 兄妹の絆",
+            "overview": "A recap of Kimetsu no Yaiba episodes 1–5, with new footage and special end credits. Tanjiro Kamado returns home to find his family slaughtered and the lone survivor, his sister Nezuko, turned into a Demon. To his surprise, however, Nezuko still shows signs of human emotion and thought. Thus begins Tanjiro's journey to seek out the Demon who killed their family and turn his sister human again.",
+            "popularity": 9.6635,
+            "poster_path": "/vJUDoYNNKvBqbEPUskgvzPXGEFz.jpg",
+            "release_date": "2019-03-29",
+            "title": "Demon Slayer: Kimetsu no Yaiba - Sibling's Bond",
+            "video": false,
+            "vote_average": 7.9,
+            "vote_count": 220
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/95ozIP0A2fKaAXxwDxUEVn74Iux.jpg",
+            "genre_ids": [
+                14,
+                16,
+                10751
+            ],
+            "id": 8392,
+            "original_language": "ja",
+            "original_title": "となりのトトロ",
+            "overview": "Two sisters move to the country with their father in order to be closer to their hospitalized mother, and discover the surrounding trees are inhabited by Totoros, magical spirits of the forest. When the youngest runs away from home, the older sister seeks help from the spirits to find her.",
+            "popularity": 10.7922,
+            "poster_path": "/rtGDOeG9LzoerkDGZF9dnVeLppL.jpg",
+            "release_date": "1988-04-16",
+            "title": "My Neighbor Totoro",
+            "video": false,
+            "vote_average": 8.07,
+            "vote_count": 8333
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/hd1TvTUGjkoYoqvXYfSBpI5Ri9B.jpg",
+            "genre_ids": [
+                16,
+                28,
+                12,
+                878
+            ],
+            "id": 1159311,
+            "original_language": "ja",
+            "original_title": "僕のヒーローアカデミア THE MOVIE ユアネクスト",
+            "overview": "In a society devastated by the effects of an all-out war between heroes and villains, a mysterious giant fortress suddenly appears, engulfing towns and people one after another. Then, a man reminiscent of All Might, the 'symbol of peace', stands in front of Izuku and his friends...",
+            "popularity": 9.3708,
+            "poster_path": "/8rdB1wkheEMMqcY8qLAKjCMPcnZ.jpg",
+            "release_date": "2024-08-02",
+            "title": "My Hero Academia: You're Next",
+            "video": false,
+            "vote_average": 7.12,
+            "vote_count": 158
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/a0GM57AnJtNi7lMOCamniiyV10W.jpg",
+            "genre_ids": [
+                16,
+                12,
+                14,
+                10751,
+                18
+            ],
+            "id": 508883,
+            "original_language": "ja",
+            "original_title": "君たちはどう生きるか",
+            "overview": "While the Second World War rages, the teenage Mahito, haunted by his mother's tragic death, is relocated from Tokyo to the serene rural home of his new stepmother Natsuko, a woman who bears a striking resemblance to the boy's mother. As he tries to adjust, this strange new world grows even stranger following the appearance of a persistent gray heron, who perplexes and bedevils Mahito, dubbing him the \"long-awaited one.\"",
+            "popularity": 12.1996,
+            "poster_path": "/f4oZTcfGrVTXKTWg157AwikXqmP.jpg",
+            "release_date": "2023-07-14",
+            "title": "The Boy and the Heron",
+            "video": false,
+            "vote_average": 7.43,
+            "vote_count": 2261
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/nB6IR9XfdRpVRKCz85uT97EjgwB.jpg",
+            "genre_ids": [
+                16,
+                28,
+                12,
+                18
+            ],
+            "id": 1333100,
+            "original_language": "ja",
+            "original_title": "劇場版「進撃の巨人」完結編 THE LAST ATTACK",
+            "overview": "A colossal-sized omnibus film bringing together the last two episodes of Attack on Titan in the franchise's first-ever theatrical experience. After venturing beyond the walls and separated from his comrades, Eren finds himself inspired by this new truth and plots the \"Rumbling,\" a terrifying plan to eradicate every living thing in the world. With the fate of the world hanging in the balance, a motley crew of Eren's former comrades and enemies scramble to halt his deadly mission. The only question is, can they stop him?",
+            "popularity": 7.7326,
+            "poster_path": "/eWcbHTL4F244uqu5QD0ccAgEFx7.jpg",
+            "release_date": "2024-11-08",
+            "title": "Attack on Titan: THE LAST ATTACK",
+            "video": false,
+            "vote_average": 8.8,
+            "vote_count": 100
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/drSJ0HVuSNFMPq5VzAEHk37BiEC.jpg",
+            "genre_ids": [
+                16,
+                10749,
+                878
+            ],
+            "id": 1165642,
+            "original_language": "ko",
+            "original_title": "이 별에 필요한",
+            "overview": "When an astronaut leaves Earth for Mars, the vast infinite space divides star-crossed lovers in this animated romance that crosses the cosmos.",
+            "popularity": 8.0984,
+            "poster_path": "/6RDXvT0C9Mvm5FNHGThn4iP8xKH.jpg",
+            "release_date": "2025-05-30",
+            "title": "Lost in Starlight",
+            "video": false,
+            "vote_average": 7.259,
+            "vote_count": 83
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/hkJhGayONXn96CqIRM9GhWKnlCf.jpg",
+            "genre_ids": [
+                28,
+                12,
+                16,
+                14
+            ],
+            "id": 1014505,
+            "original_language": "ja",
+            "original_title": "劇場版「オーバーロード」聖王国編",
+            "overview": "After twelve years of playing his favorite MMORPG game, Momonga logs in for the last time only to find himself transported into its world playing it indefinitely. Throughout his adventures, his avatar ascends to the title of Sorcerer King Ains Ooal Gown. Once prosperous but now on the brink of ruin, The Sacred Kingdom enjoyed years of peace after construction of an enormous wall protecting them from neighboring invasions. But, one day this comes to an end when the Demon Emperor Jaldabaoth arrives with an army of villainous demi-humans. Fearing invasion of their own lands, the neighboring territory of the Slane Theocracy is forced to beg their enemies at the Sorcerer Kingdom for help. Heeding the call, Momonga, now known as the Sorcerer King Ains Ooal Gown, rallies the Sorcerer Kingdom and its undead army to join the fight alongside the Sacred Kingdom and the Slane Theocracy in hopes to defeat the Demon Emperor.",
+            "popularity": 6.8451,
+            "poster_path": "/jEvytxNa5mfW7VAUmDWsZtIdATc.jpg",
+            "release_date": "2024-09-20",
+            "title": "OVERLORD: The Sacred Kingdom",
+            "video": false,
+            "vote_average": 7.8,
+            "vote_count": 123
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/rKTRky21Sk5jpfMBUeHYamqshkt.jpg",
+            "genre_ids": [
+                16,
+                28,
+                878
+            ],
+            "id": 1103432,
+            "original_language": "ja",
+            "original_title": "BLOODY ESCAPE -地獄の逃走劇-",
+            "overview": "After being turned into a cyborg, Kisaragi faces pursuit from vampires and vengeful yakuza.",
+            "popularity": 8.4012,
+            "poster_path": "/lWKtVX5oEgcLbMYMaWiyes6c4IB.jpg",
+            "release_date": "2024-01-05",
+            "title": "Bloody Escape: Bats out of Hell",
+            "video": false,
+            "vote_average": 6.944,
+            "vote_count": 9
+        }
+    ],
+    "total_pages": 113,
+    "total_results": 2256
+}

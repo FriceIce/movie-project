@@ -9,13 +9,11 @@ import MobileHeroImageContainer from '@/features/home/containers/HeroImageContai
 
 const Home = async () => {
     // const token = cookies().get('auth_token');
-    const img = 'https://image.tmdb.org/t/p/w500' + movieDetails.poster_path; // id: 533535
-    const desktopImg = 'https://image.tmdb.org/t/p/original' + movieDetails.backdrop_path;
 
     return (
         <div className="flex flex-col">
-            <MobileHeroImageContainer img={img} id={533535} />
-            <DesktopHeroImage img={desktopImg} id={533535} />
+            <MobileHeroImageContainer contentDetails={movieDetails} />
+            <DesktopHeroImage contentDetails={movieDetails} />
             <section className="space-y-4 lg:space-y-10">
                 <ContentSlider contentType="movie" title="Viral Movies" images={popularContent} />
                 <ContentSlider contentType="tv" title="Fan Favorites" images={trendingSeries} />
