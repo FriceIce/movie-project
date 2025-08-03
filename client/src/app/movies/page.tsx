@@ -21,8 +21,8 @@ const Movies = () => {
 
     return (
         <div className="flex flex-col">
-            <MobileHeroImageContainer contentDetails={happyGilmore2} />
-            <DesktopHeroImage contentDetails={happyGilmore2} />
+            <MobileHeroImageContainer type="movie" contentDetails={happyGilmore2} />
+            <DesktopHeroImage type="movie" contentDetails={happyGilmore2} />
             <section className="space-y-4 lg:space-y-10">
                 <ContentSlider
                     contentType="movie"
