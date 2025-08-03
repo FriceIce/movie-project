@@ -14,7 +14,7 @@ const useIsScrolling = () => {
         window.addEventListener('scroll', checkIfScrolling);
 
         return () => window.removeEventListener('scroll', checkIfScrolling);
-    }, []);
+    }, [scrolling]);
 
     return scrolling;
 };

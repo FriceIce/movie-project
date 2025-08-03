@@ -35,7 +35,7 @@ export const useMediaQuery = (mediaWidth: ScreenWidth) => {
         return () => {
             matchMedia.removeEventListener('change', handleChange);
         };
-    }, [setMatches]);
+    }, [mediaWidth, setMatches]);
 
     return matches;
 };

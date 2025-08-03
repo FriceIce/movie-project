@@ -32,7 +32,7 @@ function useScrollAmount(posterRef: MutableRefObject<HTMLLIElement | null>, rank
         updateVisiblePosters();
         window.addEventListener('resize', updateVisiblePosters);
         return () => window.removeEventListener('resize', updateVisiblePosters);
-    }, [posterRef, posterRef.current?.clientWidth]);
+    }, [posterRef, posterRef.current?.clientWidth, rank]);
 
     return scrollAmount;
 }

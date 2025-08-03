@@ -2,10 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { icons } from '@/assets/icons';
 
-type Prop = {
-    isDesktop: boolean;
-};
-const ContentOptions = ({ isDesktop }: Prop) => {
+const ContentOptions = () => {
     return (
         <>
             <div className={`flex items-center px-3 py-1 w-max md:border-none`}>
