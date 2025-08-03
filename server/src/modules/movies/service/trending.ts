@@ -1,8 +1,6 @@
-import { NotFoundError } from 'openai';
 import { CustomError } from '../../../error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
-import { pathModifier } from './utils/pathModifier';
 import { trendingUrl } from './utils/url/trending';
 
 /**
@@ -12,9 +10,9 @@ import { trendingUrl } from './utils/url/trending';
  * @returns {Promise<Trending>} An object containing a list of trending contents.
  * @throws {NotFoundError} If no results are found.
  */
-export default async function trending(type: AllTypes): Promise<Trending> {
-    const { options } = fetchConfig('GET');
-    const url = type === 'movie' ? trendingUrl.movie : trendingUrl.tv;
+export default async function trending(type: AllTypes, queries?: string[]): Promise<Trending> {
+    const { options, query } = fetchConfig('GET', [], queries);
+    const url = type === 'movie' ? trendingUrl.movie : trendingUrl.tv + query;
     const response = await fetchResponse<Trending>('get', url, options);
 
     const modifiedType = typeModifier(type);

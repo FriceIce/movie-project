@@ -69,8 +69,10 @@ export const retrieveDiscovery = asyncHandler(
 
 export const retrieveTrending = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const type = req.params.type as AllTypes;
+    const query = req.query as { page: string };
+
     const modifiedType = typeModifier(type);
-    const trendingResponse = await trending(type);
+    const trendingResponse = await trending(type, query && [`page=${query.page}`]);
 
     res.status(200).json({
         message: `Successfully retrieved trending ${modifiedType}`,
