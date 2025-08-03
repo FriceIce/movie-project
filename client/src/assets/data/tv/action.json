@@ -1,0 +1,445 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/6vk1WNHyNKR4oQooBJpZ8pGksBz.jpg",
+      "genre_ids": [
+        16,
+        35,
+        10762,
+        10759,
+        10765,
+        10751
+      ],
+      "id": 85349,
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Amphibia",
+      "overview": "The adventures of 13-year-old, self-centered Anne Boonchuy who is magically transported to the fictitious world of Amphibia, a rural marshland full of frog-people. With the help of an excitable young frog named Sprig, Anne will become a hero and discover the first true friendship of her life.",
+      "popularity": 30.9844,
+      "poster_path": "/bFCgv9iWZECWSDxNQYc9soqvwjx.jpg",
+      "first_air_date": "2019-06-17",
+      "name": "Amphibia",
+      "vote_average": 8.6,
+      "vote_count": 307
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bIhmqQNXcyWRzH153d3jaCbLTy3.jpg",
+      "genre_ids": [
+        10759,
+        10765,
+        18,
+        10751,
+        10766,
+        35
+      ],
+      "id": 244643,
+      "origin_country": [
+        "MX"
+      ],
+      "original_language": "es",
+      "original_name": "El amor no tiene receta",
+      "overview": "Paz Roble, a kind, hard-working and honest woman from whom her husband, Fermín, takes her newborn daughter. Fermín has a large debt with some lenders and to pay it he decides to sell his daughter to Mauro Nicoliti. This plagiarism is orchestrated by Geneva, Mauro's adoptive sister. She lost her first-born daughter in childbirth and does everything to replace her dead daughter and keep her husband's fortune. On the other hand, Esteban Villa de Cortés loses his wife and becomes a widower with his three children. Elvira Moncada, Esteban's mother-in-law, holds him responsible for the death of her daughter. After a series of unexpected events, Esteban and Paz meet in the neighborhood where she lives with her family. The chemistry and great understanding that exists between them makes it inevitable that they will fall in love.",
+      "popularity": 23.8313,
+      "poster_path": "/oEgTz6fhs5ZPopU2AyESPF4Esak.jpg",
+      "first_air_date": "2024-02-19",
+      "name": "El amor no tiene receta",
+      "vote_average": 7.6,
+      "vote_count": 70
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/b2iWqSFpuy9CS5XWiAmnLzNv9eP.jpg",
+      "genre_ids": [
+        18,
+        10759,
+        80
+      ],
+      "id": 127529,
+      "origin_country": [
+        "KR"
+      ],
+      "original_language": "ko",
+      "original_name": "사냥개들",
+      "overview": "Two young boxers band together with a benevolent moneylender to take down a ruthless loan shark who preys on the financially desperate.",
+      "popularity": 26.2267,
+      "poster_path": "/3uflkuhQUh2pnT2V8YgsDkjMfrT.jpg",
+      "first_air_date": "2023-06-09",
+      "name": "Bloodhounds",
+      "vote_average": 8.325,
+      "vote_count": 441
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/tPnTMXXuZ3Ylt4tdmIfN5mtjL9f.jpg",
+      "genre_ids": [
+        10759,
+        10765,
+        10762
+      ],
+      "id": 213439,
+      "origin_country": [
+        "JP"
+      ],
+      "original_language": "ja",
+      "original_name": "王様戦隊キングオージャー",
+      "overview": "There is an ancient prophecy shared amongst the kingdoms of Chikyu- 2,000 years after their fall, the Territorial Empire Bugnarok will once again rise up to kill all humans. However, five kings and their guardian deity, King-Ohger, will stand up to face them. This is the story of kings who will defend Chikyu, as well as a coming-of-age story for one young man who will achieve kingship henceforth.",
+      "popularity": 23.4467,
+      "poster_path": "/euSDSrIyUhWbac1tzmg9d3KtmSE.jpg",
+      "first_air_date": "2023-03-05",
+      "name": "Ohsama Sentai King-Ohger",
+      "vote_average": 7.7,
+      "vote_count": 18
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/1Lx5oXLVZclQ94jnfAwmanaey7P.jpg",
+      "genre_ids": [
+        10759,
+        18,
+        10765
+      ],
+      "id": 225941,
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "异人之下",
+      "overview": "When a student unearths the truth behind his grandfather’s life, he must unveil his secret superpowers to an underworld eager for his emergence.",
+      "popularity": 20.153,
+      "poster_path": "/aZT7iZwR4LE2kk7sXWslgpOP7oT.jpg",
+      "first_air_date": "2023-08-04",
+      "name": "I Am Nobody",
+      "vote_average": 8.6,
+      "vote_count": 32
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/gqxuGoJwzpIfsp2O3N5Ph9k8xfe.jpg",
+      "genre_ids": [
+        18,
+        10759,
+        10765
+      ],
+      "id": 134224,
+      "origin_country": [
+        "PH"
+      ],
+      "original_language": "tl",
+      "original_name": "Voltes V: Legacy",
+      "overview": "Voltes V: Legacy follows the story of three brothers, Steve, Big Bert, and Little Jon Armstrong, and their friends Jamie Robinson and Mark Gordon, as they fight the forces of humanoid aliens known as Boazanians who plans to invade the earth and launch their beast fighters all over the world.",
+      "popularity": 18.4024,
+      "poster_path": "/jZ32tdCTFsRoU2GehW6ZzSpTyS1.jpg",
+      "first_air_date": "2023-05-08",
+      "name": "Voltes V: Legacy",
+      "vote_average": 7.2,
+      "vote_count": 35
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5kMIZHO8OYOC08urACEFFqmFA4p.jpg",
+      "genre_ids": [
+        18,
+        10765,
+        10759
+      ],
+      "id": 158258,
+      "origin_country": [
+        "KR"
+      ],
+      "original_language": "ko",
+      "original_name": "방과 후 전쟁활동",
+      "overview": "When mysterious alien spheres start invading the world, high school students are called upon to join the world’s first war against extraterrestrial forces.",
+      "popularity": 24.0026,
+      "poster_path": "/vtokuvfqLbfJaSCW6EWhWtrmz2s.jpg",
+      "first_air_date": "2023-03-31",
+      "name": "Duty After School",
+      "vote_average": 8.264,
+      "vote_count": 91
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/zmiOYuq4HWq2ohyTXjbOWj0fi3K.jpg",
+      "genre_ids": [
+        10759,
+        35,
+        18
+      ],
+      "id": 233347,
+      "origin_country": [
+        "KR"
+      ],
+      "original_language": "ko",
+      "original_name": "스터디그룹",
+      "overview": "Nicknamed the \"school for future criminals,\" Yuseong Technical High School isn't exactly the ideal place to study. A rarity among his peers, Ga-min is a student with just one goal: to get into university. At a school where it's every man for himself, he is rejected from countless study groups before he decides to form his own. Will he be able to defeat the odds and achieve his dreams?",
+      "popularity": 23.4003,
+      "poster_path": "/1x3xfnXQpxVfiRXUTqzX4CxU8yf.jpg",
+      "first_air_date": "2025-01-23",
+      "name": "Study Group",
+      "vote_average": 8.425,
+      "vote_count": 73
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dNwVnRWE4LRLJ9f3WIWOnIURPwn.jpg",
+      "genre_ids": [
+        18,
+        10765,
+        80,
+        9648
+      ],
+      "id": 235577,
+      "origin_country": [
+        "KR"
+      ],
+      "original_language": "ko",
+      "original_name": "지옥에서 온 판사",
+      "overview": "A cruel and vicious judge, who wields power only for herself, meets a warm and cheerful detective who puts the victims first.",
+      "popularity": 15.8577,
+      "poster_path": "/9vhLHbUiiP9HiXfJw5OUC7KoaJG.jpg",
+      "first_air_date": "2024-09-21",
+      "name": "The Judge from Hell",
+      "vote_average": 8.6,
+      "vote_count": 126
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        18
+      ],
+      "id": 261342,
+      "origin_country": [
+        "TH"
+      ],
+      "original_language": "th",
+      "original_name": "เกาะกายสิทธิ์",
+      "overview": "",
+      "popularity": 14.5839,
+      "poster_path": "/wibck6i5pX6LPlDqTWsQvN1wyII.jpg",
+      "first_air_date": "2006-01-14",
+      "name": "Magical Armour",
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wTVcYDdghQNroQLuBnae9cDp2va.jpg",
+      "genre_ids": [
+        10759,
+        18
+      ],
+      "id": 230003,
+      "origin_country": [
+        "FR"
+      ],
+      "original_language": "fr",
+      "original_name": "La Cage",
+      "overview": "Dreaming of going pro, a young fighter struggles to be seen until an unexpected face-off lands him a shot at the big time — and a ruthless rivalry.",
+      "popularity": 14.6471,
+      "poster_path": "/4qoqqvKbugSYYE2rfpOmLb0I5kP.jpg",
+      "first_air_date": "2024-11-08",
+      "name": "The Cage",
+      "vote_average": 6.859,
+      "vote_count": 92
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/gQdpxVA548kTKywM9jyK8M1k77o.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 44956,
+      "origin_country": [
+        "KR"
+      ],
+      "original_language": "ko",
+      "original_name": "각시탈",
+      "overview": "During the Japanese occupation of Korea in the 1930s, one of the darkest periods of Korean history, heroes came from ordinary men who did extraordinary things in their everyday lives. Lee Kang To is one of those men. A skilled martial artist, Kang To actively participates in the independence movement to fight against the Japanese imperialist regime. He is known as “Gaksital” because he hides his true identity behind a rosy-cheeked traditional bridal mask, known as a “gaksital,” when he fights against the Japanese. But can one man do enough to right the wrongs of a terrifying national enemy?",
+      "popularity": 13.2682,
+      "poster_path": "/5EW5VUeTicxFKy4ZL8ugkRV1cxq.jpg",
+      "first_air_date": "2012-05-30",
+      "name": "Bridal Mask",
+      "vote_average": 7.4,
+      "vote_count": 22
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bSXQRft5yy5q8qaQW4kYu4IGmY7.jpg",
+      "genre_ids": [
+        18,
+        10759,
+        35
+      ],
+      "id": 204043,
+      "origin_country": [
+        "JP"
+      ],
+      "original_language": "ja",
+      "original_name": "忍者に結婚は難しい",
+      "overview": "Hotaru Kusakari is married to Gorō Kusakari, and she works as a pharmacist. She holds a secret that she is really a ninja and part of the Kōka ninja clan. Her husband holds a routine job as a postal delivery man, but he has a secret as well. He is also a ninja and part of the Iga ninja clan. Even though Hotaru and Gorō are a married couple, they are each unaware that their partner is a ninja.",
+      "popularity": 10.8274,
+      "poster_path": "/AltC2KXyK9msukvKam0XqpVQJmc.jpg",
+      "first_air_date": "2023-01-05",
+      "name": "Marriage Is Difficult for a Ninja",
+      "vote_average": 8.5,
+      "vote_count": 6
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/4dJ9dGk15VFyJVZMTWOyzuCk4a3.jpg",
+      "genre_ids": [
+        18,
+        80
+      ],
+      "id": 282394,
+      "origin_country": [
+        "IN"
+      ],
+      "original_language": "hi",
+      "original_name": "खाकी: द बंगाल चैप्टर",
+      "overview": "When upright cop Arjun Maitra takes on Kolkata's feared don Bagha and his henchmen, he must battle a broken system and navigate bloody gang wars.",
+      "popularity": 13.0126,
+      "poster_path": "/fasJ27kLhHdzF9cBDq0vGXFVkvI.jpg",
+      "first_air_date": "2025-03-20",
+      "name": "Khakee: The Bengal Chapter",
+      "vote_average": 8.5,
+      "vote_count": 9
+    },
+    {
+      "adult": false,
+      "backdrop_path": null,
+      "genre_ids": [
+        35,
+        80,
+        18
+      ],
+      "id": 108741,
+      "origin_country": [
+        "TW"
+      ],
+      "original_language": "zh",
+      "original_name": "廉政英雄",
+      "overview": "A cops and robbers drama filled with emotion.",
+      "popularity": 11.3744,
+      "poster_path": "/2ptv3E5mdoP75EGBUKoJp5LuqlI.jpg",
+      "first_air_date": "2011-05-05",
+      "name": "Justice Heroes",
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/wCsDvlcQLwz7fzuZkfe2eS5Pgkh.jpg",
+      "genre_ids": [
+        18,
+        10759
+      ],
+      "id": 256429,
+      "origin_country": [
+        "PH"
+      ],
+      "original_language": "tl",
+      "original_name": "Pamilya Sagrado",
+      "overview": "The members of the Sagrado family live to prove they are the most powerful and influential, stopping at nothing to bury dirty secrets to keep their name faultless and sacred.",
+      "popularity": 12.9359,
+      "poster_path": "/hlRhstt3Du57qm4A30w7RkHqEXg.jpg",
+      "first_air_date": "2024-06-17",
+      "name": "Sagrado",
+      "vote_average": 9,
+      "vote_count": 1
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/1HcdKKEgzCa3l7AJg5daOSX15sN.jpg",
+      "genre_ids": [
+        16,
+        35
+      ],
+      "id": 61287,
+      "origin_country": [
+        "JP"
+      ],
+      "original_language": "ja",
+      "original_name": "精霊使いの剣舞",
+      "overview": "Only a pure maiden can have the privilege to contract with a spirit. Priestesses, who can summon spirits from Astral Zero, the world of spirits, and have full command of their power, are called elementalists. Kamito Kazehaya is the only male with this privilege, and due to what happened in the past he comes to Areisha Spirit Academy where priestesses are trained to become elementalists. He is then told that he is to transfer to the school, form a team with priestesses to compete in Blade Dance where the most powerful elementalist is chosen, and win.",
+      "popularity": 13.4366,
+      "poster_path": "/wAzDvjpbFA29gIYlMibFUFqx4c3.jpg",
+      "first_air_date": "2014-07-14",
+      "name": "Blade Dance of Elementalers",
+      "vote_average": 6.6,
+      "vote_count": 26
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/nOGPxfYqd0f3oeFGGinpDOP68MQ.jpg",
+      "genre_ids": [
+        18,
+        80,
+        9648,
+        10759
+      ],
+      "id": 220074,
+      "origin_country": [
+        "KR"
+      ],
+      "original_language": "ko",
+      "original_name": "재벌X형사",
+      "overview": "A chaebol cop joins forces with a gritty detective to take down criminals with a touch of wealth and a whole lot of wit.",
+      "popularity": 13.2819,
+      "poster_path": "/rEuuCZb7PsVzRYJ1DiWJZ7QYFqn.jpg",
+      "first_air_date": "2024-01-26",
+      "name": "Flex x Cop",
+      "vote_average": 7.8,
+      "vote_count": 26
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/fwJIQh3NeNufWOnbig4EKdAARuZ.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 261264,
+      "origin_country": [
+        "TH"
+      ],
+      "original_language": "th",
+      "original_name": "โกมินทร์",
+      "overview": "In Gusinakhon, there was a king named Gosutum. He had three sons: the eldest was named Gomes, the second Gomon and the youngest brother, which was powerful because he was born with a special item with him, was Gomin.\n\nThe little prince, with only 12 years old, had dexterity and individuality with magic weapons causing Gomin to not be afraid of anyone. One day, Gomin and his friend Musa went to the beach and met with the son of Kato Naga, the royal city of the underworld, and Gomin killed him.",
+      "popularity": 8.5895,
+      "poster_path": "/1ipEf7mG3Z5CUAWCMllhiV7j6e4.jpg",
+      "first_air_date": "2004-12-31",
+      "name": "Gomin",
+      "vote_average": 0,
+      "vote_count": 0
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/jTTna8PjBnTYnxtnc3Ygawq26nG.jpg",
+      "genre_ids": [
+        18,
+        10765,
+        10759
+      ],
+      "id": 224432,
+      "origin_country": [
+        "CN"
+      ],
+      "original_language": "zh",
+      "original_name": "凌云志",
+      "overview": "A mortal man accidentally time-travels to the past and becomes the Monkey King. Unwilling to accept his fate, he embarks on a journey that brings him to face gods and demons.",
+      "popularity": 8.2108,
+      "poster_path": "/jESfGSrcPvIBLAU3iZ0j3aWbaQg.jpg",
+      "first_air_date": "2023-04-13",
+      "name": "The Legends of Changing Destiny",
+      "vote_average": 5.3,
+      "vote_count": 3
+    }
+  ],
+  "total_pages": 5,
+  "total_results": 92
+}

@@ -72,9 +72,9 @@ function SliderContainer({ images, rank, contentType }: Prop) {
                 <ul
                     onScroll={() => handleArrows()}
                     ref={sliderRef}
-                    className={`flex overflow-x-auto no-scrollbar ${rank ? 'gap-[20px]' : 'gap-[4px]'}`}
+                    className={`flex overflow-x-auto no-scrollbar ${rank ? 'gap-[20px]' : 'gap-[4px] md:gap-[8px]'}`}
                 >
-                    {images.slice(0, 10).map((content, index, self) => {
+                    {images.slice(0, rank ? 10 : -1).map((content, index, self) => {
                         const lastCard = index === self.length - 1;
                         const firstCard = index === 0;
 
