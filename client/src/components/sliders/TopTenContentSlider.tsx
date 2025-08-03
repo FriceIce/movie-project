@@ -2,7 +2,7 @@ import SliderContainer from '@/containers/SliderContainer';
 
 type Prop = {
     title: string;
-    content: Movie[];
+    content: Movie[] | TvShow[];
     contentType: 'movie' | 'tv';
 };
 

@@ -6,7 +6,7 @@ import { cookies } from 'next/headers';
 const Container = async () => {
     const token = cookies().get('auth_token');
     const img = 'https://image.tmdb.org/t/p/w500/bUeiwBQdupBLQthMCHKV7zv56uv.jpg';
-    const response = await axios.get<MovieItem<Movie>>(
+    const response = await axios.get<MovieItem<Movie[]>>(
         'http://localhost:3001/api/popular/1/movie',
         {
             headers: {
