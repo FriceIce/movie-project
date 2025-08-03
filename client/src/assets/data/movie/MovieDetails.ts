@@ -1,4 +1,4 @@
-export const movieDetails = {
+export const deadpoolDetails = {
     adult: false,
     backdrop_path: '/by8z9Fe8y7p4jo2YlW2SZDnptyT.jpg',
     belongs_to_collection: {
