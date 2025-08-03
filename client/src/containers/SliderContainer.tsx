@@ -74,7 +74,7 @@ function SliderContainer({ images, rank, contentType }: Prop) {
                     ref={sliderRef}
                     className={`flex overflow-x-auto no-scrollbar ${rank ? 'gap-[20px]' : 'gap-[4px]'}`}
                 >
-                    {images.map((content, index, self) => {
+                    {images.slice(0, 10).map((content, index, self) => {
                         const lastCard = index === self.length - 1;
                         const firstCard = index === 0;
 
@@ -100,10 +100,13 @@ function SliderContainer({ images, rank, contentType }: Prop) {
                                 >
                                     <Link href={`content/${contentType}/${content.id}`}>
                                         <Image
-                                            src={content.poster_path}
+                                            src={
+                                                'https://image.tmdb.org/t/p/w342' +
+                                                content.poster_path
+                                            }
                                             alt={title + ' poster'}
-                                            width={500}
-                                            height={500}
+                                            width={342}
+                                            height={513}
                                             className="size-full rounded object-cover"
                                         />
                                     </Link>
@@ -124,10 +127,13 @@ function SliderContainer({ images, rank, contentType }: Prop) {
                                     >
                                         <RankIcon height="50%" color="#aaaaaa" />
                                         <Image
-                                            src={content.poster_path}
-                                            alt={title + ' poster'}
-                                            width={500}
-                                            height={500}
+                                            src={
+                                                'https://image.tmdb.org/t/p/w342' +
+                                                content.poster_path
+                                            }
+                                            alt={title + 'poster'}
+                                            width={342}
+                                            height={513}
                                             className="rounded size-full shadow-blackShadow"
                                         />
                                     </Link>

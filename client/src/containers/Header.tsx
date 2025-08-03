@@ -59,7 +59,7 @@ const Header = () => {
                     <div
                         className={`relative flex gap-3 text-xs border w-max  rounded-lg transition-all duration-200 ${openOptions ? 'translate-x-0' : 'translate-x-[-107%]'}`}
                     >
-                        <ContentOptions isDesktop />
+                        <ContentOptions />
                         <button
                             className="absolute right-[-23px] top-0 bg-custom-white border size-[30px] rounded-full grid place-items-center"
                             onClick={() => setOpenOptions((prev) => !prev)}

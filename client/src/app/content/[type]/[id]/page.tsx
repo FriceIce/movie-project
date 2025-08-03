@@ -9,8 +9,7 @@ import { fetchJson } from '@/utils/fetchJson';
 import { PlusIcon } from '@heroicons/react/16/solid';
 import { PlusIcon as PlusIconDesktop } from '@heroicons/react/20/solid';
 
-const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzUzODg1ODE1fQ.mXwZBR96fEgS6XG4sVh9l3pVNrFfYauQjteQnDbg9OI';
+const token = process.env.SERVER_TOKEN as string;
 
 type Props = {
     params: {
