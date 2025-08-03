@@ -5,10 +5,11 @@ import { retrieveCompanyLogo } from '@/utils/retrieveCompanyLogo';
 import Image from 'next/image';
 
 type Prop = {
-    contentDetails: MovieDetails | TvShow;
+    contentDetails: MovieDetails | TvShowDetails;
+    type: 'tv' | 'movie';
 };
 
-function DesktopHeroImage({ contentDetails }: Prop) {
+function DesktopHeroImage({ contentDetails, type }: Prop) {
     const companyLogo =
         'production_companies' in contentDetails &&
         retrieveCompanyLogo(contentDetails.production_companies);
@@ -43,7 +44,7 @@ function DesktopHeroImage({ contentDetails }: Prop) {
                         {contentDetails.overview}
                     </p>
                     <div className="space-x-3">
-                        <ContentActionBtns id={contentDetails.id} />
+                        <ContentActionBtns type={type} id={contentDetails.id} />
                     </div>
                 </div>
             </div>

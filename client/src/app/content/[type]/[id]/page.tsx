@@ -4,7 +4,6 @@ import RelatedMediaSection from '@/features/content/containers/RelatedMediaSecti
 import TrailerPlayerContainer from '@/features/content/containers/TrailerPlayerContainer';
 import { filterTmdbVideos } from '@/features/content/utils/filterTmdbVideos';
 import { formatRuntime } from '@/features/content/utils/formatRuntime';
-import { TvShowDetails } from '@/types/TvDetails';
 import { fetchJson } from '@/utils/fetchJson';
 import { PlusIcon } from '@heroicons/react/16/solid';
 import { PlusIcon as PlusIconDesktop } from '@heroicons/react/20/solid';
@@ -49,6 +48,7 @@ async function Content({ params }: Props) {
     const runtime = 'runtime' in content && content.runtime;
     const releaseDate = 'release_date' in content ? content.release_date : content.first_air_date;
     const title = 'title' in content ? content.title : content.name;
+    const seasons = 'seasons' in content && content.seasons.length;
 
     return (
         <div className="max-w-[1300px] mx-auto">
@@ -63,13 +63,14 @@ async function Content({ params }: Props) {
                             {title}
                         </h1>
                         <div className="flex items-center gap-2 text-xs sm:text-sm lg:text-base">
-                            <p>{content.origin_country[0]}</p>
+                            {seasons && <p className="">{seasons} Seasons</p>}
                             <p>{releaseDate.slice(0, 4)}</p>
                             {runtime && <p>{formatRuntime(runtime)}</p>}
+                            <p>{content.origin_country[0]}</p>
 
                             <button
                                 title={`Add the content to your list.`}
-                                className="hidden md:flex size-6 lg:size-8 border rounded-full justify-center items-center"
+                                className="hidden md:flex size-6 lg:size-8 border rounded-full justify-center items-center ml-6"
                             >
                                 <PlusIconDesktop className="text-white size-5 lg:size-6 rounded-full" />
                             </button>

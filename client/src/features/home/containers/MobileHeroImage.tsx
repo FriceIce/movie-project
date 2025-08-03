@@ -6,9 +6,10 @@ import Image from 'next/image';
 type Props = {
     img: string;
     id: number;
+    type: 'tv' | 'movie';
 };
 
-function MobileHeroImage({ img, id }: Props) {
+function MobileHeroImage({ img, id, type }: Props) {
     const mobileScreenWidth = useMediaQuery(768); // We're seeking after a false value.
     return (
         <>
@@ -25,7 +26,7 @@ function MobileHeroImage({ img, id }: Props) {
                     />
                     <div className="flex justify-center gap-4 w-full p-4 relative">
                         <div className="absolute z-[-1] inset-0 bg-[#000] h-[200%] translate-y-[-50%] mask-image-top rounded-lg" />
-                        <ContentActionBtns id={id} />
+                        <ContentActionBtns type={type} id={id} />
                     </div>
                 </section>
             )}
