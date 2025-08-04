@@ -19,7 +19,7 @@ const Header = () => {
         ${isScrolling ? 'bg-[#000000cc]' : 'bg-transparent'}`}
         >
             <div className="absolute z-[-1] bg-[#000000a6] inset-0 mask-image-bottom"></div>
-            <div className="max-w-[1300px] mx-auto">
+            <div className={` mx-auto ${pathname.includes('/content') && 'max-w-[1300px]'}`}>
                 <section className={`flex items-center`}>
                     <div className="flex items-center justify-between w-full">
                         <div className="flex items-center gap-8">
