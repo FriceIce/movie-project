@@ -1,6 +1,5 @@
 'use client';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { TvShowDetails } from '@/types/TvDetails';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
@@ -18,7 +17,9 @@ function TrailerPlayerContainer({ contentDetails, trailer }: Prop) {
     const imageRefMobile = useRef<HTMLImageElement | null>(null);
     const imageRefDesktop = useRef<HTMLImageElement | null>(null);
 
-    useEffect(() => setVideoStarted(true), [setVideoStarted]);
+    useEffect(() => {
+        if (trailer) setVideoStarted(true);
+    }, [setVideoStarted]);
 
     return (
         <div aria-label="Container for trailer and content backdrop image">
