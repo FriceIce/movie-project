@@ -28,3 +28,8 @@ type FetchResponse<T> = {
     message: string;
     data: T;
 };
+
+// -----------------------------------------------
+type Genres = {
+    genres: { id: number; name: string }[];
+};
