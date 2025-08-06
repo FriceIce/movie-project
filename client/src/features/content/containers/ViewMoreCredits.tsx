@@ -2,6 +2,7 @@
 import { poppins } from '@/assets/fonts';
 import { useEffect, useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/20/solid';
+import usePreventBodyScroll from '@/hooks/usePreventBodyScroll';
 
 type Prop = {
     label?: string;
@@ -14,22 +15,7 @@ type Prop = {
 function ViewMoreCredits(prop: Prop) {
     const { director, cast, crew, contentDetails } = prop;
     const [showCreditsWindow, setShowCreditsWindow] = useState<boolean>(false);
-
-    useEffect(() => {
-        const body = document.body as HTMLBodyElement;
-        const originalScrollStyle = body.style.overflowY;
-
-        if (!showCreditsWindow) {
-            body.style.overflowY = 'auto';
-        } else {
-            body.style.overflowY = 'hidden';
-        }
-
-        return () => {
-            body.style.overflowY = originalScrollStyle;
-        };
-    }, [showCreditsWindow]);
-
+    usePreventBodyScroll(showCreditsWindow);
     return (
         <div>
             <div
