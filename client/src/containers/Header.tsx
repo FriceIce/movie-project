@@ -39,19 +39,19 @@ const Header = () => {
                                     <ArrowLeftIcon className="size-7 rounded-full" />
                                 </button>
                             </div>
-                            {/* <div className={`gap-3 text-md hidden md:flex`}>
-                                <ContentOptions isDesktop />
-                            </div> */}
+                            <div className={`gap-3 text-md hidden md:flex`}>
+                                <ContentOptions pathname={pathname} />
+                            </div>
                         </div>
                         <div className="flex items-center gap-2">
                             <MagnifyingGlassIcon className="size-7"></MagnifyingGlassIcon>
-                            <Image
+                            {/* <Image
                                 src={icons.avatar.src}
                                 alt={icons.avatar.alt}
                                 width={icons.avatar.width}
                                 height={icons.avatar.height}
                                 className={`size-10 ${pathname.includes('/content') && 'hidden'}`}
-                            ></Image>
+                            ></Image> */}
                         </div>
                     </div>
                 </section>
@@ -59,7 +59,7 @@ const Header = () => {
                     <div
                         className={`relative flex gap-3 text-xs border w-max  rounded-lg transition-all duration-200 ${openOptions ? 'translate-x-0' : 'translate-x-[-107%]'}`}
                     >
-                        <ContentOptions />
+                        <ContentOptions pathname={pathname} />
                         <button
                             className="absolute right-[-23px] top-0 bg-custom-white border size-[30px] rounded-full grid place-items-center"
                             onClick={() => setOpenOptions((prev) => !prev)}
