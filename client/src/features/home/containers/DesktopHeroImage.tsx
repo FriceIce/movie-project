@@ -32,8 +32,8 @@ function DesktopHeroImage({ contentDetails, type }: Prop) {
                         <Image
                             src={companyLogo}
                             alt="production team logo"
-                            width={200}
-                            height={200}
+                            width={185}
+                            height={100}
                             className={`${companyLogo ? 'block' : 'hidden'} object-contain`}
                         />
                     )}

@@ -18,9 +18,9 @@ export const icons = {
         alt: 'chevron icon',
     },
     avatar: {
-        src: '/avatar-icon.svg',
-        width: 30,
-        height: 30,
+        src: '/avatar-icon.png',
+        width: 128,
+        height: 128,
         alt: 'user profile picture',
     },
 };
