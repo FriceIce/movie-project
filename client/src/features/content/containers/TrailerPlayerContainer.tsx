@@ -19,7 +19,7 @@ function TrailerPlayerContainer({ contentDetails, trailer }: Prop) {
 
     useEffect(() => {
         if (trailer) setVideoStarted(true);
-    }, [setVideoStarted]);
+    }, [setVideoStarted, trailer]);
 
     return (
         <div aria-label="Container for trailer and content backdrop image">

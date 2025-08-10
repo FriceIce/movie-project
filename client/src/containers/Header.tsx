@@ -2,24 +2,22 @@
 import { icons } from '@/assets/icons';
 import ContentOptions from '@/components/ContentOptions';
 import useIsScrolling from '@/hooks/useIsScrolling';
-import { ArrowLeftIcon, ChevronRightIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 const Header = () => {
-    const [openOptions, setOpenOptions] = useState<boolean>(false);
-    const isScrolling = useIsScrolling();
+    const scrolling = useIsScrolling();
     const pathname = usePathname();
     const router = useRouter();
 
     return (
         <header
-            className={`space-y-3 sticky inset-0 z-[2] h-max w-full py-4 pl-5 pr-5 transition duration-100  
-        ${isScrolling ? 'bg-[#000000cc]' : 'bg-transparent'}`}
+            className={`space-y-3 sticky inset-0 z-[2] h-max w-full py-4 px-5 transition duration-100  
+        ${scrolling ? 'bg-[#000000cc]' : 'bg-transparent'}`}
         >
             <div className="absolute z-[-1] bg-[#000000a6] inset-0 mask-image-bottom"></div>
-            <div className={` mx-auto ${pathname.includes('/content') && 'max-w-[1300px]'}`}>
+            <div className={`mx-auto ${pathname.includes('/content') && 'max-w-[1300px]'}`}>
                 <section className={`flex items-center`}>
                     <div className="flex items-center justify-between w-full">
                         <div className="flex items-center gap-8">
@@ -39,37 +37,31 @@ const Header = () => {
                                     <ArrowLeftIcon className="size-7 rounded-full" />
                                 </button>
                             </div>
-                            <div className={`gap-3 text-md hidden md:flex`}>
-                                <ContentOptions pathname={pathname} />
-                            </div>
+                            {!pathname.includes('/content') && (
+                                <div className={`gap-3 text-md hidden md:flex`}>
+                                    <ContentOptions pathname={pathname} />
+                                </div>
+                            )}
                         </div>
                         <div className="flex items-center gap-2">
                             <MagnifyingGlassIcon className="size-7"></MagnifyingGlassIcon>
-                            {/* <Image
+                            <Image
                                 src={icons.avatar.src}
                                 alt={icons.avatar.alt}
                                 width={icons.avatar.width}
                                 height={icons.avatar.height}
-                                className={`size-10 ${pathname.includes('/content') && 'hidden'}`}
-                            ></Image> */}
+                                className={`size-10 rounded-[2px] ${pathname.includes('/content') && 'hidden'}`}
+                            ></Image>
                         </div>
                     </div>
                 </section>
-                <section className={`md:hidden h-[30px] hidden`}>
-                    <div
-                        className={`relative flex gap-3 text-xs border w-max  rounded-lg transition-all duration-200 ${openOptions ? 'translate-x-0' : 'translate-x-[-107%]'}`}
-                    >
-                        <ContentOptions pathname={pathname} />
-                        <button
-                            className="absolute right-[-23px] top-0 bg-custom-white border size-[30px] rounded-full grid place-items-center"
-                            onClick={() => setOpenOptions((prev) => !prev)}
-                        >
-                            <ChevronRightIcon
-                                className={`size-6 transition-all text-black ${openOptions ? 'rotate-180' : 'rotate-0'}`}
-                            />
-                        </button>
-                    </div>
-                </section>
+                {!pathname.includes('/content') && (
+                    <section className={`md:hidden`}>
+                        <div className={`flex gap-2 pt-4`}>
+                            <ContentOptions pathname={pathname} />
+                        </div>
+                    </section>
+                )}
             </div>
         </header>
     );

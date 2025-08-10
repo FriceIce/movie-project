@@ -18,7 +18,7 @@ async function MobileHeroImageContainer({ contentDetails, type }: Props) {
     return (
         <div className="relative px-4 py-8 md:hidden">
             <div
-                className={`absolute inset-0 z-[-1] translate-y-[-100px] mask-image-bottom h-[150%]`}
+                className={`absolute inset-0 z-[-1] translate-y-[-140px] mask-image-bottom h-[190%]`}
                 style={{ backgroundColor: bgColor }}
             />
             <MobileHeroImage type={type} img={img} id={contentDetails.id} />

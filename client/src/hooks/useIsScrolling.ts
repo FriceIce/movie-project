@@ -1,22 +1,20 @@
 import { useEffect, useState } from 'react';
 
-const useIsScrolling = () => {
+function useIsScrolling() {
     const [scrolling, setScrolling] = useState(false);
 
     useEffect(() => {
-        function checkIfScrolling() {
+        const handleScroll = () => {
             const currentScrollY = window.scrollY;
+            setScrolling(currentScrollY >= 10);
+        };
 
-            if (!scrolling && currentScrollY >= 10) setScrolling(true);
-            if (currentScrollY < 10) setScrolling(false);
-        }
+        window.addEventListener('scroll', handleScroll);
 
-        window.addEventListener('scroll', checkIfScrolling);
-
-        return () => window.removeEventListener('scroll', checkIfScrolling);
-    }, [scrolling]);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return scrolling;
-};
+}
 
 export default useIsScrolling;

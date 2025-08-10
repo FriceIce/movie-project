@@ -45,19 +45,19 @@ const ContentOptions = ({ pathname }: Prop) => {
 
     return (
         <>
-            <div className={`flex items-center px-3 py-1 w-max md:border-none`}>
+            <div className={`flex items-center px-3 py-1 w-max border rounded-full md:border-none`}>
                 <Link href={'/tv'}>
-                    <button>TV shows</button>
+                    <button>Series</button>
                 </Link>
             </div>
-            <div className={`flex items-center px-3 py-1 w-max md:border-none`}>
+            <div className={`flex items-center px-3 py-1 w-max border rounded-full md:border-none`}>
                 <Link href={'/movies'}>
                     <button>Movies</button>
                 </Link>
             </div>
             {acceptedPaths.includes(pathname) && (
                 <button
-                    className={`flex items-center gap-1 px-3 py-1 w-max md:border-none`}
+                    className={`flex items-center gap-1 px-3 py-1 w-max border rounded-full md:border-none`}
                     onClick={() => setOpen((prev) => !prev)}
                 >
                     Categories
@@ -67,30 +67,35 @@ const ContentOptions = ({ pathname }: Prop) => {
             {/* All the genres */}
 
             {genres && open && (
-                <div className="fixed inset-0 z-[5] bg-[#171717ea] flex flex-row-reverse h-dvh w-dvw py-6 px-10">
-                    <button className="size-7" onClick={() => setOpen((prev) => !prev)}>
-                        <XMarkIcon className="size-7 mr-10 border rounded-full" />
-                    </button>
-                    <ul className="flex-1 flex flex-col justify-between items-center gap-4 h-full lg:text-2xl">
-                        <li key="all" className="">
-                            <Link href={`/home`}>
-                                <button className="" onClick={() => setOpen(false)}>
-                                    All
-                                </button>
-                            </Link>
-                        </li>
-                        {genres.map((genre) => {
-                            return (
-                                <li key={genre.id} className="">
-                                    <Link href={`/genre${pathname}/${genre.id}`}>
-                                        <button className="" onClick={() => setOpen(false)}>
-                                            {genre.name}
-                                        </button>
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
+                <div className="fixed inset-0 z-[5] bg-[#171717ea] flex flex-row-reverse h-dvh w-dvw">
+                    <div className="relative w-full h-full">
+                        <button
+                            className="absolute top-4 right-5 lg:right-7 size-7"
+                            onClick={() => setOpen((prev) => !prev)}
+                        >
+                            <XMarkIcon className="size-7 lg:size-9 border rounded-full" />
+                        </button>
+                        <ul className="flex-1 flex flex-col justify-between items-center gap-4 h-full lg:text-2xl overflow-y-auto p-4">
+                            <li key="all" className="">
+                                <Link href={`/home`}>
+                                    <button className="" onClick={() => setOpen(false)}>
+                                        All
+                                    </button>
+                                </Link>
+                            </li>
+                            {genres.map((genre) => {
+                                return (
+                                    <li key={genre.id} className="">
+                                        <Link href={`/genre${pathname}/${genre.id}`}>
+                                            <button className="" onClick={() => setOpen(false)}>
+                                                {genre.name}
+                                            </button>
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
                 </div>
             )}
         </>

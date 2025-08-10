@@ -1,8 +1,8 @@
 'use client';
 import { poppins } from '@/assets/fonts';
-import { useEffect, useState } from 'react';
-import { XMarkIcon } from '@heroicons/react/20/solid';
 import usePreventBodyScroll from '@/hooks/usePreventBodyScroll';
+import { XMarkIcon } from '@heroicons/react/20/solid';
+import { useState } from 'react';
 
 type Prop = {
     label?: string;
