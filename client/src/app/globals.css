@@ -44,6 +44,13 @@
     gap: 4px;
 }
 
+/* This layout is for search content. */
+.card-grid-auto-fill {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
+    gap: 4px;
+}
+
 @media (min-width: 640px) {
     .card-grid {
         grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
