@@ -1,10 +1,10 @@
 'use client';
 
+import usePreventBodyScroll from '@/hooks/usePreventBodyScroll';
 import { fetchJson } from '@/utils/fetchJson';
-import { useEffect, useState } from 'react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import usePreventBodyScroll from '@/hooks/usePreventBodyScroll';
+import { useEffect, useState } from 'react';
 
 type Prop = {
     pathname: string;
@@ -40,7 +40,7 @@ const ContentOptions = ({ pathname }: Prop) => {
         console.log(genres);
         if (genres) return;
 
-        fetchGenres(pathname);
+        // fetchGenres(pathname);
     }, [genres, setGenres, pathname]);
 
     return (
