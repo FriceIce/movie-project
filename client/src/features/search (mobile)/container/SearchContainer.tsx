@@ -1,17 +1,28 @@
 'use client';
 
-import { debounce } from '@/utils/debounce';
+import useDebounce from '@/hooks/useDebounce';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { useCallback, useContext } from 'react';
-import { InputContext } from '../SearchContext';
+import { useContext, useEffect, useRef } from 'react';
+import { InputContext } from '../../../context/SearchContext';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { useRouter } from 'next/navigation';
 
 function SearchContainer() {
     const context = useContext(InputContext);
+    const handleSearch = useDebounce(context);
+    const desktopView = useMediaQuery(768);
+    const firstRenderDone = useRef<boolean>(false);
+    const router = useRouter();
 
-    const handleSearch = useCallback(
-        debounce((searchTerm) => context?.setInput(searchTerm), 500), // 500ms delay
-        []
-    );
+    useEffect(() => {
+        if (!firstRenderDone.current) firstRenderDone.current = true;
+
+        // In case the user changes the screen width to 768px and above.
+        if (desktopView && firstRenderDone) {
+            context?.setInput('');
+            router.push('/');
+        }
+    }, [desktopView, router, context]);
 
     return (
         <form className="px-1" onSubmit={(e) => e.preventDefault()}>
