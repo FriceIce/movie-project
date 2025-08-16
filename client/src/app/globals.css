@@ -50,16 +50,25 @@
     grid-template-columns: repeat(auto-fill, minmax(115px, 1fr));
     gap: 4px;
 }
-
+/* -------------------- */
 @media (min-width: 640px) {
     .card-grid {
         grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+    }
+
+    .card-grid-auto-fill {
+        grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
+        gap: 0.5rem;
     }
 }
 
 @media (min-width: 760px) {
     .card-grid {
         grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+        gap: 0.5rem;
+    }
+    .card-grid-auto-fill {
+        grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
         gap: 0.5rem;
     }
 }
@@ -69,11 +78,19 @@
         grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
         gap: 0.5rem;
     }
+    .card-grid-auto-fill {
+        grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+        gap: 0.5rem;
+    }
 }
 
 @media (min-width: 1280px) {
     .card-grid {
         grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
         gap: 0.75rem;
+    }
+    .card-grid-auto-fill {
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+        gap: 0.5rem;
     }
 }

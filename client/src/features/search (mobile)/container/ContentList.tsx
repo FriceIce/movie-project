@@ -3,7 +3,7 @@ import { trendingObj } from '@/assets/data/all/trending';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
-import { InputContext } from '../SearchContext';
+import { InputContext } from '../../../context/SearchContext';
 import { useContext } from 'react';
 
 function ContentList() {

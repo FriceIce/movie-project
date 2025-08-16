@@ -2,15 +2,15 @@
 
 import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react';
 
-type SearchContextType = {
+export type SearchContextType = {
     input: string | null;
-    setInput: Dispatch<SetStateAction<string | null>>;
+    setInput: Dispatch<SetStateAction<string>>;
 } | null;
 
 export const InputContext = createContext<SearchContextType>(null);
 
 function SearchContext({ children }: { children: ReactNode }) {
-    const [input, setInput] = useState<string | null>(null);
+    const [input, setInput] = useState<string>('');
 
     return <InputContext.Provider value={{ input, setInput }}>{children}</InputContext.Provider>;
 }

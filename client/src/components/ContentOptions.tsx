@@ -1,7 +1,7 @@
 'use client';
 
 import usePreventBodyScroll from '@/hooks/usePreventBodyScroll';
-import { fetchJson } from '@/utils/fetchJson';
+// import { fetchJson } from '@/utils/fetchJson';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -18,26 +18,26 @@ const ContentOptions = ({ pathname }: Prop) => {
     usePreventBodyScroll(open);
 
     // Retrieve genres.
-    const fetchGenres = async (pathname: string) => {
-        const token = process.env.NEXT_PUBLIC_SERVER_TOKEN as string;
+    // const fetchGenres = async (pathname: string) => {
+    //     const token = process.env.NEXT_PUBLIC_SERVER_TOKEN as string;
 
-        // Set correct type.
-        const segments = pathname.split('/').filter(Boolean);
-        let type = segments[0];
+    //     // Set correct type.
+    //     const segments = pathname.split('/').filter(Boolean);
+    //     let type = segments[0];
 
-        if (type === 'genre' && segments[1]) type = segments[1];
-        if (type === 'movies') type = 'movie';
-        if (type === 'home') return;
+    //     if (type === 'genre' && segments[1]) type = segments[1];
+    //     if (type === 'movies') type = 'movie';
+    //     if (type === 'home') return;
 
-        const response = await fetchJson<FetchResponse<{ genres: Genre[] }>>(
-            token,
-            `/genres/${type}`
-        );
-        setGenres(response.data.genres);
-    };
+    //     const response = await fetchJson<FetchResponse<{ genres: Genre[] }>>(
+    //         token,
+    //         `/genres/${type}`
+    //     );
+    //     setGenres(response.data.genres);
+    // };
 
     useEffect(() => {
-        console.log(genres);
+        // console.log(genres);
         if (genres) return;
 
         // fetchGenres(pathname);
@@ -45,6 +45,11 @@ const ContentOptions = ({ pathname }: Prop) => {
 
     return (
         <>
+            <div className={`flex items-center px-3 py-1 w-max border rounded-full md:border-none`}>
+                <Link href={'/'}>
+                    <button>Home</button>
+                </Link>
+            </div>
             <div className={`flex items-center px-3 py-1 w-max border rounded-full md:border-none`}>
                 <Link href={'/tv'}>
                     <button>Series</button>
