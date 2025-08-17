@@ -1,16 +1,17 @@
 'use client';
 import { icons } from '@/assets/icons';
-import ContentOptions from '@/components/ContentOptions';
-import { InputContext } from '@/context/SearchContext';
-import useIsScrolling from '@/hooks/useIsScrolling';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { InputContext } from '@/context/SearchContext';
+import { ReactNode, useContext, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { ArrowLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+
+import DesktopSearchContainer from './DesktopSearchContainer';
+import ContentOptions from '@/components/ContentOptions';
+import DesktopInputfield from './DesktopInputfield';
+import useIsScrolling from '@/hooks/useIsScrolling';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { ReactNode, useContext, useState } from 'react';
-import DesktopInputfield from './DesktopInputfield';
-import DesktopSearchContainer from './DesktopSearchContainer';
 
 type Props = {
     children: ReactNode;
@@ -103,6 +104,7 @@ const Header = ({ children }: Props) => {
             ) : (
                 <>
                     {desktopView ? (
+                        // PROBLEM: The application renders only this component when the user changes from mobile screen to desktop with an active input value.
                         <DesktopSearchContainer searchTerm={inputContext?.input} />
                     ) : (
                         <>{children}</>

@@ -20,7 +20,7 @@ function SearchContainer() {
         // In case the user changes the screen width to 768px and above.
         if (desktopView && firstRenderDone) {
             context?.setInput('');
-            router.push('/');
+            router.push('/home');
         }
     }, [desktopView, router, context]);
 
@@ -33,7 +33,7 @@ function SearchContainer() {
                     placeholder="Search Movies and Shows"
                     className="bg-neutral-800 text-white text-sm rounded-[2px]-r w-full h-full px-1 placeholder-neutral-200 outline-none"
                     onChange={(e) => {
-                        handleSearch(e.target.value);
+                        handleSearch(e.target.value.trim());
                     }}
                 />
             </div>
