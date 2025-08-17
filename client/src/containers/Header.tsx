@@ -8,10 +8,10 @@ import { ArrowLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 import DesktopSearchContainer from './DesktopSearchContainer';
 import ContentOptions from '@/components/ContentOptions';
-import DesktopInputfield from './DesktopInputfield';
 import useIsScrolling from '@/hooks/useIsScrolling';
 import Image from 'next/image';
 import Link from 'next/link';
+import DesktopInputfield from './DesktopInputfield';
 
 type Props = {
     children: ReactNode;
@@ -67,8 +67,8 @@ const Header = ({ children }: Props) => {
                                         <DesktopInputfield
                                             desktopView={desktopView}
                                             inputContext={inputContext}
-                                            openInputfield={openInput}
-                                            setOpenInputfield={setOpenInput}
+                                            openInputField={openInput}
+                                            setOpenInputField={setOpenInput}
                                         />
                                     )}
 
