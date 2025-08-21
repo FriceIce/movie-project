@@ -11,7 +11,6 @@ function page() {
             </section>
 
             <section className="flex flex-col gap-3 h-full ">
-                <h1 className="font-bold text-lg px-3">Recommended series and movies</h1>
                 <ContentList />
             </section>
         </div>

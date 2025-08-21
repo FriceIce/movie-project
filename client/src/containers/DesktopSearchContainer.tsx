@@ -1,17 +1,21 @@
-import { trendingObj } from '@/assets/data/all/trending';
+'use client';
+import SearchNotFound from '@/components/SearchNotFound';
+import { InputContext } from '@/context/SearchContext';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useContext } from 'react';
 
 type Props = {
     searchTerm: string;
 };
 
 function DesktopSearchContainer({ searchTerm }: Props) {
-    const trending = trendingObj.results as MediaItem[];
-    return (
+    const searchContext = useContext(InputContext);
+
+    return !searchContext?.error ? (
         <div>
             <ul className="card-grid-auto-fill px-2 pb-2 no-scrollbar">
-                {trending.map((content) => {
+                {searchContext?.searchResults.map((content) => {
                     if (!content.poster_path || content.media_type === 'person') return;
 
                     // Shortcuts
@@ -19,7 +23,7 @@ function DesktopSearchContainer({ searchTerm }: Props) {
                     const title = content.media_type === 'movie' ? content.title : content.name;
 
                     return (
-                        title.toLowerCase().includes(`${searchTerm?.toLowerCase()}`) && (
+                        !content.adult && (
                             <li key={content.id} className={``}>
                                 <Link href={`/content/${content.media_type}/${content.id}`}>
                                     <Image
@@ -41,6 +45,8 @@ function DesktopSearchContainer({ searchTerm }: Props) {
                 })}
             </ul>
         </div>
+    ) : (
+        <SearchNotFound searchTerm={searchTerm} />
     );
 }
 

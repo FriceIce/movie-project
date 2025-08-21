@@ -14,7 +14,7 @@ interface BaseMedia {
     vote_count: number;
 }
 
-interface MovieTrendingItem extends BaseMedia {
+interface MovieSearchItem extends BaseMedia {
     media_type: 'movie';
     title: string;
     original_title: string;
@@ -31,7 +31,9 @@ interface TVShowItem extends BaseMedia {
 }
 
 interface PersonItem extends BaseMedia {
+    name: string;
     media_type: 'person';
+    known_for: Exclude<MediaItem, PersonItem>[];
 }
 
-type MediaItem = MovieTrendingItem | TVShowItem | PersonItem;
+type MediaItem = MovieSearchItem | TVShowItem | PersonItem;

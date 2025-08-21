@@ -20,7 +20,7 @@ import { searchUrl } from './utils/url/search';
  */
 export default async function search<T>(type: AllTypes, queryText: string): Promise<T> {
     const { options } = fetchConfig('GET');
-    const url = setSearchUrl(type, queryText);
+    const url = searchUrl(type, queryText);
     const response = await fetchResponse<Search>('get', url, options);
 
     // Check if the response is null or empty.
@@ -39,24 +39,24 @@ export default async function search<T>(type: AllTypes, queryText: string): Prom
     return response as T;
 }
 
-/**
- * It sets the correct search url.
- * @param type
- * @param queryText
- * @returns
- */
-function setSearchUrl(type: AllTypes, queryText: string): string {
-    switch (type) {
-        case 'movie':
-            return searchUrl(queryText).movie;
+// /**
+//  * It sets the correct search url.
+//  * @param type
+//  * @param queryText
+//  * @returns
+//  */
+// function setSearchUrl(type: AllTypes, queryText: string): string {
+//     switch (type) {
+//         case 'movie':
+//             return searchUrl(queryText).movie;
 
-        case 'keyword':
-            return searchUrl(queryText).keyword;
+//         case 'keyword':
+//             return searchUrl(queryText).keyword;
 
-        case 'person':
-            return searchUrl(queryText).person;
+//         case 'person':
+//             return searchUrl(queryText).person;
 
-        default: // tv
-            return searchUrl(queryText).tv;
-    }
-}
+//         default: // tv
+//             return searchUrl(queryText).tv;
+//     }
+// }
