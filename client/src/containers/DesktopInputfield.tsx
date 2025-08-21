@@ -6,7 +6,7 @@ import React, { Dispatch, useEffect } from 'react';
 
 type Props = {
     inputContext: SearchContextType;
-    desktopView: boolean;
+    desktopView: boolean | null;
     openInputField: boolean;
     setOpenInputField: Dispatch<React.SetStateAction<boolean>>;
 };
@@ -25,7 +25,7 @@ function DesktopInputfield(props: Props) {
             className={`flex p-1 items-center ${openInputField ? 'bg-custom-black border transition-all duration-300' : 'border-none bg-transparent transition-none'}`}
         >
             <button onClick={() => setOpenInputField((prev) => !prev)}>
-                <MagnifyingGlassIcon className="size-7" />
+                <MagnifyingGlassIcon className="size-7 hidden md:block" />
             </button>
 
             <div

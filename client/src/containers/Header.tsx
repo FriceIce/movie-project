@@ -68,18 +68,16 @@ const Header = ({ children }: Props) => {
                                 </div>
 
                                 <div className="flex items-center gap-4">
-                                    {desktopView && (
-                                        <DesktopInputfield
-                                            desktopView={desktopView}
-                                            inputContext={inputContext}
-                                            openInputField={openInput}
-                                            setOpenInputField={setOpenInput}
-                                        />
-                                    )}
+                                    <DesktopInputfield
+                                        desktopView={desktopView}
+                                        inputContext={inputContext}
+                                        openInputField={openInput}
+                                        setOpenInputField={setOpenInput}
+                                    />
 
-                                    {!desktopView && (
+                                    {desktopView === false && (
                                         <Link href={'/search'}>
-                                            <MagnifyingGlassIcon className="size-7" />
+                                            <MagnifyingGlassIcon className="size-7 md:hidden" />
                                         </Link>
                                     )}
 
