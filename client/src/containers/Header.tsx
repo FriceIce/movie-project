@@ -2,7 +2,7 @@
 import { icons } from '@/assets/icons';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { InputContext } from '@/context/SearchContext';
-import { ReactNode, useContext, useState } from 'react';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { ArrowLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
@@ -11,7 +11,7 @@ import ContentOptions from '@/components/ContentOptions';
 import useIsScrolling from '@/hooks/useIsScrolling';
 import Image from 'next/image';
 import Link from 'next/link';
-import DesktopInputfield from './DesktopInputfield';
+import DesktopInputfield from './DesktopInputField';
 
 type Props = {
     children: ReactNode;
@@ -27,6 +27,11 @@ const Header = ({ children }: Props) => {
 
     // This conditions is used for conditionally rendering the menu options.
     const pathNameConditions = !pathname.includes('/content') && !pathname.includes('/search');
+
+    // Resets the search query when this page is opened.
+    useEffect(() => {
+        if (pathname.includes('/content')) inputContext?.setInput('');
+    }, [pathname]);
 
     return (
         <>
