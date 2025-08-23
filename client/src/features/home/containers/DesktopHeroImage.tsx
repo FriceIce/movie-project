@@ -4,21 +4,24 @@ import ContentActionBtns from '@/components/ContentActionBtns';
 import { retrieveCompanyLogo } from '@/utils/retrieveCompanyLogo';
 import Image from 'next/image';
 
-type Prop = {
-    contentDetails: MovieDetails | TvShowDetails;
+type Props = {
+    id: number;
+    title: string;
+    overview: string;
+    backdropPath: string;
     type: 'tv' | 'movie';
+    companyLogo?: ProductionCompany[];
 };
 
-function DesktopHeroImage({ contentDetails, type }: Prop) {
-    const companyLogo =
-        'production_companies' in contentDetails &&
-        retrieveCompanyLogo(contentDetails.production_companies);
+function DesktopHeroImage(props: Props) {
+    const { overview, id, companyLogo, type, backdropPath, title } = props;
+    const extractCompanyLogo = companyLogo && retrieveCompanyLogo(companyLogo);
 
     return (
         <>
             <div className="relative hidden md:block w-dvw h-[50vh] lg:min-h-[600px] 2xl:min-h-[700px]">
                 <Image
-                    src={`https://image.tmdb.org/t/p/w1280` + contentDetails.backdrop_path}
+                    src={`https://image.tmdb.org/t/p/w1280` + backdropPath}
                     width={1280}
                     height={720}
                     alt="poster"
@@ -28,23 +31,21 @@ function DesktopHeroImage({ contentDetails, type }: Prop) {
                 <div
                     className={`space-y-6 inset-0 w-[45%] flex flex-col justify-center 2xl:justify-end translate-x-10 max-w-[900px] min-h-[600px] ${poppins.className}`}
                 >
-                    {companyLogo && (
+                    {extractCompanyLogo && (
                         <Image
-                            src={companyLogo}
+                            src={extractCompanyLogo}
                             alt="production team logo"
                             width={185}
                             height={100}
                             className={`${companyLogo ? 'block' : 'hidden'} object-contain`}
                         />
                     )}
-                    <h1 className="font-bold text-6xl text-white 2xl:text-8xl">
-                        {'title' in contentDetails ? contentDetails.title : contentDetails.name}
-                    </h1>
+                    <h1 className="font-bold text-6xl text-white 2xl:text-8xl">{title}</h1>
                     <p className="font-[15px] max-h-24 overflow-hidden line-clamp-4 2xl:text-[20px] 2xl:line-clamp-3">
-                        {contentDetails.overview}
+                        {overview}
                     </p>
                     <div className="space-x-3">
-                        <ContentActionBtns type={type} id={contentDetails.id} />
+                        <ContentActionBtns type={type} id={id} />
                     </div>
                 </div>
             </div>

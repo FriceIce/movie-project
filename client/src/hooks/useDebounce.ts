@@ -1,20 +1,13 @@
 import { SearchContextType } from '@/context/SearchContext';
 import { debounce } from '@/utils/debounce';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback } from 'react';
 import { fetchSearch } from './fetchSearch';
 
 function useDebounce(searchContext: SearchContextType) {
-    const contextRef = useRef(searchContext);
-
-    // This useEffect is a workaround to prevent build-time errors
-    useEffect(() => {
-        contextRef.current = searchContext;
-    }, [searchContext]);
-
     const handleSearch = useCallback(
         debounce(async (searchTerm: string) => {
             const token = process.env.NEXT_PUBLIC_SERVER_TOKEN as string;
-            contextRef.current?.setInput(searchTerm);
+            searchContext?.setInput(searchTerm);
 
             if (searchTerm) {
                 // Returns an object or error code

@@ -8,7 +8,7 @@ import { useRef, useState } from 'react';
 
 type Prop = {
     contentType: 'movie' | 'tv';
-    images: Movie[] | TvShow[];
+    images: (Movie | TvShow)[];
     rank?: boolean;
 };
 
@@ -38,7 +38,6 @@ function SliderContainer({ images, rank, contentType }: Prop) {
 
         // If the scroll position is greater than 0 and the left arrow is hidden, it will be shown.
         if (sliderPosition >= 0 && !displayArrow.left) {
-            console.log('human');
             setDisplayArrow((prev) => ({
                 left: true,
                 right: prev.right,
@@ -98,7 +97,7 @@ function SliderContainer({ images, rank, contentType }: Prop) {
                                     role="button"
                                     className={`flex-none h-[170px] w-[115px] md:h-[220px] md:w-[150px] lg:h-[280px] lg:w-[180px] 2xl:h-[330px] 2xl:w-[210px] rounded shadow-blackShadow ${firstCard ? 'ml-2' : ''} ${lastCard ? 'mr-2' : ''}`}
                                 >
-                                    <Link href={`content/${contentType}/${content.id}`}>
+                                    <Link href={`/content/${contentType}/${content.id}`}>
                                         <Image
                                             src={
                                                 'https://image.tmdb.org/t/p/w342' +
@@ -122,7 +121,7 @@ function SliderContainer({ images, rank, contentType }: Prop) {
                                     className={`flex-none h-[170px] md:h-[220px] lg:h-[280px] 2xl:h-[330px] rounded ${lastCard ? 'mr-2' : ''}`}
                                 >
                                     <Link
-                                        href={`content/${contentType}/${content.id}`}
+                                        href={`/content/${contentType}/${content.id}`}
                                         className="flex items-end h-full"
                                     >
                                         <RankIcon height="50%" color="#aaaaaa" />

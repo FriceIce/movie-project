@@ -22,8 +22,18 @@ const page = async () => {
 
     return (
         <div className="flex flex-col">
-            <MobileHeroImageContainer type="tv" contentDetails={strangerThings} />
-            <DesktopHeroImage type="tv" contentDetails={strangerThings} />
+            <MobileHeroImageContainer
+                id={strangerThings.id}
+                type="tv"
+                posterPath={strangerThings.poster_path}
+            />
+            <DesktopHeroImage
+                id={strangerThings.id}
+                title={strangerThings.name}
+                overview={strangerThings.overview}
+                backdropPath={strangerThings.backdrop_path}
+                type="tv"
+            />
             <section className="space-y-4 lg:space-y-10">
                 <ContentSlider
                     contentType="tv"

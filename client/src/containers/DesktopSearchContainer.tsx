@@ -20,7 +20,6 @@ function DesktopSearchContainer({ searchTerm }: Props) {
 
                     // Shortcuts
                     const movieMediaType = content.media_type === 'movie';
-                    const title = content.media_type === 'movie' ? content.title : content.name;
 
                     return (
                         !content.adult && (

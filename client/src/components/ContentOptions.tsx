@@ -1,7 +1,8 @@
 'use client';
 
+import movie from '@/assets/data/movie/genre.json';
+import tv from '@/assets/data/tv/genre.json';
 import usePreventBodyScroll from '@/hooks/usePreventBodyScroll';
-// import { fetchJson } from '@/utils/fetchJson';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -10,38 +11,66 @@ type Prop = {
     pathname: string;
 };
 
-const acceptedPaths = ['/movies', '/tv', '/genre'];
+const acceptedPaths = ['/movies', '/tv', '/genre', '/content'];
 
 const ContentOptions = ({ pathname }: Prop) => {
     const [genres, setGenres] = useState<Genre[] | null>(null);
+    const [type, setType] = useState<'movie' | 'tv' | null>(null);
     const [open, setOpen] = useState<boolean>(false);
     usePreventBodyScroll(open);
 
     // Retrieve genres.
-    // const fetchGenres = async (pathname: string) => {
-    //     const token = process.env.NEXT_PUBLIC_SERVER_TOKEN as string;
+    const handleGenres = async (pathname: string) => {
+        // Set correct type.
+        const segments = pathname.split('/').filter(Boolean);
+        const type = segments[0];
 
-    //     // Set correct type.
-    //     const segments = pathname.split('/').filter(Boolean);
-    //     let type = segments[0];
+        if (type === 'genre' && segments[1]) {
+            if (segments[1] === 'movies' || segments[1] === 'movie') {
+                setType('movie');
+                setGenres(movie.genres);
+            }
+            if (segments[1] === 'tv') {
+                setType('tv');
+                setGenres(tv.genres);
+            }
+        }
 
-    //     if (type === 'genre' && segments[1]) type = segments[1];
-    //     if (type === 'movies') type = 'movie';
-    //     if (type === 'home') return;
+        if (type === 'content' && segments[1]) {
+            if (segments[1] === 'movies' || segments[1] === 'movie') {
+                setType('movie');
+                setGenres(movie.genres);
+            }
+            if (segments[1] === 'tv') {
+                setType('tv');
+                setGenres(tv.genres);
+            }
+        }
 
-    //     const response = await fetchJson<FetchResponse<{ genres: Genre[] }>>(
-    //         token,
-    //         `/genres/${type}`
-    //     );
-    //     setGenres(response.data.genres);
-    // };
+        if (type === 'movies') {
+            setType('movie');
+            setGenres(movie.genres);
+        }
+
+        if (type === 'tv') {
+            setType('tv');
+            setGenres(tv.genres);
+        }
+
+        if (type === 'home') return;
+    };
+
+    // Rewrites the pathname with selected genre so it matches `acceptedPath`.
+    const handlePath = (pathname: string) => {
+        const pathnameList = pathname.split('/');
+        if (pathnameList.includes('genre')) return '/genre';
+        if (pathnameList.includes('content')) return '/content';
+        return pathname;
+    };
 
     useEffect(() => {
-        // console.log(genres);
-        if (genres) return;
-
-        // fetchGenres(pathname);
-    }, [genres, setGenres, pathname]);
+        handleGenres(pathname);
+    }, [pathname]);
 
     return (
         <>
@@ -60,10 +89,10 @@ const ContentOptions = ({ pathname }: Prop) => {
                     <button>Movies</button>
                 </Link>
             </div>
-            {acceptedPaths.includes(pathname) && (
+            {acceptedPaths.includes(handlePath(pathname)) && (
                 <button
                     className={`flex items-center gap-1 px-3 py-1 w-max border rounded-full md:border-none`}
-                    onClick={() => setOpen((prev) => !prev)}
+                    onClick={() => setOpen(true)}
                 >
                     Categories
                 </button>
@@ -76,7 +105,7 @@ const ContentOptions = ({ pathname }: Prop) => {
                     <div className="relative w-full h-full">
                         <button
                             className="absolute top-4 right-5 lg:right-7 size-7"
-                            onClick={() => setOpen((prev) => !prev)}
+                            onClick={() => setOpen(false)}
                         >
                             <XMarkIcon className="size-7 lg:size-9 border rounded-full" />
                         </button>
@@ -91,7 +120,7 @@ const ContentOptions = ({ pathname }: Prop) => {
                             {genres.map((genre) => {
                                 return (
                                     <li key={genre.id} className="">
-                                        <Link href={`/genre${pathname}/${genre.id}`}>
+                                        <Link href={`/genre/${type}/${genre.id}`}>
                                             <button className="" onClick={() => setOpen(false)}>
                                                 {genre.name}
                                             </button>
