@@ -2,12 +2,13 @@ import { Vibrant } from 'node-vibrant/node';
 import MobileHeroImage from './MobileHeroImage';
 
 type Props = {
-    contentDetails: MovieDetails | TvShowDetails;
+    id: number;
+    posterPath: string;
     type: 'tv' | 'movie';
 };
 
-async function MobileHeroImageContainer({ contentDetails, type }: Props) {
-    const img = contentDetails.poster_path as string;
+async function MobileHeroImageContainer({ posterPath, type, id }: Props) {
+    const img = posterPath;
     console.log(img);
     const vibrant = new Vibrant('https://image.tmdb.org/t/p/w500' + img);
     const bgColor = await vibrant.getPalette().then((palette) => {
@@ -21,7 +22,7 @@ async function MobileHeroImageContainer({ contentDetails, type }: Props) {
                 className={`absolute inset-0 z-[-1] translate-y-[-140px] mask-image-bottom h-[190%]`}
                 style={{ backgroundColor: bgColor }}
             />
-            <MobileHeroImage type={type} img={img} id={contentDetails.id} />
+            <MobileHeroImage type={type} img={img} id={id} />
         </div>
     );
 }

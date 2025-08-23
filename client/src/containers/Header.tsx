@@ -31,7 +31,7 @@ const Header = ({ children }: Props) => {
     // Resets the search query when this page is opened.
     useEffect(() => {
         if (pathname.includes('/content')) inputContext?.setInput('');
-    }, [pathname]);
+    }, [pathname, inputContext]);
 
     return (
         <>

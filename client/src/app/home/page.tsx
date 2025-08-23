@@ -12,8 +12,19 @@ const Home = async () => {
 
     return (
         <div className="flex flex-col">
-            <MobileHeroImageContainer type="movie" contentDetails={movieDetails} />
-            <DesktopHeroImage type="movie" contentDetails={movieDetails} />
+            <MobileHeroImageContainer
+                id={movieDetails.id}
+                type="movie"
+                posterPath={movieDetails.poster_path}
+            />
+            <DesktopHeroImage
+                type="movie"
+                id={movieDetails.id}
+                title={movieDetails.title}
+                overview={movieDetails.overview}
+                companyLogo={movieDetails.production_companies}
+                backdropPath={movieDetails.backdrop_path}
+            />
             <section className="space-y-4 lg:space-y-10">
                 <ContentSlider contentType="movie" title="Viral Movies" images={popularContent} />
                 <ContentSlider contentType="tv" title="Fan Favorites" images={trendingSeries} />
