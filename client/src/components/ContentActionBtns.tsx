@@ -9,7 +9,7 @@ type Prop = {
 function ContentActionBtns({ id, type }: Prop) {
     return (
         <>
-            <Link href={`content/${type}/` + id}>
+            <Link href={`/content/${type}/` + id}>
                 <button
                     type="button"
                     className="text-custom-black text-xs md:text-sm 2xl:text-base px-6 py-2 lg:px-6 lg:py-[8px] 2xl:py-[11px] bg-white rounded-[2px] shadow-md"
