@@ -74,24 +74,30 @@ const ContentOptions = ({ pathname }: Prop) => {
 
     return (
         <>
-            <div className={`flex items-center px-3 py-1 w-max border rounded-full md:border-none`}>
+            <div
+                className={`flex items-center text-sm px-2 py-[4px] w-max border rounded-full md:border-none`}
+            >
                 <Link href={'/'}>
                     <button>Home</button>
                 </Link>
             </div>
-            <div className={`flex items-center px-3 py-1 w-max border rounded-full md:border-none`}>
+            <div
+                className={`flex items-center text-sm px-2 py-[4px] w-max border rounded-full md:border-none`}
+            >
                 <Link href={'/tv'}>
                     <button>Series</button>
                 </Link>
             </div>
-            <div className={`flex items-center px-3 py-1 w-max border rounded-full md:border-none`}>
+            <div
+                className={`flex items-center text-sm px-2 py-[4px] w-max border rounded-full md:border-none`}
+            >
                 <Link href={'/movies'}>
                     <button>Movies</button>
                 </Link>
             </div>
             {acceptedPaths.includes(handlePath(pathname)) && (
                 <button
-                    className={`flex items-center gap-1 px-3 py-1 w-max border rounded-full md:border-none`}
+                    className={`flex items-center gap-1 text-sm px-2 py-[4px] w-max border rounded-full md:border-none`}
                     onClick={() => setOpen(true)}
                 >
                     Categories

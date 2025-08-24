@@ -93,7 +93,7 @@ const Header = ({ children }: Props) => {
                         </section>
                         {pathNameConditions && (
                             <section className={`md:hidden`}>
-                                <div className={`flex gap-2 pt-4`}>
+                                <div className={`flex justify-center gap-2 pt-4`}>
                                     <ContentOptions pathname={pathname} />
                                 </div>
                             </section>
