@@ -36,8 +36,13 @@ function DesktopInputfield(props: Props) {
                 <input
                     type="text"
                     placeholder="Movies, series"
+                    value={inputContext?.input || ''}
                     className="w-full bg-transparent outline-none px-2 placeholder-neutral-300"
-                    onChange={(e) => handleSearch(e.target.value.trim())}
+                    onChange={(e) => {
+                        handleSearch(e.target.value.trim());
+                        inputContext?.setInput(e.target.value);
+                        inputContext?.setSearchResults([]);
+                    }}
                 />
             </div>
         </div>

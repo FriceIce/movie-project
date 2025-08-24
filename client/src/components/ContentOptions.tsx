@@ -2,10 +2,11 @@
 
 import movie from '@/assets/data/movie/genre.json';
 import tv from '@/assets/data/tv/genre.json';
+import { InputContext } from '@/context/SearchContext';
 import usePreventBodyScroll from '@/hooks/usePreventBodyScroll';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 type Prop = {
     pathname: string;
@@ -17,6 +18,7 @@ const ContentOptions = ({ pathname }: Prop) => {
     const [genres, setGenres] = useState<Genre[] | null>(null);
     const [type, setType] = useState<'movie' | 'tv' | null>(null);
     const [open, setOpen] = useState<boolean>(false);
+    const searchInputContext = useContext(InputContext);
     usePreventBodyScroll(open);
 
     // Retrieve genres.
@@ -75,29 +77,29 @@ const ContentOptions = ({ pathname }: Prop) => {
     return (
         <>
             <div
-                className={`flex items-center text-sm px-2 py-[4px] w-max border rounded-full md:border-none`}
+                className={`flex items-center text-sm px-2 py-[4px] lg:text-base 2xl:text-xl w-max border rounded-full md:border-none`}
             >
                 <Link href={'/'}>
                     <button>Home</button>
                 </Link>
             </div>
             <div
-                className={`flex items-center text-sm px-2 py-[4px] w-max border rounded-full md:border-none`}
+                className={`flex items-center text-sm px-2 py-[4px] lg:text-base 2xl:text-xl w-max border rounded-full md:border-none`}
             >
-                <Link href={'/tv'}>
+                <Link href={'/tv'} onClick={() => searchInputContext?.setInput('')}>
                     <button>Series</button>
                 </Link>
             </div>
             <div
-                className={`flex items-center text-sm px-2 py-[4px] w-max border rounded-full md:border-none`}
+                className={`flex items-center text-sm px-2 py-[4px] lg:text-base 2xl:text-xl w-max border rounded-full md:border-none`}
             >
-                <Link href={'/movies'}>
+                <Link href={'/movies'} onClick={() => searchInputContext?.setInput('')}>
                     <button>Movies</button>
                 </Link>
             </div>
             {acceptedPaths.includes(handlePath(pathname)) && (
                 <button
-                    className={`flex items-center gap-1 text-sm px-2 py-[4px] w-max border rounded-full md:border-none`}
+                    className={`flex items-center gap-1 text-sm px-2 py-[4px] lg:text-base 2xl:text-xl w-max border rounded-full md:border-none`}
                     onClick={() => setOpen(true)}
                 >
                     Categories

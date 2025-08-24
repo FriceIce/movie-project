@@ -7,7 +7,6 @@ function useDebounce(searchContext: SearchContextType) {
     const handleSearch = useCallback(
         debounce(async (searchTerm: string) => {
             const token = process.env.NEXT_PUBLIC_SERVER_TOKEN as string;
-            searchContext?.setInput(searchTerm);
 
             if (searchTerm) {
                 // Returns an object or error code
