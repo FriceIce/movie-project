@@ -23,4 +23,9 @@ export const icons = {
         height: 128,
         alt: 'user profile picture',
     },
+    google: {
+        src: '/google-icon.svg',
+        size: 128,
+        alt: 'google svg icon',
+    },
 };
