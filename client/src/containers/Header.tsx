@@ -35,7 +35,7 @@ const Header = ({ children }: Props) => {
 
     return (
         <>
-            {!pathname.includes('/search') && (
+            {!pathname.includes('/search') && !pathname.includes('/') && (
                 <header
                     className={`space-y-3 sticky inset-0 z-[2] h-max w-full py-4 px-5 transition duration-100  
         ${scrolling ? 'bg-[#000000cc]' : 'bg-transparent'}`}
@@ -91,7 +91,7 @@ const Header = ({ children }: Props) => {
                                 </div>
                             </div>
                         </section>
-                        {pathNameConditions && (
+                        {pathNameConditions /* && !pathname.includes('/') */ && (
                             <section className={`md:hidden`}>
                                 <div className={`flex justify-center gap-2 pt-4`}>
                                     <ContentOptions pathname={pathname} />

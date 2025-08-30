@@ -11,7 +11,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`antialiased w-dvw text-custom-white pb-6 bg-custom-black ${jakarta.className} overflow-x-hidden`}
+                className={`antialiased w-dvw text-custom-white pb-2 bg-custom-black ${jakarta.className} overflow-x-hidden`}
             >
                 <SearchContext>
                     <Header>
