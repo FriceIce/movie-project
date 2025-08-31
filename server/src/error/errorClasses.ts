@@ -62,4 +62,13 @@ export namespace CustomError {
             this.statusCode = StatusCode.UNAUTHORIZED || statusCode;
         }
     }
+
+    export class Forbidden extends Error {
+        statusCode: number;
+
+        constructor(message: string, statusCode?: number) {
+            super(message);
+            this.statusCode = StatusCode.FORBIDDEN || statusCode;
+        }
+    }
 }

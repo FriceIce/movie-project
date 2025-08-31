@@ -3,12 +3,15 @@ import jwt from 'jsonwebtoken';
 import { pool, runSql } from '../../config/database';
 import { CustomError } from '../../error/errorClasses';
 import { baseImageUrl } from '../../utils/helperFuncs';
+import { refreshTokenExists } from './utils/refreshTokenExisting';
+import { validRefreshToken } from './utils/vaildRefreshToken';
 
-const SECRET_KEY = process.env.JWT_SECRET_KEY as string;
+const ACCESS_TOKEN_SECRET_KEY = process.env.JWT_SECRET_KEY as string;
+const REFRESH_TOKEN_SECRET_KEY = process.env.JWT_REFRESH_SECRET_KEY as string;
 
 /**
  * Authenticates a user by checking if the provided email exists and verifying the password.
- * If successful, a JWT token is generated and returned alongside user data (excluding the password).
+ * If successful, a JWT token & refresh token is generated and returned alongside user data (excluding the password).
  *
  * @param {LoginUser} body - An object containing the user's email and password.
  *
@@ -38,15 +41,21 @@ export async function loginUser(body: LoginUser) {
         throw new CustomError.PasswordError('Invalid password.');
     }
 
-    // Generate a JWT token
+    // Generate JWT token and refresh token
     const id: number = user[0].id;
-    const token = jwt.sign({ id }, SECRET_KEY /* { expiresIn: '1h' } */);
+    const accessToken = jwt.sign({ id }, ACCESS_TOKEN_SECRET_KEY, { expiresIn: '5min' });
+    const refreshToken = jwt.sign({ id }, REFRESH_TOKEN_SECRET_KEY, { expiresIn: '7d' });
+
+    // Checks if there is an existing refresh token
+    refreshTokenExists(id, refreshToken);
+
     const { password: _, id: __, ...data } = user[0];
 
     return {
         message: 'Successfully signed in.',
         data,
-        token,
+        refreshToken,
+        token: accessToken,
     };
 }
 
@@ -94,6 +103,49 @@ export async function registerUser(body: RegisterUser) {
     } finally {
         client.release();
     }
+}
+
+/**
+ * Refreshes the access and refresh tokens for a user.
+ *
+ * This function verifies the provided refresh token, generates a new access token
+ * (valid for 5 minutes) and a new refresh token (valid for 7 days).
+ *
+ * @param {string | undefined} oldRefreshToken - The refresh token provided by the client.
+ * @throws {CustomError.Forbidden} If the refresh token is missing, invalid, or not recognized.
+ * @returns {{ newAccessToken: string, newRefreshToken: string }} An object containing the new access and refresh tokens.
+ */
+
+export async function refreshToken(oldRefreshToken: string | undefined) {
+    // Checks if there is a refresh token available.
+    if (!oldRefreshToken || (await validRefreshToken(oldRefreshToken)) === true) {
+        throw new CustomError.Forbidden('Not allowed to access this data.');
+    }
+
+    const updatedTokens = { newAccessToken: '', newRefreshToken: '' };
+
+    jwt.verify(oldRefreshToken, REFRESH_TOKEN_SECRET_KEY, (err, user) => {
+        // Checks if the token is valid.
+        if (err) throw new CustomError.Forbidden('Not allowed to access this data.');
+
+        const payload = user as JwtPayloadWithId;
+        const newAccessToken = jwt.sign({ id: payload.id }, ACCESS_TOKEN_SECRET_KEY, {
+            expiresIn: '5min',
+        });
+        const newRefreshToken = jwt.sign({ id: payload.id }, REFRESH_TOKEN_SECRET_KEY, {
+            expiresIn: '7d',
+        });
+
+        // Adds the refresh token to the list.
+
+        /* Add the refresh token to the db if i doesn't exist or updated it if it exists.  */
+
+        // Sets the new values
+        updatedTokens.newAccessToken = newAccessToken;
+        updatedTokens.newRefreshToken = newRefreshToken;
+    });
+
+    return updatedTokens;
 }
 
 /**

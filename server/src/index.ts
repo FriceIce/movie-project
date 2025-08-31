@@ -3,6 +3,7 @@ import 'dotenv/config';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 import { movieRoutes, openaiRoutes, userRoutes } from './modules';
 import { consoleLog } from './utils/logger';
 import { errorHandler } from './error/errorFunc';
@@ -11,6 +12,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // middleware
+app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
