@@ -19,7 +19,7 @@ export async function runSql<T>(
     client: pg.Pool | pg.PoolClient,
     sql: string,
     values?: any[]
-): Promise<T[] | undefined> {
+): Promise<T[]> {
     try {
         const result: QueryResult<T[]> = values
             ? await client.query(sql, values)

@@ -16,3 +16,14 @@ type SaveMovie = {
     description: string;
     image: string;
 };
+
+interface JwtPayloadWithId extends jwt.JwtPayload {
+    id: string;
+}
+
+type RefreshTokenTable = {
+    user_id: number;
+    refresh_token: string;
+    created_at: string;
+    expires_at: string;
+};
