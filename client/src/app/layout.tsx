@@ -17,7 +17,7 @@ export default function RootLayout({
                 <AuthContext>
                     <SearchContext>
                         <Header>
-                            <div className="relative h-full">{children}</div>
+                            <div className="relative">{children}</div>
                         </Header>
                     </SearchContext>
                 </AuthContext>
