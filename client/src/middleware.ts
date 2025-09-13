@@ -19,5 +19,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/', '/movies', '/home', '/content/:path*', '/tv'],
+    matcher: ['/', '/movies', '/home', '/content/:path*', '/tv', '/genre/:path*'],
 };
