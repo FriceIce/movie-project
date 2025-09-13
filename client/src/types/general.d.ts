@@ -33,3 +33,11 @@ type FetchResponse<T> = {
 type Genres = {
     genres: { id: number; name: string }[];
 };
+
+// Login in
+type User = {
+    username: string;
+    email: string;
+    token: string;
+    refreshToken: string;
+};

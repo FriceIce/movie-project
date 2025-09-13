@@ -3,8 +3,9 @@ import jwt from 'jsonwebtoken';
 import { pool, runSql } from '../../config/database';
 import { CustomError } from '../../error/errorClasses';
 import { baseImageUrl } from '../../utils/helperFuncs';
+import { dbUpdateRefreshToken } from './utils/dbUpdateRefreshToken';
 import { refreshTokenExists } from './utils/refreshTokenExisting';
-import { validRefreshToken } from './utils/vaildRefreshToken';
+import { retrieveOldRefreshToken } from './utils/retrieveOldRefreshToken';
 
 const ACCESS_TOKEN_SECRET_KEY = process.env.JWT_SECRET_KEY as string;
 const REFRESH_TOKEN_SECRET_KEY = process.env.JWT_REFRESH_SECRET_KEY as string;
@@ -43,7 +44,7 @@ export async function loginUser(body: LoginUser) {
 
     // Generate JWT token and refresh token
     const id: number = user[0].id;
-    const accessToken = jwt.sign({ id }, ACCESS_TOKEN_SECRET_KEY, { expiresIn: '5min' });
+    const accessToken = jwt.sign({ id }, ACCESS_TOKEN_SECRET_KEY, { expiresIn: '15min' });
     const refreshToken = jwt.sign({ id }, REFRESH_TOKEN_SECRET_KEY, { expiresIn: '7d' });
 
     // Checks if there is an existing refresh token
@@ -53,9 +54,11 @@ export async function loginUser(body: LoginUser) {
 
     return {
         message: 'Successfully signed in.',
-        data,
-        refreshToken,
-        token: accessToken,
+        data: {
+            ...data,
+            accessToken,
+            refreshToken,
+        },
     };
 }
 
@@ -106,46 +109,46 @@ export async function registerUser(body: RegisterUser) {
 }
 
 /**
- * Refreshes the access and refresh tokens for a user.
+ * Refreshes a user's authentication tokens.
  *
- * This function verifies the provided refresh token, generates a new access token
- * (valid for 5 minutes) and a new refresh token (valid for 7 days).
+ * This function verifies the provided refresh token and, if valid, issues a new access token
+ * (valid for 5 minutes) and a new refresh token (valid for 7 days). Optionally, it can also
+ * validate and update the refresh token in the database.
  *
- * @param {string | undefined} oldRefreshToken - The refresh token provided by the client.
- * @throws {CustomError.Forbidden} If the refresh token is missing, invalid, or not recognized.
- * @returns {{ newAccessToken: string, newRefreshToken: string }} An object containing the new access and refresh tokens.
+ * @param {string} oldRefreshToken - The refresh token provided by the client. Must be a valid JWT.
+ * @param {boolean} [checkDb] - Whether to verify the refresh token against the database and update it.
+ *
+ * @throws {CustomError.Forbidden} If the refresh token is missing or invalid.
+ * @throws {Error} If token verification or database operations fail.
  */
 
-export async function refreshToken(oldRefreshToken: string | undefined) {
-    // Checks if there is a refresh token available.
-    if (!oldRefreshToken || (await validRefreshToken(oldRefreshToken)) === true) {
+export async function refreshToken(oldRefreshToken: string, checkDb: boolean | undefined) {
+    if (!oldRefreshToken) {
         throw new CustomError.Forbidden('Not allowed to access this data.');
     }
 
-    const updatedTokens = { newAccessToken: '', newRefreshToken: '' };
+    let payload: JwtPayloadWithId;
+    payload = jwt.verify(oldRefreshToken, REFRESH_TOKEN_SECRET_KEY) as JwtPayloadWithId;
 
-    jwt.verify(oldRefreshToken, REFRESH_TOKEN_SECRET_KEY, (err, user) => {
-        // Checks if the token is valid.
-        if (err) throw new CustomError.Forbidden('Not allowed to access this data.');
+    // Retrieve old refresh token from the DB
+    const oldTokenExists = checkDb && (await retrieveOldRefreshToken(pool, payload.id));
 
-        const payload = user as JwtPayloadWithId;
-        const newAccessToken = jwt.sign({ id: payload.id }, ACCESS_TOKEN_SECRET_KEY, {
-            expiresIn: '5min',
-        });
-        const newRefreshToken = jwt.sign({ id: payload.id }, REFRESH_TOKEN_SECRET_KEY, {
-            expiresIn: '7d',
-        });
-
-        // Adds the refresh token to the list.
-
-        /* Add the refresh token to the db if i doesn't exist or updated it if it exists.  */
-
-        // Sets the new values
-        updatedTokens.newAccessToken = newAccessToken;
-        updatedTokens.newRefreshToken = newRefreshToken;
+    // Create new tokens
+    const newAccessToken = jwt.sign({ id: payload.id }, ACCESS_TOKEN_SECRET_KEY, {
+        expiresIn: '15min',
+    });
+    const newRefreshToken = jwt.sign({ id: payload.id }, REFRESH_TOKEN_SECRET_KEY, {
+        expiresIn: '7d',
     });
 
-    return updatedTokens;
+    // Update or set new refresh token
+    if (oldTokenExists)
+        await dbUpdateRefreshToken(pool, oldTokenExists, newRefreshToken, payload.id);
+
+    return {
+        newAccessToken,
+        newRefreshToken,
+    };
 }
 
 /**

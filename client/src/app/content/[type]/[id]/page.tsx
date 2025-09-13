@@ -5,10 +5,9 @@ import TrailerPlayerContainer from '@/features/content/containers/TrailerPlayerC
 import { filterTmdbVideos } from '@/features/content/utils/filterTmdbVideos';
 import { formatRuntime } from '@/features/content/utils/formatRuntime';
 import { fetchJson } from '@/utils/fetchJson';
+import getToken from '@/utils/getToken';
 import { PlusIcon } from '@heroicons/react/16/solid';
 import { PlusIcon as PlusIconDesktop } from '@heroicons/react/20/solid';
-
-const token = process.env.SERVER_TOKEN as string;
 
 type Props = {
     params: {
@@ -18,6 +17,7 @@ type Props = {
 };
 async function Content({ params }: Props) {
     const { id: contentId, type } = params;
+    const token = await getToken();
 
     const [videos, contentDetails, recommendations, credits] = await Promise.all([
         fetchJson<FetchResponse<VideosResponse>>(token, `/videos/${type}/${contentId}`),

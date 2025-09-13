@@ -8,17 +8,16 @@ import action from '@/assets/data/tv/action.json';
 import sportDocumentaries from '@/assets/data/tv/sportDocumentaries.json';
 import strangerThings from '@/assets/data/tv/strangerThingsDetails.json';
 import topRated from '@/assets/data/tv/topRated.json';
+import trending from '@/assets/data/tv/trending.json';
 import trueCrime from '@/assets/data/tv/trueCrime.json';
-import { fetchJson } from '@/utils/fetchJson';
 import { sortByVote } from '@/utils/sortByVote';
 
-const token = process.env.SERVER_TOKEN as string;
-
 const page = async () => {
-    const trendingPage2 = await fetchJson<FetchResponse<MovieItem<TvShow[]>>>(
-        token,
-        '/trending/tv'
-    );
+    // const token = getToken();
+    // const trending = await fetchJson<FetchResponse<MovieItem<TvShow[]>>>(
+    //     token,
+    //     '/trending/tv'
+    // );
 
     return (
         <div className="flex flex-col">
@@ -38,7 +37,7 @@ const page = async () => {
                 <ContentSlider
                     contentType="tv"
                     title="What Everyone’s Watching"
-                    images={sortByVote(trendingPage2.data.results)}
+                    images={sortByVote(trending.data.results)}
                 />
                 <TopTenContentSlider
                     contentType="tv"

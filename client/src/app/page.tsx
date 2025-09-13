@@ -1,10 +1,46 @@
 'use client';
 
 import { icons } from '@/assets/icons';
+import Spinner from '@/components/spinners/Spinner';
+import { Auth } from '@/context/AuthContext';
+import { fetchJson } from '@/utils/fetchJson';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useContext, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+type Inputs = {
+    email: string;
+    password: string;
+};
 
 export default function SignIn() {
-    // const [active, setActive] = useState<'email' | 'password' | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isDisabled, setIsDisabled] = useState<boolean>(false);
+    const userContext = useContext(Auth);
+
+    const { register, handleSubmit } = useForm<Inputs>();
+    const router = useRouter();
+
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+        console.log(data);
+
+        // Disables the `Log in` button.
+        setIsDisabled(true);
+
+        // Checks if the user credential is valid
+        const response = await fetchJson<FetchResponse<User>>('', '/login', 'POST', data);
+
+        //Implements the user info and refresh token
+        userContext?.setUser(response.data);
+        userContext?.setRefreshToken(response.data.refreshToken);
+
+        //Redirect to /home page.
+        if (response) {
+            setTimeout(() => router.replace('/home'), 300);
+        }
+    };
+
     return (
         <div className="px-4 space-y-10 ">
             <div className="flex justify-center pt-[10%]">
@@ -20,7 +56,7 @@ export default function SignIn() {
 
             <div className="">
                 <h1 className="text-3xl font-semibold">User login</h1>
-                <form className="space-y-6 pt-6" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-6 pt-6" method="POST" onSubmit={handleSubmit(onSubmit)}>
                     <section className="flex flex-col gap-2 rounded">
                         <label htmlFor="email" className={`text-sm`}>
                             Email
@@ -28,10 +64,9 @@ export default function SignIn() {
                         <input
                             id="email"
                             type="text"
+                            value={'fabian.jackson@gmail.com'}
+                            {...register('email')}
                             className="bg-[#1c2432] h-[45px] text-sm outline-none px-2 placeholder-white rounded border"
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter') console.log('submitted');
-                            }}
                         />
                     </section>
                     <section className="flex flex-col gap-2 rounded">
@@ -40,7 +75,9 @@ export default function SignIn() {
                         </label>
                         <input
                             id="password"
-                            type="text"
+                            type="password"
+                            value={'Isak1234!'}
+                            {...register('password')}
                             className="bg-[#1c2432] h-[45px] text-sm outline-none px-2 placeholder-white rounded border"
                         />
                         <button type="button" className="text-neutral-300 text-sm self-start">
@@ -48,12 +85,15 @@ export default function SignIn() {
                         </button>
                     </section>
 
-                    <section>
+                    <section className="">
                         <button
-                            type="button"
-                            className="bg-custom-cyanBlue font-bold p-2 h-[50px] w-full rounded"
+                            type="submit"
+                            disabled={isDisabled}
+                            onClick={() => setIsLoading(true)}
+                            className="flex justify-center items-center gap-4 bg-custom-cyanBlue font-bold p-2 h-[50px] w-full rounded"
                         >
-                            Log in
+                            {isLoading && <Spinner />}
+                            {isLoading ? 'Please wait' : 'Log in'}
                         </button>
                     </section>
                 </form>

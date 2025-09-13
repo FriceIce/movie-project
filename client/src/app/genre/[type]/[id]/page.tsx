@@ -2,6 +2,7 @@ import ContentSlider from '@/components/sliders/ContentSlider';
 import DesktopHeroImage from '@/features/home/containers/DesktopHeroImage';
 import MobileHeroImageContainer from '@/features/home/containers/HeroImageContainer';
 import { fetchJson } from '@/utils/fetchJson';
+import getToken from '@/utils/getToken';
 
 type Props = {
     params: {
@@ -10,11 +11,9 @@ type Props = {
     };
 };
 
-// Access token
-const token = process.env.SERVER_TOKEN as string;
-
 async function page({ params }: Props) {
     const { type, id } = params;
+    const token = await getToken();
 
     // Retrieves all content
     const [page1, page2, page3, page4] = await Promise.all([

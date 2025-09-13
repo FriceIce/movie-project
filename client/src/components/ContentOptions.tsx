@@ -79,7 +79,7 @@ const ContentOptions = ({ pathname }: Prop) => {
             <div
                 className={`flex items-center text-sm px-2 py-[4px] lg:text-base 2xl:text-xl w-max border rounded-full md:border-none`}
             >
-                <Link href={'/'}>
+                <Link href={'/home'}>
                     <button>Home</button>
                 </Link>
             </div>
