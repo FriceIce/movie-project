@@ -1,9 +1,19 @@
 import 'dotenv/config';
-import { NextFunction, Request, Response } from 'express';
+import { CookieOptions, NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { asyncHandler } from '../../error/errorAsyncHandler';
 import { Auth } from '../../middleware/auth/authentication';
 import { loginUser, refreshToken, registerUser, saveContent } from './user.service';
+
+const productionEnv = process.env.NODE_ENV === 'production';
+const cookieOptions: CookieOptions = {
+    httpOnly: false,
+    sameSite: productionEnv ? 'none' : 'lax',
+    secure: productionEnv,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+};
+
+const authTokenMaxAge = 15 * 60 * 1000;
 
 /**
  * Handles user registration by checking if the user already exists.
@@ -49,15 +59,15 @@ export const userRegister = asyncHandler(
 
 export const userLogin = asyncHandler(async (req: Request, res: Response): Promise<void> => {
     const body = req.body as LoginUser;
-    const { refreshToken, ...user } = await loginUser(body);
+    const userRes = await loginUser(body);
 
-    res.cookie('refreshToken', refreshToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'none',
-    })
+    res.cookie('refreshToken', userRes.data.refreshToken, cookieOptions)
+        .cookie('auth_token', userRes.data.accessToken, {
+            ...cookieOptions,
+            maxAge: authTokenMaxAge,
+        })
         .status(200)
-        .json(user);
+        .json(userRes);
 });
 
 /**
@@ -113,14 +123,12 @@ export const userGuestLogin = asyncHandler(async (req: Request, res: Response): 
  */
 
 export const userRefreshToken = asyncHandler(async (req: Request, res: Response): Promise<void> => {
-    const oldRefreshToken: string = req.cookies.refreshToken;
-    const { newAccessToken, newRefreshToken } = await refreshToken(oldRefreshToken);
+    const { oldRefreshToken, checkDb }: { oldRefreshToken: string; checkDb: boolean } = req.body;
+    const { newAccessToken, newRefreshToken } = await refreshToken(oldRefreshToken, checkDb);
 
-    res.cookie('refreshToken', newRefreshToken, {
-        httpOnly: true,
-        sameSite: 'none',
-        secure: process.env.NODE_ENV === 'production',
-    })
+    console.log('access token:', newAccessToken);
+    res.cookie('refreshToken', newRefreshToken, cookieOptions)
+        .cookie('auth_token', newAccessToken, { ...cookieOptions, maxAge: authTokenMaxAge })
         .status(200)
         .json({
             message: 'New access token was successfully created.',

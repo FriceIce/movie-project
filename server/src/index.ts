@@ -1,12 +1,12 @@
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import 'dotenv/config';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import cookieParser from 'cookie-parser';
+import { errorHandler } from './error/errorFunc';
 import { movieRoutes, openaiRoutes, userRoutes } from './modules';
 import { consoleLog } from './utils/logger';
-import { errorHandler } from './error/errorFunc';
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -15,7 +15,12 @@ const port = process.env.PORT || 5000;
 app.use(cookieParser());
 app.use(express.json());
 app.use(helmet());
-app.use(cors());
+app.use(
+    cors({
+        origin: ['http://localhost:3002', 'http://localhost:3000'],
+        credentials: true,
+    })
+);
 app.use(morgan('combined'));
 
 // routes

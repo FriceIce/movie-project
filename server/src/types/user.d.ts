@@ -10,6 +10,8 @@ type LoginUser = {
     password: string;
 };
 
+type UserData = Pick<RegisterUser, 'email' | 'username'>;
+
 type SaveMovie = {
     content_id: number;
     title: string;

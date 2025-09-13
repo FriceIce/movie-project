@@ -1,0 +1,459 @@
+{
+    "data": {
+        "page": 1,
+        "results": [
+            {
+                "adult": false,
+                "backdrop_path": "/iHSwvRVsRyxpX7FE7GbviaDvgGZ.jpg",
+                "id": 119051,
+                "name": "Wednesday",
+                "original_name": "Wednesday",
+                "overview": "Smart, sarcastic and a little dead inside, Wednesday Addams investigates twisted mysteries while making new friends — and foes — at Nevermore Academy.",
+                "poster_path": "/36xXlhEpQqVVPuiZhfoQuaY4OlA.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    10765,
+                    9648,
+                    35
+                ],
+                "popularity": 781.3221,
+                "first_air_date": "2022-11-23",
+                "vote_average": 8.4,
+                "vote_count": 9630,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/25g7mthXoJFcNZhAKz0evk17Bsx.jpg",
+                "id": 157239,
+                "name": "Alien: Earth",
+                "original_name": "Alien: Earth",
+                "overview": "When the mysterious deep space research vessel USCSS Maginot crash-lands on Earth, Wendy and a ragtag group of tactical soldiers make a fateful discovery that puts them face-to-face with the planet's greatest threat.",
+                "poster_path": "/yueXS3q8BtoWekcHOATFHicLl3e.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    10765,
+                    18
+                ],
+                "popularity": 240.1169,
+                "first_air_date": "2025-08-12",
+                "vote_average": 7.749,
+                "vote_count": 335,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/pj1wFbZF3gpEg7F0EreXTvZNZTG.jpg",
+                "id": 110492,
+                "name": "Peacemaker",
+                "original_name": "Peacemaker",
+                "overview": "The continuing story of Peacemaker, a vainglorious superhero/supervillain who believes in peace at any cost — no matter how many people he has to kill. After a miraculous recovery from his duel with Bloodsport, Peacemaker soon discovers that his freedom comes at a price.",
+                "poster_path": "/yb4F1Oocq8GfQt6iIuAgYEBokhG.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    10759,
+                    10765,
+                    18
+                ],
+                "popularity": 119.1983,
+                "first_air_date": "2022-01-13",
+                "vote_average": 8.236,
+                "vote_count": 2942,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/8J0SjKToFBbg8dKpocVOCsrC77C.jpg",
+                "id": 259909,
+                "name": "Dexter: Resurrection",
+                "original_name": "Dexter: Resurrection",
+                "overview": "Dexter Morgan awakens from a coma to find Harrison gone without a trace. Realizing the weight of what he put his son through, Dexter sets out for New York City, determined to find him and make things right. But closure won't come easy. When Miami Metro's Angel Batista arrives with questions, Dexter realizes his past is catching up to him fast. As father and son navigate their own darkness in the city that never sleeps, they soon find themselves deeper than they ever imagined - and that the only way out is together.",
+                "poster_path": "/hIawSocuwqgNeRf3JuKuxgMHmSC.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    80,
+                    18,
+                    9648
+                ],
+                "popularity": 87.15,
+                "first_air_date": "2025-07-13",
+                "vote_average": 8.811,
+                "vote_count": 209,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/qtMVO0McAXN4IV30SMFAVmXraBL.jpg",
+                "id": 253941,
+                "name": "The Paper",
+                "original_name": "The Paper",
+                "overview": "The documentary crew that immortalized Dunder Mifflin's Scranton branch is in search of a new subject when they discover a historic Toledo newspaper, The Truth Teller, and the eager publisher trying to revive it.",
+                "poster_path": "/ySA5MvhoxTdezNUMe0ifPmhxH4w.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    35
+                ],
+                "popularity": 36.2853,
+                "first_air_date": "2025-09-04",
+                "vote_average": 7.1,
+                "vote_count": 10,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/yQw23xxmVBFVHPCF6V68TAIIfno.jpg",
+                "id": 219760,
+                "name": "The Terminal List: Dark Wolf",
+                "original_name": "The Terminal List: Dark Wolf",
+                "overview": "Before The Terminal List, Navy SEAL Ben Edwards finds himself entangled in the black operations side of the CIA. The deeper Ben goes into the 'gray', the harder it will become to not give himself over to his darker impulses. Every man has two wolves inside him – light and dark – fighting for control. Which wolf will Ben Edwards feed?",
+                "poster_path": "/9mYeRoWguq5etbwJRdF8BXFKiF.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    10759,
+                    18
+                ],
+                "popularity": 137.8076,
+                "first_air_date": "2025-08-27",
+                "vote_average": 7.548,
+                "vote_count": 42,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/ibT5W5lpedfG9TUmplkMldpDigJ.jpg",
+                "id": 259710,
+                "name": "Confidence Queen",
+                "original_name": "컨피던스 맨 KR",
+                "overview": "Three con artists with different backgrounds, team up for a daring and adventurous scheme of revenge against the villains of this era.",
+                "poster_path": "/wUCmw1B6MBRiN6TUSbssKHuJnV0.jpg",
+                "media_type": "tv",
+                "original_language": "ko",
+                "genre_ids": [
+                    80,
+                    35
+                ],
+                "popularity": 14.1711,
+                "first_air_date": "2025-09-06",
+                "vote_average": 7,
+                "vote_count": 3,
+                "origin_country": [
+                    "KR"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/vmNj8bthBAofXgsaY6yP4bCvXko.jpg",
+                "id": 93740,
+                "name": "Foundation",
+                "original_name": "Foundation",
+                "overview": "Follow a band of exiles on their monumental journey to save humanity and rebuild civilization amid the fall of the Galactic Empire.",
+                "poster_path": "/tg9I5pOY4M9CKj8U0cxVBTsm5eh.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    10765,
+                    18
+                ],
+                "popularity": 70.0924,
+                "first_air_date": "2021-09-23",
+                "vote_average": 7.744,
+                "vote_count": 1489,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/4Mt7WHox67uJ1yErwTBFcV8KWgG.jpg",
+                "id": 37854,
+                "name": "One Piece",
+                "original_name": "ワンピース",
+                "overview": "Years ago, the fearsome Pirate King, Gol D. Roger was executed leaving a huge pile of treasure and the famous \"One Piece\" behind. Whoever claims the \"One Piece\" will be named the new King of the Pirates.\n\nMonkey D. Luffy, a boy who consumed a \"Devil Fruit,\" decides to follow in the footsteps of his idol, the pirate Shanks, and find the One Piece. It helps, of course, that his body has the properties of rubber and that he's surrounded by a bevy of skilled fighters and thieves to help him along the way.\n\nLuffy will do anything to get the One Piece and become King of the Pirates!",
+                "poster_path": "/cMD9Ygz11zjJzAovURpO75Qg7rT.jpg",
+                "media_type": "tv",
+                "original_language": "ja",
+                "genre_ids": [
+                    10759,
+                    35,
+                    16
+                ],
+                "popularity": 20.4071,
+                "first_air_date": "1999-10-20",
+                "vote_average": 8.7,
+                "vote_count": 4979,
+                "origin_country": [
+                    "JP"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/kWByUrGgS4mYyvQ2mG95gzblBOj.jpg",
+                "id": 106449,
+                "name": "A Record of a Mortal's Journey to Immortality",
+                "original_name": "凡人修仙传",
+                "overview": "A poor and ordinary boy from a village joins a minor sect in Jiang Hu and becomes an Unofficial Disciple by chance. How will Han Li, a commoner by birth, establish a foothold for himself in his sect? With his mediocre aptitude, he must successfully traverse the treacherous path of cultivation and avoid the notice of those who may do him harm. This is a story of an ordinary mortal who, against all odds, clashes with devilish demons and ancient celestials in order to find his own path towards immortality.",
+                "poster_path": "/3m1UaMLgmpj6krNaQwTpftYFsnz.jpg",
+                "media_type": "tv",
+                "original_language": "zh",
+                "genre_ids": [
+                    16,
+                    10759,
+                    10765
+                ],
+                "popularity": 34.1118,
+                "first_air_date": "2020-07-25",
+                "vote_average": 8.4,
+                "vote_count": 59,
+                "origin_country": [
+                    "CN"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg",
+                "id": 1399,
+                "name": "Game of Thrones",
+                "original_name": "Game of Thrones",
+                "overview": "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+                "poster_path": "/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    10765,
+                    18,
+                    10759
+                ],
+                "popularity": 120.7587,
+                "first_air_date": "2011-04-17",
+                "vote_average": 8.5,
+                "vote_count": 25478,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/ub0xUWZUBoAwy1eBG1uwi9ikaVg.jpg",
+                "id": 247732,
+                "name": "NCIS: Tony & Ziva",
+                "original_name": "NCIS: Tony & Ziva",
+                "overview": "When his security company is attacked, Tony and Ziva must go on the run across Europe, try to figure out who is after them and maybe even learn to trust each other again so that they can finally have their unconventional happily ever after.",
+                "poster_path": "/zNIANQsAs2kbxbzbTTe5dTBzhKe.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    10759,
+                    18,
+                    80
+                ],
+                "popularity": 63.9784,
+                "first_air_date": "2025-09-04",
+                "vote_average": 9,
+                "vote_count": 7,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/9DrORnlwnjt5SeJKcuE5sqOoIdV.jpg",
+                "id": 207468,
+                "name": "Kaiju No. 8",
+                "original_name": "怪獣８号",
+                "overview": "In a world plagued by creatures known as Kaiju, Kafka Hibino aspired to enlist in The Defense Force. He makes a promise to enlist with his childhood friend, Mina Ashiro. Soon, life takes them in separate ways. While employed cleaning up after Kaiju battles, Kafka meets Reno Ichikawa. Reno's determination to join The Defense Force reawakens Kafka's promise to join Mina and protect humanity.",
+                "poster_path": "/bJxGs0w5RAhaX4fIUQu511rvm0S.jpg",
+                "media_type": "tv",
+                "original_language": "ja",
+                "genre_ids": [
+                    16,
+                    10759,
+                    10765
+                ],
+                "popularity": 79.7718,
+                "first_air_date": "2024-04-13",
+                "vote_average": 8.528,
+                "vote_count": 615,
+                "origin_country": [
+                    "JP"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/aSGSxGMTP893DPMCvMl9AdnEICE.jpg",
+                "id": 1405,
+                "name": "Dexter",
+                "original_name": "Dexter",
+                "overview": "Dexter Morgan, a blood spatter pattern analyst for the Miami Metro Police also leads a secret life as a serial killer, hunting down criminals who have slipped through the cracks of justice.",
+                "poster_path": "/q8dWfc4JwQuv3HayIZeO84jAXED.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    80,
+                    18,
+                    9648
+                ],
+                "popularity": 161.5275,
+                "first_air_date": "2006-10-01",
+                "vote_average": 8.214,
+                "vote_count": 4867,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/uNTrRKIOyKYISthoeizghtXPEOK.jpg",
+                "id": 240411,
+                "name": "Dan Da Dan",
+                "original_name": "ダンダダン",
+                "overview": "In a bet to prove whether ghosts or aliens exist, two high schoolers face terrifying paranormal threats, gain superpowers and maybe even fall in love?!",
+                "poster_path": "/6qfZAOEUFIrbUH3JvePclx1nXzz.jpg",
+                "media_type": "tv",
+                "original_language": "ja",
+                "genre_ids": [
+                    16,
+                    10759,
+                    35,
+                    10765
+                ],
+                "popularity": 88.755,
+                "first_air_date": "2024-10-04",
+                "vote_average": 8.6,
+                "vote_count": 642,
+                "origin_country": [
+                    "JP"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/i9IEOD1Li1y89xRHKH9kiE8dt9z.jpg",
+                "id": 127235,
+                "name": "Invasion",
+                "original_name": "Invasion",
+                "overview": "Earth is visited by an alien species that threatens humanity's existence. Events unfold in real time through the eyes of five ordinary people across the globe as they struggle to make sense of the chaos unraveling around them.",
+                "poster_path": "/xP4SIyOn7vUh0OqT4a30MHhNFMO.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    10765,
+                    18
+                ],
+                "popularity": 57.4214,
+                "first_air_date": "2021-10-21",
+                "vote_average": 7.2,
+                "vote_count": 1047,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/mwVrLbaue8AqjFtF6lY6aakTtfb.jpg",
+                "id": 196890,
+                "name": "Chief of War",
+                "original_name": "Chief of War",
+                "overview": "With Hawaii's four kingdoms divided by war, the ferocious warrior Kaʻiana embarks on an epic mission to unite his people—as an existential threat approaches their shores.",
+                "poster_path": "/8Mckh3qJRTzXTQNZtpb133RHmO4.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    18
+                ],
+                "popularity": 83.0544,
+                "first_air_date": "2025-07-31",
+                "vote_average": 7,
+                "vote_count": 109,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/4pxGvtwxDlATy9nvJMvYL8u25LZ.jpg",
+                "id": 256317,
+                "name": "Countdown",
+                "original_name": "Countdown",
+                "overview": "When an officer with the Department of Homeland Security is murdered in broad daylight, LAPD detective Mark Meachum is recruited to a secret task force, alongside undercover agents from all branches of law enforcement, to investigate. But the hunt for the killer soon uncovers a plot far more sinister than anyone could have imagined, kicking off a race against time to save a city of millions.",
+                "poster_path": "/gcSNS5cy1iOmYawIdJCzoc873rQ.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    18,
+                    80,
+                    9648
+                ],
+                "popularity": 55.119,
+                "first_air_date": "2025-06-25",
+                "vote_average": 7.553,
+                "vote_count": 76,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/fZJs6xgU9dqIg9phIXjZAZOInzy.jpg",
+                "id": 103516,
+                "name": "Star Trek: Strange New Worlds",
+                "original_name": "Star Trek: Strange New Worlds",
+                "overview": "Follow Captain Christopher Pike, Science Officer Spock and Number One in the years before Captain Kirk boarded the U.S.S. Enterprise, as they explore new worlds around the galaxy.",
+                "poster_path": "/w6KapI2JvrCkOPmQhkwYPJNjqeo.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    10765,
+                    18
+                ],
+                "popularity": 33.5808,
+                "first_air_date": "2022-05-05",
+                "vote_average": 8.07,
+                "vote_count": 650,
+                "origin_country": [
+                    "US"
+                ]
+            },
+            {
+                "adult": false,
+                "backdrop_path": "/6WAinokBmZU9Jt8l74TKI8JNUG7.jpg",
+                "id": 2190,
+                "name": "South Park",
+                "original_name": "South Park",
+                "overview": "Follow the misadventures of four irreverent grade-schoolers in the quiet, dysfunctional town of South Park, Colorado.",
+                "poster_path": "/dqAKFEjPEu7vWkVBkMdhGu9ifxU.jpg",
+                "media_type": "tv",
+                "original_language": "en",
+                "genre_ids": [
+                    16,
+                    35
+                ],
+                "popularity": 40.6235,
+                "first_air_date": "1997-08-13",
+                "vote_average": 8.349,
+                "vote_count": 4672,
+                "origin_country": [
+                    "US"
+                ]
+            }
+        ],
+        "total_pages": 500,
+        "total_results": 10000
+    }
+}

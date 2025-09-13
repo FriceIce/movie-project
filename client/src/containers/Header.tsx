@@ -5,12 +5,12 @@ import { InputContext } from '@/context/SearchContext';
 import { ReactNode, useContext, useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { ArrowLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import DesktopSearchContainer from './DesktopSearchContainer';
 import ContentOptions from '@/components/ContentOptions';
 import useIsScrolling from '@/hooks/useIsScrolling';
-import Image from 'next/image';
-import Link from 'next/link';
 import DesktopInputfield from './DesktopInputField';
 
 type Props = {
@@ -35,7 +35,7 @@ const Header = ({ children }: Props) => {
 
     return (
         <>
-            {!pathname.includes('/search') && !pathname.includes('/') && (
+            {!pathname.includes('/search') && pathname !== '/' && (
                 <header
                     className={`space-y-3 sticky inset-0 z-[2] h-max w-full py-4 px-5 transition duration-100  
         ${scrolling ? 'bg-[#000000cc]' : 'bg-transparent'}`}
