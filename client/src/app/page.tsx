@@ -90,7 +90,7 @@ export default function SignIn() {
                             <input
                                 id="password"
                                 type="password"
-                                value={'Isak1234!'}
+                                value={process.env.USER_PASSWORD}
                                 {...register('password')}
                                 className="bg-[#1c2432] h-[45px] text-sm outline-none px-2 placeholder-white rounded border"
                             />

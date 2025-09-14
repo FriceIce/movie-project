@@ -168,3 +168,26 @@ export async function saveContent(body: SaveMovie, user: { id: number }): Promis
     const query = `INSERT INTO saved_movies(content_id, title, description, user_id, image) VALUES($1, $2, $3, $4, $5)`;
     await runSql(pool, query, [content_id, title, description, user.id, fullImagePath]);
 }
+
+/**
+ * Retrieves specific user information.
+ *
+ *  - Queries the database for the user's email and password.
+ *  - Throws a NotFoundError if no user matches the ID.
+ *
+ * @param {string} userId - The user ID token.
+ * @returns {Promise<UserData>} - An object containing email and username.
+ * @throws {CustomError.NotFoundError} - If the extracted `id` does not match any user.
+ * @throws {JsonWebTokenError} If the token is invalid or expired.
+ */
+
+export async function fetchUserInfo(userId: string): Promise<UserData> {
+    const query = `SELECT email, username FROM users WHERE id = $1;`;
+    const [user] = await runSql<UserData>(pool, query, [userId]);
+
+    if (!user) {
+        throw new CustomError.NotFoundError(`No user information found with the id: ${userId}.`);
+    }
+
+    return user;
+}

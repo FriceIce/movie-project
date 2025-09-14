@@ -22,9 +22,12 @@ function DesktopInputfield(props: Props) {
 
     return (
         <div
-            className={`flex p-1 items-center ${openInputField ? 'bg-custom-black border transition-all duration-300' : 'border-none bg-transparent transition-none'}`}
+            className={`flex items-center ${openInputField ? 'bg-custom-black border transition-all duration-300' : 'border-none bg-transparent transition-none'}`}
         >
-            <button onClick={() => setOpenInputField((prev) => !prev)}>
+            <button
+                className={`flex justify-center ${openInputField ? 'items-center' : 'items-end'} size-[40px]`}
+                onClick={() => setOpenInputField((prev) => !prev)}
+            >
                 <MagnifyingGlassIcon className="size-7 hidden md:block" />
             </button>
 
@@ -37,7 +40,7 @@ function DesktopInputfield(props: Props) {
                     type="text"
                     placeholder="Movies, series"
                     value={inputContext?.input || ''}
-                    className="w-full bg-transparent outline-none px-2 placeholder-neutral-300"
+                    className="w-full bg-transparent outline-none px-2 placeholder-neutral-300 text-sm"
                     onChange={(e) => {
                         handleSearch(e.target.value.trim());
                         inputContext?.setInput(e.target.value);
