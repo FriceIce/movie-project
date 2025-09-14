@@ -18,7 +18,7 @@ export const icons = {
         alt: 'chevron icon',
     },
     avatar: {
-        src: '/avatar-icon.png',
+        src: '/generic-profile-icon.png',
         width: 128,
         height: 128,
         alt: 'user profile picture',

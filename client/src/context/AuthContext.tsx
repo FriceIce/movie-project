@@ -5,41 +5,50 @@ import Cookies from 'js-cookie';
 import { usePathname } from 'next/navigation';
 import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
 
-type AuthContextType = {
-    user: User | null;
-    setUser: Dispatch<SetStateAction<User | null>>;
+export type AuthContextType = {
+    user: UserData | null;
+    setUser: Dispatch<SetStateAction<UserData | null>>;
     refreshToken: string;
     setRefreshToken: Dispatch<SetStateAction<string>>;
 };
 
 export const Auth = createContext<AuthContextType | null>(null);
 
+type UserData = Pick<User, 'email' | 'username'>;
+
 type Props = {
     children: ReactNode;
 };
 
 function AuthContext({ children }: Props) {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<UserData | null>(null);
     const [refreshToken, setRefreshToken] = useState<string>('');
     const pathname = usePathname();
+    const oldAccessToken = Cookies.get('auth_token');
+    const oldRefreshToken = Cookies.get('refreshToken');
 
     useEffect(() => {
-        const oldAccessToken = Cookies.get('auth_token');
-        const oldRefreshToken = Cookies.get('refreshToken');
-
         if (!oldAccessToken && oldRefreshToken) {
             const fetchRefresh = async () => {
-                const tokenResponse = await fetchJson<FetchResponse<{ token: string }>>(
-                    '',
-                    '/refresh',
-                    'POST',
-                    { oldRefreshToken, checkDb: true }
-                );
+                await fetchJson<FetchResponse<{ token: string }>>('', '/refresh', 'POST', {
+                    oldRefreshToken,
+                    checkDb: true,
+                });
             };
 
             fetchRefresh();
         }
-    }, [pathname]);
+
+        // Retrieves user information if there is a valid access token.
+        if (oldAccessToken) {
+            const fetchUser = async () => {
+                const user = await fetchJson<FetchResponse<UserData>>(oldAccessToken, `/me/`);
+                setUser(user.data);
+            };
+
+            fetchUser();
+        }
+    }, [pathname, oldAccessToken, oldRefreshToken]);
 
     return (
         <Auth.Provider value={{ user, setUser, refreshToken, setRefreshToken }}>

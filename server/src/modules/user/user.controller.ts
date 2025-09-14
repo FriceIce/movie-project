@@ -3,7 +3,7 @@ import { CookieOptions, NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { asyncHandler } from '../../error/errorAsyncHandler';
 import { Auth } from '../../middleware/auth/authentication';
-import { loginUser, refreshToken, registerUser, saveContent } from './user.service';
+import { fetchUserInfo, loginUser, refreshToken, registerUser, saveContent } from './user.service';
 
 const productionEnv = process.env.NODE_ENV === 'production';
 const cookieOptions: CookieOptions = {
@@ -136,4 +136,18 @@ export const userRefreshToken = asyncHandler(async (req: Request, res: Response)
                 token: newAccessToken,
             },
         });
+});
+
+/**
+ * @route '/api/me'
+ * @method GET
+ */
+
+export const userRetrieval = asyncHandler(async (req: Auth, res: Response): Promise<void> => {
+    // console.log(req?.user);
+    const user = await fetchUserInfo(String(req?.user?.id));
+    res.status(200).json({
+        message: 'User information retrieved successfully.',
+        data: user,
+    });
 });

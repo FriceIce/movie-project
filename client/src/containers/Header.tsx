@@ -1,17 +1,19 @@
 'use client';
 import { icons } from '@/assets/icons';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { InputContext } from '@/context/SearchContext';
-import { ReactNode, useContext, useEffect, useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { ArrowLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 
-import DesktopSearchContainer from './DesktopSearchContainer';
 import ContentOptions from '@/components/ContentOptions';
+import { Auth } from '@/context/AuthContext';
 import useIsScrolling from '@/hooks/useIsScrolling';
 import DesktopInputfield from './DesktopInputField';
+import DesktopSearchContainer from './DesktopSearchContainer';
+import ProfileContainer from './ProfileContainer';
 
 type Props = {
     children: ReactNode;
@@ -20,6 +22,7 @@ type Props = {
 const Header = ({ children }: Props) => {
     const [openInput, setOpenInput] = useState<boolean>(false);
     const inputContext = useContext(InputContext);
+    const userContext = useContext(Auth);
     const desktopView = useMediaQuery(768);
     const scrolling = useIsScrolling();
     const pathname = usePathname();
@@ -68,12 +71,17 @@ const Header = ({ children }: Props) => {
                                 </div>
 
                                 <div className="flex items-center gap-4">
-                                    <DesktopInputfield
-                                        desktopView={desktopView}
-                                        inputContext={inputContext}
-                                        openInputField={openInput}
-                                        setOpenInputField={setOpenInput}
-                                    />
+                                    <div className="flex flex-col items-center gap-1">
+                                        <DesktopInputfield
+                                            desktopView={desktopView}
+                                            inputContext={inputContext}
+                                            openInputField={openInput}
+                                            setOpenInputField={setOpenInput}
+                                        />
+                                        {!openInput && (
+                                            <p className="hidden text-xs md:block">Search</p>
+                                        )}
+                                    </div>
 
                                     {desktopView === false && (
                                         <Link href={'/search'}>
@@ -81,19 +89,13 @@ const Header = ({ children }: Props) => {
                                         </Link>
                                     )}
 
-                                    <Image
-                                        src={icons.avatar.src}
-                                        alt={icons.avatar.alt}
-                                        width={icons.avatar.width}
-                                        height={icons.avatar.height}
-                                        className={`size-10 rounded-[2px] ${pathname.includes('/content') && 'hidden'}`}
-                                    ></Image>
+                                    <ProfileContainer userContext={userContext} />
                                 </div>
                             </div>
                         </section>
-                        {pathNameConditions /* && !pathname.includes('/') */ && (
+                        {pathNameConditions && (
                             <section className={`md:hidden`}>
-                                <div className={`flex justify-center gap-2 pt-4`}>
+                                <div className={`flex gap-2 pt-4`}>
                                     <ContentOptions pathname={pathname} />
                                 </div>
                             </section>
