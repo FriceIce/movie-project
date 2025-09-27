@@ -2,8 +2,6 @@ import ContentSlider from '@/components/sliders/ContentSlider';
 import TopTenContentSlider from '@/components/sliders/TopTenContentSlider';
 import DesktopHeroImage from '@/features/home/containers/DesktopHeroImage';
 import MobileHeroImageContainer from '@/features/home/containers/HeroImageContainer';
-
-// json data
 import action from '@/assets/data/tv/action.json';
 import sportDocumentaries from '@/assets/data/tv/sportDocumentaries.json';
 import strangerThings from '@/assets/data/tv/strangerThingsDetails.json';
@@ -11,13 +9,12 @@ import topRated from '@/assets/data/tv/topRated.json';
 import trending from '@/assets/data/tv/trending.json';
 import trueCrime from '@/assets/data/tv/trueCrime.json';
 import { sortByVote } from '@/utils/sortByVote';
+import getToken from '@/utils/getToken';
+import { retrieveSavedContent } from '@/utils/saveDeleteRetrieveContent';
 
 const page = async () => {
-    // const token = getToken();
-    // const trending = await fetchJson<FetchResponse<MovieItem<TvShow[]>>>(
-    //     token,
-    //     '/trending/tv'
-    // );
+    const token = await getToken();
+    const savedContent = await retrieveSavedContent(token);
 
     return (
         <div className="flex flex-col">
@@ -25,6 +22,8 @@ const page = async () => {
                 id={strangerThings.id}
                 type="tv"
                 posterPath={strangerThings.poster_path}
+                backdropPath={strangerThings.backdrop_path}
+                savedContent={savedContent?.data}
             />
             <DesktopHeroImage
                 id={strangerThings.id}
@@ -32,6 +31,8 @@ const page = async () => {
                 overview={strangerThings.overview}
                 backdropPath={strangerThings.backdrop_path}
                 type="tv"
+                savedContent={savedContent?.data}
+                posterPath={strangerThings.poster_path}
             />
             <section className="space-y-4 lg:space-y-10">
                 <ContentSlider

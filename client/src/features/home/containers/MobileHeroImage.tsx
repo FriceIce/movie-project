@@ -1,22 +1,24 @@
 'use client';
 import ContentActionBtns from '@/components/ContentActionBtns';
+import SaveContentIcons from '@/features/content/containers/saveContent/SaveContentIcons';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import Image from 'next/image';
 
 type Props = {
-    img: string;
+    img: contentImages;
     id: number;
     type: 'tv' | 'movie';
+    savedContent: SavedContent[] | undefined;
 };
 
-function MobileHeroImage({ img, id, type }: Props) {
+function MobileHeroImage({ img, id, type, savedContent }: Props) {
     const mobileScreenWidth = useMediaQuery(768); // We're seeking after a false value.
     return (
         <>
             {!mobileScreenWidth && (
                 <section className="flex flex-col w-[95%] mx-auto rounded-lg shadow-whiteShadow">
                     <Image
-                        src={'https://image.tmdb.org/t/p/w500' + img}
+                        src={'https://image.tmdb.org/t/p/w500' + img.posterPath}
                         crossOrigin="anonymous"
                         alt="movie poster"
                         width={500}
@@ -26,7 +28,19 @@ function MobileHeroImage({ img, id, type }: Props) {
                     />
                     <div className="flex justify-center gap-4 w-full p-4 relative">
                         <div className="absolute z-[-1] inset-0 bg-[#000] h-[200%] translate-y-[-50%] mask-image-top rounded-lg" />
-                        <ContentActionBtns type={type} id={id} />
+                        <ContentActionBtns
+                            type={type}
+                            id={id}
+                            savedContent={savedContent}
+                            images={img}
+                            children={
+                                <SaveContentIcons
+                                    contentId={String(id)}
+                                    savedContent={savedContent}
+                                    screen="heroImg"
+                                />
+                            }
+                        />
                     </div>
                 </section>
             )}

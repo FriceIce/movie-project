@@ -12,11 +12,10 @@ type LoginUser = {
 
 type UserData = Pick<RegisterUser, 'email' | 'username'>;
 
-type SaveMovie = {
-    content_id: number;
-    title: string;
-    description: string;
-    image: string;
+type SavedContent = {
+    contentId: number;
+    contentType: 'movie' | 'tv';
+    images: { posterPath: string; backdropPath: string };
 };
 
 interface JwtPayloadWithId extends jwt.JwtPayload {

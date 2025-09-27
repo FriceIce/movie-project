@@ -1,6 +1,7 @@
 'use client';
 import { poppins } from '@/assets/fonts';
 import ContentActionBtns from '@/components/ContentActionBtns';
+import SaveContentIcons from '@/features/content/containers/saveContent/SaveContentIcons';
 import { retrieveCompanyLogo } from '@/utils/retrieveCompanyLogo';
 import Image from 'next/image';
 
@@ -10,11 +11,14 @@ type Props = {
     overview: string;
     backdropPath: string;
     type: 'tv' | 'movie';
+    savedContent: SavedContent[] | undefined;
+    posterPath: string;
     companyLogo?: ProductionCompany[];
 };
 
 function DesktopHeroImage(props: Props) {
-    const { overview, id, companyLogo, type, backdropPath, title } = props;
+    const { overview, id, companyLogo, type, backdropPath, title, savedContent, posterPath } =
+        props;
     const extractCompanyLogo = companyLogo && retrieveCompanyLogo(companyLogo);
 
     return (
@@ -44,8 +48,20 @@ function DesktopHeroImage(props: Props) {
                     <p className="font-[15px] max-h-24 overflow-hidden line-clamp-4 2xl:text-[20px] 2xl:line-clamp-3">
                         {overview}
                     </p>
-                    <div className="space-x-3">
-                        <ContentActionBtns type={type} id={id} />
+                    <div className="space-x-3 flex">
+                        <ContentActionBtns
+                            type={type}
+                            id={id}
+                            savedContent={savedContent}
+                            images={{ posterPath, backdropPath }}
+                            children={
+                                <SaveContentIcons
+                                    contentId={String(id)}
+                                    savedContent={savedContent}
+                                    screen="heroImg"
+                                />
+                            }
+                        />
                     </div>
                 </div>
             </div>

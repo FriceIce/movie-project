@@ -1,13 +1,15 @@
 import { poppins } from '@/assets/fonts';
 import Credits from '@/features/content/containers/Credits';
 import RelatedMediaSection from '@/features/content/containers/RelatedMediaSection';
+import DesktopSaveContent from '@/features/content/containers/saveContent/DesktopSaveContent';
+import MobileSaveContent from '@/features/content/containers/saveContent/MobileSaveContent';
 import TrailerPlayerContainer from '@/features/content/containers/TrailerPlayerContainer';
 import { filterTmdbVideos } from '@/features/content/utils/filterTmdbVideos';
 import { formatRuntime } from '@/features/content/utils/formatRuntime';
 import { fetchJson } from '@/utils/fetchJson';
 import getToken from '@/utils/getToken';
-import { PlusIcon } from '@heroicons/react/16/solid';
-import { PlusIcon as PlusIconDesktop } from '@heroicons/react/20/solid';
+import { retrieveSavedContent } from '@/utils/saveDeleteRetrieveContent';
+import SaveContentIcons from '@/features/content/containers/saveContent/SaveContentIcons';
 
 type Props = {
     params: {
@@ -15,9 +17,11 @@ type Props = {
         type: string;
     };
 };
+
 async function Content({ params }: Props) {
     const { id: contentId, type } = params;
     const token = await getToken();
+    const savedContent = await retrieveSavedContent(token);
 
     const [videos, contentDetails, recommendations, credits] = await Promise.all([
         fetchJson<FetchResponse<VideosResponse>>(token, `/videos/${type}/${contentId}`),
@@ -67,18 +71,38 @@ async function Content({ params }: Props) {
                             <p>{releaseDate.slice(0, 4)}</p>
                             {runtime && <p>{formatRuntime(runtime)}</p>}
                             <p>{content.origin_country[0]}</p>
-
-                            <button
-                                title={`Add the content to your list.`}
-                                className="hidden md:flex size-6 lg:size-8 border rounded-full justify-center items-center ml-6"
+                            <DesktopSaveContent
+                                contentId={contentId}
+                                contentType={type}
+                                images={{
+                                    posterPath: content.poster_path,
+                                    backdropPath: content.backdrop_path,
+                                }}
+                                savedContent={savedContent?.data}
                             >
-                                <PlusIconDesktop className="text-white size-5 lg:size-6 rounded-full" />
-                            </button>
+                                <SaveContentIcons
+                                    screen="desktop"
+                                    contentId={contentId}
+                                    savedContent={savedContent?.data}
+                                />
+                            </DesktopSaveContent>
                         </div>
-                        <button className="md:hidden flex gap-1 items-center justify-center bg-white text-black text-sm lg:text-base font-semibold rounded-[2px] w-full h-[42px] px-4">
-                            <PlusIcon className="size-5 text-black" />
-                            <p className="">My List</p>
-                        </button>
+                        <MobileSaveContent
+                            contentId={contentId}
+                            contentType={type}
+                            images={{
+                                posterPath: content.poster_path,
+                                backdropPath: content.backdrop_path,
+                            }}
+                            savedContent={savedContent?.data}
+                            children={
+                                <SaveContentIcons
+                                    screen="mobile"
+                                    contentId={contentId}
+                                    savedContent={savedContent?.data}
+                                />
+                            }
+                        />
                         <div className="space-y-2 md:flex gap-4 text-xs sm:text-sm">
                             <p className="flex-[3] pt-2" style={{ lineHeight: '1.5' }}>
                                 {content.overview}

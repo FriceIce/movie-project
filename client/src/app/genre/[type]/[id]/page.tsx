@@ -3,6 +3,7 @@ import DesktopHeroImage from '@/features/home/containers/DesktopHeroImage';
 import MobileHeroImageContainer from '@/features/home/containers/HeroImageContainer';
 import { fetchJson } from '@/utils/fetchJson';
 import getToken from '@/utils/getToken';
+import { retrieveSavedContent } from '@/utils/saveDeleteRetrieveContent';
 
 type Props = {
     params: {
@@ -14,6 +15,7 @@ type Props = {
 async function page({ params }: Props) {
     const { type, id } = params;
     const token = await getToken();
+    const savedContent = await retrieveSavedContent(token);
 
     // Retrieves all content
     const [page1, page2, page3, page4] = await Promise.all([
@@ -84,6 +86,8 @@ async function page({ params }: Props) {
                 id={content.id}
                 type={type as 'movie' | 'tv'}
                 posterPath={content.poster_path}
+                backdropPath={content.backdropPath}
+                savedContent={savedContent?.data}
             />
             <DesktopHeroImage
                 id={content.id}
@@ -91,6 +95,8 @@ async function page({ params }: Props) {
                 title={content.title}
                 backdropPath={content.backdropPath}
                 overview={content.overview}
+                savedContent={savedContent?.data}
+                posterPath={content.poster_path}
             />
 
             <section className="space-y-6 md:space-y-10">
