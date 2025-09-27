@@ -22,6 +22,8 @@ type FilteredVideos = {
     all: TmdbVideoObject[];
 };
 
+type contentImages = { posterPath: string; backdropPath: string };
+
 // ----------------------------------------------
 
 type FetchResponse<T> = {
@@ -40,4 +42,11 @@ type User = {
     email: string;
     token: string;
     refreshToken: string;
+};
+
+// Saved content
+type SavedContent = {
+    content_id: number;
+    content_type: 'movie' | 'tv';
+    image: string;
 };

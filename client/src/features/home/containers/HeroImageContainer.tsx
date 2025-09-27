@@ -4,15 +4,21 @@ import MobileHeroImage from './MobileHeroImage';
 type Props = {
     id: number;
     posterPath: string;
+    backdropPath: string;
     type: 'tv' | 'movie';
+    savedContent: SavedContent[] | undefined;
 };
 
-async function MobileHeroImageContainer({ posterPath, type, id }: Props) {
+async function MobileHeroImageContainer({
+    posterPath,
+    backdropPath,
+    type,
+    id,
+    savedContent,
+}: Props) {
     const img = posterPath;
-    console.log(img);
     const vibrant = new Vibrant('https://image.tmdb.org/t/p/w500' + img);
     const bgColor = await vibrant.getPalette().then((palette) => {
-        console.log(palette.DarkVibrant?.hex);
         return palette.DarkVibrant?.hex || '';
     });
 
@@ -22,7 +28,12 @@ async function MobileHeroImageContainer({ posterPath, type, id }: Props) {
                 className={`absolute inset-0 z-[-1] translate-y-[-140px] mask-image-bottom h-[190%]`}
                 style={{ backgroundColor: bgColor }}
             />
-            <MobileHeroImage type={type} img={img} id={id} />
+            <MobileHeroImage
+                type={type}
+                img={{ backdropPath, posterPath }}
+                id={id}
+                savedContent={savedContent}
+            />
         </div>
     );
 }

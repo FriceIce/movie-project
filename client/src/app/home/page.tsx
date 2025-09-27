@@ -6,9 +6,12 @@ import ContentSlider from '@/components/sliders/ContentSlider';
 import TopTenContentSlider from '@/components/sliders/TopTenContentSlider';
 import DesktopHeroImage from '@/features/home/containers/DesktopHeroImage';
 import MobileHeroImageContainer from '@/features/home/containers/HeroImageContainer';
+import getToken from '@/utils/getToken';
+import { retrieveSavedContent } from '@/utils/saveDeleteRetrieveContent';
 
 const Home = async () => {
-    // const token = cookies().get('auth_token');
+    const token = await getToken();
+    const savedContent = await retrieveSavedContent(token);
 
     return (
         <div className="flex flex-col">
@@ -16,6 +19,8 @@ const Home = async () => {
                 id={movieDetails.id}
                 type="movie"
                 posterPath={movieDetails.poster_path}
+                backdropPath={movieDetails.backdrop_path}
+                savedContent={savedContent?.data}
             />
             <DesktopHeroImage
                 type="movie"
@@ -24,6 +29,8 @@ const Home = async () => {
                 overview={movieDetails.overview}
                 companyLogo={movieDetails.production_companies}
                 backdropPath={movieDetails.backdrop_path}
+                savedContent={savedContent?.data}
+                posterPath={movieDetails.poster_path}
             />
             <section className="space-y-4 lg:space-y-10">
                 <ContentSlider contentType="movie" title="Viral Movies" images={popularContent} />

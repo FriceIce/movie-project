@@ -28,12 +28,24 @@ function AuthContext({ children }: Props) {
     const oldRefreshToken = Cookies.get('refreshToken');
 
     useEffect(() => {
+        const fetchUser = async (accessToken: string) => {
+            const user = await fetchJson<FetchResponse<UserData>>(accessToken, `/me/`);
+            setUser(user.data);
+        };
+
         if (!oldAccessToken && oldRefreshToken) {
             const fetchRefresh = async () => {
-                await fetchJson<FetchResponse<{ token: string }>>('', '/refresh', 'POST', {
-                    oldRefreshToken,
-                    checkDb: true,
-                });
+                const newAccessToken = await fetchJson<FetchResponse<{ token: string }>>(
+                    '',
+                    '/refresh',
+                    'POST',
+                    {
+                        oldRefreshToken,
+                        checkDb: true,
+                    }
+                );
+
+                fetchUser(newAccessToken.data.token);
             };
 
             fetchRefresh();
@@ -41,12 +53,7 @@ function AuthContext({ children }: Props) {
 
         // Retrieves user information if there is a valid access token.
         if (oldAccessToken) {
-            const fetchUser = async () => {
-                const user = await fetchJson<FetchResponse<UserData>>(oldAccessToken, `/me/`);
-                setUser(user.data);
-            };
-
-            fetchUser();
+            fetchUser(oldAccessToken);
         }
     }, [pathname, oldAccessToken, oldRefreshToken]);
 

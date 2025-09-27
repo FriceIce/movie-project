@@ -153,20 +153,53 @@ export async function refreshToken(oldRefreshToken: string, checkDb: boolean | u
 
 /**
  * Inserts a movie or TV show into the database for the specified user.
- * This function saves user-specific content to the `saved_movies` table.
  *
- * @param {SaveMovie} body - An object containing the content's ID, title, and description.
- * @param {{ id: number }} user - The authenticated user object containing the user's ID.
+ * @param {SavedContent} body - An object containing the content's ID, images, and content type.
+ * @param { id } userId - The authenticated user's ID.
  *
  * @returns {Promise<void>} - Resolves when the content is successfully saved.
  *
  * @throws {PostgreSQLError} If the insertion fails due to a database error (e.g., constraint violation).
  */
-export async function saveContent(body: SaveMovie, user: { id: number }): Promise<void> {
-    const { content_id, title, description, image } = body;
-    const fullImagePath = baseImageUrl(image);
-    const query = `INSERT INTO saved_movies(content_id, title, description, user_id, image) VALUES($1, $2, $3, $4, $5)`;
-    await runSql(pool, query, [content_id, title, description, user.id, fullImagePath]);
+export async function saveContent(body: SavedContent, userId: string): Promise<void> {
+    const { contentId, images, contentType } = body;
+    const query = `INSERT INTO saved_content(content_id, user_id, poster_path, backdrop_path, content_type) VALUES($1, $2, $3, $4, $5)`;
+    await runSql(pool, query, [
+        contentId,
+        userId,
+        images.posterPath,
+        images.backdropPath,
+        contentType,
+    ]);
+}
+
+/**
+ * Deletes a specific saved content item for a given user from the database.
+ *
+ * @param {string} userId - The unique identifier of the authenticated user.
+ * @param {string} contentId - The unique identifier of the saved content to delete.
+ * @returns {Promise<void>} A promise that resolves when the deletion is complete.
+ */
+export async function deleteContent(userId: string, contentId: string) {
+    const query = `DELETE FROM saved_content WHERE content_id = $1 AND user_id = $2;`;
+    await runSql(pool, query, [contentId, userId]);
+}
+
+/**
+ * Retrieves all saved content for a given user from the database.
+ *
+ * @param {string} userId - The unique identifier of the authenticated user.
+ * @returns {Promise<SavedContent[]>} A promise that resolves to an array of saved content items.
+ * @throws {CustomError.NotFoundError} If no saved content is found for the specified user.
+ */
+export async function retrieveContent(userId: string) {
+    const query = `SELECT * FROM saved_content WHERE user_id = $1;`;
+    const list = await runSql<SavedContent>(pool, query, [userId]);
+
+    if (!list || list.length === 0)
+        throw new CustomError.NotFoundError('No saved content found for this user.');
+
+    return list;
 }
 
 /**

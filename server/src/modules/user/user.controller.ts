@@ -3,7 +3,15 @@ import { CookieOptions, NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { asyncHandler } from '../../error/errorAsyncHandler';
 import { Auth } from '../../middleware/auth/authentication';
-import { fetchUserInfo, loginUser, refreshToken, registerUser, saveContent } from './user.service';
+import {
+    deleteContent,
+    fetchUserInfo,
+    loginUser,
+    refreshToken,
+    registerUser,
+    retrieveContent,
+    saveContent,
+} from './user.service';
 
 const productionEnv = process.env.NODE_ENV === 'production';
 const cookieOptions: CookieOptions = {
@@ -87,12 +95,43 @@ export const userLogin = asyncHandler(async (req: Request, res: Response): Promi
  */
 
 export const userSaveContent = asyncHandler(async (req: Auth, res: Response): Promise<void> => {
-    const token = req.user as { id: number };
-    await saveContent(req.body, token);
+    const id = req.user?.id as string;
+    await saveContent(req.body, id);
     res.status(200).json({
         message: 'The content was successfully stored in the database.',
     });
 });
+
+/**
+ * @route /api/saveContent/:id
+ * @method DELETE
+ */
+
+export const userDeleteContent = asyncHandler(async (req: Auth, res: Response): Promise<void> => {
+    const contentId = req.params.id;
+    const userId = req?.user?.id as string;
+    console.log({ userId: req?.user?.id, contentId: req.params.id });
+    await deleteContent(userId, contentId);
+    res.status(200).json({
+        message: 'The item was successfully deleted from the database.',
+    });
+});
+
+/**
+ * @route /api/saveContent
+ * @method GET
+ */
+
+export const userRetrieveSavedContent = asyncHandler(
+    async (req: Auth, res: Response): Promise<void> => {
+        const userId = req.user?.id as string;
+        const savedContentList = await retrieveContent(userId);
+        res.status(200).json({
+            message: 'The saved items was successfully retrieved from the database',
+            data: savedContentList,
+        });
+    }
+);
 
 /**
  * This controller function handles the guest login.
@@ -126,7 +165,6 @@ export const userRefreshToken = asyncHandler(async (req: Request, res: Response)
     const { oldRefreshToken, checkDb }: { oldRefreshToken: string; checkDb: boolean } = req.body;
     const { newAccessToken, newRefreshToken } = await refreshToken(oldRefreshToken, checkDb);
 
-    console.log('access token:', newAccessToken);
     res.cookie('refreshToken', newRefreshToken, cookieOptions)
         .cookie('auth_token', newAccessToken, { ...cookieOptions, maxAge: authTokenMaxAge })
         .status(200)
@@ -139,6 +177,7 @@ export const userRefreshToken = asyncHandler(async (req: Request, res: Response)
 });
 
 /**
+ * This controller function returns the authenticated user’s information.
  * @route '/api/me'
  * @method GET
  */

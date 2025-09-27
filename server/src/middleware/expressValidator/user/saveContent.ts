@@ -10,7 +10,7 @@ function notEmptyProperty(errorMsg: string) {
 }
 
 export const saveContentValidator = checkSchema({
-    content_id: {
+    contentId: {
         notEmpty: notEmptyProperty('The content_id input field is empty.').notEmpty,
 
         isNumeric: {
@@ -18,7 +18,6 @@ export const saveContentValidator = checkSchema({
             bail: true,
         },
     },
-    title: notEmptyProperty('The title input field is empty.'),
-    description: notEmptyProperty('The description input field is empty.'),
-    image: notEmptyProperty('The image input field is empty.'),
+    contentType: notEmptyProperty('The contentType input field is empty.'),
+    images: notEmptyProperty('The image input field is empty.'),
 });
