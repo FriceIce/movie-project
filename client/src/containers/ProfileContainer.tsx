@@ -5,10 +5,10 @@ import SignOutContainer from './SignOutContainer';
 import { useState } from 'react';
 
 type Props = {
-    userContext: AuthContextType | null;
+    username: string | undefined;
 };
 
-function ProfileContainer({ userContext }: Props) {
+function ProfileContainer({ username }: Props) {
     const [displaySignoutOption, setDisplaySignoutOption] = useState<boolean>(false);
     return (
         <div
@@ -23,7 +23,7 @@ function ProfileContainer({ userContext }: Props) {
                 height={icons.avatar.height}
                 className={`size-10 rounded-[2px]`}
             ></Image>
-            <p className={`hidden md:block text-xs h-4`}>{userContext?.user?.username}</p>
+            <p className={`hidden md:block text-xs h-4`}>{username}</p>
             <SignOutContainer displaySignoutOption={displaySignoutOption} />
         </div>
     );

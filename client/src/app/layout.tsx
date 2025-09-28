@@ -4,12 +4,15 @@ import './globals.css';
 import SearchContext from '@/context/SearchContext';
 import AuthContext from '@/context/AuthContext';
 import SaveContentContext from '@/context/SaveContentContext';
+import getUsername from '@/utils/fetchUser';
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const username = await getUsername();
+
     return (
         <html lang="en">
             <body
@@ -18,7 +21,7 @@ export default function RootLayout({
                 <AuthContext>
                     <SaveContentContext>
                         <SearchContext>
-                            <Header>
+                            <Header username={username}>
                                 <div className="relative">{children}</div>
                             </Header>
                         </SearchContext>

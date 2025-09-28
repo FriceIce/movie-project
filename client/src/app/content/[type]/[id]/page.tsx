@@ -95,14 +95,13 @@ async function Content({ params }: Props) {
                                 backdropPath: content.backdrop_path,
                             }}
                             savedContent={savedContent?.data}
-                            children={
-                                <SaveContentIcons
-                                    screen="mobile"
-                                    contentId={contentId}
-                                    savedContent={savedContent?.data}
-                                />
-                            }
-                        />
+                        >
+                            <SaveContentIcons
+                                screen="mobile"
+                                contentId={contentId}
+                                savedContent={savedContent?.data}
+                            />
+                        </MobileSaveContent>
                         <div className="space-y-2 md:flex gap-4 text-xs sm:text-sm">
                             <p className="flex-[3] pt-2" style={{ lineHeight: '1.5' }}>
                                 {content.overview}

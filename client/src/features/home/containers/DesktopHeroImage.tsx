@@ -54,14 +54,13 @@ function DesktopHeroImage(props: Props) {
                             id={id}
                             savedContent={savedContent}
                             images={{ posterPath, backdropPath }}
-                            children={
-                                <SaveContentIcons
-                                    contentId={String(id)}
-                                    savedContent={savedContent}
-                                    screen="heroImg"
-                                />
-                            }
-                        />
+                        >
+                            <SaveContentIcons
+                                contentId={String(id)}
+                                savedContent={savedContent}
+                                screen="heroImg"
+                            />
+                        </ContentActionBtns>
                     </div>
                 </div>
             </div>
