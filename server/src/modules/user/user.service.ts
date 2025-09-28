@@ -16,7 +16,7 @@ const REFRESH_TOKEN_SECRET_KEY = process.env.JWT_REFRESH_SECRET_KEY as string;
  *
  * @param {LoginUser} body - An object containing the user's email and password.
  *
- * @returns {Promise<{ message: string, data: Omit<RegisterUser, 'password'>, token: string }>}
+ * @returns {Promise<{ message: string, data: Omit<RegisterUser, 'password' | 'id'> & { accessToken: string, refreshToken: string } }>}
  * An object containing a success message, user data (without password), and a JWT token.
  *
  * @throws {EmailError} If the provided email does not exist in the database.
@@ -44,8 +44,12 @@ export async function loginUser(body: LoginUser) {
 
     // Generate JWT token and refresh token
     const id: number = user[0].id;
-    const accessToken = jwt.sign({ id }, ACCESS_TOKEN_SECRET_KEY, { expiresIn: '15min' });
-    const refreshToken = jwt.sign({ id }, REFRESH_TOKEN_SECRET_KEY, { expiresIn: '7d' });
+    const accessToken = jwt.sign({ id }, ACCESS_TOKEN_SECRET_KEY, {
+        expiresIn: '15min',
+    });
+    const refreshToken = jwt.sign({ id }, REFRESH_TOKEN_SECRET_KEY, {
+        expiresIn: '7d',
+    });
 
     // Checks if there is an existing refresh token
     refreshTokenExists(id, refreshToken);
@@ -76,7 +80,7 @@ export async function loginUser(body: LoginUser) {
  * @throws {PostgreSQLError} If a database error occurs during the operation.
  */
 
-export async function registerUser(body: RegisterUser) {
+export async function registerUser(body: RegisterUser): Promise<void> {
     const { username, email, password } = body;
     const client = await pool.connect();
 
@@ -192,7 +196,7 @@ export async function deleteContent(userId: string, contentId: string) {
  * @returns {Promise<SavedContent[]>} A promise that resolves to an array of saved content items.
  * @throws {CustomError.NotFoundError} If no saved content is found for the specified user.
  */
-export async function retrieveContent(userId: string) {
+export async function retrieveContent(userId: string): Promise<SavedContent[]> {
     const query = `SELECT * FROM saved_content WHERE user_id = $1;`;
     const list = await runSql<SavedContent>(pool, query, [userId]);
 

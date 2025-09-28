@@ -33,14 +33,13 @@ function MobileHeroImage({ img, id, type, savedContent }: Props) {
                             id={id}
                             savedContent={savedContent}
                             images={img}
-                            children={
-                                <SaveContentIcons
-                                    contentId={String(id)}
-                                    savedContent={savedContent}
-                                    screen="heroImg"
-                                />
-                            }
-                        />
+                        >
+                            <SaveContentIcons
+                                contentId={String(id)}
+                                savedContent={savedContent}
+                                screen="heroImg"
+                            />
+                        </ContentActionBtns>
                     </div>
                 </section>
             )}

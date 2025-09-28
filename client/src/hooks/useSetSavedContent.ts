@@ -14,7 +14,7 @@ function useSetSavedContent({ setSaveBtn, ...props }: Props) {
             ...prev,
             [props.contentId]: isSaved,
         }));
-    }, []);
+    }, [props.contentId, props.savedContent, setSaveBtn]);
 }
 
 export default useSetSavedContent;

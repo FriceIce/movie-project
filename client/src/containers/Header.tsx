@@ -11,18 +11,18 @@ import { ReactNode, useContext, useEffect, useState } from 'react';
 import ContentOptions from '@/components/ContentOptions';
 import { Auth } from '@/context/AuthContext';
 import useIsScrolling from '@/hooks/useIsScrolling';
-import DesktopInputfield from './DesktopInputField';
 import DesktopSearchContainer from './DesktopSearchContainer';
 import ProfileContainer from './ProfileContainer';
+import DesktopInputfield from './DesktopInputfield';
 
 type Props = {
+    username: string | undefined;
     children: ReactNode;
 };
 
-const Header = ({ children }: Props) => {
+const Header = ({ children, username }: Props) => {
     const [openInput, setOpenInput] = useState<boolean>(false);
     const inputContext = useContext(InputContext);
-    const userContext = useContext(Auth);
     const desktopView = useMediaQuery(768);
     const scrolling = useIsScrolling();
     const pathname = usePathname();
@@ -89,7 +89,7 @@ const Header = ({ children }: Props) => {
                                         </Link>
                                     )}
 
-                                    <ProfileContainer userContext={userContext} />
+                                    <ProfileContainer username={username} />
                                 </div>
                             </div>
                         </section>
