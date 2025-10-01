@@ -9,11 +9,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useContext, useEffect, useState } from 'react';
 
 import ContentOptions from '@/components/ContentOptions';
-import { Auth } from '@/context/AuthContext';
 import useIsScrolling from '@/hooks/useIsScrolling';
+import DesktopInputfield from './DesktopInputfield';
 import DesktopSearchContainer from './DesktopSearchContainer';
 import ProfileContainer from './ProfileContainer';
-import DesktopInputfield from './DesktopInputfield';
 
 type Props = {
     username: string | undefined;
@@ -28,13 +27,12 @@ const Header = ({ children, username }: Props) => {
     const pathname = usePathname();
     const router = useRouter();
 
+    useEffect(() => {
+        setOpenInput(false);
+    }, [pathname]);
+
     // This conditions is used for conditionally rendering the menu options.
     const pathNameConditions = !pathname.includes('/content') && !pathname.includes('/search');
-
-    // Resets the search query when this page is opened.
-    useEffect(() => {
-        if (pathname.includes('/content')) inputContext?.setInput('');
-    }, [pathname, inputContext]);
 
     return (
         <>

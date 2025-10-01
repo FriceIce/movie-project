@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
 
 export type SearchContextType = {
     input: string | null;
@@ -17,6 +18,11 @@ function SearchContext({ children }: { children: ReactNode }) {
     const [input, setInput] = useState<string>('');
     const [searchResults, setSearchResults] = useState<MediaItem[]>([]);
     const [error, setError] = useState<number | null>(null);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        setInput('');
+    }, [pathname]);
 
     return (
         <InputContext.Provider
