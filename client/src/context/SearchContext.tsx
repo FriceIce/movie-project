@@ -1,7 +1,15 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { createContext, Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
+import {
+    createContext,
+    Dispatch,
+    ReactNode,
+    SetStateAction,
+    useContext,
+    useEffect,
+    useState,
+} from 'react';
 
 export type SearchContextType = {
     input: string | null;
@@ -10,9 +18,9 @@ export type SearchContextType = {
     setSearchResults: Dispatch<SetStateAction<MediaItem[]>>;
     error: number | null;
     setError: Dispatch<SetStateAction<number | null>>;
-} | null;
+};
 
-export const InputContext = createContext<SearchContextType>(null);
+export const InputContext = createContext<SearchContextType | null>(null);
 
 function SearchContext({ children }: { children: ReactNode }) {
     const [input, setInput] = useState<string>('');
@@ -34,3 +42,11 @@ function SearchContext({ children }: { children: ReactNode }) {
 }
 
 export default SearchContext;
+
+export function useSearchContext() {
+    const search = useContext(InputContext);
+
+    if (!search) throw new Error(`You need to call this context in a 'use client component.`);
+
+    return search;
+}

@@ -34,11 +34,15 @@ function useDebounce(searchContext: SearchContextType) {
                         })
                         .flat();
 
+                    // console.log({ checkingForPersonItem });
+
                     // Updates the search results and sets Error to null
-                    searchContext?.setSearchResults(checkingForPersonItem);
-                    searchContext?.setError(null);
+                    searchContext.setSearchResults(checkingForPersonItem);
+                    searchContext.setError(null);
                 }
             }
+
+            searchContext.setInput(searchTerm);
         }, 300),
         []
     );

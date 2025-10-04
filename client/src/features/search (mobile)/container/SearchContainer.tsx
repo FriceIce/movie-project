@@ -1,27 +1,27 @@
 'use client';
 
 import useDebounce from '@/hooks/useDebounce';
-import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { useContext, useEffect, useRef } from 'react';
-import { InputContext } from '../../../context/SearchContext';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/navigation';
+import { useEffect, useRef } from 'react';
+import { useSearchContext } from '../../../context/SearchContext';
 
 function SearchContainer() {
-    const context = useContext(InputContext);
+    const context = useSearchContext();
     const handleSearch = useDebounce(context);
     const desktopView = useMediaQuery(768);
     const firstRenderDone = useRef<boolean>(false);
     const router = useRouter();
 
     useEffect(() => {
-        if (!firstRenderDone.current) firstRenderDone.current = true;
-
         // In case the user changes the screen width to 768px and above.
         if (desktopView && firstRenderDone) {
             context?.setInput('');
             router.push('/home');
         }
+
+        if (!firstRenderDone.current) firstRenderDone.current = true;
     }, [desktopView, router, context]);
 
     return (
