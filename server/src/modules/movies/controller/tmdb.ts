@@ -133,6 +133,8 @@ export const retrieveSearchResults = asyncHandler(
         const { type } = req.params as { type: AllTypes };
         const searchQuery = req.query.query as string;
 
+        console.log({ searchQuery });
+
         const modifiedType = typeModifier(type);
         const searchResponse = await search<Search>(type, searchQuery);
 

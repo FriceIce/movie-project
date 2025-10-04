@@ -4,7 +4,7 @@ import SearchNotFound from '@/components/SearchNotFound';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { InputContext } from '../../../context/SearchContext';
 
 function ContentList() {
@@ -16,7 +16,7 @@ function ContentList() {
                 <h1 className="font-bold text-lg px-3">Recommended series and movies</h1>
             )}
 
-            {!context?.input ? (
+            {context?.input === '' ? (
                 <ul className="flex-1 space-y-2 h-full px-3 no-scrollbar">
                     {trending.map((content) => {
                         if (content.media_type === 'person') return;

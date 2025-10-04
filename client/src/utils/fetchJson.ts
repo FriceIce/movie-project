@@ -11,7 +11,6 @@ export async function fetchJson<T>(
 
     // Protocol and hostname received by the windows.location object.
     if (typeof window !== 'undefined') {
-        console.log(window.location.protocol);
         protocol = window.location.protocol;
         hostname = window.location.hostname;
     }
