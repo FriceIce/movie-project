@@ -21,6 +21,7 @@ function MobileSaveContent(props: Props) {
     const token = Cookies.get('auth_token') as string;
 
     useSetSavedContent({
+        saveBtn,
         setSaveBtn,
         contentId: props.contentId,
         savedContent: props.savedContent,
