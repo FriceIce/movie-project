@@ -1,12 +1,11 @@
 'use client';
 import { icons } from '@/assets/icons';
-import { InputContext } from '@/context/SearchContext';
+import { useSearchContext } from '@/context/SearchContext';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
-import { ArrowLeftIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
-import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { ReactNode, useContext, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import ContentOptions from '@/components/ContentOptions';
 import useIsScrolling from '@/hooks/useIsScrolling';
@@ -21,7 +20,7 @@ type Props = {
 
 const Header = ({ children, username }: Props) => {
     const [openInput, setOpenInput] = useState<boolean>(false);
-    const inputContext = useContext(InputContext);
+    const inputContext = useSearchContext();
     const desktopView = useMediaQuery(768);
     const scrolling = useIsScrolling();
     const pathname = usePathname();
@@ -41,10 +40,12 @@ const Header = ({ children, username }: Props) => {
                     className={`space-y-3 sticky inset-0 z-[2] h-max w-full py-4 px-5 transition duration-100  
         ${scrolling ? 'bg-[#000000cc]' : 'bg-transparent'}`}
                 >
-                    <div className="absolute z-[-1] bg-[#000000a6] inset-0 mask-image-bottom"></div>
-                    <div className={`mx-auto ${pathname.includes('/content') && 'max-w-[1300px]'}`}>
-                        <section className={`flex items-center`}>
-                            <div className="flex items-center justify-between w-full">
+                    <div className="absolute z-[-1] bg-[#101010d1] inset-0 mask-image-bottom"></div>
+                    <div
+                        className={`flex mx-auto ${pathname.includes('/content') && 'max-w-[1300px]'}`}
+                    >
+                        <section className={`flex items-center w-full`}>
+                            <div className="flex items-center md:justify-between w-full">
                                 <div className="flex items-center gap-8">
                                     <div className="flex items-end gap-2">
                                         <Image
@@ -81,13 +82,9 @@ const Header = ({ children, username }: Props) => {
                                         )}
                                     </div>
 
-                                    {desktopView === false && (
-                                        <Link href={'/search'}>
-                                            <MagnifyingGlassIcon className="size-7 md:hidden" />
-                                        </Link>
-                                    )}
-
-                                    <ProfileContainer username={username} />
+                                    <div className="hidden md:block">
+                                        <ProfileContainer username={username} />
+                                    </div>
                                 </div>
                             </div>
                         </section>

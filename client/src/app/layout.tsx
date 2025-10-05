@@ -5,6 +5,7 @@ import SearchContext from '@/context/SearchContext';
 import AuthContext from '@/context/AuthContext';
 import SaveContentContext from '@/context/SaveContentContext';
 import getUsername from '@/utils/fetchUser';
+import { MobileMenuOptions } from '@/containers/MobileMenuOptions';
 
 export default async function RootLayout({
     children,
@@ -22,7 +23,12 @@ export default async function RootLayout({
                     <SaveContentContext>
                         <SearchContext>
                             <Header username={username}>
-                                <div className="relative">{children}</div>
+                                <div className="relative flex flex-col h-full">
+                                    <div className="flex-1">{children}</div>
+                                    <div className="sticky bottom-0 z-[20] mb-[-8px]">
+                                        <MobileMenuOptions />
+                                    </div>
+                                </div>
                             </Header>
                         </SearchContext>
                     </SaveContentContext>
