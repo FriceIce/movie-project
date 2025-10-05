@@ -2,6 +2,7 @@ import { checkIfContentIsSaved } from '@/features/content/utils/CheckIfContentIs
 import { Dispatch, SetStateAction, useEffect } from 'react';
 
 type Props = {
+    saveBtn: Record<string, any>;
     setSaveBtn: Dispatch<SetStateAction<Record<string, string | boolean>>>;
     savedContent: SavedContent[] | undefined;
     contentId: string;
@@ -9,7 +10,7 @@ type Props = {
 
 function useSetSavedContent({ setSaveBtn, ...props }: Props) {
     useEffect(() => {
-        const isSaved = checkIfContentIsSaved(props.savedContent, props.contentId);
+        const isSaved = checkIfContentIsSaved(props.savedContent, props.contentId, props.saveBtn);
         setSaveBtn((prev) => ({
             ...prev,
             [props.contentId]: isSaved,

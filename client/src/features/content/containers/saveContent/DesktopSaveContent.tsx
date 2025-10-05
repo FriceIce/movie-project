@@ -21,6 +21,7 @@ function DesktopSaveContent(props: Props) {
     const { saveBtn, setSaveBtn } = useSaveContent();
     const token = Cookies.get('auth_token') as string;
     useSetSavedContent({
+        saveBtn,
         setSaveBtn,
         contentId: props.contentId,
         savedContent: props.savedContent,
