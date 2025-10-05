@@ -6,7 +6,7 @@ export const icons = {
     },
     search: {
         active: '/search-active-icon.svg',
-        notActive: '/search-icon.svg',
+        notActive: '/search-not-active-icon.svg',
         width: 26,
         height: 20,
         alt: 'Search Icon',
@@ -27,5 +27,12 @@ export const icons = {
         src: '/google-icon.svg',
         size: 128,
         alt: 'google svg icon',
+    },
+    home: {
+        active: '/home-active.svg',
+        notActive: '/home.svg',
+        src: '/home.svg',
+        alt: 'home icon',
+        size: 35,
     },
 };
