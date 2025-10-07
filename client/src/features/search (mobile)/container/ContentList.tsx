@@ -4,7 +4,7 @@ import SearchNotFound from '@/components/SearchNotFound';
 import { InformationCircleIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { InputContext } from '../../../context/SearchContext';
 
 function ContentList() {

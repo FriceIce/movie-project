@@ -1,8 +1,7 @@
 import { icons } from '@/assets/icons';
-import { AuthContextType } from '@/context/AuthContext';
 import Image from 'next/image';
-import SignOutContainer from './SignOutContainer';
 import { useState } from 'react';
+import SignOutContainer from './SignOutContainer';
 
 type Props = {
     username?: string | undefined;

@@ -20,7 +20,7 @@ type Prop = {
 function ContentActionBtns({ id, type, savedContent, images, children }: Prop) {
     const { saveBtn, setSaveBtn } = useSaveContent();
     const accessToken = Cookies.get('auth_token') as string;
-    useSetSavedContent({ setSaveBtn, contentId: String(id), savedContent });
+    useSetSavedContent({ setSaveBtn, contentId: String(id), savedContent, saveBtn });
     return (
         <>
             <Link href={`/content/${type}/` + id}>

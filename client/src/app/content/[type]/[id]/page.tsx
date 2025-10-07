@@ -20,7 +20,6 @@ type Props = {
 
 async function Content({ params }: Props) {
     const { id: contentId, type } = params;
-    console.log({ contentId });
     const token = await getToken();
     const savedContent = await retrieveSavedContent(token);
 
