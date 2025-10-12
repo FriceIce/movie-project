@@ -41,6 +41,8 @@ export async function saveContent(
         return false;
     }
 
+    console.log('saving content', props.contentId);
+
     // Set the save state to true
     setSave((prev) => ({
         ...prev,

@@ -2,12 +2,12 @@
 
 import { useSaveContent } from '@/context/SaveContentContext';
 import useSetSavedContent from '@/hooks/useSetSavedContent';
+import checkIfObjectIsEmpty from '@/utils/checkIfObjectIsEmpty';
 import { deleteSavedContent, saveContent } from '@/utils/saveDeleteRetrieveContent';
 import { CheckIcon, PlusIcon } from '@heroicons/react/20/solid';
 import Cookies from 'js-cookie';
 import { ReactNode } from 'react';
-import { checkIfContentIsSaved } from '../../utils/CheckIfContentIsSaved';
-import checkIfObjectIsEmpty from '@/utils/checkIfObjectIsEmpty';
+import { checkIfContentIsSaved } from '../../utils/checkIfContentIsSaved';
 
 type Props = {
     contentId: string;
@@ -20,6 +20,14 @@ type Props = {
 function DesktopSaveContent(props: Props) {
     const { saveBtn, setSaveBtn } = useSaveContent();
     const token = Cookies.get('auth_token') as string;
+
+    const getSavedState = () => {
+        return (
+            saveBtn[props.contentId] ??
+            checkIfContentIsSaved(props.savedContent, props.contentId, saveBtn)
+        );
+    };
+
     useSetSavedContent({
         saveBtn,
         setSaveBtn,
@@ -47,10 +55,10 @@ function DesktopSaveContent(props: Props) {
                 ) : (
                     <>
                         <PlusIcon
-                            className={`absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] text-white size-full lg:size-6 rounded-full ${checkIfContentIsSaved(props.savedContent, props.contentId, saveBtn) && 'transition-all duration-300 rotate-180 opacity-0'}`}
+                            className={`absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] text-white size-full lg:size-6 rounded-full ${getSavedState() && 'transition-all duration-300 rotate-180 opacity-0'}`}
                         />
                         <CheckIcon
-                            className={`absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] text-white size-full lg:size-6 rounded-full ${checkIfContentIsSaved(props.savedContent, props.contentId, saveBtn) ? 'transition-all duration-300 rotate-0 opacity-1 bg-custom-cyanBlue' : 'rotate-90 opacity-0'}`}
+                            className={`absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] text-white size-full lg:size-6 rounded-full ${getSavedState() ? 'transition-all duration-300 rotate-0 opacity-1 bg-custom-cyanBlue' : 'rotate-90 opacity-0'}`}
                         />
                     </>
                 )}

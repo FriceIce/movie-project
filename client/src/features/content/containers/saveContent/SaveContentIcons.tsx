@@ -1,5 +1,5 @@
 import { BookmarkIcon, CheckIcon, PlusIcon } from '@heroicons/react/24/outline';
-import { checkIfContentIsSaved } from '../../utils/CheckIfContentIsSaved';
+import { checkIfContentIsSaved } from '../../utils/checkIfContentIsSaved';
 
 type Props = {
     screen: 'mobile' | 'desktop' | 'heroImg';

@@ -1,6 +1,6 @@
 'use client';
 import { ReactNode } from 'react';
-import { checkIfContentIsSaved } from '@/features/content/utils/CheckIfContentIsSaved';
+import { checkIfContentIsSaved } from '@/features/content/utils/checkIfContentIsSaved';
 import { deleteSavedContent, saveContent } from '@/utils/saveDeleteRetrieveContent';
 import { BookmarkIcon, InformationCircleIcon } from '@heroicons/react/20/solid';
 import { useSaveContent } from '@/context/SaveContentContext';
