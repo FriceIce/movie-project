@@ -34,7 +34,7 @@ const Header = ({ children, username }: Props) => {
     const pathNameConditions = !pathname.includes('/content') && !pathname.includes('/search');
 
     return (
-        <>
+        <div className="flex flex-col h-full">
             {!pathname.includes('/search') && pathname !== '/' && (
                 <header
                     className={`space-y-3 sticky inset-0 z-[2] h-max w-full py-4 px-5 transition duration-100  
@@ -111,7 +111,7 @@ const Header = ({ children, username }: Props) => {
                     )}
                 </>
             )}
-        </>
+        </div>
     );
 };
 

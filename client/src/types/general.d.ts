@@ -48,5 +48,6 @@ type User = {
 type SavedContent = {
     content_id: number;
     content_type: 'movie' | 'tv';
-    image: string;
+    poster_posterPath: string;
+    backdrop_path: string;
 };

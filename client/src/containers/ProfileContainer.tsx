@@ -21,7 +21,7 @@ function ProfileContainer({ username }: Props) {
                 width={icons.avatar.width}
                 height={icons.avatar.height}
                 className={`size-8 md:size-10 rounded-[2px]`}
-            ></Image>
+            />
             <p className={`hidden md:block text-xs h-4`}>{username || 'User'}</p>
             <SignOutContainer displaySignoutOption={displaySignoutOption} />
         </div>
