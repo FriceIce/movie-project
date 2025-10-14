@@ -17,7 +17,7 @@ export default async function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`antialiased w-dvw text-custom-white pb-2 bg-custom-black ${jakarta.className} overflow-x-hidden`}
+                className={`antialiased w-dvw h-dvh text-custom-white pb-2 bg-custom-black ${jakarta.className} overflow-x-hidden`}
             >
                 <AuthContext>
                     <SaveContentContext>
