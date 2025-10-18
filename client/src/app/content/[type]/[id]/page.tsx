@@ -66,7 +66,7 @@ async function Content({ params }: Props) {
                         >
                             {title}
                         </h1>
-                        <div className="flex items-center gap-2 text-xs sm:text-sm lg:text-base">
+                        <div className="flex items-center gap-2 text-sm sm:text-base lg:text-base">
                             {seasons && <p className="">{seasons} Seasons</p>}
                             <p>{releaseDate.slice(0, 4)}</p>
                             {runtime && <p>{formatRuntime(runtime)}</p>}
@@ -104,12 +104,12 @@ async function Content({ params }: Props) {
                                 savedContent={savedContent?.data}
                             />
                         </MobileSaveContent>
-                        <div className="space-y-2 md:flex gap-4 text-xs sm:text-sm">
+                        <div className="space-y-2 md:flex gap-4 text-sm sm:text-base">
                             <p className="flex-[3] pt-2" style={{ lineHeight: '1.5' }}>
                                 {content.overview}
                             </p>
 
-                            <div className="flex-[2]">
+                            <div className="flex-[2] text-xs sm:text-sm">
                                 <Credits contentDetails={content} credits={credits.data} />
                             </div>
                         </div>

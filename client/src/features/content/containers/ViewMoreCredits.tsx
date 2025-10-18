@@ -20,7 +20,7 @@ function ViewMoreCredits(prop: Prop) {
         <div>
             <div
                 aria-label="Pop up window displaying more detailed content credits."
-                className={`fixed inset-0 z-10 flex flex-col items-center h-dvh w-dvw bg-neutral-900 text-neutral-400 text-sm md:text-base space-y-8 py-4 overflow-y-auto ${!showCreditsWindow && 'hidden'}`}
+                className={`fixed inset-0 z-10 flex flex-col items-center h-dvh w-dvw bg-neutral-900 text-neutral-400 text-base md:text-lg space-y-8 py-4 overflow-y-auto ${!showCreditsWindow && 'hidden'}`}
             >
                 <div className="flex gap-1 w-full pr-3">
                     <h2
@@ -30,7 +30,7 @@ function ViewMoreCredits(prop: Prop) {
                     </h2>
 
                     <button className="rounded-full" onClick={() => setShowCreditsWindow(false)}>
-                        <XMarkIcon className="size-6 rounded-full bg-neutral-700 text-white" />
+                        <XMarkIcon className="size-6 md:size-8 rounded-full bg-neutral-700 text-white" />
                     </button>
                 </div>
                 <div className="flex flex-col items-center gap-8 overflow-y-auto no-scrollbar w-full">
