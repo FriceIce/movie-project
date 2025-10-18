@@ -24,7 +24,7 @@ function ProfileContainer({ username }: Props) {
                 height={icons.avatar.height}
                 className={`size-8 md:size-10 rounded-[2px]`}
             />
-            <p className={`hidden md:block h-4`}>{username || auth?.user?.username || 'User'}</p>
+            <p className={`hidden md:block`}>{username || auth?.user?.username || 'User'}</p>
         </div>
     );
 }
