@@ -17,17 +17,17 @@ export default async function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`antialiased w-dvw h-dvh text-custom-white pb-2 bg-custom-black ${jakarta.className} overflow-x-hidden`}
+                className={`antialiased flex flex-col w-dvw min-h-dvh text-custom-white pb-2 bg-custom-black ${jakarta.className} overflow-x-hidden`}
             >
                 <AuthContext>
                     <SaveContentContext>
                         <SearchContext>
                             <Header username={user?.username}>
-                                <div className="relative flex flex-col h-full">
+                                <div className="relative flex-1 flex flex-col">
                                     <div className="flex-1">{children}</div>
-                                    <div className="sticky bottom-0 z-[20] mb-[-8px]">
+                                    <footer className="sticky bottom-0 z-[20] mb-[-8px]">
                                         <MobileMenuOptions />
-                                    </div>
+                                    </footer>
                                 </div>
                             </Header>
                         </SearchContext>
