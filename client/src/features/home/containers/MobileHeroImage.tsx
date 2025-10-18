@@ -5,13 +5,14 @@ import { useMediaQuery } from '@/hooks/useMediaQuery';
 import Image from 'next/image';
 
 type Props = {
+    title: string;
     img: contentImages;
     id: number;
     type: 'tv' | 'movie';
     savedContent: SavedContent[] | undefined;
 };
 
-function MobileHeroImage({ img, id, type, savedContent }: Props) {
+function MobileHeroImage({ img, title, id, type, savedContent }: Props) {
     const mobileScreenWidth = useMediaQuery(768); // We're seeking after a false value.
     return (
         <>
@@ -29,6 +30,7 @@ function MobileHeroImage({ img, id, type, savedContent }: Props) {
                     <div className="flex justify-center gap-4 w-full p-4 relative">
                         <div className="absolute z-[-1] inset-0 bg-[#000] h-[200%] translate-y-[-50%] mask-image-top rounded-lg" />
                         <ContentActionBtns
+                            title={title}
                             type={type}
                             id={id}
                             savedContent={savedContent}

@@ -83,6 +83,7 @@ async function page({ params }: Props) {
     return (
         <div>
             <MobileHeroImageContainer
+                title={content.title}
                 id={content.id}
                 type={type as 'movie' | 'tv'}
                 posterPath={content.poster_path}

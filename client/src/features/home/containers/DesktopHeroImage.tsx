@@ -50,6 +50,7 @@ function DesktopHeroImage(props: Props) {
                     </p>
                     <div className="space-x-3 flex">
                         <ContentActionBtns
+                            title={title}
                             type={type}
                             id={id}
                             savedContent={savedContent}

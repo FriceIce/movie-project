@@ -26,6 +26,7 @@ const Movies = async () => {
     return (
         <div className="flex flex-col">
             <MobileHeroImageContainer
+                title={happyGilmore2.title}
                 id={happyGilmore2.id}
                 type="movie"
                 posterPath={happyGilmore2.poster_path}
