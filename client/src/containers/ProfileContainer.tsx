@@ -1,19 +1,21 @@
+'use client';
 import { icons } from '@/assets/icons';
+import { Auth } from '@/context/AuthContext';
 import Image from 'next/image';
-import { useState } from 'react';
-import SignOutContainer from './SignOutContainer';
+import { useContext } from 'react';
 
 type Props = {
     username?: string | undefined;
 };
 
 function ProfileContainer({ username }: Props) {
-    const [displaySignoutOption, setDisplaySignoutOption] = useState<boolean>(false);
+    const auth = useContext(Auth);
+
     return (
         <div
             className="relative flex flex-col items-center gap-1"
             role="button"
-            onClick={() => setDisplaySignoutOption((prev) => !prev)}
+            onClick={() => (window.location.href = '/profile')}
         >
             <Image
                 src={icons.avatar.src}
@@ -22,8 +24,9 @@ function ProfileContainer({ username }: Props) {
                 height={icons.avatar.height}
                 className={`size-8 md:size-10 rounded-[2px]`}
             />
-            <p className={`hidden md:block text-xs h-4`}>{username || 'User'}</p>
-            <SignOutContainer displaySignoutOption={displaySignoutOption} />
+            <p className={`hidden md:block text-xs h-4`}>
+                {username || auth?.user?.username || 'User'}
+            </p>
         </div>
     );
 }

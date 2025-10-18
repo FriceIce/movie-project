@@ -6,18 +6,18 @@ import { deleteSavedContent, saveContent } from '@/utils/saveDeleteRetrieveConte
 import { BookmarkIcon, PlusIcon } from '@heroicons/react/20/solid';
 import Cookies from 'js-cookie';
 import { ReactNode } from 'react';
-import { checkIfContentIsSaved } from '../../utils/checkIfContentIsSaved';
+import { checkIfContentIsSaved } from '../../utils/CheckIfContentIsSaved';
 
 type Props = {
     contentId: string;
-    contentType: string;
+    contentType: 'movie' | 'tv';
     images: contentImages;
     savedContent: SavedContent[] | undefined;
     children: ReactNode;
 };
 
 function MobileSaveContent(props: Props) {
-    const { saveBtn, setSaveBtn } = useSaveContent();
+    const { saveBtn, setSaveBtn, setSavedTitles } = useSaveContent();
     const token = Cookies.get('auth_token') as string;
 
     const getSavedState = () => {
@@ -40,8 +40,8 @@ function MobileSaveContent(props: Props) {
                 className={`md:hidden flex gap-1 items-center justify-center text-sm lg:text-base font-semibold rounded-[2px] w-full h-[42px] px-4 ${getSavedState() ? 'bg-custom-cyanBlue text-white' : 'bg-white text-black'}`}
                 onClick={() =>
                     !saveBtn[props.contentId]
-                        ? saveContent(token, props, setSaveBtn)
-                        : deleteSavedContent(token, props.contentId, setSaveBtn)
+                        ? saveContent(token, props, setSaveBtn, setSavedTitles)
+                        : deleteSavedContent(token, props.contentId, setSaveBtn, setSavedTitles)
                 }
             >
                 {checkIfObjectIsEmpty(saveBtn) ? (

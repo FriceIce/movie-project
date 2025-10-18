@@ -1,4 +1,4 @@
-import { checkIfContentIsSaved } from '@/features/content/utils/checkIfContentIsSaved';
+import { checkIfContentIsSaved } from '@/features/content/utils/CheckIfContentIsSaved';
 import { Dispatch, SetStateAction, useEffect } from 'react';
 
 type Props = {

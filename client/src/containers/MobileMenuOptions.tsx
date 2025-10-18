@@ -3,9 +3,10 @@
 import { icons } from '@/assets/icons';
 import Image from 'next/image';
 import Link from 'next/link';
-import ProfileContainer from './ProfileContainer';
-import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import ProfileContainer from './ProfileContainer';
+import SignOutContainer from './SignOutContainer';
 
 export function MobileMenuOptions() {
     const path = usePathname();
@@ -73,8 +74,23 @@ export function MobileMenuOptions() {
                     href={'/profile'}
                     className="flex flex-col items-center justify-center gap-2 w-max"
                 >
-                    <ProfileContainer />
-                    {<p className={`text-xs text-gray ${active === 2 && 'text-white'}`}>Profile</p>}
+                    {path !== '/profile' && (
+                        <>
+                            <ProfileContainer />
+                            <p className={`text-xs text-gray ${active === 2 && 'text-white'}`}>
+                                Profile
+                            </p>
+                        </>
+                    )}
+
+                    {path === '/profile' && (
+                        <>
+                            <SignOutContainer />
+                            <p className={`text-xs text-gray ${active === 2 && 'text-white'}`}>
+                                Log out
+                            </p>
+                        </>
+                    )}
                 </Link>
             </div>
         </div>

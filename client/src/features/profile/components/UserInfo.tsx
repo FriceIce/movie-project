@@ -4,12 +4,13 @@ import { icons } from '@/assets/icons';
 import Image from 'next/image';
 
 type Props = {
-    info: Pick<User, 'email' | 'username'>;
+    email: string | undefined;
+    username: string | undefined;
 };
 
-function UserInfo({ info }: Props) {
+function UserInfo({ username, email }: Props) {
     return (
-        <div className="flex flex-col items-center gap-2 border px-2">
+        <div className="flex flex-col items-center gap-2 px-2">
             <Image
                 src={icons.avatar.src}
                 alt={icons.avatar.alt}
@@ -19,8 +20,8 @@ function UserInfo({ info }: Props) {
             />
 
             <div className="text-sm text-center">
-                <p className="">{info.username}</p>
-                <p className="">{info.email}</p>
+                <p className="">{username}</p>
+                <p className="">{email}</p>
             </div>
         </div>
     );

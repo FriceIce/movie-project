@@ -73,7 +73,7 @@ async function Content({ params }: Props) {
                             <p>{content.origin_country[0]}</p>
                             <DesktopSaveContent
                                 contentId={contentId}
-                                contentType={type}
+                                contentType={type as 'movie' | 'tv'}
                                 images={{
                                     posterPath: content.poster_path,
                                     backdropPath: content.backdrop_path,
@@ -89,7 +89,7 @@ async function Content({ params }: Props) {
                         </div>
                         <MobileSaveContent
                             contentId={contentId}
-                            contentType={type}
+                            contentType={type as 'movie' | 'tv'}
                             images={{
                                 posterPath: content.poster_path,
                                 backdropPath: content.backdrop_path,

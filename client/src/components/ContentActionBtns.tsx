@@ -1,6 +1,5 @@
 'use client';
 import { ReactNode } from 'react';
-import { checkIfContentIsSaved } from '@/features/content/utils/checkIfContentIsSaved';
 import { deleteSavedContent, saveContent } from '@/utils/saveDeleteRetrieveContent';
 import { BookmarkIcon, InformationCircleIcon } from '@heroicons/react/20/solid';
 import { useSaveContent } from '@/context/SaveContentContext';
@@ -8,6 +7,7 @@ import checkIfObjectIsEmpty from '@/utils/checkIfObjectIsEmpty';
 import useSetSavedContent from '@/hooks/useSetSavedContent';
 import Cookies from 'js-cookie';
 import Link from 'next/link';
+import { checkIfContentIsSaved } from '@/features/content/utils/CheckIfContentIsSaved';
 
 type Prop = {
     id: number;
@@ -18,7 +18,7 @@ type Prop = {
 };
 
 function ContentActionBtns({ id, type, savedContent, images, children }: Prop) {
-    const { saveBtn, setSaveBtn } = useSaveContent();
+    const { saveBtn, setSaveBtn, setSavedTitles } = useSaveContent();
     const accessToken = Cookies.get('auth_token') as string;
     useSetSavedContent({ setSaveBtn, contentId: String(id), savedContent, saveBtn });
     return (
@@ -45,9 +45,10 @@ function ContentActionBtns({ id, type, savedContent, images, children }: Prop) {
                                   contentId: String(id),
                                   contentType: type,
                               },
-                              setSaveBtn
+                              setSaveBtn,
+                              setSavedTitles
                           )
-                        : deleteSavedContent(accessToken, String(id), setSaveBtn)
+                        : deleteSavedContent(accessToken, String(id), setSaveBtn, setSavedTitles)
                 }
             >
                 {checkIfObjectIsEmpty(saveBtn) ? (

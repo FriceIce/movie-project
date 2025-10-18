@@ -1,4 +1,6 @@
 'use client';
+import { retrieveSavedContent } from '@/utils/saveDeleteRetrieveContent';
+import Cookies from 'js-cookie';
 import {
     createContext,
     Dispatch,
@@ -12,6 +14,8 @@ import {
 type SaveContentType = {
     saveBtn: Record<string, string | boolean>;
     setSaveBtn: Dispatch<SetStateAction<Record<string, string | boolean>>>;
+    savedTitles: SavedContent[];
+    setSavedTitles: Dispatch<SetStateAction<SavedContent[]>>;
 };
 
 type Props = {
@@ -22,7 +26,26 @@ const SaveContent = createContext<SaveContentType | null>(null);
 
 function SaveContentContext({ children }: Props) {
     const [saveBtn, setSaveBtn] = useState<Record<string, string | boolean>>({});
-    return <SaveContent.Provider value={{ saveBtn, setSaveBtn }}>{children}</SaveContent.Provider>;
+    const [savedTitles, setSavedTitles] = useState<SavedContent[]>([]);
+
+    useEffect(() => {
+        const fetchSavedTitles = async () => {
+            const accessToken = Cookies.get('auth_token') ?? '';
+            const savedMedia = await retrieveSavedContent(accessToken);
+
+            if (!savedMedia) return [];
+
+            setSavedTitles(savedMedia.data);
+        };
+
+        fetchSavedTitles();
+    }, []);
+
+    return (
+        <SaveContent.Provider value={{ saveBtn, setSaveBtn, savedTitles, setSavedTitles }}>
+            {children}
+        </SaveContent.Provider>
+    );
 }
 
 export default SaveContentContext;

@@ -7,18 +7,18 @@ import { deleteSavedContent, saveContent } from '@/utils/saveDeleteRetrieveConte
 import { CheckIcon, PlusIcon } from '@heroicons/react/20/solid';
 import Cookies from 'js-cookie';
 import { ReactNode } from 'react';
-import { checkIfContentIsSaved } from '../../utils/checkIfContentIsSaved';
+import { checkIfContentIsSaved } from '../../utils/CheckIfContentIsSaved';
 
 type Props = {
     contentId: string;
-    contentType: string;
+    contentType: 'movie' | 'tv';
     images: contentImages;
     savedContent: SavedContent[] | undefined;
     children: ReactNode;
 };
 
 function DesktopSaveContent(props: Props) {
-    const { saveBtn, setSaveBtn } = useSaveContent();
+    const { saveBtn, setSaveBtn, setSavedTitles } = useSaveContent();
     const token = Cookies.get('auth_token') as string;
 
     const getSavedState = () => {
@@ -46,8 +46,8 @@ function DesktopSaveContent(props: Props) {
                 className="relative hidden md:flex size-6 lg:size-8 border rounded-full justify-center items-center ml-6"
                 onClick={() =>
                     !saveBtn[props.contentId]
-                        ? saveContent(token, props, setSaveBtn)
-                        : deleteSavedContent(token, props.contentId, setSaveBtn)
+                        ? saveContent(token, props, setSaveBtn, setSavedTitles)
+                        : deleteSavedContent(token, props.contentId, setSaveBtn, setSavedTitles)
                 }
             >
                 {checkIfObjectIsEmpty(saveBtn) ? (
