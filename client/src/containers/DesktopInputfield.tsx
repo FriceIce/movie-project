@@ -1,6 +1,7 @@
 'use client';
 import { SearchContextType } from '@/context/SearchContext';
 import useDebounce from '@/hooks/useDebounce';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import React, { Dispatch, useEffect } from 'react';
 
@@ -14,6 +15,7 @@ type Props = {
 function DesktopInputfield(props: Props) {
     const { inputContext, openInputField, setOpenInputField, desktopView } = props;
     const handleSearch = useDebounce(inputContext);
+    const isDesktop = useMediaQuery(768);
 
     useEffect(() => {
         // Clears the input when the user closes it or changes screen width to 768px and above.
@@ -22,7 +24,7 @@ function DesktopInputfield(props: Props) {
 
     return (
         <div
-            className={`flex items-center ${openInputField ? 'bg-custom-black border transition-all duration-300' : 'border-none bg-transparent transition-none'}`}
+            className={`flex items-center ${openInputField && isDesktop ? 'bg-custom-black border transition-all duration-300' : 'border-none bg-transparent transition-none'}`}
         >
             <button
                 className={`flex justify-center ${openInputField ? 'items-center' : 'items-end'} size-[40px]`}
@@ -31,23 +33,25 @@ function DesktopInputfield(props: Props) {
                 <MagnifyingGlassIcon className="size-7 hidden md:block" />
             </button>
 
-            <div
-                className={`overflow-hidden transition-all duration-300 ${
-                    openInputField ? 'max-w-xs opacity-100' : 'max-w-0 opacity-0'
-                }`}
-            >
-                <input
-                    type="text"
-                    placeholder="Movies, series"
-                    value={inputContext?.input || ''}
-                    className="w-full bg-transparent outline-none px-2 placeholder-neutral-300 text-sm"
-                    onChange={(e) => {
-                        handleSearch(e.target.value.trim());
-                        inputContext?.setInput(e.target.value);
-                        inputContext?.setSearchResults([]);
-                    }}
-                />
-            </div>
+            {isDesktop && (
+                <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                        openInputField ? 'max-w-xs opacity-100' : 'max-w-0 opacity-0'
+                    }`}
+                >
+                    <input
+                        type="text"
+                        placeholder="Movies, series"
+                        value={inputContext?.input || ''}
+                        className="w-full bg-transparent outline-none px-2 placeholder-neutral-300 text-sm"
+                        onChange={(e) => {
+                            handleSearch(e.target.value.trim());
+                            inputContext?.setInput(e.target.value);
+                            inputContext?.setSearchResults([]);
+                        }}
+                    />
+                </div>
+            )}
         </div>
     );
 }
