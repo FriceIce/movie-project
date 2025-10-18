@@ -19,6 +19,7 @@ const page = async () => {
     return (
         <div className="flex flex-col">
             <MobileHeroImageContainer
+                title={strangerThings.name}
                 id={strangerThings.id}
                 type="tv"
                 posterPath={strangerThings.poster_path}

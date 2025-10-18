@@ -12,12 +12,13 @@ import { checkIfContentIsSaved } from '@/features/content/utils/CheckIfContentIs
 type Prop = {
     id: number;
     type: 'tv' | 'movie';
+    title: string;
     images: { posterPath: string; backdropPath: string };
     savedContent: SavedContent[] | undefined;
     children: ReactNode;
 };
 
-function ContentActionBtns({ id, type, savedContent, images, children }: Prop) {
+function ContentActionBtns({ id, type, title, savedContent, images, children }: Prop) {
     const { saveBtn, setSaveBtn, setSavedTitles } = useSaveContent();
     const accessToken = Cookies.get('auth_token') as string;
     useSetSavedContent({ setSaveBtn, contentId: String(id), savedContent, saveBtn });
@@ -41,6 +42,7 @@ function ContentActionBtns({ id, type, savedContent, images, children }: Prop) {
                         ? saveContent(
                               accessToken,
                               {
+                                  title,
                                   images,
                                   contentId: String(id),
                                   contentType: type,

@@ -3,6 +3,7 @@ import MobileHeroImage from './MobileHeroImage';
 
 type Props = {
     id: number;
+    title: string;
     posterPath: string;
     backdropPath: string;
     type: 'tv' | 'movie';
@@ -11,6 +12,7 @@ type Props = {
 
 async function MobileHeroImageContainer({
     posterPath,
+    title,
     backdropPath,
     type,
     id,
@@ -29,6 +31,7 @@ async function MobileHeroImageContainer({
                 style={{ backgroundColor: bgColor }}
             />
             <MobileHeroImage
+                title={title}
                 type={type}
                 img={{ backdropPath, posterPath }}
                 id={id}

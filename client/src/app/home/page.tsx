@@ -18,6 +18,7 @@ const Home = async () => {
             <MobileHeroImageContainer
                 id={movieDetails.id}
                 type="movie"
+                title={movieDetails.title}
                 posterPath={movieDetails.poster_path}
                 backdropPath={movieDetails.backdrop_path}
                 savedContent={savedContent?.data}
