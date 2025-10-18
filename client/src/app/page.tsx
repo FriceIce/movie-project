@@ -46,7 +46,7 @@ export default function SignIn() {
             <div className="hidden md:block absolute inset-0 z-[-1] w-full mask-image-mobile-poster">
                 <div className="absolute inset-0 size-full bg-[#00000059]" />
                 <Image
-                    src={'https://image.tmdb.org/t/p/w1280/56v2KjBlU4XaOv9rVYEQypROD7P.jpg'}
+                    src={'https://image.tmdb.org/t/p/original/56v2KjBlU4XaOv9rVYEQypROD7P.jpg'}
                     alt="Login poster"
                     height={0}
                     width={1280}
