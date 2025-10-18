@@ -9,9 +9,16 @@ type Prop = {
 };
 function TrailerPlayerContainer({ contentDetails, trailer }: Prop) {
     const [videoStarted, setVideoStarted] = useState<boolean>(false);
-
-    // Custom hook
     const screenWidth = useMediaQuery(1280);
+
+    const imagePath = contentDetails.backdrop_path;
+    const mobileImage = imagePath
+        ? `https://image.tmdb.org/t/p/w780/${imagePath}`
+        : '/trailer-image-placeholder.svg';
+
+    const desktopImage = imagePath
+        ? `https://image.tmdb.org/t/p/${screenWidth ? 'original' : 'w1280'}/${imagePath}`
+        : '/trailer-image-placeholder.svg';
 
     // ref for trailer width and height.
     const imageRefMobile = useRef<HTMLImageElement | null>(null);
@@ -27,21 +34,21 @@ function TrailerPlayerContainer({ contentDetails, trailer }: Prop) {
                 <>
                     <Image
                         ref={imageRefMobile}
-                        src={`https://image.tmdb.org/t/p/w780/` + contentDetails.backdrop_path}
-                        alt={'content Image'}
+                        src={mobileImage}
+                        alt={'media image'}
                         width={780}
                         height={439}
                         style={{ height: 'auto' }}
-                        className="h-auto w-full mask-image-bottom lg:hidden"
+                        className={`h-auto ${imagePath ? 'w-full mask-image-bottom' : 'w-1/2 mx-auto mb-4'} lg:hidden`}
                     />
                     <Image
                         ref={imageRefDesktop}
-                        src={`https://image.tmdb.org/t/p/${screenWidth ? 'original' : 'w1280'}/${contentDetails.backdrop_path}`}
-                        alt={'content Image'}
+                        src={desktopImage}
+                        alt={'media image'}
                         width={1280}
                         height={720}
                         style={{ height: 'auto' }}
-                        className="h-auto w-full mask-image-bottom hidden lg:block"
+                        className={`h-auto ${imagePath ? 'w-full mask-image-bottom' : 'w-1/2 mx-auto'} hidden lg:block`}
                     />
                 </>
             )}

@@ -2,8 +2,10 @@
 import { poppins } from '@/assets/fonts';
 import ContentActionBtns from '@/components/ContentActionBtns';
 import SaveContentIcons from '@/features/content/containers/saveContent/SaveContentIcons';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { retrieveCompanyLogo } from '@/utils/retrieveCompanyLogo';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 type Props = {
     id: number;
@@ -19,15 +21,22 @@ type Props = {
 function DesktopHeroImage(props: Props) {
     const { overview, id, companyLogo, type, backdropPath, title, savedContent, posterPath } =
         props;
-    const extractCompanyLogo = companyLogo && retrieveCompanyLogo(companyLogo);
+    const [imageQuality, setImageQuality] = useState<string>('w1280');
+    const bigScreen = useMediaQuery(1536);
+    useEffect(() => {
+        if (bigScreen) setImageQuality('original');
+        if (!bigScreen) setImageQuality('w1280');
+    }, [bigScreen]);
 
+    const extractCompanyLogo = companyLogo && retrieveCompanyLogo(companyLogo);
     return (
         <>
             <div className="relative hidden md:block w-dvw h-[50vh] lg:min-h-[600px] 2xl:min-h-[700px]">
                 <Image
-                    src={`https://image.tmdb.org/t/p/w1280` + backdropPath}
+                    src={`https://image.tmdb.org/t/p/${imageQuality}` + backdropPath}
                     width={1280}
                     height={720}
+                    priority
                     alt="poster"
                     className="absolute inset-0 z-[-1] translate-y-[-115px] object-cover object-center brightness-[80%] w-full mask-image-bottom"
                 />
