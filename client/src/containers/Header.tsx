@@ -12,6 +12,7 @@ import useIsScrolling from '@/hooks/useIsScrolling';
 import DesktopInputfield from './DesktopInputfield';
 import DesktopSearchContainer from './DesktopSearchContainer';
 import ProfileContainer from './ProfileContainer';
+import SignOutContainer from './SignOutContainer';
 
 type Props = {
     username: string | undefined;
@@ -69,7 +70,7 @@ const Header = ({ children, username }: Props) => {
                                     </div>
                                 </div>
 
-                                <div className="flex items-center gap-4">
+                                <div className="flex items-center gap-4 text-xs lg:text-sm">
                                     <div className="flex flex-col items-center gap-1">
                                         <DesktopInputfield
                                             desktopView={desktopView}
@@ -77,13 +78,20 @@ const Header = ({ children, username }: Props) => {
                                             openInputField={openInput}
                                             setOpenInputField={setOpenInput}
                                         />
-                                        {!openInput && (
-                                            <p className="hidden text-xs md:block">Search</p>
-                                        )}
+                                        {!openInput && <p className="hidden md:block">Search</p>}
                                     </div>
 
-                                    <div className="hidden md:block">
-                                        <ProfileContainer username={username} />
+                                    <div className="hidden md:block text-xs lg:text-sm self-end">
+                                        {pathname !== '/profile' && (
+                                            <ProfileContainer username={username} />
+                                        )}
+
+                                        {pathname === '/profile' && (
+                                            <div className="flex flex-col items-center gap-1">
+                                                <SignOutContainer />
+                                                <p className="">Log out</p>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>

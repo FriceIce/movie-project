@@ -18,7 +18,7 @@ function SignOutContainer() {
         <>
             {
                 <button onClick={() => signOut()} className={``}>
-                    <ArrowLeftEndOnRectangleIcon className="size-6" />
+                    <ArrowLeftEndOnRectangleIcon className="size-6 md:size-7" />
                 </button>
             }
         </>

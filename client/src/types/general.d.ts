@@ -46,6 +46,7 @@ type User = {
 
 // Saved content
 type SavedContent = {
+    title: string;
     content_id: number;
     content_type: 'movie' | 'tv';
     poster_path: string;

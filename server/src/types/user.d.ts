@@ -13,6 +13,7 @@ type LoginUser = {
 type UserData = Pick<RegisterUser, 'email' | 'username'>;
 
 type SavedContent = {
+    title: string;
     contentId: number;
     contentType: 'movie' | 'tv';
     images: { posterPath: string; backdropPath: string };

@@ -72,6 +72,7 @@ async function Content({ params }: Props) {
                             {runtime && <p>{formatRuntime(runtime)}</p>}
                             <p>{content.origin_country[0]}</p>
                             <DesktopSaveContent
+                                title={title}
                                 contentId={contentId}
                                 contentType={type as 'movie' | 'tv'}
                                 images={{
@@ -88,6 +89,7 @@ async function Content({ params }: Props) {
                             </DesktopSaveContent>
                         </div>
                         <MobileSaveContent
+                            title={title}
                             contentId={contentId}
                             contentType={type as 'movie' | 'tv'}
                             images={{
