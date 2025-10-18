@@ -109,7 +109,7 @@ const ContentOptions = ({ pathname }: Prop) => {
             {/* All the genres */}
 
             {genres && open && (
-                <div className="fixed inset-0 z-[5] bg-[#171717ea] flex flex-row-reverse h-dvh w-dvw">
+                <div className="fixed inset-0 z-[5] bg-[#171717ea] flex flex-row-reverse h-dvh w-dvw pb-[70px] md:pb-0">
                     <div className="relative w-full h-full">
                         <button
                             className="absolute top-4 right-5 lg:right-7 size-7"

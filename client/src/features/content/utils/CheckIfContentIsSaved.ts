@@ -5,7 +5,7 @@ export function checkIfContentIsSaved(
     contentId: string,
     saveBtn?: Record<string, any> | undefined
 ) {
-    if (!savedContent) console.error({ savedContent });
+    if (!savedContent) return;
 
     const list = new Set(savedContent?.map((item) => item.content_id));
     const objectLengthIsEmpty = checkIfObjectIsEmpty(saveBtn || {}); // output: true or false
