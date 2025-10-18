@@ -7,14 +7,15 @@ const errormessage = `We couldn't save this content. Please try again or reload 
 
 type Body = {
     contentId: string;
-    contentType: string;
+    contentType: 'movie' | 'tv';
     images: { posterPath: string; backdropPath: string };
 };
 
 export async function saveContent(
     token: string,
     props: Body,
-    setSave: Dispatch<SetStateAction<Record<string, string | boolean>>>
+    setSave: Dispatch<SetStateAction<Record<string, string | boolean>>>,
+    setSavedTitles: Dispatch<SetStateAction<SavedContent[]>>
 ): Promise<boolean> {
     const response = await fetch(`http://localhost:3001/api/saveContent`, {
         method: 'POST',
@@ -34,20 +35,27 @@ export async function saveContent(
                 'POST',
                 { oldRefreshToken: refreshToken }
             );
-            saveContent(accessToken.data.token, props, setSave);
+            saveContent(accessToken.data.token, props, setSave, setSavedTitles);
             return false;
         }
         alert(errormessage);
         return false;
     }
 
-    console.log('saving content', props.contentId);
-
     // Set the save state to true
     setSave((prev) => ({
         ...prev,
         [props.contentId]: true,
     }));
+
+    // Add the content to the list
+    const content = {
+        content_id: Number(props.contentId),
+        content_type: props.contentType,
+        poster_path: props.images.posterPath,
+        backdrop_path: props.images.backdropPath,
+    };
+    setSavedTitles((prev) => [{ ...content }, ...prev]);
 
     // Returns true if the response is ok.
     return true;
@@ -56,7 +64,8 @@ export async function saveContent(
 export async function deleteSavedContent(
     token: string,
     contentId: string,
-    setSave: Dispatch<SetStateAction<Record<string, string | boolean>>>
+    setSave: Dispatch<SetStateAction<Record<string, string | boolean>>>,
+    setSavedTitles: Dispatch<SetStateAction<SavedContent[]>>
 ): Promise<boolean> {
     const response = await fetch(`http://localhost:3001/api/saveContent/${contentId}`, {
         method: 'DELETE',
@@ -76,7 +85,7 @@ export async function deleteSavedContent(
                 { oldRefreshToken: refreshToken }
             );
 
-            deleteSavedContent(accessToken.data.token, contentId, setSave);
+            deleteSavedContent(accessToken.data.token, contentId, setSave, setSavedTitles);
             return false;
         }
         alert(errormessage);
@@ -88,6 +97,9 @@ export async function deleteSavedContent(
         ...prev,
         [contentId]: false,
     }));
+
+    // Removes content from the list.
+    setSavedTitles((prev) => prev.filter((title) => title.content_id !== Number(contentId)));
 
     // Returns true if the response is ok.
     return true;
@@ -109,5 +121,5 @@ export async function retrieveSavedContent(
         return null;
     }
 
-    return response.json() as Promise<FetchResponse<SavedContent[]>>;
+    return await response.json();
 }

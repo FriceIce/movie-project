@@ -16,6 +16,7 @@ type SavedContent = {
     contentId: number;
     contentType: 'movie' | 'tv';
     images: { posterPath: string; backdropPath: string };
+    created_at: string;
 };
 
 interface JwtPayloadWithId extends jwt.JwtPayload {

@@ -1,11 +1,11 @@
 import { cookies } from 'next/headers';
 import { fetchJson } from './fetchJson';
 
-async function getUsername() {
+async function getUserInfo() {
     const cookieStore = cookies();
     const oldAccessToken = cookieStore.get('auth_token')?.value || '';
     const oldRefreshToken = cookieStore.get('refreshToken')?.value || '';
-    let username = '';
+    let user: Pick<User, 'email' | 'username'> | null = null;
 
     if (!oldAccessToken && oldRefreshToken) {
         const tokenResponse = await fetchJson<FetchResponse<{ token: string }>>(
@@ -17,17 +17,20 @@ async function getUsername() {
 
         // Set access token
         const accessToken = tokenResponse.data.token;
-        username = await fetchUsername(accessToken);
-    } else {
-        username = await fetchUsername(oldAccessToken);
+        user = await fetchUserInfo(accessToken);
+    } else if (oldAccessToken) {
+        user = await fetchUserInfo(oldAccessToken);
     }
 
-    return username;
+    return user;
 }
 
-export default getUsername;
+export default getUserInfo;
 
-async function fetchUsername(accessToken: string) {
-    const user = await fetchJson<FetchResponse<{ username: string }>>(accessToken, '/me');
-    return user.data.username;
+async function fetchUserInfo(accessToken: string) {
+    const user = await fetchJson<FetchResponse<{ username: string; email: string }>>(
+        accessToken,
+        '/me'
+    );
+    return user.data;
 }

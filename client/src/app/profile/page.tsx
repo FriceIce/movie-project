@@ -1,12 +1,20 @@
 import UserInfo from '@/features/profile/components/UserInfo';
 import UserSavedTitles from '@/features/profile/components/UserSavedTitles';
-import React from 'react';
+import getUserInfo from '@/utils/fetchUser';
+import getToken from '@/utils/getToken';
+import { retrieveSavedContent } from '@/utils/saveDeleteRetrieveContent';
 
-function page() {
+async function page() {
+    const accessToken = await getToken();
+    const [savedTitles, userInfo] = await Promise.all([
+        retrieveSavedContent(accessToken),
+        getUserInfo(),
+    ]);
+
     return (
         <div className="mt-4">
-            <UserInfo info={{ email: 'Fabian.Jackson@gmail.com', username: 'Fabian Jackson' }} />
-            <UserSavedTitles />
+            <UserInfo email={userInfo?.email} username={userInfo?.username} />
+            <UserSavedTitles storedTitles={savedTitles?.data} />
         </div>
     );
 }

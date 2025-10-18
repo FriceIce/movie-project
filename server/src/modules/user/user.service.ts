@@ -2,7 +2,6 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { pool, runSql } from '../../config/database';
 import { CustomError } from '../../error/errorClasses';
-import { baseImageUrl } from '../../utils/helperFuncs';
 import { dbUpdateRefreshToken } from './utils/dbUpdateRefreshToken';
 import { refreshTokenExists } from './utils/refreshTokenExisting';
 import { retrieveOldRefreshToken } from './utils/retrieveOldRefreshToken';
@@ -203,7 +202,8 @@ export async function retrieveContent(userId: string): Promise<SavedContent[]> {
     if (!list || list.length === 0)
         throw new CustomError.NotFoundError('No saved content found for this user.');
 
-    return list;
+    // Sorts the media from recent to latest.
+    return list.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 }
 
 /**

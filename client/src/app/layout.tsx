@@ -1,18 +1,18 @@
-import Header from '@/containers/Header';
 import { jakarta } from '@/assets/fonts';
-import './globals.css';
-import SearchContext from '@/context/SearchContext';
+import Header from '@/containers/Header';
+import { MobileMenuOptions } from '@/containers/MobileMenuOptions';
 import AuthContext from '@/context/AuthContext';
 import SaveContentContext from '@/context/SaveContentContext';
-import getUsername from '@/utils/fetchUser';
-import { MobileMenuOptions } from '@/containers/MobileMenuOptions';
+import SearchContext from '@/context/SearchContext';
+import getUserInfo from '@/utils/fetchUser';
+import './globals.css';
 
 export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const username = await getUsername();
+    const user = await getUserInfo();
 
     return (
         <html lang="en">
@@ -22,7 +22,7 @@ export default async function RootLayout({
                 <AuthContext>
                     <SaveContentContext>
                         <SearchContext>
-                            <Header username={username}>
+                            <Header username={user?.username}>
                                 <div className="relative flex flex-col h-full">
                                     <div className="flex-1">{children}</div>
                                     <div className="sticky bottom-0 z-[20] mb-[-8px]">
