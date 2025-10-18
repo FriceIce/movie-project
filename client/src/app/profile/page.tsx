@@ -12,7 +12,7 @@ async function page() {
     ]);
 
     return (
-        <div className="pt-8 space-y-8 md:space-y-20">
+        <div className="pt-8 pb-4 space-y-8 md:space-y-20">
             <UserInfo email={userInfo?.email} username={userInfo?.username} />
             <UserSavedTitles storedTitles={savedTitles?.data} />
         </div>

@@ -40,24 +40,18 @@ function RenderSavedTitles({ titles }: { titles: SavedContent[] | undefined }) {
     if (!titles || titles.length === 0)
         return <p className="text-neutral-500 mx-6">No saved titles yet.</p>;
     return (
-        <ul className="card-grid-auto-fill">
-            {titles?.map((title, i) => {
+        <ul className="card-grid">
+            {titles?.map((title) => {
                 return (
-                    <li
-                        key={i}
-                        className="relative h-[210px] md:h-[323px] lg:h-[363px] 2xl:h-[480px] shadow-blackShadow"
-                    >
+                    <li key={title.content_id} className="relative shadow-blackShadow">
                         <Link href={`/content/${title.content_type}/${title.content_id}`}>
                             <Image
                                 src={`https://image.tmdb.org/t/p/w500/${title.poster_path}`}
                                 alt={title.content_type + ' content.'}
                                 width={342}
                                 height={513}
-                                className="h-full object-cover"
+                                className="size-full"
                             />
-                            <div className="absolute bottom-0 w-full bg-[#0000009c] text-sm md:text-base p-2 md:px-2 md:py-4 font-semibold">
-                                {title.title}
-                            </div>
                         </Link>
                     </li>
                 );
