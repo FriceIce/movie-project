@@ -1,5 +1,6 @@
 'use client';
 
+import { poppins } from '@/assets/fonts';
 import { useSaveContent } from '@/context/SaveContentContext';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,8 +27,8 @@ function UserSavedTitles({ storedTitles }: Props) {
     }, [savedTitles]);
 
     return (
-        <section className="space-y-2 mt-8 px-2">
-            <h1 className="font-semibold text-2xl">My List</h1>
+        <section className="space-y-2 md:space-y-4 px-2">
+            <h1 className={`font-semibold text-2xl md:text-4xl ${poppins.className}`}>My List</h1>
             <RenderSavedTitles titles={titlesToRender} />
         </section>
     );
@@ -42,15 +43,21 @@ function RenderSavedTitles({ titles }: { titles: SavedContent[] | undefined }) {
         <ul className="card-grid-auto-fill">
             {titles?.map((title, i) => {
                 return (
-                    <li key={i} className="h-[183px]">
+                    <li
+                        key={i}
+                        className="relative h-[210px] md:h-[323px] lg:h-[363px] 2xl:h-[480px] shadow-blackShadow"
+                    >
                         <Link href={`/content/${title.content_type}/${title.content_id}`}>
                             <Image
                                 src={`https://image.tmdb.org/t/p/w500/${title.poster_path}`}
                                 alt={title.content_type + ' content.'}
-                                width={500}
-                                height={750}
-                                className="h-full"
+                                width={342}
+                                height={513}
+                                className="h-full object-cover"
                             />
+                            <div className="absolute bottom-0 w-full bg-[#0000009c] text-sm md:text-base p-2 md:px-2 md:py-4 font-semibold">
+                                {title.title}
+                            </div>
                         </Link>
                     </li>
                 );

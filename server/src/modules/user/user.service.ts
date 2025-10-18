@@ -165,14 +165,15 @@ export async function refreshToken(oldRefreshToken: string, checkDb: boolean | u
  * @throws {PostgreSQLError} If the insertion fails due to a database error (e.g., constraint violation).
  */
 export async function saveContent(body: SavedContent, userId: string): Promise<void> {
-    const { contentId, images, contentType } = body;
-    const query = `INSERT INTO saved_content(content_id, user_id, poster_path, backdrop_path, content_type) VALUES($1, $2, $3, $4, $5)`;
+    const { contentId, images, contentType, title } = body;
+    const query = `INSERT INTO saved_content(content_id, user_id, poster_path, backdrop_path, content_type, title) VALUES($1, $2, $3, $4, $5, $6)`;
     await runSql(pool, query, [
         contentId,
         userId,
         images.posterPath,
         images.backdropPath,
         contentType,
+        title,
     ]);
 }
 

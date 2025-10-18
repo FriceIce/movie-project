@@ -10,6 +10,7 @@ import { ReactNode } from 'react';
 import { checkIfContentIsSaved } from '../../utils/CheckIfContentIsSaved';
 
 type Props = {
+    title: string;
     contentId: string;
     contentType: 'movie' | 'tv';
     images: contentImages;

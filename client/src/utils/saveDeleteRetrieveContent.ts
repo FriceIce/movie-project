@@ -6,6 +6,7 @@ const refreshToken = Cookie.get('refreshToken');
 const errormessage = `We couldn't save this content. Please try again or reload the page.`;
 
 type Body = {
+    title: string;
     contentId: string;
     contentType: 'movie' | 'tv';
     images: { posterPath: string; backdropPath: string };
@@ -50,6 +51,7 @@ export async function saveContent(
 
     // Add the content to the list
     const content = {
+        title: props.title,
         content_id: Number(props.contentId),
         content_type: props.contentType,
         poster_path: props.images.posterPath,

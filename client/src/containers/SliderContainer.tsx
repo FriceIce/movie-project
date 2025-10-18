@@ -133,7 +133,7 @@ function SliderContainer({ images, rank, contentType }: Prop) {
                                             alt={title + 'poster'}
                                             width={342}
                                             height={513}
-                                            className="rounded size-full shadow-blackShadow"
+                                            className="h-full rounded size-full shadow-blackShadow"
                                         />
                                     </Link>
                                 </li>
