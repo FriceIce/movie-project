@@ -57,10 +57,11 @@ function ContentActionBtns({ id, type, title, savedContent, images, children }: 
                     children
                 ) : (
                     <>
-                        {checkIfContentIsSaved(savedContent, String(id), saveBtn) && (
+                        {(saveBtn[id] ??
+                            checkIfContentIsSaved(savedContent, String(id), saveBtn)) && (
                             <BookmarkIcon className="size-5 md:size-6" />
                         )}
-                        {!checkIfContentIsSaved(savedContent, String(id), saveBtn)
+                        {!saveBtn[id] || !checkIfContentIsSaved(savedContent, String(id), saveBtn)
                             ? 'Add To List'
                             : 'Added'}
                     </>
