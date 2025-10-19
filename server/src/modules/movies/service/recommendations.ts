@@ -1,3 +1,4 @@
+import { cache } from '../../../config/cache';
 import { CustomError } from '../../../error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
@@ -17,6 +18,11 @@ export default async function recommendations(
     id: string,
     page: Page
 ): Promise<Recommendations> {
+    const cached = cache.get<Recommendations>(`recommendation/${id}`);
+    if (cached) {
+        return cached;
+    }
+
     const { options } = fetchConfig('GET');
     const url =
         type === 'movie' ? recommendationsUrl(id, page).movie : recommendationsUrl(id, page).tv;
@@ -29,8 +35,8 @@ export default async function recommendations(
         );
     }
 
-    // Ensures that the poster_path values inside `response.results` get the full image URL
-    // pathModifier(response.results as Movie[]);
+    // Set cache
+    cache.set(`recommendation/${id}`, response);
 
     return response;
 }

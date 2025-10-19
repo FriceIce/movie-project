@@ -1,3 +1,4 @@
+import { cache } from '../../../config/cache';
 import { CustomError } from '../../../error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
@@ -13,6 +14,9 @@ import { topRatedUrl } from './utils/url/topRated';
  * @throws {NotFoundError} If no results are found.
  */
 export default async function topRated(type: AllTypes, page: Page): Promise<TopRated> {
+    const cached = cache.get<TopRated>(`topRated/${type}/${page}`);
+    if (cached) return cached;
+
     const { options } = fetchConfig('GET');
     const url = type === 'movie' ? topRatedUrl(page).movie : topRatedUrl(page).tv;
     const response = await fetchResponse<TopRated>('get', url, options);
@@ -22,8 +26,8 @@ export default async function topRated(type: AllTypes, page: Page): Promise<TopR
         throw new CustomError.NotFoundError(`No top rated ${modifiedType} found.`);
     }
 
-    // Ensures that the poster_path values inside `response.results` get the full image URL
-    // pathModifier(response.results as Movie[]);
+    // Set cache
+    cache.set(`topRated/${type}/${page}`, response);
 
     return response;
 }

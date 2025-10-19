@@ -1,3 +1,4 @@
+import { cache } from '../../../config/cache';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { creditsUrl } from './utils/url/credits';
 
@@ -11,6 +12,9 @@ import { creditsUrl } from './utils/url/credits';
  */
 
 export async function credits(type: MovieOrTv, id: string): Promise<Credits> {
+    const cached = cache.get<Credits>('credits/' + id);
+    if (cached) return cached;
+
     const { options } = fetchConfig('GET');
     const url = creditsUrl(id, type);
 
@@ -18,6 +22,9 @@ export async function credits(type: MovieOrTv, id: string): Promise<Credits> {
     if (!response) {
         throw new Error('The fetch request was sent but did not succeed.');
     }
+
+    // Set cache
+    cache.set('credits/' + id, response);
 
     return response;
 }
