@@ -2,16 +2,28 @@ import 'dotenv/config';
 import pg, { QueryResult } from 'pg';
 import { CustomError } from '../error/errorClasses';
 
+const env = process.env.NODE_ENV || 'development';
+
 // Database connection
 const { Pool } = pg;
 
-export const pool = new Pool({
-    host: process.env.HOST || '',
-    user: process.env.USER || '',
-    port: Number(process.env.DB_PORT),
-    password: process.env.PASSWORD || '',
-    database: process.env.DATABASE || '',
-});
+const databaseConfig =
+    env === 'production'
+        ? {
+              connectionString: process.env.CONNECTION_STRING,
+              ssl: {
+                  rejectUnauthorized: false,
+              },
+          }
+        : {
+              host: process.env.HOST || '',
+              user: process.env.USER || '',
+              port: Number(process.env.DB_PORT),
+              password: process.env.PASSWORD || '',
+              database: process.env.DATABASE || '',
+          };
+
+export const pool = new Pool(databaseConfig);
 pool.on('connect', () => console.log('Database connection established'));
 pool.on('release', () => console.log('Database connection released'));
 
