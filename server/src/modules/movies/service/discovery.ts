@@ -3,6 +3,7 @@ import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
 import { discoveryUrl } from './utils/url/discovery';
 import { pathModifier } from './utils/pathModifier';
+import { cache } from '../../../config/cache';
 
 /**
  * Retrieves a list of movies or TV shows from the TMDB discovery endpoint.
@@ -24,6 +25,9 @@ export default async function discovery(
     page: Page,
     queryParam?: string[]
 ): Promise<Discovery> {
+    const cached = cache.get<Discovery>(`discovery/${type}/${page}/${queryParam}`);
+    if (cached) return cached;
+
     const { options, query } = fetchConfig('GET', [], queryParam);
     const url = type === 'movie' ? discoveryUrl(page).movie + query : discoveryUrl(page).tv + query;
 
@@ -34,8 +38,8 @@ export default async function discovery(
         throw new CustomError.NotFoundError(`No ${modifiedType} found.`);
     }
 
-    // Ensures that the poster_path values inside `response.results` get the full image URL
-    // pathModifier(response.results as Movie[]);
+    // Set cache
+    cache.set(`discovery/${type}/${page}/${queryParam}`, response);
 
     return response;
 }

@@ -1,3 +1,4 @@
+import { cache } from '../../../config/cache';
 import { CustomError } from '../../../error/errorClasses';
 import { fetchConfig, fetchResponse } from '../../../utils/helperFuncs';
 import { typeModifier } from '../controller/utils/typeModifier';
@@ -13,6 +14,9 @@ import { popularUrl } from './utils/url/popular';
  * @throws {NotFoundError} If no results are found.
  */
 export default async function popular(type: AllTypes, page: Page): Promise<Popular> {
+    const cached = cache.get<Popular>(`popular/${type}/${page}`);
+    if (cached) return cached;
+
     const { options } = fetchConfig('GET');
     const url = type === 'movie' ? popularUrl(page).movie : popularUrl(page).tv;
     const response = await fetchResponse<Popular>('get', url, options);
@@ -22,8 +26,8 @@ export default async function popular(type: AllTypes, page: Page): Promise<Popul
         throw new CustomError.NotFoundError(`No popular ${modifiedType} found.`);
     }
 
-    // Ensures that the poster_path values inside `response.results` get the full image URL
-    // pathModifier(response.results as Movie[]);
+    // Set cache
+    cache.set(`popular/${type}/${page}`, response);
 
     return response;
 }
