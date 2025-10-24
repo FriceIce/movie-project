@@ -105,7 +105,7 @@ export const databaseConfig =
           };
 ```
 
-3. Run ./createTable in config/database to create all tables.
+3. Run `./createTable` in `config/database` to create all tables.
 
 ```typescript
 async function createTables(pool: Pool) {
@@ -137,5 +137,5 @@ createTables(pool);
 
 ### Mobile View
 
-<img src="./client/public/movie-project-media-details-img.PNG" alt="media details" width="393" style="width: 100%; max-width: 393px; max-height: 852px;">
-<img src="./client/public/movie-project-profile-img.PNG" alt="media details" width="393" style="width: 100%; max-width: 393px; max-height: 852px;">
+<img src="./client/public/movie-project-media-details-img.PNG" alt="media details" width="393" style="width: 100%; max-width: 193px; max-height: 652px;">
+<img src="./client/public/movie-project-profile-img.PNG" alt="media details" width="393" style="width: 100%; max-width: 193px; max-height: 652px;">
