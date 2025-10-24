@@ -4,6 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "create-tables": "tsx src/config/database/createTables.ts",
     "server": "tsx watch src/index.ts"
   },
   "keywords": [],

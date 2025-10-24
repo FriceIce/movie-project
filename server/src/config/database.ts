@@ -7,7 +7,7 @@ const env = process.env.NODE_ENV || 'development';
 // Database connection
 const { Pool } = pg;
 
-const databaseConfig =
+export const databaseConfig =
     env === 'production'
         ? {
               connectionString: process.env.CONNECTION_STRING,
