@@ -49,19 +49,29 @@ git clone https://github.com/FriceIce/movie-project.git
 cd movie-project
 ```
 
-3. Navigate to client/server:
+3. Navigate to:
 
-```bash
-/movie-project cd client
-/movie-project cd server
-```
+    - Client
 
-4. Install dependencies:
+    ```bash
+        /movie-project cd client
+    ```
 
-```bash
-/movie-project/client install
-/movie-project/server install
-```
+    - Server
+
+    ```bash
+        /movie-project cd server
+    ```
+
+4. Install dependencies for:
+    - Client
+    ```bash
+        /movie-project/client npm install
+    ```
+    - Server
+    ```bash
+    /movie-project/server npm install
+    ```
 
 ### Environment Variables
 
@@ -84,7 +94,7 @@ Create a `.env` file inside the `/server` folder root and add the following:
 This project uses PostgreSQL for storing data. <br>
 
 1. Create a local or cloud database.
-2. Set all database connection values in the environment variables.
+2. Set all database connection values in the environment variables inside the `/server` folder.
 
 ```typescript
 const env = process.env.NODE_ENV || 'development';
@@ -107,12 +117,8 @@ export const databaseConfig =
 
 3. Run `./createTable` in `config/database` to create all tables.
 
-```typescript
-async function createTables(pool: Pool) {
-    /* function logic... */
-}
-
-createTables(pool);
+```bash
+npm run create-tables
 ```
 
 ## Usage
