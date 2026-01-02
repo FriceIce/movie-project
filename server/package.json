@@ -4,8 +4,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "create-tables": "tsx src/config/database/createTables.ts",
-    "start": "tsx src/index.ts"
+    "build": "tsc",
+    "start": "node --optimize_for_size --max_old_space_size=460 dist/index.js",
+    "server": "tsx src/index.ts",
+    "create-tables": "tsx src/config/database/createTables.ts"
   },
   "keywords": [],
   "author": "",
