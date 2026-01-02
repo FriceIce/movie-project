@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "create-tables": "tsx src/config/database/createTables.ts",
-    "start": "tsx watch src/index.ts"
+    "start": "tsx src/index.ts"
   },
   "keywords": [],
   "author": "",
