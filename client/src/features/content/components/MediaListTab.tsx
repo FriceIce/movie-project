@@ -19,7 +19,7 @@ function MediaListTab({ label, media }: Prop) {
 
                 return (
                     <li key={content.id} className="" role="button" tabIndex={0}>
-                        <Link href={`/content/${contentType}/${content.id}`}>
+                        <Link href={`/content/${contentType}/${content.id}`} prefetch={false}>
                             <Image
                                 src={'https://image.tmdb.org/t/p/w342' + content.poster_path}
                                 alt={title + 'poster'}

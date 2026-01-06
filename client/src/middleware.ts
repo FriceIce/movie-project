@@ -20,13 +20,14 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
     matcher: [
-        '/',
-        '/movies',
-        '/home',
-        '/content/:path*',
-        '/tv',
-        '/genre/:path*',
-        '/search',
-        '/profile',
+        // '/',
+        // '/movies',
+        // '/home',
+        // '/content/:path*',
+        // '/tv',
+        // '/genre/:path*',
+        // '/search',
+        // '/profile',
+        '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.svg$).*)',
     ],
 };

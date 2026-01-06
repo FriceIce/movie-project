@@ -128,7 +128,7 @@ const ContentOptions = ({ pathname }: Prop) => {
                             {genres.map((genre) => {
                                 return (
                                     <li key={genre.id} className="">
-                                        <Link href={`/genre/${type}/${genre.id}`}>
+                                        <Link href={`/genre/${type}/${genre.id}`} prefetch={false}>
                                             <button className="" onClick={() => setOpen(false)}>
                                                 {genre.name}
                                             </button>
