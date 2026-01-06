@@ -17,14 +17,13 @@ type Inputs = {
 export default function SignIn() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
+    const [showPassword, setShowPassword] = useState<boolean>(false);
     const userContext = useContext(Auth);
 
     const { register, handleSubmit } = useForm<Inputs>();
     const router = useRouter();
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        console.log(data);
-
         // Disables the `Log in` button.
         setIsDisabled(true);
 
@@ -41,6 +40,16 @@ export default function SignIn() {
         }
     };
 
+    // Instead of writing two nearly identical image components within the JSX code.
+    const showPasswordImage = (src: string) => (
+        <Image
+            src={src}
+            height={20}
+            width={20}
+            alt="Show password icon"
+            className="size-5 object-contain"
+        />
+    );
     return (
         <div className={`gap-4 py-16 px-4 md:px-0`}>
             <div className="hidden md:block absolute inset-0 z-[-1] w-full mask-image-mobile-poster">
@@ -87,13 +96,24 @@ export default function SignIn() {
                             <label htmlFor="password" className={`text-sm`}>
                                 Password
                             </label>
-                            <input
-                                id="password"
-                                type="password"
-                                value={process.env.USER_PASSWORD}
-                                {...register('password')}
-                                className="bg-[#1c2432] h-[45px] text-sm outline-none px-2 placeholder-white rounded border"
-                            />
+                            <div className="bg-[#1c2432] w-full flex items-center border rounded">
+                                <input
+                                    id="password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    value={process.env.USER_PASSWORD}
+                                    {...register('password')}
+                                    className="bg-transparent h-[45px] flex-1 text-sm outline-none px-2 placeholder-white"
+                                />
+                                <div
+                                    role="button"
+                                    className="px-4"
+                                    onClick={() => setShowPassword((prev) => !prev)}
+                                >
+                                    {showPasswordImage(
+                                        showPassword ? '/show-password.svg' : '/hide-password.svg'
+                                    )}
+                                </div>
+                            </div>
                             <button type="button" className="text-neutral-300 text-sm self-start">
                                 Forgot password?
                             </button>
@@ -111,24 +131,6 @@ export default function SignIn() {
                         </section>
                     </form>
                 </div>
-                {/* <div className="relative bg-neutral-200 h-[1px]">
-                    <p className="absolute bottom-1/2 translate-y-[50%] left-1/2 translate-x-[-50%] bg-custom-black p-1 text-xs">
-                        OR
-                    </p>
-                </div>
-                <div
-                    role="button"
-                    className="flex justify-center items-center gap-2 bg-custom-white text-black font-bold p-2 h-[50px] w-full rounded"
-                >
-                    <Image
-                        src={icons.google.src}
-                        alt={icons.google.alt}
-                        height={icons.google.size}
-                        width={icons.google.size}
-                        className="flex-none size-6"
-                    />
-                    <span className="flex-none">Log in with Google</span>
-                </div> */}
             </div>
         </div>
     );
