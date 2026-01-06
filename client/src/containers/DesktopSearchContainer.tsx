@@ -24,7 +24,10 @@ function DesktopSearchContainer({ searchTerm }: Props) {
                     return (
                         !content.adult && (
                             <li key={content.id} className={``}>
-                                <Link href={`/content/${content.media_type}/${content.id}`}>
+                                <Link
+                                    href={`/content/${content.media_type}/${content.id}`}
+                                    prefetch={false}
+                                >
                                     <Image
                                         src={
                                             'https://image.tmdb.org/t/p/w500' + content.poster_path

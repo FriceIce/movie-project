@@ -44,7 +44,10 @@ function RenderSavedTitles({ titles }: { titles: SavedContent[] | undefined }) {
             {titles?.map((title) => {
                 return (
                     <li key={title.content_id} className="relative shadow-blackShadow">
-                        <Link href={`/content/${title.content_type}/${title.content_id}`}>
+                        <Link
+                            href={`/content/${title.content_type}/${title.content_id}`}
+                            prefetch={false}
+                        >
                             <Image
                                 src={`https://image.tmdb.org/t/p/w500/${title.poster_path}`}
                                 alt={title.content_type + ' content.'}

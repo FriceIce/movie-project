@@ -24,7 +24,7 @@ function ContentActionBtns({ id, type, title, savedContent, images, children }: 
     useSetSavedContent({ setSaveBtn, contentId: String(id), savedContent, saveBtn });
     return (
         <>
-            <Link href={`/content/${type}/` + id}>
+            <Link href={`/content/${type}/` + id} prefetch={false}>
                 <button
                     type="button"
                     className="flex gap-2 items-center text-custom-black 2xl:text-lg px-6 py-2 lg:px-6 lg:py-[8px] 2xl:py-[11px] bg-white rounded-[2px] shadow-md"
