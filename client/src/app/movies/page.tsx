@@ -7,7 +7,7 @@ import { sortByVote } from '@/utils/sortByVote';
 // movies json
 import ad from '@/assets/data/movie/actionAdventure.json';
 import animeMovies from '@/assets/data/movie/anime.json';
-import happyGilmore2 from '@/assets/data/movie/HappyGilmore2.json';
+import happyGilmore2 from '@/assets/data/movie/happyGilmore2.json';
 import horrorMovies from '@/assets/data/movie/horror.json';
 import nowPlaying from '@/assets/data/movie/nowPlaying.json';
 import trendingMovies from '@/assets/data/movie/trending.json';
