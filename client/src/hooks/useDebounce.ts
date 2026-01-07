@@ -1,12 +1,14 @@
 import { SearchContextType } from '@/context/SearchContext';
 import { debounce } from '@/utils/debounce';
 import { useCallback } from 'react';
+import Cookies from 'js-cookie';
 import { fetchSearch } from './fetchSearch';
 
 function useDebounce(searchContext: SearchContextType) {
+    const accessToken = Cookies.get('auth_token');
     const handleSearch = useCallback(
         debounce(async (searchTerm: string) => {
-            const token = process.env.NEXT_PUBLIC_SERVER_TOKEN as string;
+            const token = accessToken as string;
 
             if (searchTerm) {
                 // Returns an object or error code

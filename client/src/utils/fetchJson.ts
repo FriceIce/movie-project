@@ -6,16 +6,12 @@ export async function fetchJson<T>(
     method?: Method,
     body?: Record<string, any>
 ): Promise<T> {
-    let protocol = 'http:';
-    let hostname = 'localhost';
+    const origin: string =
+        process.env.NODE_ENV === 'production'
+            ? 'https://git.heroku.com/movie-project.git'
+            : 'http://localhost:3001';
 
-    // Protocol and hostname received by the windows.location object.
-    if (typeof window !== 'undefined') {
-        protocol = window.location.protocol;
-        hostname = window.location.hostname;
-    }
-
-    const response = await fetch(`${protocol}//${hostname}:3001/api` + endpoint, {
+    const response = await fetch(`${origin}/api` + endpoint, {
         ...(method && { method }),
         headers: {
             'Content-Type': 'application/json',

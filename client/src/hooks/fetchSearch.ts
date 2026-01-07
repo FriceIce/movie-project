@@ -1,5 +1,10 @@
 export async function fetchSearch<T>(token: string, searchTerm: string): Promise<T | number> {
-    const response = await fetch('http://localhost:3001/api/search/multi?query=' + searchTerm, {
+    const origin: string =
+        process.env.NODE_ENV === 'production'
+            ? 'https://git.heroku.com/movie-project.git'
+            : 'http://localhost:3001';
+
+    const response = await fetch(origin + '/api/search/multi?query=' + searchTerm, {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
