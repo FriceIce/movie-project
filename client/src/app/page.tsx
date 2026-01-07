@@ -98,10 +98,11 @@ export default function SignIn() {
                             </label>
                             <div className="bg-[#1c2432] w-full flex items-center border rounded">
                                 <input
+                                    disabled
                                     id="password"
-                                    type={showPassword ? 'text' : 'password'}
                                     value={process.env.USER_PASSWORD}
                                     {...register('password')}
+                                    type={showPassword ? 'text' : 'password'}
                                     className="bg-transparent h-[45px] flex-1 text-sm outline-none px-2 placeholder-white"
                                 />
                                 <div
