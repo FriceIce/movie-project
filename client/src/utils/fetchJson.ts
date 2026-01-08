@@ -1,3 +1,5 @@
+import { url } from './url';
+
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 export async function fetchJson<T>(
@@ -6,10 +8,7 @@ export async function fetchJson<T>(
     method?: Method,
     body?: Record<string, any>
 ): Promise<T> {
-    const origin: string =
-        process.env.NODE_ENV === 'production'
-            ? 'https://git.heroku.com/movie-project.git'
-            : 'http://localhost:3001';
+    const origin: string = url();
 
     const response = await fetch(`${origin}/api` + endpoint, {
         ...(method && { method }),

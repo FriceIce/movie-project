@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { fetchJson } from './fetchJson';
 import Cookie from 'js-cookie';
+import { url } from './url';
 
 const refreshToken = Cookie.get('refreshToken');
 const errormessage = `We couldn't save this content. Please try again or reload the page.`;
@@ -18,10 +19,7 @@ export async function saveContent(
     setSave: Dispatch<SetStateAction<Record<string, string | boolean>>>,
     setSavedTitles: Dispatch<SetStateAction<SavedContent[]>>
 ): Promise<boolean> {
-    const origin: string =
-        process.env.NODE_ENV === 'production'
-            ? 'https://git.heroku.com/movie-project.git'
-            : 'http://localhost:3001';
+    const origin: string = url();
     const response = await fetch(`${origin}/api/saveContent`, {
         method: 'POST',
         credentials: 'include',
@@ -73,7 +71,8 @@ export async function deleteSavedContent(
     setSave: Dispatch<SetStateAction<Record<string, string | boolean>>>,
     setSavedTitles: Dispatch<SetStateAction<SavedContent[]>>
 ): Promise<boolean> {
-    const response = await fetch(`http://localhost:3001/api/saveContent/${contentId}`, {
+    const origin: string = url();
+    const response = await fetch(`${origin}/api/saveContent/${contentId}`, {
         method: 'DELETE',
         credentials: 'include',
         headers: {
@@ -115,7 +114,8 @@ export async function deleteSavedContent(
 export async function retrieveSavedContent(
     token: string
 ): Promise<FetchResponse<SavedContent[]> | null> {
-    const response = await fetch(`http://localhost:3001/api/saveContent/`, {
+    const origin: string = url();
+    const response = await fetch(`${origin}/api/saveContent/`, {
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',

@@ -1,8 +1,7 @@
+import { url } from '@/utils/url';
+
 export async function fetchSearch<T>(token: string, searchTerm: string): Promise<T | number> {
-    const origin: string =
-        process.env.NODE_ENV === 'production'
-            ? 'https://git.heroku.com/movie-project.git'
-            : 'http://localhost:3001';
+    const origin: string = url();
 
     const response = await fetch(origin + '/api/search/multi?query=' + searchTerm, {
         method: 'get',
