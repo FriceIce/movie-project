@@ -12,7 +12,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const origin: string[] =
     process.env.NODE_ENV === 'production'
-        ? ['tmdb-movie-project.vercel.app']
+        ? ['https://tmdb-movie-project.vercel.app/']
         : ['http://localhost:3002', 'http://localhost:3000'];
 
 // middleware
