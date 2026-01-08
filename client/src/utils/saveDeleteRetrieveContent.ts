@@ -18,7 +18,11 @@ export async function saveContent(
     setSave: Dispatch<SetStateAction<Record<string, string | boolean>>>,
     setSavedTitles: Dispatch<SetStateAction<SavedContent[]>>
 ): Promise<boolean> {
-    const response = await fetch(`http://localhost:3001/api/saveContent`, {
+    const origin: string =
+        process.env.NODE_ENV === 'production'
+            ? 'https://git.heroku.com/movie-project.git'
+            : 'http://localhost:3001';
+    const response = await fetch(`${origin}/api/saveContent`, {
         method: 'POST',
         credentials: 'include',
         headers: {

@@ -10,10 +10,6 @@ import { consoleLog } from './utils/logger';
 
 const app = express();
 const port = process.env.PORT || 5000;
-const origin: string[] =
-    process.env.NODE_ENV === 'production'
-        ? ['https://tmdb-movie-project.vercel.app/']
-        : ['http://localhost:3002', 'http://localhost:3000'];
 
 // middleware
 app.use(cookieParser());
@@ -21,7 +17,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(
     cors({
-        origin,
+        origin: [process.env.PRODUCTION_URL!, 'http://localhost:3002'],
         credentials: true,
     })
 );
