@@ -1,5 +1,5 @@
 export function url() {
     return process.env.NODE_ENV === 'production'
-        ? process.env.SERVER_URL!
+        ? process.env.NEXT_PUBLIC_SERVER_URL!
         : 'http://localhost:3001';
 }
