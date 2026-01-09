@@ -70,7 +70,6 @@ export const userLogin = asyncHandler(async (req: Request, res: Response): Promi
     const userRes = await loginUser(body);
 
     res.cookie('refreshToken', userRes.data.refreshToken, cookieOptions)
-        .setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
         .cookie('auth_token', userRes.data.accessToken, {
             ...cookieOptions,
             maxAge: authTokenMaxAge,
@@ -167,7 +166,6 @@ export const userRefreshToken = asyncHandler(async (req: Request, res: Response)
     const { newAccessToken, newRefreshToken } = await refreshToken(oldRefreshToken, checkDb);
 
     res.cookie('refreshToken', newRefreshToken, cookieOptions)
-        .setHeader('Cross-Origin-Resource-Policy', 'cross-origin')
         .cookie('auth_token', newAccessToken, { ...cookieOptions, maxAge: authTokenMaxAge })
         .status(200)
         .json({

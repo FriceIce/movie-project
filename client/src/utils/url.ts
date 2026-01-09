@@ -1,5 +1,5 @@
 export function url() {
     return process.env.NODE_ENV === 'production'
-        ? process.env.NEXT_PUBLIC_SERVER_URL!
+        ? 'https://tmdb-movie-project.vercel.app'
         : 'http://localhost:3001';
 }
