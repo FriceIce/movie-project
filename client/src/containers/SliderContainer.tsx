@@ -128,7 +128,9 @@ function SliderContainer({ images, rank, contentType }: Prop) {
                                         href={`/content/${contentType}/${content.id}`}
                                         className="flex items-end h-full"
                                     >
-                                        <RankIcon height="50%" color="#aaaaaa" />
+                                        <div className="size-1/2">
+                                            <RankIcon height="100%" color="#aaaaaa" />
+                                        </div>
                                         <Image
                                             src={
                                                 'https://image.tmdb.org/t/p/w342' +
@@ -137,7 +139,7 @@ function SliderContainer({ images, rank, contentType }: Prop) {
                                             alt={title + 'poster'}
                                             width={342}
                                             height={513}
-                                            className="h-full rounded size-full shadow-blackShadow"
+                                            className="rounded size-full shadow-blackShadow"
                                         />
                                     </Link>
                                 </li>
