@@ -20,13 +20,16 @@ function MediaListTab({ label, media }: Prop) {
                 return (
                     <li key={content.id} className="" role="button" tabIndex={0}>
                         <Link href={`/content/${contentType}/${content.id}`} prefetch={false}>
-                            <Image
-                                src={'https://image.tmdb.org/t/p/w342' + content.poster_path}
-                                alt={title + 'poster'}
-                                width={500}
-                                height={230}
-                                className="object-contain rounded-[2px]"
-                            />
+                            <div className="relative size-full">
+                                <div className="absolute inset-0 size-full md:hover:bg-[#0000002f]"></div>
+                                <Image
+                                    src={'https://image.tmdb.org/t/p/w342' + content.poster_path}
+                                    alt={title + 'poster'}
+                                    width={500}
+                                    height={230}
+                                    className="object-contain rounded-[2px]"
+                                />
+                            </div>
                         </Link>
                     </li>
                 );

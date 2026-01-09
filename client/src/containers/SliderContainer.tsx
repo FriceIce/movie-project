@@ -101,16 +101,19 @@ function SliderContainer({ images, rank, contentType }: Prop) {
                                         href={`/content/${contentType}/${content.id}`}
                                         prefetch={false}
                                     >
-                                        <Image
-                                            src={
-                                                'https://image.tmdb.org/t/p/w342' +
-                                                content.poster_path
-                                            }
-                                            alt={title + ' poster'}
-                                            width={342}
-                                            height={513}
-                                            className="size-full rounded object-cover"
-                                        />
+                                        <div className="relative size-full">
+                                            <div className="absolute inset-0 size-full md:hover:bg-[#0000002f]"></div>
+                                            <Image
+                                                src={
+                                                    'https://image.tmdb.org/t/p/w342' +
+                                                    content.poster_path
+                                                }
+                                                alt={title + 'poster'}
+                                                width={342}
+                                                height={513}
+                                                className="rounded size-full object-cover shadow-blackShadow"
+                                            />
+                                        </div>
                                     </Link>
                                 </li>
                             );
@@ -131,16 +134,19 @@ function SliderContainer({ images, rank, contentType }: Prop) {
                                         <div className="size-1/2">
                                             <RankIcon height="100%" color="#aaaaaa" />
                                         </div>
-                                        <Image
-                                            src={
-                                                'https://image.tmdb.org/t/p/w342' +
-                                                content.poster_path
-                                            }
-                                            alt={title + 'poster'}
-                                            width={342}
-                                            height={513}
-                                            className="rounded size-full shadow-blackShadow"
-                                        />
+                                        <div className="relative size-full">
+                                            <div className="absolute inset-0 size-full md:hover:bg-[#0000002f]"></div>
+                                            <Image
+                                                src={
+                                                    'https://image.tmdb.org/t/p/w342' +
+                                                    content.poster_path
+                                                }
+                                                alt={title + 'poster'}
+                                                width={342}
+                                                height={513}
+                                                className="rounded size-full object-cover shadow-blackShadow"
+                                            />
+                                        </div>
                                     </Link>
                                 </li>
                             );

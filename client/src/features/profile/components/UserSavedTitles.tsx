@@ -48,13 +48,16 @@ function RenderSavedTitles({ titles }: { titles: SavedContent[] | undefined }) {
                             href={`/content/${title.content_type}/${title.content_id}`}
                             prefetch={false}
                         >
-                            <Image
-                                src={`https://image.tmdb.org/t/p/w500/${title.poster_path}`}
-                                alt={title.content_type + ' content.'}
-                                width={342}
-                                height={513}
-                                className="size-full"
-                            />
+                            <div className="relative size-full">
+                                <div className="absolute inset-0 size-full md:hover:bg-[#0000002f]"></div>
+                                <Image
+                                    src={`https://image.tmdb.org/t/p/w500/${title.poster_path}`}
+                                    alt={title.content_type + ' content.'}
+                                    width={342}
+                                    height={513}
+                                    className="size-full"
+                                />
+                            </div>
                         </Link>
                     </li>
                 );
