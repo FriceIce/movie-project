@@ -44,10 +44,7 @@ function RenderSavedTitles({ titles }: { titles: SavedContent[] | undefined }) {
             {titles?.map((title) => {
                 return (
                     <li key={title.content_id} className="relative shadow-blackShadow">
-                        <Link
-                            href={`/content/${title.content_type}/${title.content_id}`}
-                            prefetch={false}
-                        >
+                        <Link href={`/content/${title.content_type}/${title.content_id}`}>
                             <div className="relative size-full">
                                 <div className="absolute inset-0 size-full md:hover:bg-[#0000002f]"></div>
                                 <Image

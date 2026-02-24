@@ -29,7 +29,6 @@ function ContentList() {
                             <li key={content.id}>
                                 <Link
                                     href={`/content/${content.media_type}/${content.id}`}
-                                    prefetch={false}
                                     className={`flex items-center gap-3 rounded`}
                                 >
                                     <div>
@@ -66,10 +65,7 @@ function ContentList() {
                         return (
                             !content.adult && (
                                 <li key={content.id} className={``}>
-                                    <Link
-                                        href={`/content/${content.media_type}/${content.id}`}
-                                        prefetch={false}
-                                    >
+                                    <Link href={`/content/${content.media_type}/${content.id}`}>
                                         <Image
                                             src={
                                                 'https://image.tmdb.org/t/p/w300' +

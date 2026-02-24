@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(
     cors({
-        origin: [process.env.PRODUCTION_URL!, 'http://localhost:3002'],
+        origin: [process.env.PRODUCTION_URL!, 'http://localhost:3002', 'http://localhost:3000'],
         credentials: true,
     })
 );

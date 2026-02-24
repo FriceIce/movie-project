@@ -19,7 +19,7 @@ function MediaListTab({ label, media }: Prop) {
 
                 return (
                     <li key={content.id} className="" role="button" tabIndex={0}>
-                        <Link href={`/content/${contentType}/${content.id}`} prefetch={false}>
+                        <Link href={`/content/${contentType}/${content.id}`}>
                             <div className="relative size-full">
                                 <div className="absolute inset-0 size-full md:hover:bg-[#0000002f]"></div>
                                 <Image
